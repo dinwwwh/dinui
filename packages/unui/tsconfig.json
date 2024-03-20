@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "lib": ["es2022", "dom", "dom.iterable"],
+    "types": [],
+
+    "skipLibCheck": true,
+    "target": "es2022",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "jsx": "preserve",
+
+    "declaration": true,
+    "composite": true,
+    "declarationMap": true,
+    "moduleResolution": "Bundler",
+    "module": "ES2022",
+    "outDir": "build",
+    "sourceMap": true,
+
+    "strict": true,
+    "noUncheckedIndexedAccess": true
+  },
+  "exclude": ["node_modules", "build"]
+}

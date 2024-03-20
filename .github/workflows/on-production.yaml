@@ -1,0 +1,25 @@
+name: On production
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy-production:
+    runs-on: ubuntu-latest
+    # environment: production
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2
+
+      - run: pnpm i
+
+      - run: pnpm run lint:check
+
+      - run: pnpm run format:check
+
+      - run: pnpm run type:check
+
+      - run: pnpm run deploy:production

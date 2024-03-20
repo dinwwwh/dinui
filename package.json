@@ -1,15 +1,26 @@
 {
-  "name": "unui",
+  "name": "r",
   "private": true,
   "scripts": {
-    "build": "turbo build",
     "dev": "turbo dev",
-    "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "build": "turbo build",
+    "preview": "turbo preview",
+    "deploy:preview": "turbo deploy:preview",
+    "deploy:production": "turbo deploy:production",
+    "type:check": "turbo type:check",
+    "lint:check": "eslint --max-warnings 0 --report-unused-disable-directives .",
+    "lint:fix": "eslint --fix --max-warnings 0 --report-unused-disable-directives .",
+    "format:check": "prettier --check .",
+    "format:fix": "prettier --write ."
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "env-cmd": "^10.1.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.34.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^3.2.5",
     "turbo": "latest"
   },

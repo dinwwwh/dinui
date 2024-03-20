@@ -1,0 +1,31 @@
+name: On preview
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    # environment: preview
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2
+
+      - run: pnpm i
+
+      - run: pnpm run lint:fix
+
+      - run: pnpm run format:fix
+
+      - run: pnpm run type:check
+
+      - run: pnpm run deploy:preview
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Fixed!
