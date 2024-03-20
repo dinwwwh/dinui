@@ -1,5 +1,5 @@
 {
-  "name": "@dinsterizer/ui",
+  "name": "@dinui/react",
   "version": "0.0.0",
   "homepage": "https://ui.dinsterizer.com",
   "author": {
@@ -12,12 +12,13 @@
     "url": "https://github.com/dinsterizer/ui.git",
     "directory": "packages/react-ui"
   },
-  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
+  "license": "MIT",
   "exports": {
-    "button": {
+    "./button": {
+      "default": "./build/ui/button.jsx",
       "import": "./build/ui/button.jsx",
       "types": "./build/ui/button.d.ts"
     }

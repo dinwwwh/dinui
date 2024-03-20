@@ -1,4 +1,4 @@
-import type React from 'react'
+import * as React from 'react'
 
 type ButtonProps = React.ComponentPropsWithRef<'button'>
 

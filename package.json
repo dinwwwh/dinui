@@ -1,5 +1,5 @@
 {
-  "name": "dinui",
+  "name": "@dinui/monorepo",
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
