@@ -1,6 +1,5 @@
 {
-  "name": "r",
-  "private": true,
+  "name": "dinui",
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",

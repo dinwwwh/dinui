@@ -36,7 +36,7 @@ importers:
         specifier: latest
         version: 1.12.5
 
-  packages/unui:
+  packages/react-ui:
     dependencies:
       react:
         specifier: ^18.2.0
