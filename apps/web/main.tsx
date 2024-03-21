@@ -1,3 +1,4 @@
+import { docs } from './.velite/index'
 import { MainErrorBoundary, MainLayout } from './layouts/main.tsx'
 import './styles/globals.css'
 import { ViteReactSSG } from 'vite-react-ssg'
@@ -11,8 +12,16 @@ export const routes: RouteRecord[] = [
     children: [
       {
         index: true,
-        lazy: () => import('./pages/home.tsx'),
+        lazy: () => import('./pages/home'),
         entry: './pages/home.tsx',
+      },
+      {
+        path: 'docs/:category/:name',
+        lazy: () => import('./pages/doc-detail'),
+        entry: './pages/doc-detail.tsx',
+        getStaticPaths() {
+          return docs.map((doc) => 'docs/' + doc.relativePath)
+        },
       },
     ],
   },
