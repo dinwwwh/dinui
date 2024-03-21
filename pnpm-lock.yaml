@@ -41,6 +41,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@dinui/react':
+        specifier: workspace:^
+        version: link:../../packages/react-ui
       react:
         specifier: ^18.2.0
         version: 18.2.0
