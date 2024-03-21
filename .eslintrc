@@ -1,41 +1,41 @@
 {
-    "settings": {
-      "react": {
-        "version": "detect",
+  "settings": {
+    "react": {
+      "version": "detect",
+    },
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:react-hooks/recommended",
+    "prettier",
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "react-refresh"],
+  "rules": {
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "react/prop-types": ["error", { "ignore": ["className"] }],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_", "caughtErrorsIgnorePattern": "^_" },
+    ],
+    "@typescript-eslint/consistent-type-imports": ["error"],
+  },
+  "overrides": [
+    {
+      "files": "**.js",
+      "env": {
+        "node": true,
       },
     },
-    "extends": [
-      "eslint:recommended",
-      "plugin:@typescript-eslint/recommended",
-      "plugin:react/recommended",
-      "plugin:react/jsx-runtime",
-      "plugin:react-hooks/recommended",
-      "prettier",
-    ],
-    "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint"],
-    "rules": {
-      "no-console": ["warn", { "allow": ["warn", "error"] }],
-      "react/prop-types": ["error", { "ignore": ["className"] }],
-      "@typescript-eslint/no-unused-vars": [
-        "error",
-        { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_", "caughtErrorsIgnorePattern": "^_" },
-      ],
-      "@typescript-eslint/consistent-type-imports": ["error"],
+    {
+      "files": "./apps/web/components/ui/**.*",
+      "rules": {
+        "react/prop-types": "off",
+        "react/no-unknown-property": "off",
+      },
     },
-    "overrides": [
-      {
-        "files": "**.js",
-        "env": {
-          "node": true,
-        },
-      },
-      {
-        "files": "./apps/web/components/ui/**.*",
-        "rules": {
-          "react/prop-types": "off",
-          "react/no-unknown-property": "off",
-        },
-      },
-    ],
-  }
+  ],
+}

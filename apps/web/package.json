@@ -1,24 +1,25 @@
 {
   "name": "@dinui/web",
-  "version": "0.1.0",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "preview": "next build && pnpm dlx serve@latest out",
+    "dev": "vite-react-ssg dev",
+    "build": "vite-react-ssg build",
     "type:check": "tsc --noEmit"
   },
   "dependencies": {
-    "@dinui/react": "workspace:^",
-    "next": "14.1.4",
-    "react": "^18",
-    "react-dom": "^18"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "autoprefixer": "^10.0.1",
-    "postcss": "^8",
-    "tailwindcss": "^3.3.0",
-    "typescript": "^5"
+    "@childrentime/devcert": "^1.2.8",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0",
+    "vite-react-ssg": "^0.6.0"
   }
 }
