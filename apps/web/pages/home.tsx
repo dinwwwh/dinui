@@ -1,3 +1,3 @@
 export function Component() {
-  return 'home page'
+  return <div className="text-sm">'home page'</div>
 }
