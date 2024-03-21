@@ -19,7 +19,17 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    "paths": {
+      "@web/*": ["./*"],
+      "@react-ui/*": ["../../packages/react-ui/*"]
+    }
   },
-  "exclude": ["dist", "**.js"]
+  "exclude": ["dist", "**.js"],
+  "references": [
+    {
+      "path": "../../packages/react-ui/tsconfig.json"
+    }
+  ]
 }
