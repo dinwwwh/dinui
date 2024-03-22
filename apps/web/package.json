@@ -6,7 +6,7 @@
     "dev": "concurrently 'velite dev' 'vite-react-ssg dev'",
     "build": "velite build && vite-react-ssg build",
     "preview": "vite preview --port 3000",
-    "type:check": "tsc --noEmit"
+    "type:check": "velite build && tsc --noEmit"
   },
   "dependencies": {
     "@dinui/react": "workspace:^",
