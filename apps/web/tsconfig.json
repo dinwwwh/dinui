@@ -24,7 +24,7 @@
 
     "paths": {
       "@web/*": ["./*"],
-      "@react-ui/*": ["../../packages/react-ui/*"]
+      "@dinui/react/*": ["../../packages/react-ui/ui/*"]
     }
   },
   "exclude": ["dist", "**.js"],
