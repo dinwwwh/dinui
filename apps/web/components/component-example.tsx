@@ -18,10 +18,10 @@ export function ComponentExample({ name }: { name: string }) {
   const path = `../examples/${name}.tsx`
 
   return (
-    <Suspense fallback="loading...">
+    <div>
       <ComponentPreview path={path} />
       <ComponentCode path={path} />
-    </Suspense>
+    </div>
   )
 }
 
@@ -34,7 +34,12 @@ function ComponentPreview(props: { path: string }) {
 
   const Component = lazy(loadComponent)
 
-  return <Component />
+  return (
+    // TODO
+    <Suspense fallback="loading...">
+      <Component />
+    </Suspense>
+  )
 }
 
 function ComponentCode(props: { path: string }) {
@@ -57,5 +62,10 @@ function ComponentCode(props: { path: string }) {
     }
   })
 
-  return <Code />
+  return (
+    // TODO
+    <Suspense fallback="loading...">
+      <Code />
+    </Suspense>
+  )
 }
