@@ -1,4 +1,4 @@
-import { Button } from '@react-ui/ui/button'
+import { Button } from '@dinui/react/button'
 
 export function Component() {
   return (
