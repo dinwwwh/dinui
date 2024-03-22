@@ -3,7 +3,7 @@ import { codeToHtml } from 'shiki'
 
 const exampleComponents = import.meta.glob('../examples/**/*.tsx') as {
   [key: string]: () => Promise<{
-    default: React.ComponentType<any>
+    default: React.ComponentType
   }>
 }
 
