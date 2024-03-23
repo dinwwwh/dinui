@@ -1,3 +1,5 @@
+'use client'
+
 import { docs } from '@web/.velite'
 import { MDXContent } from '@web/components/mdx-content'
 import { useLoaderData, type LoaderFunctionArgs } from 'react-router-dom'

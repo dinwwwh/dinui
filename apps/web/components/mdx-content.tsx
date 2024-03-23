@@ -1,3 +1,5 @@
+'use client';
+
 import { ComponentExample } from './component-example'
 import '@web/styles/mdx.css'
 import * as runtime from 'react/jsx-runtime'

@@ -35,6 +35,9 @@ importers:
       eslint-plugin-react-refresh:
         specifier: ^0.4.6
         version: 0.4.6(eslint@8.57.0)
+      eslint-plugin-react-server-components:
+        specifier: ^1.1.2
+        version: 1.1.2(eslint@8.57.0)
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
@@ -3132,6 +3135,15 @@ packages:
       eslint: '>=7'
     dependencies:
       eslint: 8.57.0
+    dev: true
+
+  /eslint-plugin-react-server-components@1.1.2(eslint@8.57.0):
+    resolution: {integrity: sha512-t3hEE7V7YxeWBkC2hL/GUBBCZ9xa6leo4SzAudlt6ZUSBQkK8UeSziLKnhyuK+GI7KSTp6j+CaGJ/RggJQNrYg==}
+    dependencies:
+      eslint-plugin-react: 7.34.1(eslint@8.57.0)
+      globals: 13.24.0
+    transitivePeerDependencies:
+      - eslint
     dev: true
 
   /eslint-plugin-react@7.34.1(eslint@8.57.0):
