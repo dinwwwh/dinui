@@ -1,8 +1,8 @@
 import deepmerge from 'deepmerge'
 import type { Config } from 'tailwindcss'
-import type { CustomThemeConfig } from 'tailwindcss/types/config'
+import plugin from 'tailwindcss/plugin'
 
-type ColorConfig = CustomThemeConfig['colors']
+type ColorConfig = Record<string, string>
 
 const utilityColors = [
   'utility-gray-50',
@@ -61,7 +61,7 @@ for (const color of [
 const utilityColorConfig: ColorConfig = utilityColors.reduce((themeColors, color) => {
   return {
     ...themeColors,
-    [color]: `rgb(var(--color-${color}) / <alpha-value>)`,
+    [color]: `rgb(var(--color-${color}))`,
   }
 }, {})
 
@@ -69,7 +69,7 @@ const basicColorConfig: ColorConfig = ['white', 'black', 'alpha-white', 'alpha-b
   (themeColors, color) => {
     return {
       ...themeColors,
-      [color]: `rgb(var(--color-${color}) / <alpha-value>)`,
+      [color]: `rgb(var(--color-${color}))`,
     }
   },
   {},
@@ -96,32 +96,39 @@ const textColorConfig: ColorConfig = [
   'error-primary',
   'warning-primary',
   'success-primary',
-
-  'fg-primary',
-  'fg-secondary',
-  'fg-secondary_hover',
-  'fg-tertiary',
-  'fg-tertiary_hover',
-  'fg-quaternary',
-  'fg-quaternary_hover',
-  'fg-quinary',
-  'fg-quinary_hover',
-  'fg-senary',
-  'fg-disabled',
-  'fg-disabled_subtle',
-  'fg-brand-primary',
-  'fg-brand-primary_alt',
-  'fg-brand-secondary',
-  'fg-error-primary',
-  'fg-error-secondary',
-  'fg-warning-primary',
-  'fg-warning-secondary',
-  'fg-success-primary',
-  'fg-success-secondary',
 ].reduce((themeColors, color) => {
   return {
     ...themeColors,
-    [color]: `rgb(var(--color-text-${color}) / <alpha-value>)`,
+    [color]: `rgb(var(--color-text-${color}))`,
+  }
+}, {})
+
+const foregroundColorConfig: ColorConfig = [
+  'primary',
+  'secondary',
+  'secondary_hover',
+  'tertiary',
+  'tertiary_hover',
+  'quaternary',
+  'quaternary_hover',
+  'quinary',
+  'quinary_hover',
+  'senary',
+  'disabled',
+  'disabled_subtle',
+  'brand-primary',
+  'brand-primary_alt',
+  'brand-secondary',
+  'error-primary',
+  'error-secondary',
+  'warning-primary',
+  'warning-secondary',
+  'success-primary',
+  'success-secondary',
+].reduce((themeColors, color) => {
+  return {
+    ...themeColors,
+    [color]: `rgb(var(--color-fg-${color}))`,
   }
 }, {})
 
@@ -160,7 +167,7 @@ const backgroundColorConfig: ColorConfig = [
 ].reduce((themeColors, color) => {
   return {
     ...themeColors,
-    [color]: `rgb(var(--color-bg-${color}) / <alpha-value>)`,
+    [color]: `rgb(var(--color-bg-${color}))`,
   }
 }, {})
 
@@ -178,7 +185,7 @@ const borderColorConfig: ColorConfig = [
 ].reduce((themeColors, color) => {
   return {
     ...themeColors,
-    [color]: `rgb(var(--color-border-${color}) / <alpha-value>)`,
+    [color]: `rgb(var(--color-border-${color}))`,
   }
 }, {})
 
@@ -209,6 +216,23 @@ export default function withDinui(tailwindConfig: Partial<Config>) {
           },
         },
       },
+      plugins: [
+        plugin(({ matchUtilities }) => {
+          matchUtilities(
+            {
+              fg: (value) => {
+                return {
+                  color: value,
+                }
+              },
+            },
+            {
+              type: ['color'],
+              values: foregroundColorConfig,
+            },
+          )
+        }),
+      ],
     },
     tailwindConfig,
   )
