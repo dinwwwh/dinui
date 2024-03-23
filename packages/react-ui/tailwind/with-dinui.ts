@@ -205,12 +205,31 @@ export default function withDinui(tailwindConfig: Partial<Config>) {
           colors: {
             ...basicColorConfig,
             ...utilityColorConfig,
+            text: textColorConfig,
+            fg: foregroundColorConfig,
+            bg: backgroundColorConfig,
+            border: borderColorConfig,
+            ring: ringColorConfig,
           },
+
           textColor: textColorConfig,
+          placeholderColor: textColorConfig,
+
           backgroundColor: backgroundColorConfig,
+          ringOffsetColor: backgroundColorConfig,
+          accentColor: backgroundColorConfig,
+
           borderColor: borderColorConfig,
           divideColor: borderColorConfig,
+
           ringColor: ringColorConfig,
+          outlineColor: ringColorConfig,
+
+          caretColor: foregroundColorConfig,
+          textDecorationColor: foregroundColorConfig,
+
+          // boxShadowColor: {},
+          // gradientColorStops: {},
           maxWidth: {
             paragraph: '45rem',
           },
