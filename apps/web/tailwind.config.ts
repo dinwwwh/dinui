@@ -1,9 +1,9 @@
-import type { Config } from 'tailwindcss'
+import withDinui from '@dinui/react/tailwind/with-dinui'
 
-export default {
+export default withDinui({
   content: ['./layouts/**.tsx', './pages/**.tsx', './components/**.tsx', './examples/**.tsx'],
   theme: {
-    extend: {},
+    // colors: {},
   },
   plugins: [],
-} satisfies Config
+})

@@ -18,9 +18,12 @@
   "license": "MIT",
   "exports": {
     "./button": {
-      "default": "./build/ui/button.jsx",
-      "import": "./build/ui/button.jsx",
-      "types": "./build/ui/button.d.ts"
+      "types": "./build/ui/button.d.ts",
+      "default": "./build/ui/button.jsx"
+    },
+    "./tailwind/with-dinui": {
+      "types": "./build/tailwind/with-dinui.d.ts",
+      "default": "./build/tailwind/with-dinui.js"
     }
   },
   "scripts": {
@@ -32,6 +35,8 @@
     "typescript": "^5.4.2"
   },
   "dependencies": {
-    "react": "^18.2.0"
+    "deepmerge": "^4.3.1",
+    "react": "^18.2.0",
+    "tailwindcss": "^3.4.1"
   }
 }
