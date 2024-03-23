@@ -11,6 +11,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@web': resolve(__dirname, './'),
+      '@dinui/react/utils': resolve(__dirname, '../../packages/react-ui/utils'),
       '@dinui/react': resolve(__dirname, '../../packages/react-ui/ui'),
     },
   },

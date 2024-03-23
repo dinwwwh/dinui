@@ -24,6 +24,7 @@
 
     "paths": {
       "@web/*": ["./*"],
+      "@dinui/react/utils": ["../../packages/react-ui/utils"],
       "@dinui/react/*": ["../../packages/react-ui/ui/*"]
     }
   },

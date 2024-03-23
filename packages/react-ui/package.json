@@ -17,6 +17,10 @@
   },
   "license": "MIT",
   "exports": {
+    "./utils": {
+      "types": "./build/utils.d.ts",
+      "default": "./build/utils.js"
+    },
     "./button": {
       "types": "./build/ui/button.d.ts",
       "default": "./build/ui/button.jsx"
@@ -35,8 +39,10 @@
     "typescript": "^5.4.2"
   },
   "dependencies": {
+    "clsx": "^2.1.0",
     "deepmerge": "^4.3.1",
     "react": "^18.2.0",
+    "tailwind-merge": "^2.2.2",
     "tailwindcss": "^3.4.1"
   }
 }
