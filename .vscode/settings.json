@@ -8,5 +8,5 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  "tailwindCSS.classAttributes": [".*Variants", ".*Variants: .*"]
+  "tailwindCSS.classAttributes": ["class", "className", ".*Variants", ".*Variants: .*"]
 }
