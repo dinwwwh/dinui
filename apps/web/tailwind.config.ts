@@ -1,9 +1,28 @@
-import withDinui from '@dinui/react/tailwind/with-dinui'
+import type { Config } from 'tailwindcss'
+import tailwindColors from 'tailwindcss/colors'
+import defaultTheme from 'tailwindcss/defaultTheme'
 
-export default withDinui({
-  content: ['./layouts/**.tsx', './pages/**.tsx', './components/**.tsx', './examples/**.tsx'],
+export default {
+  content: [
+    './layouts/**.tsx',
+    './pages/**.tsx',
+    './components/**.tsx',
+    './examples/**.tsx',
+    './node_modules/@dinui/react/ui/**/*.tsx',
+  ],
   theme: {
-    // colors: {},
+    extend: {
+      fontFamily: {
+        sans: ['"Inter"', ...defaultTheme.fontFamily.sans],
+      },
+      colors: {
+        gray: tailwindColors.gray,
+        brand: tailwindColors.violet,
+        error: tailwindColors.red,
+        warning: tailwindColors.amber,
+        success: tailwindColors.green,
+      },
+    },
   },
   plugins: [],
-})
+} satisfies Config

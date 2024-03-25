@@ -24,10 +24,6 @@
     "./button": {
       "types": "./build/ui/button.d.ts",
       "default": "./build/ui/button.jsx"
-    },
-    "./tailwind/with-dinui": {
-      "types": "./build/tailwind/with-dinui.d.ts",
-      "default": "./build/tailwind/with-dinui.js"
     }
   },
   "scripts": {
