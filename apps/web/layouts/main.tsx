@@ -1,3 +1,4 @@
+import { Header } from '@web/components/header'
 import { Outlet } from 'react-router-dom'
 import { Head } from 'vite-react-ssg'
 
@@ -16,7 +17,12 @@ export function MainLayout() {
         />
         <meta name="author" content="Din" />
       </Head>
-      <Outlet />
+      <div className="container">
+        <div>
+          <Header />
+        </div>
+        <Outlet />
+      </div>
     </>
   )
 }
