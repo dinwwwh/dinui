@@ -1,14 +1,7 @@
 import { Github, Twitter } from './icons'
 import { Logo } from './logo'
 import { Button } from '@dinui/react/button'
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@dinui/react/sheet'
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@dinui/react/sheet'
 import { Menu01 } from '@untitled-ui/icons-react'
 import { env } from '@web/env'
 import { Link } from 'vite-react-ssg'

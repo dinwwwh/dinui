@@ -46,31 +46,18 @@ export const SheetContent = React.forwardRef<
   React.ElementRef<typeof ReactDialog.Content>,
   SheetContentProps
 >(({ portalProps, overlayProps, side = 'right', className, children, ...props }, ref) => {
-  const Content = () => {
-    return (
+  return (
+    <ReactDialog.Portal {...portalProps}>
+      <ReactDialog.Overlay
+        {...overlayProps}
+        className={cn(
+          'fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+          overlayProps?.className,
+        )}
+      />
       <ReactDialog.Content ref={ref} className={cn(sheetContent({ side }), className)} {...props}>
         {children}
       </ReactDialog.Content>
-    )
-  }
-
-  const Overlay = () => {
-    const { className, ...props } = overlayProps ?? {}
-    return (
-      <ReactDialog.Overlay
-        className={cn(
-          'fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
-          className,
-        )}
-        {...props}
-      />
-    )
-  }
-
-  return (
-    <ReactDialog.Portal {...portalProps}>
-      <Overlay />
-      <Content />
     </ReactDialog.Portal>
   )
 })
