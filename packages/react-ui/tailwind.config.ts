@@ -27,5 +27,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/container-queries'), require('tailwindcss-animate')],
 } satisfies Config

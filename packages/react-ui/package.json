@@ -24,6 +24,10 @@
     "./button": {
       "types": "./build/ui/button.d.ts",
       "default": "./build/ui/button.jsx"
+    },
+    "./sheet": {
+      "types": "./build/ui/sheet.d.ts",
+      "default": "./build/ui/sheet.jsx"
     }
   },
   "scripts": {
@@ -31,17 +35,23 @@
     "type:check": "tsc --noEmit"
   },
   "devDependencies": {
+    "@tailwindcss/container-queries": "^0.1.1",
     "@types/react": "^18.2.67",
+    "react": "^18.2.0",
     "tailwindcss": "^3.4.1",
+    "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.4.2"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-slot": "^1.0.2",
     "@untitled-ui/icons-react": "^0.1.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "deepmerge": "^4.3.1",
-    "react": "^18.2.0",
     "tailwind-merge": "^2.2.2"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
   }
 }

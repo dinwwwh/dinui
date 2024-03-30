@@ -1,6 +1,14 @@
 import { Github, Twitter } from './icons'
 import { Logo } from './logo'
 import { Button } from '@dinui/react/button'
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@dinui/react/sheet'
 import { env } from '@web/env'
 import { Link } from 'vite-react-ssg'
 
@@ -28,14 +36,18 @@ const mainNavItems = [
 
 export function Header() {
   return (
-    <header className="flex items-center justify-between gap-4">
-      <div className="flex items-center gap-10">
+    <header className="@container flex items-center justify-between gap-4">
+      <div className="hidden @3xl:flex items-center gap-10">
         <Link to={'/'}>
           <Logo className="h-8" />
         </Link>
         <div>
           <LeftNav />
         </div>
+      </div>
+
+      <div className="flex @3xl:hidden">
+        <SheetMenu />
       </div>
 
       <RightNav />
@@ -95,5 +107,20 @@ function RightNav() {
         </li>
       </ul>
     </nav>
+  )
+}
+
+function SheetMenu() {
+  return (
+    <Sheet>
+      <SheetTrigger>xin chao</SheetTrigger>
+
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Heading</SheetTitle>
+          <SheetDescription>Lorem ipsum dolor sit amet.</SheetDescription>
+        </SheetHeader>
+      </SheetContent>
+    </Sheet>
   )
 }
