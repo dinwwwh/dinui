@@ -5,38 +5,26 @@ import * as React from 'react'
 
 const buttonVariants = {
   size: {
-    sm: [
-      'h-9 px-3.5 text-sm font-semibold rounded-lg gap-1.5',
-      '[&>svg]:size-5 [&>*:first-child:is(svg)]:-ml-0.5 [&>*:last-child:is(svg)]:-mr-0.5',
-    ],
-    md: [
-      'h-10 px-4 text-sm font-semibold rounded-lg gap-1.5',
-      '[&>svg]:size-5 [&>*:first-child:is(svg)]:-ml-0.5 [&>*:last-child:is(svg)]:-mr-0.5',
-    ],
-    lg: [
-      'h-11 px-[1.125rem] text-base font-semibold rounded-lg gap-2',
-      '[&>svg]:size-5 [&>*:first-child:is(svg)]:-ml-0.5 [&>*:last-child:is(svg)]:-mr-0.5',
-    ],
-    xl: [
-      'h-12 px-5 text-base font-semibold rounded-lg gap-2',
-      '[&>svg]:size-5 [&>*:first-child:is(svg)]:-ml-0.5 [&>*:last-child:is(svg)]:-mr-0.5',
-    ],
-    '2xl': [
-      'h-[3.75rem] px-6 text-base font-semibold rounded-lg gap-4',
-      '[&>svg]:size-6 [&>*:first-child:is(svg)]:-ml-0.5 [&>*:last-child:is(svg)]:-mr-0.5',
-    ],
-    'icon:sm': ['size-9 rounded-lg', '[&>svg]:size-5'],
-    'icon:md': ['size-10 rounded-lg', '[&>svg]:size-5'],
-    'icon:lg': ['size-11 rounded-lg', '[&>svg]:size-5'],
-    'icon:xl': ['size-12 rounded-lg', '[&>svg]:size-5'],
-    'icon:2xl': ['size-[3.75rem] rounded-lg', '[&>svg]:size-6'],
+    sm: 'h-9 px-3.5 text-sm font-medium rounded-lg gap-1.5',
+    md: 'h-10 px-4 text-sm font-medium rounded-lg gap-1.5',
+    lg: 'h-11 px-[1.125rem] text-base font-medium rounded-lg gap-2',
+
+    xl: 'h-12 px-5 text-base font-medium rounded-lg gap-2',
+
+    '2xl': 'h-[3.75rem] px-6 text-base font-medium rounded-lg gap-4',
+
+    'icon:sm': 'size-9 rounded-lg',
+    'icon:md': 'size-10 rounded-lg',
+    'icon:lg': 'size-11 rounded-lg',
+    'icon:xl': 'size-12 rounded-lg',
+    'icon:2xl': 'size-[3.75rem rounded-lg',
   },
-  hierarchy: {
+  variant: {
     primary: [
       'shadow-sm bg-brand-600 text-white',
       'hover:bg-brand-700',
       'focus:ring-4 focus:ring-brand-500/25',
-      'disabled:bg-gray-100 disabled:border disabled:border-gray-200 disabled:text-gray-400',
+      'disabled:bg-gray-50 disabled:border disabled:border-gray-200 disabled:text-gray-400',
     ],
     'secondary-gray': [
       'shadow-sm bg-white text-gray-700 border border-gray-300',
@@ -71,7 +59,7 @@ const buttonVariants = {
       'shadow-sm bg-error-600 text-white',
       'hover:bg-error-700',
       'focus:ring-4 focus:ring-error-500/25',
-      'disabled:bg-gray-100 disabled:border disabled:border-gray-200 disabled:text-gray-400',
+      'disabled:bg-gray-50 disabled:border disabled:border-gray-200 disabled:text-gray-400',
     ],
     'destructive:secondary': [
       'shadow-sm bg-white text-error-700 border border-error-300',
@@ -96,8 +84,8 @@ const buttonVariants = {
 export const button = cva('inline-flex items-center justify-center transition-colors', {
   variants: buttonVariants,
   defaultVariants: {
-    hierarchy: 'primary',
-    size: 'sm',
+    variant: 'primary',
+    size: 'md',
   },
 })
 
@@ -107,9 +95,11 @@ type ButtonProps = React.ComponentPropsWithRef<'button'> &
   }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, hierarchy, size, asChild = false, ...props }, ref) => {
+  ({ className, variant: hierarchy, size, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : 'button'
-    return <Comp className={cn(button({ hierarchy, size, className }))} ref={ref} {...props} />
+    return (
+      <Comp className={cn(button({ variant: hierarchy, size, className }))} ref={ref} {...props} />
+    )
   },
 )
 Button.displayName = 'Button'

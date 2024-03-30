@@ -18,7 +18,7 @@ export function MainLayout() {
         <meta name="author" content="Din" />
       </Head>
       <div className="container">
-        <div className="py-4">
+        <div className="py-2 md:py-4">
           <Header />
         </div>
         <Outlet />

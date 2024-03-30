@@ -9,6 +9,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@dinui/react/sheet'
+import { Menu01 } from '@untitled-ui/icons-react'
 import { env } from '@web/env'
 import { Link } from 'vite-react-ssg'
 
@@ -39,7 +40,8 @@ export function Header() {
     <header className="@container flex items-center justify-between gap-4">
       <div className="hidden @3xl:flex items-center gap-10">
         <Link to={'/'}>
-          <Logo className="h-8" />
+          <Logo className="h-7" />
+          <span className="sr-only">Homepage</span>
         </Link>
         <div>
           <LeftNav />
@@ -64,11 +66,11 @@ function LeftNav() {
           return (
             <li key={nav.href}>
               {disabled ? (
-                <Button size={'lg'} hierarchy={'link-gray'} disabled>
+                <Button variant={'link-gray'} disabled>
                   {nav.name}
                 </Button>
               ) : (
-                <Button size={'lg'} hierarchy={'link-gray'} asChild>
+                <Button variant={'link-gray'} asChild>
                   <Link to={nav.href}>{nav.name}</Link>
                 </Button>
               )}
@@ -83,25 +85,25 @@ function LeftNav() {
 function RightNav() {
   return (
     <nav>
-      <ul className="flex items-center">
+      <ul className="flex items-center gap-1">
         <li>
-          <Button size={'icon:md'} hierarchy={'tertiary-gray'} asChild>
+          <Button size={'icon:sm'} variant={'tertiary-gray'} asChild>
             <a
               className="text-tertiary hover:text-tertiary_hover font-semibold transition-colors"
               href={env.GITHUB_REPOSITORY_URL}
             >
-              <Github />
+              <Github className="size-[1.075rem]" />
             </a>
           </Button>
         </li>
 
         <li>
-          <Button size={'icon:md'} hierarchy={'tertiary-gray'} asChild>
+          <Button size={'icon:sm'} variant={'tertiary-gray'} asChild>
             <a
               className="text-tertiary hover:text-tertiary_hover font-semibold transition-colors"
               href={env.AUTHOR_TWITTER_URL}
             >
-              <Twitter />
+              <Twitter className="size-[1.075rem]" />
             </a>
           </Button>
         </li>
@@ -113,13 +115,42 @@ function RightNav() {
 function SheetMenu() {
   return (
     <Sheet>
-      <SheetTrigger>xin chao</SheetTrigger>
+      <SheetTrigger asChild>
+        <Button variant={'tertiary-gray'} size={'icon:md'}>
+          <Menu01 />
+        </Button>
+      </SheetTrigger>
 
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Heading</SheetTitle>
-          <SheetDescription>Lorem ipsum dolor sit amet.</SheetDescription>
+          <SheetTitle asChild>
+            <Link to={'/'}>
+              <Logo className="h-7" />
+              <span className="sr-only">Homepage</span>
+            </Link>
+          </SheetTitle>
         </SheetHeader>
+
+        <nav className="px-6  py-8">
+          <ul className="flex flex-col items-start gap-5">
+            {mainNavItems.map((nav) => {
+              const disabled = 'disabled' in nav ? nav.disabled : false
+              return (
+                <li key={nav.href}>
+                  {disabled ? (
+                    <Button size={'lg'} variant={'link-gray'} disabled>
+                      {nav.name}
+                    </Button>
+                  ) : (
+                    <Button size={'lg'} variant={'link-gray'} asChild>
+                      <Link to={nav.href}>{nav.name}</Link>
+                    </Button>
+                  )}
+                </li>
+              )
+            })}
+          </ul>
+        </nav>
       </SheetContent>
     </Sheet>
   )

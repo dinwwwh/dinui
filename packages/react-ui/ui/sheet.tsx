@@ -91,13 +91,13 @@ export const SheetHeader = ({
     return (
       <ReactDialog.Close
         className={cn(
-          button({ size: 'icon:md', hierarchy: 'tertiary-gray' }),
+          button({ size: 'icon:md', variant: 'tertiary-gray' }),
           'absolute top-3 right-4',
           className,
         )}
         {...props}
       >
-        <X />
+        <X className="size-5" />
         <span className="sr-only">Close</span>
       </ReactDialog.Close>
     )
