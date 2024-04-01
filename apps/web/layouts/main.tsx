@@ -20,25 +20,25 @@ export function MainLayout() {
         <meta name="author" content="Din" />
       </Head>
 
-      <ScrollArea className="h-screen">
-        <div className="min-h-screen">
-          <div className="container">
+      <div className="min-h-screen">
+        <div className="border-b border-gray-200 sticky top-0 z-50 bg-white">
+          <div className="container ">
             <div className="py-2 md:py-4">
               <Header />
             </div>
           </div>
-
-          <div className="container">
-            <Outlet />
-          </div>
         </div>
 
         <div className="container">
-          <div className="pt-16 pb-12">
-            <Footer />
-          </div>
+          <Outlet />
         </div>
-      </ScrollArea>
+      </div>
+
+      <div className="container">
+        <div className="pt-16 pb-12">
+          <Footer />
+        </div>
+      </div>
     </>
   )
 }

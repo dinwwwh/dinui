@@ -15,4 +15,7 @@ export default defineConfig({
       '@dinui/react': resolve(__dirname, '../../packages/react-ui/ui'),
     },
   },
+  ssr: {
+    noExternal: ['react-use'],
+  },
 })

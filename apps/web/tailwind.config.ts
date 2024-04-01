@@ -4,10 +4,11 @@ import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default {
   content: [
-    './layouts/**.tsx',
-    './pages/**.tsx',
-    './components/**.tsx',
-    './examples/**.tsx',
+    './layouts/**/*.tsx',
+    './pages/**/*.tsx',
+    './components/**/*.tsx',
+    './examples/**/*.tsx',
+    './index.html',
     './node_modules/@dinui/react/ui/**/*.tsx',
   ],
   theme: {

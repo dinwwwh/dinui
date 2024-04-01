@@ -3,7 +3,7 @@
     "target": "ES2022",
     "useDefineForClassFields": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "types": ["vite/client", "react"],
+    "types": ["vite/client", "react", "@total-typescript/ts-reset"],
     "module": "ESNext",
     "skipLibCheck": true,
 
