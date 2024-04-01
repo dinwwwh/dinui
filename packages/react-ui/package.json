@@ -25,6 +25,10 @@
       "types": "./build/ui/button.d.ts",
       "default": "./build/ui/button.jsx"
     },
+    "./scroll-area": {
+      "types": "./build/ui/scroll-area.d.ts",
+      "default": "./build/ui/scroll-area.jsx"
+    },
     "./sheet": {
       "types": "./build/ui/sheet.d.ts",
       "default": "./build/ui/sheet.jsx"
@@ -44,6 +48,7 @@
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-scroll-area": "^1.0.5",
     "@radix-ui/react-slot": "^1.0.2",
     "@untitled-ui/icons-react": "^0.1.2",
     "class-variance-authority": "^0.7.0",

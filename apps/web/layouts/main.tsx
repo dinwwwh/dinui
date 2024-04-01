@@ -1,3 +1,5 @@
+import { ScrollArea } from '@dinui/react/scroll-area'
+import { Footer } from '@web/components/footer'
 import { Header } from '@web/components/header'
 import { Outlet } from 'react-router-dom'
 import { Head } from 'vite-react-ssg'
@@ -17,12 +19,26 @@ export function MainLayout() {
         />
         <meta name="author" content="Din" />
       </Head>
-      <div className="container">
-        <div className="py-2 md:py-4">
-          <Header />
+
+      <ScrollArea className="h-screen">
+        <div className="min-h-screen">
+          <div className="container">
+            <div className="py-2 md:py-4">
+              <Header />
+            </div>
+          </div>
+
+          <div className="container">
+            <Outlet />
+          </div>
         </div>
-        <Outlet />
-      </div>
+
+        <div className="container">
+          <div className="pt-16 pb-12">
+            <Footer />
+          </div>
+        </div>
+      </ScrollArea>
     </>
   )
 }
