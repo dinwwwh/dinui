@@ -8,7 +8,7 @@ import { MDXContent } from '@web/components/mdx-content'
 import { useLoaderData, type LoaderFunctionArgs } from 'react-router-dom'
 
 export function loader({ params }: LoaderFunctionArgs) {
-  const doc = docs.find((d) => `${params['category']}/${params['name']}` === d.relativePath)
+  const doc = docs.find((d) => `${params['*']}` === d.relativePath)
 
   if (!doc) {
     throw new Error(`Doc does not exist: ${params['*']}`)
