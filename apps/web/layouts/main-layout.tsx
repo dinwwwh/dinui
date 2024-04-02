@@ -31,8 +31,9 @@ export function MainErrorBoundary() {
   const asyncError = useAsyncError()
 
   useEffect(() => {
-    error && console.error(error)
+    error && console.error([error])
     asyncError && console.error(asyncError)
   }, [error, asyncError])
+
   return 'TODO: Main Error Boundary'
 }

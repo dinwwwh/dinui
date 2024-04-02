@@ -3,6 +3,7 @@ import tailwindColors from 'tailwindcss/colors'
 import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default {
+  darkMode: 'class',
   content: [
     './layouts/**/*.tsx',
     './pages/**/*.tsx',

@@ -4,17 +4,14 @@ import { ScrollArea } from '@dinui/react/scroll-area'
 import { ChevronRightIcon } from '@radix-ui/react-icons'
 import { docs } from '@web/.velite'
 import { Mdx } from '@web/components/mdx-components'
+import { NotFoundScreen } from '@web/components/not-found-screen'
 import { DocsPager } from '@web/components/pager'
 import { DashboardTableOfContents } from '@web/components/toc'
 import { cn } from '@web/lib/utils'
 import { useLoaderData, type LoaderFunctionArgs } from 'react-router-dom'
 
 export function loader({ params }: LoaderFunctionArgs) {
-  const doc = docs.find((d) => `${params['*']}` === d.relativePath)
-
-  if (!doc) {
-    throw new Error(`Doc does not exist: ${params['*']}`)
-  }
+  const doc = docs.find((d) => `${params['*'] ?? 'introduction'}` === d.relativePath)
 
   return {
     doc,
@@ -23,6 +20,10 @@ export function loader({ params }: LoaderFunctionArgs) {
 
 export function Component() {
   const { doc } = useLoaderData() as Awaited<ReturnType<typeof loader>>
+
+  if (!doc) {
+    return <NotFoundScreen />
+  }
 
   return (
     <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
