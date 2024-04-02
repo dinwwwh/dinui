@@ -1,5 +1,6 @@
 import { ThemeProvider } from 'next-themes'
-import { Outlet } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Outlet, useAsyncError, useRouteError } from 'react-router-dom'
 import { Head } from 'vite-react-ssg'
 
 export function MainLayout() {
@@ -26,5 +27,12 @@ export function MainLayout() {
 }
 
 export function MainErrorBoundary() {
+  const error = useRouteError()
+  const asyncError = useAsyncError()
+
+  useEffect(() => {
+    error && console.error(error)
+    asyncError && console.error(asyncError)
+  }, [error, asyncError])
   return 'TODO: Main Error Boundary'
 }

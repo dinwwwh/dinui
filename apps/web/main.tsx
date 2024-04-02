@@ -20,12 +20,18 @@ export const routes: RouteRecord[] = [
             entry: './pages/home.tsx',
           },
           {
-            path: 'docs/*',
-            lazy: () => import('./pages/doc-detail'),
-            entry: './pages/doc-detail.tsx',
-            getStaticPaths() {
-              return docs.map((doc) => 'docs/' + doc.relativePath)
-            },
+            path: 'docs',
+            lazy: () => import('./layouts/docs-layout'),
+            children: [
+              {
+                path: '*',
+                lazy: () => import('./pages/doc-detail'),
+                entry: './pages/doc-detail.tsx',
+                getStaticPaths() {
+                  return docs.map((doc) => 'docs/' + doc.relativePath)
+                },
+              },
+            ],
           },
         ],
       },

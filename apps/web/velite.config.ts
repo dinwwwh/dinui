@@ -4,7 +4,7 @@ import rehypeSlug from 'rehype-slug'
 import { defineCollection, defineConfig, s } from 'velite'
 
 const docs = defineCollection({
-  name: 'Post',
+  name: 'Doc',
   pattern: 'docs/**/*.mdx',
   schema: s
     .object({
