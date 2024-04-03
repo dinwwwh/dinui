@@ -4,7 +4,9 @@ import * as React from 'react'
 import { twMerge } from 'tailwind-merge'
 import { tv } from 'tailwind-variants'
 
-const NavigationMenu = React.forwardRef<
+export { NavigationMenuPrimitive }
+
+export const NavigationMenu = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Root>
 >(({ className, children, ...props }, ref) => (
@@ -22,7 +24,7 @@ const NavigationMenu = React.forwardRef<
 ))
 NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName
 
-const NavigationMenuList = React.forwardRef<
+export const NavigationMenuList = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.List>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.List>
 >(({ className, ...props }, ref) => (
@@ -37,13 +39,13 @@ const NavigationMenuList = React.forwardRef<
 ))
 NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName
 
-const NavigationMenuItem = NavigationMenuPrimitive.Item
+export const NavigationMenuItem = NavigationMenuPrimitive.Item
 
-const navigationMenuTriggerStyle = tv({
+export const navigationMenuTriggerStyle = tv({
   base: 'group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50',
 })
 
-const NavigationMenuTrigger = React.forwardRef<
+export const NavigationMenuTrigger = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Trigger>
 >(({ className, children, ...props }, ref) => (
@@ -62,7 +64,7 @@ const NavigationMenuTrigger = React.forwardRef<
 ))
 NavigationMenuTrigger.displayName = NavigationMenuPrimitive.Trigger.displayName
 
-const NavigationMenuContent = React.forwardRef<
+export const NavigationMenuContent = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Content>
 >(({ className, ...props }, ref) => (
@@ -77,9 +79,9 @@ const NavigationMenuContent = React.forwardRef<
 ))
 NavigationMenuContent.displayName = NavigationMenuPrimitive.Content.displayName
 
-const NavigationMenuLink = NavigationMenuPrimitive.Link
+export const NavigationMenuLink = NavigationMenuPrimitive.Link
 
-const NavigationMenuViewport = React.forwardRef<
+export const NavigationMenuViewport = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Viewport>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Viewport>
 >(({ className, ...props }, ref) => (
@@ -96,7 +98,7 @@ const NavigationMenuViewport = React.forwardRef<
 ))
 NavigationMenuViewport.displayName = NavigationMenuPrimitive.Viewport.displayName
 
-const NavigationMenuIndicator = React.forwardRef<
+export const NavigationMenuIndicator = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Indicator>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Indicator>
 >(({ className, ...props }, ref) => (
@@ -112,15 +114,3 @@ const NavigationMenuIndicator = React.forwardRef<
   </NavigationMenuPrimitive.Indicator>
 ))
 NavigationMenuIndicator.displayName = NavigationMenuPrimitive.Indicator.displayName
-
-export {
-  navigationMenuTriggerStyle,
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuContent,
-  NavigationMenuTrigger,
-  NavigationMenuLink,
-  NavigationMenuIndicator,
-  NavigationMenuViewport,
-}

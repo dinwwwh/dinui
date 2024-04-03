@@ -4,7 +4,9 @@ import * as TogglePrimitive from '@radix-ui/react-toggle'
 import * as React from 'react'
 import { tv, type VariantProps } from 'tailwind-variants'
 
-const toggleVariants = tv({
+export { TogglePrimitive }
+
+export const toggle = tv({
   base: 'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-gray-100 data-[state=on]:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-400 dark:focus-visible:ring-gray-300 dark:data-[state=on]:bg-gray-800 dark:data-[state=on]:text-gray-50',
   variants: {
     variant: {
@@ -24,17 +26,11 @@ const toggleVariants = tv({
   },
 })
 
-const Toggle = React.forwardRef<
+export const Toggle = React.forwardRef<
   React.ElementRef<typeof TogglePrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root> & VariantProps<typeof toggleVariants>
+  React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root> & VariantProps<typeof toggle>
 >(({ className, variant, size, ...props }, ref) => (
-  <TogglePrimitive.Root
-    ref={ref}
-    className={toggleVariants({ variant, size, className })}
-    {...props}
-  />
+  <TogglePrimitive.Root ref={ref} className={toggle({ variant, size, className })} {...props} />
 ))
 
 Toggle.displayName = TogglePrimitive.Root.displayName
-
-export { Toggle, toggleVariants as toggleVariants }
