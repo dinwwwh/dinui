@@ -3,7 +3,7 @@
     "target": "ES2022",
     "useDefineForClassFields": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "types": ["vite/client", "react"],
+    "types": ["vite/client"],
     "module": "ESNext",
     "skipLibCheck": true,
 
@@ -14,23 +14,17 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "paths": {
+      "@web/*": ["./*"],
+      "@dinui/react/utils": ["../../packages/react-ui/utils"],
+      "@dinui/react/*": ["../../packages/react-ui/ui/*"]
+    },
 
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true,
-
-    "paths": {
-      "@web/*": ["./*"],
-      "@dinui/react/*": ["../../packages/react-ui/ui/*"]
-    }
+    "noFallthroughCasesInSwitch": true
   },
-  "exclude": ["dist", "**.js"],
-  "references": [
-    {
-      "path": "../../packages/react-ui/tsconfig.json"
-    }
-  ]
+  "exclude": ["**/*.js", "**/*.cjs", "**/*.mjs", "vocs.config.ts"]
 }

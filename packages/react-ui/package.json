@@ -17,10 +17,13 @@
   },
   "license": "MIT",
   "exports": {
-    "./button": {
-      "default": "./build/ui/button.jsx",
-      "import": "./build/ui/button.jsx",
-      "types": "./build/ui/button.d.ts"
+    "./accordion": {
+      "types": "./build/ui/accordion.d.ts",
+      "default": "./build/ui/accordion.jsx"
+    },
+    "./utils": {
+      "types": "./build/utils.d.ts",
+      "default": "./build/utils.jsx"
     }
   },
   "scripts": {
@@ -32,6 +35,10 @@
     "typescript": "^5.4.2"
   },
   "dependencies": {
-    "react": "^18.2.0"
+    "@radix-ui/react-accordion": "^1.1.2",
+    "clsx": "^2.1.0",
+    "react": "^18.2.0",
+    "tailwind-merge": "^2.2.2",
+    "tailwind-variants": "^0.2.1"
   }
 }
