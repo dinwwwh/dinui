@@ -1,27 +1,27 @@
-import { cx } from '../utils'
-import { ButtonProps, buttonVariants } from './button'
+import { ButtonProps, button } from './button'
 import { ChevronLeftIcon, ChevronRightIcon, DotsHorizontalIcon } from '@radix-ui/react-icons'
 import * as React from 'react'
+import { twMerge } from 'tailwind-merge'
 
-const Pagination = ({ className, ...props }: React.ComponentProps<'nav'>) => (
+export const Pagination = ({ className, ...props }: React.ComponentProps<'nav'>) => (
   <nav
     role="navigation"
     aria-label="pagination"
-    className={cx('mx-auto flex w-full justify-center', className)}
+    className={twMerge('mx-auto flex w-full justify-center', className)}
     {...props}
   />
 )
 Pagination.displayName = 'Pagination'
 
-const PaginationContent = React.forwardRef<HTMLUListElement, React.ComponentProps<'ul'>>(
+export const PaginationContent = React.forwardRef<HTMLUListElement, React.ComponentProps<'ul'>>(
   ({ className, ...props }, ref) => (
-    <ul ref={ref} className={cx('flex flex-row items-center gap-1', className)} {...props} />
+    <ul ref={ref} className={twMerge('flex flex-row items-center gap-1', className)} {...props} />
   ),
 )
 PaginationContent.displayName = 'PaginationContent'
 
-const PaginationItem = React.forwardRef<HTMLLIElement, React.ComponentProps<'li'>>(
-  ({ className, ...props }, ref) => <li ref={ref} className={cx('', className)} {...props} />,
+export const PaginationItem = React.forwardRef<HTMLLIElement, React.ComponentProps<'li'>>(
+  ({ className, ...props }, ref) => <li ref={ref} className={twMerge('', className)} {...props} />,
 )
 PaginationItem.displayName = 'PaginationItem'
 
@@ -30,29 +30,32 @@ type PaginationLinkProps = {
 } & Pick<ButtonProps, 'size'> &
   React.ComponentProps<'a'>
 
-const PaginationLink = ({ className, isActive, size = 'icon', ...props }: PaginationLinkProps) => (
+export const PaginationLink = ({
+  className,
+  isActive,
+  size = 'icon',
+  ...props
+}: PaginationLinkProps) => (
   <a
     aria-current={isActive ? 'page' : undefined}
-    className={cx(
-      buttonVariants({
-        variant: isActive ? 'outline' : 'ghost',
-        size,
-      }),
+    className={button({
+      variant: isActive ? 'outline' : 'ghost',
+      size,
       className,
-    )}
+    })}
     {...props}
   />
 )
 PaginationLink.displayName = 'PaginationLink'
 
-const PaginationPrevious = ({
+export const PaginationPrevious = ({
   className,
   ...props
 }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
     aria-label="Go to previous page"
     size="default"
-    className={cx('gap-1 pl-2.5', className)}
+    className={twMerge('gap-1 pl-2.5', className)}
     {...props}
   >
     <ChevronLeftIcon className="h-4 w-4" />
@@ -61,11 +64,14 @@ const PaginationPrevious = ({
 )
 PaginationPrevious.displayName = 'PaginationPrevious'
 
-const PaginationNext = ({ className, ...props }: React.ComponentProps<typeof PaginationLink>) => (
+export const PaginationNext = ({
+  className,
+  ...props
+}: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
     aria-label="Go to next page"
     size="default"
-    className={cx('gap-1 pr-2.5', className)}
+    className={twMerge('gap-1 pr-2.5', className)}
     {...props}
   >
     <span>Next</span>
@@ -74,10 +80,10 @@ const PaginationNext = ({ className, ...props }: React.ComponentProps<typeof Pag
 )
 PaginationNext.displayName = 'PaginationNext'
 
-const PaginationEllipsis = ({ className, ...props }: React.ComponentProps<'span'>) => (
+export const PaginationEllipsis = ({ className, ...props }: React.ComponentProps<'span'>) => (
   <span
     aria-hidden
-    className={cx('flex h-9 w-9 items-center justify-center', className)}
+    className={twMerge('flex h-9 w-9 items-center justify-center', className)}
     {...props}
   >
     <DotsHorizontalIcon className="h-4 w-4" />
@@ -85,13 +91,3 @@ const PaginationEllipsis = ({ className, ...props }: React.ComponentProps<'span'
   </span>
 )
 PaginationEllipsis.displayName = 'PaginationEllipsis'
-
-export {
-  Pagination,
-  PaginationContent,
-  PaginationLink,
-  PaginationItem,
-  PaginationPrevious,
-  PaginationNext,
-  PaginationEllipsis,
-}

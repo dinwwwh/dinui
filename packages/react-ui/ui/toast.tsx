@@ -6,8 +6,6 @@ import * as React from 'react'
 import { twMerge } from 'tailwind-merge'
 import { tv, type VariantProps } from 'tailwind-variants'
 
-export { ToastPrimitives }
-
 export const ToastProvider = ToastPrimitives.Provider
 
 export const ToastViewport = React.forwardRef<

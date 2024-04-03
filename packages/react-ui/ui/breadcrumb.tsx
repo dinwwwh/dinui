@@ -1,9 +1,9 @@
-import { cx } from '../utils'
 import { ChevronRightIcon, DotsHorizontalIcon } from '@radix-ui/react-icons'
 import { Slot } from '@radix-ui/react-slot'
 import * as React from 'react'
+import { twMerge } from 'tailwind-merge'
 
-const Breadcrumb = React.forwardRef<
+export const Breadcrumb = React.forwardRef<
   HTMLElement,
   React.ComponentPropsWithoutRef<'nav'> & {
     separator?: React.ReactNode
@@ -11,28 +11,29 @@ const Breadcrumb = React.forwardRef<
 >(({ ...props }, ref) => <nav ref={ref} aria-label="breadcrumb" {...props} />)
 Breadcrumb.displayName = 'Breadcrumb'
 
-const BreadcrumbList = React.forwardRef<HTMLOListElement, React.ComponentPropsWithoutRef<'ol'>>(
-  ({ className, ...props }, ref) => (
-    <ol
-      ref={ref}
-      className={cx(
-        'flex flex-wrap items-center gap-1.5 break-words text-sm text-gray-500 sm:gap-2.5 dark:text-gray-400',
-        className,
-      )}
-      {...props}
-    />
-  ),
-)
+export const BreadcrumbList = React.forwardRef<
+  HTMLOListElement,
+  React.ComponentPropsWithoutRef<'ol'>
+>(({ className, ...props }, ref) => (
+  <ol
+    ref={ref}
+    className={twMerge(
+      'flex flex-wrap items-center gap-1.5 break-words text-sm text-gray-500 sm:gap-2.5 dark:text-gray-400',
+      className,
+    )}
+    {...props}
+  />
+))
 BreadcrumbList.displayName = 'BreadcrumbList'
 
-const BreadcrumbItem = React.forwardRef<HTMLLIElement, React.ComponentPropsWithoutRef<'li'>>(
+export const BreadcrumbItem = React.forwardRef<HTMLLIElement, React.ComponentPropsWithoutRef<'li'>>(
   ({ className, ...props }, ref) => (
-    <li ref={ref} className={cx('inline-flex items-center gap-1.5', className)} {...props} />
+    <li ref={ref} className={twMerge('inline-flex items-center gap-1.5', className)} {...props} />
   ),
 )
 BreadcrumbItem.displayName = 'BreadcrumbItem'
 
-const BreadcrumbLink = React.forwardRef<
+export const BreadcrumbLink = React.forwardRef<
   HTMLAnchorElement,
   React.ComponentPropsWithoutRef<'a'> & {
     asChild?: boolean
@@ -43,32 +44,40 @@ const BreadcrumbLink = React.forwardRef<
   return (
     <Comp
       ref={ref}
-      className={cx('transition-colors hover:text-gray-950 dark:hover:text-gray-50', className)}
+      className={twMerge(
+        'transition-colors hover:text-gray-950 dark:hover:text-gray-50',
+        className,
+      )}
       {...props}
     />
   )
 })
 BreadcrumbLink.displayName = 'BreadcrumbLink'
 
-const BreadcrumbPage = React.forwardRef<HTMLSpanElement, React.ComponentPropsWithoutRef<'span'>>(
-  ({ className, ...props }, ref) => (
-    <span
-      ref={ref}
-      role="link"
-      aria-disabled="true"
-      aria-current="page"
-      className={cx('font-normal text-gray-950 dark:text-gray-50', className)}
-      {...props}
-    />
-  ),
-)
+export const BreadcrumbPage = React.forwardRef<
+  HTMLSpanElement,
+  React.ComponentPropsWithoutRef<'span'>
+>(({ className, ...props }, ref) => (
+  <span
+    ref={ref}
+    role="link"
+    aria-disabled="true"
+    aria-current="page"
+    className={twMerge('font-normal text-gray-950 dark:text-gray-50', className)}
+    {...props}
+  />
+))
 BreadcrumbPage.displayName = 'BreadcrumbPage'
 
-const BreadcrumbSeparator = ({ children, className, ...props }: React.ComponentProps<'li'>) => (
+export const BreadcrumbSeparator = ({
+  children,
+  className,
+  ...props
+}: React.ComponentProps<'li'>) => (
   <li
     role="presentation"
     aria-hidden="true"
-    className={cx('[&>svg]:size-3.5', className)}
+    className={twMerge('[&>svg]:size-3.5', className)}
     {...props}
   >
     {children ?? <ChevronRightIcon />}
@@ -76,11 +85,11 @@ const BreadcrumbSeparator = ({ children, className, ...props }: React.ComponentP
 )
 BreadcrumbSeparator.displayName = 'BreadcrumbSeparator'
 
-const BreadcrumbEllipsis = ({ className, ...props }: React.ComponentProps<'span'>) => (
+export const BreadcrumbEllipsis = ({ className, ...props }: React.ComponentProps<'span'>) => (
   <span
     role="presentation"
     aria-hidden="true"
-    className={cx('flex h-9 w-9 items-center justify-center', className)}
+    className={twMerge('flex h-9 w-9 items-center justify-center', className)}
     {...props}
   >
     <DotsHorizontalIcon className="h-4 w-4" />
@@ -88,13 +97,3 @@ const BreadcrumbEllipsis = ({ className, ...props }: React.ComponentProps<'span'
   </span>
 )
 BreadcrumbEllipsis.displayName = 'BreadcrumbElipssis'
-
-export {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-  BreadcrumbEllipsis,
-}

@@ -1,10 +1,10 @@
 'use client'
 
-import { cx } from '../utils'
 import * as SeparatorPrimitive from '@radix-ui/react-separator'
 import * as React from 'react'
+import { twMerge } from 'tailwind-merge'
 
-const Separator = React.forwardRef<
+export const Separator = React.forwardRef<
   React.ElementRef<typeof SeparatorPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>
 >(({ className, orientation = 'horizontal', decorative = true, ...props }, ref) => (
@@ -12,7 +12,7 @@ const Separator = React.forwardRef<
     ref={ref}
     decorative={decorative}
     orientation={orientation}
-    className={cx(
+    className={twMerge(
       'shrink-0 bg-gray-200 dark:bg-gray-800',
       orientation === 'horizontal' ? 'h-[1px] w-full' : 'h-full w-[1px]',
       className,
@@ -21,5 +21,3 @@ const Separator = React.forwardRef<
   />
 ))
 Separator.displayName = SeparatorPrimitive.Root.displayName
-
-export { Separator }

@@ -1,16 +1,16 @@
 'use client'
 
-import { cx } from '../utils'
 import * as ProgressPrimitive from '@radix-ui/react-progress'
 import * as React from 'react'
+import { twMerge } from 'tailwind-merge'
 
-const Progress = React.forwardRef<
+export const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>
 >(({ className, value, ...props }, ref) => (
   <ProgressPrimitive.Root
     ref={ref}
-    className={cx(
+    className={twMerge(
       'relative h-2 w-full overflow-hidden rounded-full bg-gray-900/20 dark:bg-gray-50/20',
       className,
     )}
@@ -23,5 +23,3 @@ const Progress = React.forwardRef<
   </ProgressPrimitive.Root>
 ))
 Progress.displayName = ProgressPrimitive.Root.displayName
-
-export { Progress }

@@ -1,35 +1,35 @@
 'use client'
 
-import { cx } from '../utils'
 import { DashIcon } from '@radix-ui/react-icons'
 import { OTPInput, OTPInputContext } from 'input-otp'
 import * as React from 'react'
+import { twMerge } from 'tailwind-merge'
 
-const InputOTP = React.forwardRef<
+export const InputOTP = React.forwardRef<
   React.ElementRef<typeof OTPInput>,
   React.ComponentPropsWithoutRef<typeof OTPInput>
 >(({ className, containerClassName, ...props }, ref) => (
   <OTPInput
     ref={ref}
-    containerClassName={cx(
+    containerClassName={twMerge(
       'flex items-center gap-2 has-[:disabled]:opacity-50',
       containerClassName,
     )}
-    className={cx('disabled:cursor-not-allowed', className)}
+    className={twMerge('disabled:cursor-not-allowed', className)}
     {...props}
   />
 ))
 InputOTP.displayName = 'InputOTP'
 
-const InputOTPGroup = React.forwardRef<
+export const InputOTPGroup = React.forwardRef<
   React.ElementRef<'div'>,
   React.ComponentPropsWithoutRef<'div'>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cx('flex items-center', className)} {...props} />
+  <div ref={ref} className={twMerge('flex items-center', className)} {...props} />
 ))
 InputOTPGroup.displayName = 'InputOTPGroup'
 
-const InputOTPSlot = React.forwardRef<
+export const InputOTPSlot = React.forwardRef<
   React.ElementRef<'div'>,
   React.ComponentPropsWithoutRef<'div'> & { index: number }
 >(({ index, className, ...props }, ref) => {
@@ -39,7 +39,7 @@ const InputOTPSlot = React.forwardRef<
   return (
     <div
       ref={ref}
-      className={cx(
+      className={twMerge(
         'relative flex h-9 w-9 items-center justify-center border-y border-r border-gray-200 text-sm shadow-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md dark:border-gray-800',
         isActive && 'z-10 ring-1 ring-gray-950 dark:ring-gray-300',
         className,
@@ -57,7 +57,7 @@ const InputOTPSlot = React.forwardRef<
 })
 InputOTPSlot.displayName = 'InputOTPSlot'
 
-const InputOTPSeparator = React.forwardRef<
+export const InputOTPSeparator = React.forwardRef<
   React.ElementRef<'div'>,
   React.ComponentPropsWithoutRef<'div'>
 >(({ ...props }, ref) => (
@@ -66,5 +66,3 @@ const InputOTPSeparator = React.forwardRef<
   </div>
 ))
 InputOTPSeparator.displayName = 'InputOTPSeparator'
-
-export { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator }

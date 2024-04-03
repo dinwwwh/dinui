@@ -203,7 +203,7 @@
     },
     "./use-toast": {
       "types": "./build/ui/use-toast.d.ts",
-      "default": "./build/ui/use-toast.jsx"
+      "default": "./build/ui/use-toast.js"
     },
     "./utils": {
       "types": "./build/utils.d.ts",

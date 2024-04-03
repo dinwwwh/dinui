@@ -1,12 +1,12 @@
 'use client'
 
-import { cx } from '../utils'
 import { Button } from './button'
 import { ArrowLeftIcon, ArrowRightIcon } from '@radix-ui/react-icons'
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react'
 import * as React from 'react'
+import { twMerge } from 'tailwind-merge'
 
-type CarouselApi = UseEmblaCarouselType[1]
+export type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
 type CarouselOptions = UseCarouselParameters[0]
 type CarouselPlugin = UseCarouselParameters[1]
@@ -39,7 +39,7 @@ function useCarousel() {
   return context
 }
 
-const Carousel = React.forwardRef<
+export const Carousel = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & CarouselProps
 >(({ orientation = 'horizontal', opts, setApi, plugins, className, children, ...props }, ref) => {
@@ -121,7 +121,7 @@ const Carousel = React.forwardRef<
       <div
         ref={ref}
         onKeyDownCapture={handleKeyDown}
-        className={cx('relative', className)}
+        className={twMerge('relative', className)}
         role="region"
         aria-roledescription="carousel"
         {...props}
@@ -133,28 +133,29 @@ const Carousel = React.forwardRef<
 })
 Carousel.displayName = 'Carousel'
 
-const CarouselContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => {
-    const { carouselRef, orientation } = useCarousel()
+export const CarouselContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => {
+  const { carouselRef, orientation } = useCarousel()
 
-    return (
-      <div ref={carouselRef} className="overflow-hidden">
-        <div
-          ref={ref}
-          className={cx(
-            'flex',
-            orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col',
-            className,
-          )}
-          {...props}
-        />
-      </div>
-    )
-  },
-)
+  return (
+    <div ref={carouselRef} className="overflow-hidden">
+      <div
+        ref={ref}
+        className={twMerge(
+          'flex',
+          orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col',
+          className,
+        )}
+        {...props}
+      />
+    </div>
+  )
+})
 CarouselContent.displayName = 'CarouselContent'
 
-const CarouselItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+export const CarouselItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => {
     const { orientation } = useCarousel()
 
@@ -163,7 +164,7 @@ const CarouselItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLD
         ref={ref}
         role="group"
         aria-roledescription="slide"
-        className={cx(
+        className={twMerge(
           'min-w-0 shrink-0 grow-0 basis-full',
           orientation === 'horizontal' ? 'pl-4' : 'pt-4',
           className,
@@ -175,60 +176,60 @@ const CarouselItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLD
 )
 CarouselItem.displayName = 'CarouselItem'
 
-const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProps<typeof Button>>(
-  ({ className, variant = 'outline', size = 'icon', ...props }, ref) => {
-    const { orientation, scrollPrev, canScrollPrev } = useCarousel()
+export const CarouselPrevious = React.forwardRef<
+  HTMLButtonElement,
+  React.ComponentProps<typeof Button>
+>(({ className, variant = 'outline', size = 'icon', ...props }, ref) => {
+  const { orientation, scrollPrev, canScrollPrev } = useCarousel()
 
-    return (
-      <Button
-        ref={ref}
-        variant={variant}
-        size={size}
-        className={cx(
-          'absolute  h-8 w-8 rounded-full',
-          orientation === 'horizontal'
-            ? '-left-12 top-1/2 -translate-y-1/2'
-            : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
-          className,
-        )}
-        disabled={!canScrollPrev}
-        onClick={scrollPrev}
-        {...props}
-      >
-        <ArrowLeftIcon className="h-4 w-4" />
-        <span className="sr-only">Previous slide</span>
-      </Button>
-    )
-  },
-)
+  return (
+    <Button
+      ref={ref}
+      variant={variant}
+      size={size}
+      className={twMerge(
+        'absolute  h-8 w-8 rounded-full',
+        orientation === 'horizontal'
+          ? '-left-12 top-1/2 -translate-y-1/2'
+          : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
+        className,
+      )}
+      disabled={!canScrollPrev}
+      onClick={scrollPrev}
+      {...props}
+    >
+      <ArrowLeftIcon className="h-4 w-4" />
+      <span className="sr-only">Previous slide</span>
+    </Button>
+  )
+})
 CarouselPrevious.displayName = 'CarouselPrevious'
 
-const CarouselNext = React.forwardRef<HTMLButtonElement, React.ComponentProps<typeof Button>>(
-  ({ className, variant = 'outline', size = 'icon', ...props }, ref) => {
-    const { orientation, scrollNext, canScrollNext } = useCarousel()
+export const CarouselNext = React.forwardRef<
+  HTMLButtonElement,
+  React.ComponentProps<typeof Button>
+>(({ className, variant = 'outline', size = 'icon', ...props }, ref) => {
+  const { orientation, scrollNext, canScrollNext } = useCarousel()
 
-    return (
-      <Button
-        ref={ref}
-        variant={variant}
-        size={size}
-        className={cx(
-          'absolute h-8 w-8 rounded-full',
-          orientation === 'horizontal'
-            ? '-right-12 top-1/2 -translate-y-1/2'
-            : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
-          className,
-        )}
-        disabled={!canScrollNext}
-        onClick={scrollNext}
-        {...props}
-      >
-        <ArrowRightIcon className="h-4 w-4" />
-        <span className="sr-only">Next slide</span>
-      </Button>
-    )
-  },
-)
+  return (
+    <Button
+      ref={ref}
+      variant={variant}
+      size={size}
+      className={twMerge(
+        'absolute h-8 w-8 rounded-full',
+        orientation === 'horizontal'
+          ? '-right-12 top-1/2 -translate-y-1/2'
+          : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
+        className,
+      )}
+      disabled={!canScrollNext}
+      onClick={scrollNext}
+      {...props}
+    >
+      <ArrowRightIcon className="h-4 w-4" />
+      <span className="sr-only">Next slide</span>
+    </Button>
+  )
+})
 CarouselNext.displayName = 'CarouselNext'
-
-export { type CarouselApi, Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext }

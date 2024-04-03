@@ -6,8 +6,6 @@ import * as React from 'react'
 import { twMerge } from 'tailwind-merge'
 import { tv, type VariantProps } from 'tailwind-variants'
 
-export { SheetPrimitive }
-
 export const Sheet = SheetPrimitive.Root
 
 export const SheetTrigger = SheetPrimitive.Trigger

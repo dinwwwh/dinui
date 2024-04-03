@@ -1,23 +1,26 @@
 'use client'
 
 import type * as _A from '../node_modules/react-resizable-panels/dist/declarations/src/PanelResizeHandleRegistry'
-import { cx } from '../utils'
 import { DragHandleDots2Icon } from '@radix-ui/react-icons'
 import * as ResizablePrimitive from 'react-resizable-panels'
+import { twMerge } from 'tailwind-merge'
 
-const ResizablePanelGroup = ({
+export const ResizablePanelGroup = ({
   className,
   ...props
 }: React.ComponentProps<typeof ResizablePrimitive.PanelGroup>) => (
   <ResizablePrimitive.PanelGroup
-    className={cx('flex h-full w-full data-[panel-group-direction=vertical]:flex-col', className)}
+    className={twMerge(
+      'flex h-full w-full data-[panel-group-direction=vertical]:flex-col',
+      className,
+    )}
     {...props}
   />
 )
 
-const ResizablePanel = ResizablePrimitive.Panel
+export const ResizablePanel = ResizablePrimitive.Panel
 
-const ResizableHandle = ({
+export const ResizableHandle = ({
   withHandle,
   className,
   ...props
@@ -25,7 +28,7 @@ const ResizableHandle = ({
   withHandle?: boolean
 }) => (
   <ResizablePrimitive.PanelResizeHandle
-    className={cx(
+    className={twMerge(
       'relative flex w-px items-center justify-center bg-gray-200 after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 focus-visible:ring-offset-1 data-[panel-group-direction=vertical]:h-px data-[panel-group-direction=vertical]:w-full data-[panel-group-direction=vertical]:after:left-0 data-[panel-group-direction=vertical]:after:h-1 data-[panel-group-direction=vertical]:after:w-full data-[panel-group-direction=vertical]:after:-translate-y-1/2 data-[panel-group-direction=vertical]:after:translate-x-0 [&[data-panel-group-direction=vertical]>div]:rotate-90 dark:bg-gray-800 dark:focus-visible:ring-gray-300',
       className,
     )}
@@ -38,5 +41,3 @@ const ResizableHandle = ({
     )}
   </ResizablePrimitive.PanelResizeHandle>
 )
-
-export { ResizablePanelGroup, ResizablePanel, ResizableHandle }
