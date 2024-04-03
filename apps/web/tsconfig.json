@@ -26,5 +26,10 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "exclude": ["**/*.js", "**/*.cjs", "**/*.mjs", "vocs.config.ts"]
+  "exclude": ["**/*.js", "**/*.cjs", "**/*.mjs", "vocs.config.ts"],
+  "references": [
+    {
+      "path": "../../packages/react-ui/tsconfig.json"
+    }
+  ]
 }

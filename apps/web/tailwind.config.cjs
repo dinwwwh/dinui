@@ -5,6 +5,8 @@ module.exports = {
     './components/**/*.{html,md,mdx,tsx,js,jsx}',
     './layout.tsx',
     './styles.css',
+    './node_modules/@dinui/react/ui/**/*.{tsx,ts}',
+    './node_modules/@dinui/react/utils.ts',
   ],
   theme: {
     container: {

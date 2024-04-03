@@ -44,6 +44,12 @@ importers:
 
   apps/web:
     dependencies:
+      '@dinui/react':
+        specifier: workspace:^
+        version: link:../../packages/react-ui
+      '@tabler/icons-react':
+        specifier: ^3.1.0
+        version: 3.1.0(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -3164,6 +3170,19 @@ packages:
     transitivePeerDependencies:
       - supports-color
       - typescript
+    dev: false
+
+  /@tabler/icons-react@3.1.0(react@18.2.0):
+    resolution: {integrity: sha512-k/WTlax2vbj/LpxvaJ+BmaLAAhVUgyLj4Ftgaczz66tUSNzqrAZXCFdOU7cRMYPNVBqyqE2IdQd2rzzhDEJvkw==}
+    peerDependencies:
+      react: '>= 16'
+    dependencies:
+      '@tabler/icons': 3.1.0
+      react: 18.2.0
+    dev: false
+
+  /@tabler/icons@3.1.0:
+    resolution: {integrity: sha512-CpZGyS1IVJKFcv88yZ2sYZIpWWhQ6oy76BQKQ5SF0fGgOqgyqKdBGG/YGyyMW632on37MX7VqQIMTzN/uQqmFg==}
     dev: false
 
   /@trivago/prettier-plugin-sort-imports@4.3.0(prettier@3.2.5):
