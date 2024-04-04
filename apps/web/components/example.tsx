@@ -44,7 +44,10 @@ export function Example({ path, ...props }: ExampleProps) {
             </TabsTrigger>
           </TabsList>
         </div>
-        <TabsContent value="preview" className="relative rounded-md border">
+        <TabsContent
+          value="preview"
+          className="relative rounded-md border border-gray-200 dark:border-gray-700"
+        >
           <div className="flex items-center justify-center p-5 md:p-12 min-h-[350px]">
             <ExamplePreview fullPath={fullPath} />
           </div>
@@ -128,7 +131,7 @@ function ExampleCode(props: { fullPath: string }) {
   return (
     <Suspense
       fallback={
-        <div className="flex items-center justify-center p-5 md:p-12 min-h-[350px] border border-gray-200 rounded-md">
+        <div className="flex items-center justify-center p-5 md:p-12 min-h-[350px] border border-gray-200 dark:border-gray-700 rounded-md">
           <div className="flex items-center text-sm text-gray-700 dark:text-gray-300 justify-center">
             <IconLoader2 className="mr-2 h-4 w-4 animate-spin" />
             Loading...

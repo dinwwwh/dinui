@@ -39,7 +39,7 @@ export const DrawerContent = React.forwardRef<
     <DrawerPrimitive.Content
       ref={ref}
       className={twMerge(
-        'fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950',
+        'fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border border-gray-200 dark:border-gray-700 bg-white  dark:bg-gray-950',
         className,
       )}
       {...props}

@@ -14,7 +14,7 @@ export default function TypographyDemo() {
       </h2>
       <p className="leading-7 [&:not(:first-child)]:mt-6">
         The king thought long and hard, and finally came up with{' '}
-        <a href="#" className="font-medium text-gray-900 underline underline-offset-4">
+        <a href="#" className="font-medium underline underline-offset-4">
           a brilliant plan
         </a>
         : he would tax the jokes in the kingdom.
