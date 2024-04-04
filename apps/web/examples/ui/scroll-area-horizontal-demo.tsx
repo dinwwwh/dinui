@@ -1,5 +1,4 @@
 import { ScrollArea, ScrollBar } from '@dinui/react/scroll-area'
-import * as React from 'react'
 
 export interface Artwork {
   artist: string

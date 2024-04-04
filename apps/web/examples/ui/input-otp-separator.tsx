@@ -1,5 +1,4 @@
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from '@dinui/react/input-otp'
-import React from 'react'
 
 export default function InputOTPWithSeparator() {
   return (

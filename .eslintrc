@@ -22,19 +22,13 @@
       { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_", "caughtErrorsIgnorePattern": "^_" },
     ],
     "@typescript-eslint/consistent-type-imports": ["error"],
+    "react/no-unescaped-entities": "off",
   },
   "overrides": [
     {
       "files": "**.js",
       "env": {
         "node": true,
-      },
-    },
-    {
-      "files": "./apps/web/components/ui/**.*",
-      "rules": {
-        "react/prop-types": "off",
-        "react/no-unknown-property": "off",
       },
     },
   ],

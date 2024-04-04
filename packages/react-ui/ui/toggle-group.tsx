@@ -4,7 +4,7 @@ import { toggle } from './toggle'
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group'
 import * as React from 'react'
 import { twMerge } from 'tailwind-merge'
-import { VariantProps } from 'tailwind-variants'
+import type { VariantProps } from 'tailwind-variants'
 
 const ToggleGroupContext = React.createContext<VariantProps<typeof toggle>>({
   size: 'default',

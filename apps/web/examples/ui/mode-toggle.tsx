@@ -9,7 +9,6 @@ import {
 } from '@dinui/react/dropdown-menu'
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons'
 import { useTheme } from 'next-themes'
-import * as React from 'react'
 
 export default function ModeToggle() {
   const { setTheme } = useTheme()

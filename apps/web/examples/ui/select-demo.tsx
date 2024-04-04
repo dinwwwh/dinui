@@ -7,7 +7,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@dinui/react/select'
-import * as React from 'react'
 
 export default function SelectDemo() {
   return (

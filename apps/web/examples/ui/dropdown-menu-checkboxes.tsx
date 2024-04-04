@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@dinui/react/dropdown-menu'
-import { DropdownMenuCheckboxItemProps } from '@radix-ui/react-dropdown-menu'
+import type { DropdownMenuCheckboxItemProps } from '@radix-ui/react-dropdown-menu'
 import * as React from 'react'
 
 type Checked = DropdownMenuCheckboxItemProps['checked']

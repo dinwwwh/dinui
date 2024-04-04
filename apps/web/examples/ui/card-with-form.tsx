@@ -10,7 +10,6 @@ import {
 import { Input } from '@dinui/react/input'
 import { Label } from '@dinui/react/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@dinui/react/select'
-import * as React from 'react'
 
 export default function CardWithForm() {
   return (

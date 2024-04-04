@@ -6,7 +6,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@dinui/react/carousel'
-import * as React from 'react'
 
 export default function CarouselSpacing() {
   return (

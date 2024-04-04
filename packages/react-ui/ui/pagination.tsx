@@ -1,4 +1,5 @@
-import { ButtonProps, button } from './button'
+import type { ButtonProps } from './button'
+import { button } from './button'
 import { ChevronLeftIcon, ChevronRightIcon, DotsHorizontalIcon } from '@radix-ui/react-icons'
 import * as React from 'react'
 import { twMerge } from 'tailwind-merge'

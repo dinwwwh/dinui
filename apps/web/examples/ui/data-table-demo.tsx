@@ -14,11 +14,13 @@ import {
 import { Input } from '@dinui/react/input'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@dinui/react/table'
 import { CaretSortIcon, ChevronDownIcon, DotsHorizontalIcon } from '@radix-ui/react-icons'
-import {
+import type {
   ColumnDef,
   ColumnFiltersState,
   SortingState,
   VisibilityState,
+} from '@tanstack/react-table'
+import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
