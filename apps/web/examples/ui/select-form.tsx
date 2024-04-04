@@ -62,7 +62,7 @@ export default function SelectForm() {
                 </SelectContent>
               </Select>
               <FormDescription>
-                You can manage email addresses in your <a href="/examples/forms">email settings</a>.
+                You can manage email addresses in your <a href="#">email settings</a>.
               </FormDescription>
               <FormMessage />
             </FormItem>

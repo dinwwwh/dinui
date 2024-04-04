@@ -52,8 +52,8 @@ export default function CheckboxReactHookFormSingle() {
               <div className="space-y-1 leading-none">
                 <FormLabel>Use different settings for my mobile devices</FormLabel>
                 <FormDescription>
-                  You can manage your mobile notifications in the{' '}
-                  <a href="/examples/forms">mobile settings</a> page.
+                  You can manage your mobile notifications in the <a href="#">mobile settings</a>{' '}
+                  page.
                 </FormDescription>
               </div>
             </FormItem>
