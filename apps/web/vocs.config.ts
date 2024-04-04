@@ -17,6 +17,8 @@ export default defineConfig({
   },
   iconUrl: '/avatar-d.svg',
   title: 'DinUI',
+  description:
+    'Beautifully designed React components that you can install or copy and paste into your apps. Accessible. Customizable. Open Source.',
   sidebar: [
     {
       text: 'Getting Started',
