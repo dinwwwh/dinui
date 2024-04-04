@@ -70,7 +70,7 @@ export default defineConfig({
           link: '/ui/breadcrumb',
         },
         {
-          text: 'button',
+          text: 'Button',
           link: '/ui/button',
         },
         {
