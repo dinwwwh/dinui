@@ -15,6 +15,7 @@ export default defineConfig({
   font: {
     google: 'Inter',
   },
+  iconUrl: '/avatar-d.svg',
   title: 'DinUI',
   sidebar: [
     {
