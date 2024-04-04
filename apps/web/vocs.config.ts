@@ -248,5 +248,9 @@ export default defineConfig({
       text: 'Components',
       link: '/ui/accordion',
     },
+    {
+      text: 'Examples',
+      link: '/examples/mail',
+    },
   ],
 })
