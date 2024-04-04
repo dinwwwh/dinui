@@ -1,0 +1,29 @@
+---
+title: Popover
+description: Displays rich content in a portal, triggered by a button.
+component: true
+links:
+  doc: https://www.radix-ui.com/docs/primitives/components/popover
+  api: https://www.radix-ui.com/docs/primitives/components/popover#api-reference
+---
+
+# Popover
+
+Displays rich content in a portal, triggered by a button.
+
+import { Example } from '@web/components/example'
+
+<Example path="ui/popover-demo" />
+
+## Usage
+
+```tsx
+import { Popover, PopoverContent, PopoverTrigger } from '@dinui/react/popover'
+```
+
+```tsx
+<Popover>
+  <PopoverTrigger>Open</PopoverTrigger>
+  <PopoverContent>Place content for the popover here.</PopoverContent>
+</Popover>
+```
