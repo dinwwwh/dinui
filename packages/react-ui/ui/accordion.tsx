@@ -11,7 +11,11 @@ export const AccordionItem = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
 >(({ className, ...props }, ref) => (
-  <AccordionPrimitive.Item ref={ref} className={twMerge('border-b', className)} {...props} />
+  <AccordionPrimitive.Item
+    ref={ref}
+    className={twMerge('border-b border-gray-200 dark:border-gray-700', className)}
+    {...props}
+  />
 ))
 AccordionItem.displayName = 'AccordionItem'
 

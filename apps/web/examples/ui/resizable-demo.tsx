@@ -2,7 +2,10 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@dinui/rea
 
 export default function ResizableDemo() {
   return (
-    <ResizablePanelGroup direction="horizontal" className="max-w-md rounded-lg border">
+    <ResizablePanelGroup
+      direction="horizontal"
+      className="max-w-md rounded-lg border-gray-200 dark:border-gray-700 border"
+    >
       <ResizablePanel defaultSize={50}>
         <div className="flex h-[200px] items-center justify-center p-6">
           <span className="font-semibold">One</span>

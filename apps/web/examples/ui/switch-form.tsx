@@ -49,7 +49,7 @@ export default function SwitchForm() {
               control={form.control}
               name="marketing_emails"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+                <FormItem className="flex flex-row items-center justify-between rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm">
                   <div className="space-y-0.5">
                     <FormLabel>Marketing emails</FormLabel>
                     <FormDescription>
@@ -66,7 +66,7 @@ export default function SwitchForm() {
               control={form.control}
               name="security_emails"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+                <FormItem className="flex flex-row items-center justify-between rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm">
                   <div className="space-y-0.5">
                     <FormLabel>Security emails</FormLabel>
                     <FormDescription>Receive emails about your account security.</FormDescription>
