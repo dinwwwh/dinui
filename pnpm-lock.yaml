@@ -66,8 +66,8 @@ importers:
         specifier: ^2.12.4
         version: 2.12.4(react-dom@18.2.0)(react@18.2.0)
       vocs:
-        specifier: latest
-        version: 1.0.0-alpha.45(@types/react@18.2.74)(react-dom@18.2.0)(react@18.2.0)(rollup@4.13.0)(typescript@5.4.3)
+        specifier: 1.0.0-alpha.46
+        version: 1.0.0-alpha.46(@types/react@18.2.74)(react-dom@18.2.0)(react@18.2.0)(rollup@4.13.0)(typescript@5.4.3)
     devDependencies:
       '@types/react':
         specifier: ^18.2.74
@@ -8533,8 +8533,8 @@ packages:
     optionalDependencies:
       fsevents: 2.3.3
 
-  /vocs@1.0.0-alpha.45(@types/react@18.2.74)(react-dom@18.2.0)(react@18.2.0)(rollup@4.13.0)(typescript@5.4.3):
-    resolution: {integrity: sha512-FUDuN6V0FwAlG8QAg7VHBm0LAGsvtVwxU2FGIW+eTiFQFuuzsV9Ojh4vg3aAYR3VcICL9w7ipsyt+7D0b3dJNw==}
+  /vocs@1.0.0-alpha.46(@types/react@18.2.74)(react-dom@18.2.0)(react@18.2.0)(rollup@4.13.0)(typescript@5.4.3):
+    resolution: {integrity: sha512-iqhHCLUnmC/b9SAVcEEVFZR2K/HdyKzI80KXA5e4i5agHTG1i+J2aS72sNfqaDrWDCMFZe2Ug92Qve+WNCcQyw==}
     hasBin: true
     peerDependencies:
       react: ^18.2.0
