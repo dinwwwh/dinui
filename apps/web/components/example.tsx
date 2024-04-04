@@ -29,16 +29,16 @@ export function Example({ path, ...props }: ExampleProps) {
     <div {...props} className={cn('group relative my-4 flex flex-col space-y-2', props.className)}>
       <Tabs defaultValue="preview" className="relative mr-auto w-full">
         <div className="flex items-center justify-between pb-3">
-          <TabsList className="w-full justify-start rounded-none border-b border-gray-200 bg-transparent p-0">
+          <TabsList className="dark:bg-transparent dark:border-gray-700 w-full justify-start rounded-none border-b border-gray-200 bg-transparent p-0">
             <TabsTrigger
               value="preview"
-              className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-gray-700 shadow-none transition-none data-[state=active]:border-b-gray-500 data-[state=active]:text-gray-900 data-[state=active]:shadow-none"
+              className="dark:data-[state=active]:bg-transparent dark:text-gray-500 relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-gray-700 shadow-none transition-none data-[state=active]:border-b-gray-500 data-[state=active]:text-gray-900 data-[state=active]:shadow-none"
             >
               Preview
             </TabsTrigger>
             <TabsTrigger
               value="code"
-              className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-gray-700 shadow-none transition-none data-[state=active]:border-b-gray-500 data-[state=active]:text-gray-900 data-[state=active]:shadow-none"
+              className="dark:data-[state=active]:bg-transparent dark:text-gray-500 relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-gray-700 shadow-none transition-none data-[state=active]:border-b-gray-500 data-[state=active]:text-gray-900 data-[state=active]:shadow-none"
             >
               Code
             </TabsTrigger>
@@ -69,7 +69,7 @@ function ExamplePreview(props: { fullPath: string }) {
   return (
     <Suspense
       fallback={
-        <div className="flex items-center text-sm text-gray-700 justify-center">
+        <div className="flex items-center text-sm text-gray-700 dark:text-gray-300 justify-center">
           <IconLoader2 className="mr-2 h-4 w-4 animate-spin" />
           Loading...
         </div>
@@ -129,7 +129,7 @@ function ExampleCode(props: { fullPath: string }) {
     <Suspense
       fallback={
         <div className="flex items-center justify-center p-5 md:p-12 min-h-[350px] border border-gray-200 rounded-md">
-          <div className="flex items-center text-sm text-gray-700 justify-center">
+          <div className="flex items-center text-sm text-gray-700 dark:text-gray-300 justify-center">
             <IconLoader2 className="mr-2 h-4 w-4 animate-spin" />
             Loading...
           </div>
