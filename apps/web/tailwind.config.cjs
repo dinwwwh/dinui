@@ -1,4 +1,5 @@
 const tailwindColors = require('tailwindcss/colors')
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -12,6 +13,9 @@ module.exports = {
     './node_modules/@dinui/react/utils.ts',
   ],
   theme: {
+    fontFamily: {
+      sans: ['"Inter"', ...defaultTheme.fontFamily.sans],
+    },
     container: {
       center: true,
       padding: '1rem',

@@ -12,6 +12,9 @@ export default defineConfig({
       },
     },
   },
+  font: {
+    google: 'Inter',
+  },
   title: 'DinUI',
   sidebar: [
     {
