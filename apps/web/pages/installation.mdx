@@ -1,3 +1,15 @@
+---
+title: Installation
+description: Install and configure.
+---
+
+# Installation
+
+1. Make sure your project has been install [Tailwindcss](https://tailwindcss.com/docs/installation/framework-guides)
+2. Install `npm install @dinui/react`
+3. Config your `tailwind.config.js` file
+
+```js
 const tailwindColors = require('tailwindcss/colors')
 
 /** @type {import('tailwindcss').Config} */
@@ -5,7 +17,6 @@ module.exports = {
   content: [
     './pages/**/*.{html,md,mdx,tsx,js,jsx}',
     './components/**/*.{html,md,mdx,tsx,js,jsx}',
-    './examples/**/*.{html,md,mdx,tsx,js,jsx}',
     './layout.tsx',
     './styles.css',
     './node_modules/@dinui/react/ui/**/*.{tsx,ts}',
@@ -23,9 +34,9 @@ module.exports = {
       colors: {
         gray: tailwindColors.gray,
         brand: tailwindColors.violet,
-        error: tailwindColors.red,
-        warning: tailwindColors.amber,
         success: tailwindColors.green,
+        warning: tailwindColors.amber,
+        error: tailwindColors.red,
       },
       keyframes: {
         'accordion-down': {
@@ -45,3 +56,6 @@ module.exports = {
   },
   plugins: [require('tailwindcss-animate')],
 }
+```
+
+Ensure your tailwind has 4 primary color `gray`, `brand`, `success`, `warning`, and `error`.

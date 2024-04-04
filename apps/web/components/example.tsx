@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@dinui/react/tabs'
-import { cx } from '@dinui/react/utils'
+import { cn } from '@dinui/react/utils'
 import { IconLoader2 } from '@tabler/icons-react'
 import { Suspense, lazy } from 'react'
 import { codeToHtml } from 'shiki'
@@ -26,7 +26,7 @@ export function Example({ path, ...props }: ExampleProps) {
   const fullPath = `../examples/${path}.tsx`
 
   return (
-    <div {...props} className={cx('group relative my-4 flex flex-col space-y-2', props.className)}>
+    <div {...props} className={cn('group relative my-4 flex flex-col space-y-2', props.className)}>
       <Tabs defaultValue="preview" className="relative mr-auto w-full">
         <div className="flex items-center justify-between pb-3">
           <TabsList className="w-full justify-start rounded-none border-b border-gray-200 bg-transparent p-0">

@@ -21,6 +21,10 @@ export default defineConfig({
           text: 'Introduction',
           link: '/introduction',
         },
+        {
+          text: 'Installation',
+          link: '/installation',
+        },
       ],
     },
     {
@@ -29,6 +33,18 @@ export default defineConfig({
         {
           text: 'Accordion',
           link: '/ui/accordion',
+        },
+        {
+          text: 'Alert',
+          link: '/ui/alert',
+        },
+        {
+          text: 'Alert Dialog',
+          link: '/ui/alert-dialog',
+        },
+        {
+          text: 'Aspect Ratio',
+          link: '/ui/aspect-ratio',
         },
       ],
     },
