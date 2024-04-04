@@ -13,7 +13,7 @@ export default function CheckboxWithText() {
         >
           Accept terms and conditions
         </label>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-gray-500">
           You agree to our Terms of Service and Privacy Policy.
         </p>
       </div>

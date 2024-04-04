@@ -42,10 +42,8 @@ export default function ComboboxDropdownMenu() {
   return (
     <div className="flex w-full flex-col items-start justify-between rounded-md border px-4 py-3 sm:flex-row sm:items-center">
       <p className="text-sm font-medium leading-none">
-        <span className="mr-2 rounded-lg bg-primary px-2 py-1 text-xs text-primary-foreground">
-          {label}
-        </span>
-        <span className="text-muted-foreground">Create a new project</span>
+        <span className="mr-2 rounded-lg bg-gray-900 px-2 py-1 text-xs text-gray-50">{label}</span>
+        <span className="text-gray-500">Create a new project</span>
       </p>
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>
