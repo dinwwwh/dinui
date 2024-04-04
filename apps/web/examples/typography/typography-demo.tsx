@@ -58,7 +58,7 @@ export default function TypographyDemo() {
       <div className="my-6 w-full overflow-y-auto">
         <table className="w-full">
           <thead>
-            <tr className="m-0 border-t p-0 even:bg-gray-100">
+            <tr className="m-0 border-t p-0 even:bg-gray-100 dark:even:bg-gray-800">
               <th className="border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right">
                 King's Treasury
               </th>
@@ -68,7 +68,7 @@ export default function TypographyDemo() {
             </tr>
           </thead>
           <tbody>
-            <tr className="m-0 border-t p-0 even:bg-gray-100">
+            <tr className="m-0 border-t p-0 even:bg-gray-100 dark:even:bg-gray-800">
               <td className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
                 Empty
               </td>
@@ -76,7 +76,7 @@ export default function TypographyDemo() {
                 Overflowing
               </td>
             </tr>
-            <tr className="m-0 border-t p-0 even:bg-gray-100">
+            <tr className="m-0 border-t p-0 even:bg-gray-100 dark:even:bg-gray-800">
               <td className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
                 Modest
               </td>
@@ -84,7 +84,7 @@ export default function TypographyDemo() {
                 Satisfied
               </td>
             </tr>
-            <tr className="m-0 border-t p-0 even:bg-gray-100">
+            <tr className="m-0 border-t p-0 even:bg-gray-100 dark:even:bg-gray-800">
               <td className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
                 Full
               </td>
