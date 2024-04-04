@@ -1,0 +1,69 @@
+---
+title: Toast
+description: A succinct message that is displayed temporarily.
+component: true
+links:
+  doc: https://www.radix-ui.com/docs/primitives/components/toast
+  api: https://www.radix-ui.com/docs/primitives/components/toast#api-reference
+---
+
+# Toast
+
+A succinct message that is displayed temporarily.
+
+import { Example } from '@web/components/example'
+
+<Example path="ui/toast-demo" />
+
+## Usage
+
+The `useToast` hook returns a `toast` function that you can use to display a toast.
+
+```tsx
+import { useToast } from '@dinui/react/use-toast'
+```
+
+```tsx {2,7-10}
+export const ToastDemo = () => {
+  const { toast } = useToast()
+
+  return (
+    <Button
+      onClick={() => {
+        toast({
+          title: 'Scheduled: Catch up',
+          description: 'Friday, February 10, 2023 at 5:57 PM',
+        })
+      }}
+    >
+      Show Toast
+    </Button>
+  )
+}
+```
+
+:::note
+
+To display multiple toasts at the same time, you can update the `TOAST_LIMIT` in `use-toast.tsx`.
+
+:::
+
+## Examples
+
+### Simple
+
+<Example path="ui/toast-simple" />
+
+### With title
+
+<Example path="ui/toast-with-title" />
+
+### With Action
+
+<Example path="ui/toast-with-action" />
+
+### Destructive
+
+Use `toast({ variant: "destructive" })` to display a destructive toast.
+
+<Example path="ui/toast-destructive" />

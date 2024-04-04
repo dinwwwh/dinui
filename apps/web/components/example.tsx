@@ -1,3 +1,6 @@
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@dinui/react/tabs'
+import { cn } from '@dinui/react/utils'
+import { IconLoader2 } from '@tabler/icons-react'
 import { Suspense, lazy } from 'react'
 import { codeToHtml } from 'shiki'
 import githubDarkDimmed from 'shiki/themes/github-dark-dimmed.mjs'
@@ -15,13 +18,41 @@ const exampleCodes = import.meta.glob('../examples/**/*.tsx', {
   [key: string]: () => Promise<string>
 }
 
-export function Example({ path }: { path: string }) {
+interface ExampleProps extends React.ComponentPropsWithoutRef<'div'> {
+  path: string
+}
+
+export function Example({ path, ...props }: ExampleProps) {
   const fullPath = `../examples/${path}.tsx`
 
   return (
-    <div>
-      <ExamplePreview fullPath={fullPath} />
-      <ExampleCode fullPath={fullPath} />
+    <div {...props} className={cn('group relative my-4 flex flex-col space-y-2', props.className)}>
+      <Tabs defaultValue="preview" className="relative mr-auto w-full">
+        <div className="flex items-center justify-between pb-3">
+          <TabsList className="w-full justify-start rounded-none border-b border-gray-200 bg-transparent p-0">
+            <TabsTrigger
+              value="preview"
+              className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-gray-700 shadow-none transition-none data-[state=active]:border-b-gray-500 data-[state=active]:text-gray-900 data-[state=active]:shadow-none"
+            >
+              Preview
+            </TabsTrigger>
+            <TabsTrigger
+              value="code"
+              className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-gray-700 shadow-none transition-none data-[state=active]:border-b-gray-500 data-[state=active]:text-gray-900 data-[state=active]:shadow-none"
+            >
+              Code
+            </TabsTrigger>
+          </TabsList>
+        </div>
+        <TabsContent value="preview" className="relative rounded-md border">
+          <div className="flex items-center justify-center p-5 md:p-12 min-h-[350px]">
+            <ExamplePreview fullPath={fullPath} />
+          </div>
+        </TabsContent>
+        <TabsContent value="code">
+          <ExampleCode fullPath={fullPath} />
+        </TabsContent>
+      </Tabs>
     </div>
   )
 }
@@ -36,8 +67,14 @@ function ExamplePreview(props: { fullPath: string }) {
   const Component = lazy(loadComponent)
 
   return (
-    // TODO
-    <Suspense fallback="loading...">
+    <Suspense
+      fallback={
+        <div className="flex items-center text-sm text-gray-700 justify-center">
+          <IconLoader2 className="mr-2 h-4 w-4 animate-spin" />
+          Loading...
+        </div>
+      }
+    >
       <Component />
     </Suspense>
   )
@@ -89,8 +126,16 @@ function ExampleCode(props: { fullPath: string }) {
   })
 
   return (
-    // TODO
-    <Suspense fallback="loading...">
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center p-5 md:p-12 min-h-[350px] border border-gray-200 rounded-md">
+          <div className="flex items-center text-sm text-gray-700 justify-center">
+            <IconLoader2 className="mr-2 h-4 w-4 animate-spin" />
+            Loading...
+          </div>
+        </div>
+      }
+    >
       <Code />
     </Suspense>
   )

@@ -1,8 +1,47 @@
 ---
 title: Introduction
-description: Description of introduction section
+description: Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source.
 ---
 
-# Introduction2
+# [Shadcn UI](https://ui.shadcn.com/) but:
 
-<p className="text-4xl text-red-900">With some Tailwind CSS</p>
+Here are roadmap of this projects:
+
+- [x] Use native colors in Tailwindcss
+- [x] Can be installed via package managers -> easy to receive updates
+- [ ] Can be copied and used immediately without configuration files like `tsconfig.json`, `jsconfig.json`, `components.json` -> easy to modify
+- [ ] Dark mode or multiple themes without using the `dark:` variant in Tailwindcss or naming colors
+- [ ] Extends component variants
+- [ ] Figma `free`
+
+## FAQ
+
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from '@dinui/react/accordion'
+
+<Accordion type="multiple">
+
+<AccordionItem value="faq-3">
+  <AccordionTrigger>Which frameworks are supported?</AccordionTrigger>
+  <AccordionContent>
+    You can use any framework that supports React.
+    [Next.js](https://ui.shadcn.com/docs/installation/next),
+    [Astro](https://ui.shadcn.com/docs/installation/astro),
+    [Remix](https://ui.shadcn.com/docs/installation/remix),
+    [Gatsby](https://ui.shadcn.com/docs/installation/gatsby) etc.
+  </AccordionContent>
+</AccordionItem>
+
+<AccordionItem value="faq-4">
+  <AccordionTrigger>Can I use this in my project?</AccordionTrigger>
+  <AccordionContent>
+    Yes. Free to use for personal and commercial projects. No attribution required. But hey, let me
+    know if you do. I'd love to see what you build.
+  </AccordionContent>
+</AccordionItem>
+
+</Accordion>

@@ -1,0 +1,59 @@
+---
+title: Badge
+description: Displays a badge or a component that looks like a badge.
+component: true
+---
+
+# Badge
+
+Displays a badge or a component that looks like a badge.
+
+import { Example } from '@web/components/example'
+
+<Example path="ui/badge-demo" />
+
+## Usage
+
+```tsx
+import { Badge } from '@dinui/react/badge'
+```
+
+```tsx
+<Badge variant="outline">Badge</Badge>
+```
+
+### Link
+
+You can use the `badgeVariants` helper to create a link that looks like a badge.
+
+```tsx
+import { badgeVariants } from '@dinui/react/badge'
+```
+
+```tsx
+<Link className={badgeVariants({ variant: 'outline' })}>Badge</Link>
+```
+
+## Examples
+
+### Default
+
+<Example path="ui/badge-demo" />
+
+---
+
+### Secondary
+
+<Example path="ui/badge-secondary" />
+
+---
+
+### Outline
+
+<Example path="ui/badge-outline" />
+
+---
+
+### Destructive
+
+<Example path="ui/badge-destructive" />

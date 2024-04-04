@@ -1,0 +1,42 @@
+---
+title: Radio Group
+description: A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.
+component: true
+links:
+  doc: https://www.radix-ui.com/docs/primitives/components/radio-group
+  api: https://www.radix-ui.com/docs/primitives/components/radio-group#api-reference
+---
+
+# Radio Group
+
+A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.
+
+import { Example } from '@web/components/example'
+
+<Example path="ui/radio-group-demo" />
+
+## Usage
+
+```tsx
+import { Label } from '@dinui/react/label'
+import { RadioGroup, RadioGroupItem } from '@dinui/react/radio-group'
+```
+
+```tsx
+<RadioGroup defaultValue="option-one">
+  <div className="flex items-center space-x-2">
+    <RadioGroupItem value="option-one" id="option-one" />
+    <Label htmlFor="option-one">Option One</Label>
+  </div>
+  <div className="flex items-center space-x-2">
+    <RadioGroupItem value="option-two" id="option-two" />
+    <Label htmlFor="option-two">Option Two</Label>
+  </div>
+</RadioGroup>
+```
+
+## Examples
+
+### Form
+
+<Example path="ui/radio-group-form" />
