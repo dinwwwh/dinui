@@ -15,6 +15,7 @@ export default defineConfig({
   font: {
     google: 'Inter',
   },
+  ogImageUrl: 'https://vocs.dev/api/og?logo=%logo&title=%title&description=%description', 
   iconUrl: '/avatar-d.svg',
   title: 'DinUI',
   description:

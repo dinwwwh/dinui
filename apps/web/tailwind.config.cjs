@@ -26,7 +26,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        gray: tailwindColors.gray,
+        gray: tailwindColors.zinc,
         brand: tailwindColors.violet,
         error: tailwindColors.red,
         warning: tailwindColors.amber,
@@ -48,5 +48,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), require('tailwind-scrollbar')],
 }

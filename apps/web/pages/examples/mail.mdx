@@ -2,14 +2,20 @@
 title: Mail example page
 description: The mail example page uses DinUI.
 layout: landing
+content:
+  horizontalPadding: 16px
+  width: 100%
+  verticalPadding: 0px
 ---
 
-import '@web/styles/landing-w-container.css'
+<div class="container py-8 px-0">
 
 # Mail example page
 
 import MailPage from '@web/examples/mail/page'
 
-<div className="bg-gray-950 rounded-md border border-gray-200 dark:border-gray-700">
+<div className="rounded-md border border-gray-200 dark:border-gray-700">
   <MailPage />
+</div>
+
 </div>
