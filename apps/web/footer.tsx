@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <div className="container px-0 ml-0 py-2">
+    <div className="container px-0 ml-0">
       <p className="text-balance text-sm leading-loose text-gray-600 md:text-left">
         Built by{' '}
         <a
