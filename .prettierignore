@@ -5,6 +5,5 @@ build/
 out/
 !.vscode/
 !.github/
-!.changeset/
 
 pnpm-lock.yaml
