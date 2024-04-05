@@ -31,11 +31,11 @@ export default function MusicPage() {
       </div>
       <div className="hidden md:block">
         <Menu />
-        <div className="border-t">
+        <div className="border-t border-gray-200 dark:border-gray-800">
           <div className="bg-background">
             <div className="grid lg:grid-cols-5">
               <Sidebar playlists={playlists} className="hidden lg:block" />
-              <div className="col-span-3 lg:col-span-4 lg:border-l">
+              <div className="col-span-3 lg:col-span-4 lg:border-l border-gray-200 dark:border-gray-800">
                 <div className="h-full px-4 py-6 lg:px-8">
                   <Tabs defaultValue="music" className="h-full space-y-6">
                     <div className="space-between flex items-center">

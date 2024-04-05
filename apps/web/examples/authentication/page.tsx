@@ -28,7 +28,7 @@ export default function AuthenticationPage() {
         >
           Login
         </a>
-        <div className="relative hidden h-full flex-col bg-muted p-10 text-white lg:flex dark:border-r">
+        <div className="relative hidden h-full flex-col bg-muted p-10 text-white lg:flex dark:border-r border-gray-200 dark:border-gray-800">
           <div className="absolute inset-0 bg-zinc-900" />
           <div className="relative z-20 flex items-center text-lg font-medium">
             <svg
@@ -68,7 +68,7 @@ export default function AuthenticationPage() {
               By clicking continue, you agree to our{' '}
               <a href="#" className="underline underline-offset-4 hover:text-primary">
                 Terms of Service
-              </a>
+              </a>{' '}
               and{' '}
               <a href="#" className="underline underline-offset-4 hover:text-primary">
                 Privacy Policy
