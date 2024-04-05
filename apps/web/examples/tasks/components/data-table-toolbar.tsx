@@ -5,7 +5,7 @@ import { DataTableFacetedFilter } from './data-table-faceted-filter'
 import { Button } from '@dinui/react/button'
 import { Input } from '@dinui/react/input'
 import { Cross2Icon } from '@radix-ui/react-icons'
-import { Table } from '@tanstack/react-table'
+import type { Table } from '@tanstack/react-table'
 import { DataTableViewOptions } from '@web/examples/tasks/components/data-table-view-options'
 
 interface DataTableToolbarProps<TData> {

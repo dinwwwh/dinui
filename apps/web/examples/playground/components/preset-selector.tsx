@@ -1,6 +1,6 @@
 'use client'
 
-import { Preset } from '../data/presets'
+import type { Preset } from '../data/presets'
 import { Button } from '@dinui/react/button'
 import {
   Command,
@@ -12,7 +12,7 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '@dinui/react/popover'
 import { cn } from '@dinui/react/utils'
 import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons'
-import { PopoverProps } from '@radix-ui/react-popover'
+import type { PopoverProps } from '@radix-ui/react-popover'
 import * as React from 'react'
 import { useNavigate } from 'react-router-dom'
 

@@ -1,12 +1,12 @@
 'use client'
 
 import { labels, priorities, statuses } from '../data/data'
-import { Task } from '../data/schema'
+import type { Task } from '../data/schema'
 import { DataTableColumnHeader } from './data-table-column-header'
 import { DataTableRowActions } from './data-table-row-actions'
 import { Badge } from '@dinui/react/badge'
 import { Checkbox } from '@dinui/react/checkbox'
-import { ColumnDef } from '@tanstack/react-table'
+import type { ColumnDef } from '@tanstack/react-table'
 
 export const columns: ColumnDef<Task>[] = [
   {

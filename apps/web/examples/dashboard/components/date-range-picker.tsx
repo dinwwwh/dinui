@@ -7,7 +7,7 @@ import { cn } from '@dinui/react/utils'
 import { CalendarIcon } from '@radix-ui/react-icons'
 import { addDays, format } from 'date-fns'
 import * as React from 'react'
-import { DateRange } from 'react-day-picker'
+import type { DateRange } from 'react-day-picker'
 
 export function CalendarDateRangePicker({ className }: React.HTMLAttributes<HTMLDivElement>) {
   const [date, setDate] = React.useState<DateRange | undefined>({

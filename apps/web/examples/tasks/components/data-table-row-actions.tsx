@@ -17,7 +17,7 @@ import {
   DropdownMenuTrigger,
 } from '@dinui/react/dropdown-menu'
 import { DotsHorizontalIcon } from '@radix-ui/react-icons'
-import { Row } from '@tanstack/react-table'
+import type { Row } from '@tanstack/react-table'
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>

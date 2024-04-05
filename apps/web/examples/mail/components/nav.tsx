@@ -3,7 +3,7 @@
 import { button } from '@dinui/react/button'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@dinui/react/tooltip'
 import { cn } from '@dinui/react/utils'
-import { LucideIcon } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 
 interface NavProps {
   isCollapsed: boolean

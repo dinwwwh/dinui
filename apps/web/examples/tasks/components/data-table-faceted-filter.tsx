@@ -13,8 +13,8 @@ import { Popover, PopoverContent, PopoverTrigger } from '@dinui/react/popover'
 import { Separator } from '@dinui/react/separator'
 import { cn } from '@dinui/react/utils'
 import { CheckIcon, PlusCircledIcon } from '@radix-ui/react-icons'
-import { Column } from '@tanstack/react-table'
-import * as React from 'react'
+import type { Column } from '@tanstack/react-table'
+import type * as React from 'react'
 
 interface DataTableFacetedFilterProps<TData, TValue> {
   column?: Column<TData, TValue>

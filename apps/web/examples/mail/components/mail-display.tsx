@@ -1,4 +1,4 @@
-import { Mail } from '../data'
+import type { Mail } from '../data'
 import { Avatar, AvatarFallback, AvatarImage } from '@dinui/react/avatar'
 import { Button } from '@dinui/react/button'
 import { Calendar } from '@dinui/react/calendar'

@@ -1,10 +1,10 @@
-import { Mail } from '../data'
+import type { Mail } from '../data'
 import { useMail } from '../use-mail'
 import { Badge } from '@dinui/react/badge'
 import { ScrollArea } from '@dinui/react/scroll-area'
 import { cn } from '@dinui/react/utils'
 import { formatDistanceToNow } from 'date-fns'
-import { ComponentProps } from 'react'
+import type { ComponentProps } from 'react'
 
 interface MailListProps {
   items: Mail[]

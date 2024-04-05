@@ -3,7 +3,7 @@
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@dinui/react/hover-card'
 import { Label } from '@dinui/react/label'
 import { Slider } from '@dinui/react/slider'
-import { SliderProps } from '@radix-ui/react-slider'
+import type { SliderProps } from '@radix-ui/react-slider'
 import * as React from 'react'
 
 interface TemperatureSelectorProps {

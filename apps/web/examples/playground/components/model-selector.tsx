@@ -1,6 +1,6 @@
 'use client'
 
-import { Model, ModelType } from '../data/models'
+import type { Model, ModelType } from '../data/models'
 import { Button } from '@dinui/react/button'
 import {
   Command,
@@ -15,7 +15,7 @@ import { Label } from '@dinui/react/label'
 import { Popover, PopoverContent, PopoverTrigger } from '@dinui/react/popover'
 import { cn } from '@dinui/react/utils'
 import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons'
-import { PopoverProps } from '@radix-ui/react-popover'
+import type { PopoverProps } from '@radix-ui/react-popover'
 import { useMutationObserver } from '@web/hooks/use-mutation-observer'
 import * as React from 'react'
 

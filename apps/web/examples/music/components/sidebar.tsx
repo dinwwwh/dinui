@@ -1,4 +1,4 @@
-import { Playlist } from '../data/playlists'
+import type { Playlist } from '../data/playlists'
 import { Button } from '@dinui/react/button'
 import { ScrollArea } from '@dinui/react/scroll-area'
 import { cn } from '@dinui/react/utils'

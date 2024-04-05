@@ -1,4 +1,4 @@
-import { Album } from '../data/albums'
+import type { Album } from '../data/albums'
 import { playlists } from '../data/playlists'
 import {
   ContextMenu,

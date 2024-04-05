@@ -1,4 +1,5 @@
-import { Mail, mails } from './data'
+import type { Mail } from './data'
+import { mails } from './data'
 import { atom, useAtom } from 'jotai'
 
 type Config = {
