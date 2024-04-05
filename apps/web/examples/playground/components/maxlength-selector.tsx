@@ -20,7 +20,7 @@ export function MaxLengthSelector({ defaultValue }: MaxLengthSelectorProps) {
           <div className="grid gap-4">
             <div className="flex items-center justify-between">
               <Label htmlFor="maxlength">Maximum Length</Label>
-              <span className="w-12 rounded-md border border-transparent px-2 py-0.5 text-right text-sm text-muted-foreground hover:border-border">
+              <span className="w-12 rounded-md border border-transparent px-2 py-0.5 text-right text-sm text-muted-foreground hover:border-gray-200 dark:hover:border-gray-800">
                 {value}
               </span>
             </div>

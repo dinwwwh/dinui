@@ -51,9 +51,9 @@ export function PageExamplesNav({ className, ...props }: React.HTMLAttributes<HT
               to={example.href}
               key={example.href}
               className={cn(
-                'flex h-7 items-center justify-center rounded-full px-4 text-center text-sm transition-colors hover:text-primary',
+                'flex h-7 items-center justify-center rounded-full px-4 text-center text-sm transition-colors hover:text-gray-900 dark:hover:text-gray-50',
                 pathname?.startsWith(example.href) || (index === 0 && pathname === '/')
-                  ? 'bg-gray-100 font-medium text-gray-900'
+                  ? 'bg-gray-100 font-medium text-gray-900 dark:hover:text-gray-900'
                   : 'text-gray-500',
               )}
             >
