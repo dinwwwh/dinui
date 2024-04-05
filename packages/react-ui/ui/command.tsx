@@ -41,7 +41,7 @@ export const CommandInput = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
   <div
-    className="flex items-center border-b border-gray-200 dark:border-gray-700 px-3"
+    className="flex items-center border-b border-gray-200 dark:border-gray-800 px-3"
     // eslint-disable-next-line react/no-unknown-property
     cmdk-input-wrapper=""
   >

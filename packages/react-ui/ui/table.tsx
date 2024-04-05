@@ -40,7 +40,7 @@ export const TableFooter = React.forwardRef<
   <tfoot
     ref={ref}
     className={twMerge(
-      'border-gray-200 dark:border-gray-700 border-t bg-gray-100/50 font-medium [&>tr]:last:border-b-0 dark:bg-gray-800/50',
+      'border-gray-200 dark:border-gray-800 border-t bg-gray-100/50 font-medium [&>tr]:last:border-b-0 dark:bg-gray-800/50',
       className,
     )}
     {...props}
@@ -55,7 +55,7 @@ export const TableRow = React.forwardRef<
   <tr
     ref={ref}
     className={twMerge(
-      'border-gray-200 dark:border-gray-700 border-b transition-colors hover:bg-gray-100/50 data-[state=selected]:bg-gray-100 dark:hover:bg-gray-800/50 dark:data-[state=selected]:bg-gray-800',
+      'border-gray-200 dark:border-gray-800 border-b transition-colors hover:bg-gray-100/50 data-[state=selected]:bg-gray-100 dark:hover:bg-gray-800/50 dark:data-[state=selected]:bg-gray-800',
       className,
     )}
     {...props}

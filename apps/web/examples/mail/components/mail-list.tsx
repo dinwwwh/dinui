@@ -20,7 +20,7 @@ export function MailList({ items }: MailListProps) {
           <button
             key={item.id}
             className={cn(
-              'flex flex-col items-start gap-2 rounded-lg border border-gray-200 dark:border-gray-700 p-3 text-left text-sm transition-all hover:bg-accent',
+              'flex flex-col items-start gap-2 rounded-lg border border-gray-200 dark:border-gray-800 p-3 text-left text-sm transition-all hover:bg-accent',
               mail.selected === item.id && 'bg-muted',
             )}
             onClick={() =>

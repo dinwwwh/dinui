@@ -72,7 +72,7 @@ export function MailDisplay({ mail }: MailDisplayProps) {
                 </TooltipTrigger>
               </PopoverTrigger>
               <PopoverContent className="flex w-[535px] p-0">
-                <div className="flex flex-col gap-2 border-r border-gray-200 dark:border-gray-700 px-2 py-4">
+                <div className="flex flex-col gap-2 border-r border-gray-200 dark:border-gray-800 px-2 py-4">
                   <div className="px-4 text-sm font-medium">Snooze until</div>
                   <div className="grid min-w-[250px] gap-1">
                     <Button variant="ghost" className="justify-start font-normal">
