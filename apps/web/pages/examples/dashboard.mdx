@@ -1,0 +1,23 @@
+---
+title: Dashboard
+description: Example dashboard app built using DinUI.
+layout: landing
+content:
+  horizontalPadding: 16px
+  width: 100%
+  verticalPadding: 0px
+---
+
+import DashboardPage from '@web/examples/dashboard/page'
+
+<div class="container py-8 px-0">
+
+import { PageExamplesNav } from '@web/components/page-example-nav'
+
+<PageExamplesNav />
+
+<div className="rounded-md border border-gray-200 dark:border-gray-800">
+  <DashboardPage />
+</div>
+
+</div>

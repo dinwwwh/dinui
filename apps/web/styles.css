@@ -5,8 +5,20 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    @apply text-gray-900 dark:text-white;
-  }
+body {
+  @apply text-gray-900 dark:text-white;
+}
+
+* {
+  @apply scrollbar scrollbar-thin;
+}
+
+:root {
+  --vocs-color_background: white;
+  --vocs-color_backgroundDark: theme(colors.gray.50);
+}
+
+:root.dark {
+  --vocs-color_background: theme(colors.gray.950);
+  --vocs-color_backgroundDark: theme(colors.gray.900);
 }

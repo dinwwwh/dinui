@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge'
 import { tv, type VariantProps } from 'tailwind-variants'
 
 export const alert = tv({
-  base: 'relative w-full rounded-lg border border-gray-200 dark:border-gray-700 px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-gray-950 [&>svg~*]:pl-7  dark:[&>svg]:text-gray-50',
+  base: 'relative w-full rounded-lg border border-gray-200 dark:border-gray-800 px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-gray-950 [&>svg~*]:pl-7  dark:[&>svg]:text-gray-50',
   variants: {
     variant: {
       default: 'bg-white text-gray-950 dark:bg-gray-950 dark:text-gray-50',
