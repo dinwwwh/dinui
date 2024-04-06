@@ -26,6 +26,9 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Release to @pr
-        run: pnpm changeset publish --tag pr
+        uses: changesets/action@v1
+        with:
+          publish: pnpm changeset publish --tag pr
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
