@@ -21,7 +21,7 @@ jobs:
         run: pnpm changeset version --snapshot ${{ github.event.pull_request.user.login }}
 
       - name: NPM authentication
-        run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
+        run: pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
