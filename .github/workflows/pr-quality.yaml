@@ -1,13 +1,13 @@
-name: On preview
+name: pr-quality
 
 on:
   pull_request:
+    types: [labeled]
     branches: [main]
 
 jobs:
-  deploy-preview:
+  check-and-fix-code:
     runs-on: ubuntu-latest
-    # environment: preview
     permissions:
       contents: write
 
@@ -24,8 +24,6 @@ jobs:
 
       - run: pnpm run type:check
 
-      - run: pnpm run deploy:preview
-
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Fixed!
+          commit_message: 'style: lint & format fixed'

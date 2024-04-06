@@ -1,0 +1,29 @@
+name: main-quality
+
+on:
+  workflow_run:
+    workflows: ['pr-quality']
+    types:
+      - completed
+
+jobs:
+  check-code:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2
+
+      - run: pnpm i
+
+      - run: pnpm build
+
+      - name: Create snapshot version for @pr
+        run: pnpm changeset version --snapshot ${{ github.event.pull_request.user.login }}
+
+      - name: Release to @pr
+        run: pnpm changeset publish --tag pr
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

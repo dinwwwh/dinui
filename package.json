@@ -4,8 +4,6 @@
     "dev": "turbo dev",
     "build": "turbo build",
     "preview": "turbo preview",
-    "deploy:preview": "turbo deploy:preview",
-    "deploy:production": "turbo deploy:production",
     "type:check": "turbo type:check",
     "lint:check": "eslint --max-warnings 0 --report-unused-disable-directives .",
     "lint:fix": "eslint --fix --max-warnings 0 --report-unused-disable-directives .",

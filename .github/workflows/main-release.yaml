@@ -1,0 +1,41 @@
+name: main-quality
+
+on:
+  workflow_run:
+    workflows: ['main-quality']
+    types:
+      - completed
+
+jobs:
+  check-code:
+    runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2
+
+      - run: pnpm i
+
+      - run: pnpm build
+
+      - name: Check or release to @latest
+        uses: changesets/action@v1
+        with:
+          publish: pnpm changeset publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create snapshot version for @next
+        run: pnpm changeset version --snapshot next
+
+      - name: Release to @next
+        run: pnpm changeset publish --tag next
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

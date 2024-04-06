@@ -15,12 +15,6 @@
     },
     "type:check": {
       "dependsOn": ["^build"]
-    },
-    "deploy:preview": {
-      "dependsOn": ["^build"]
-    },
-    "deploy:production": {
-      "dependsOn": ["^build"]
     }
   }
 }
