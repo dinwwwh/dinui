@@ -1,4 +1,4 @@
-name: main-quality
+name: pr-release
 
 on:
   workflow_run:
