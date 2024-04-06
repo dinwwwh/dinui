@@ -7,7 +7,7 @@ on:
       - completed
 
 jobs:
-  check-code:
+  release:
     runs-on: ubuntu-latest
 
     permissions:
