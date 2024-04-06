@@ -20,8 +20,12 @@ jobs:
       - name: Create snapshot version for @pr
         run: pnpm changeset version --snapshot ${{ github.event.pull_request.user.login }}
 
+      - name: NPM authentication
+        run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Release to @pr
         run: pnpm changeset publish --tag pr
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
