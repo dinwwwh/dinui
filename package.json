@@ -3,6 +3,7 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
+    "build:packages": "turbo build --filter=./packages/*",
     "preview": "turbo preview",
     "type:check": "turbo type:check",
     "lint:check": "eslint --max-warnings 0 --report-unused-disable-directives .",

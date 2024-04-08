@@ -7,22 +7,12 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-
     permissions:
-      contents: write
-      statuses: write
-      repository-projects: write
-      actions: write
-      checks: write
-      deployments: write
-      discussions: write
       id-token: write
-      issues: write
+      contents: write
       packages: write
-      pages: write
       pull-requests: write
-      security-events: write
-
+      issues: read
     steps:
       - uses: actions/checkout@v3
 
@@ -30,7 +20,7 @@ jobs:
 
       - run: pnpm i
 
-      - run: pnpm build
+      - run: pnpm build:packages
 
       - name: Create snapshot version for @dev-only-pr
         run: pnpm changeset version --snapshot dev-only-pr-${{ github.event.pull_request.number }}
