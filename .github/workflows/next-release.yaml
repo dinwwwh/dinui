@@ -2,7 +2,7 @@ name: next-release
 
 on:
   workflow_run:
-    workflows: ['main-quality']
+    workflows: ['stable-release']
     types:
       - completed
 
