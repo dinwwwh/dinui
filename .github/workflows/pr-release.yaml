@@ -9,9 +9,19 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: read
-      statuses: read
-      repository-projects: read
+      contents: write
+      statuses: write
+      repository-projects: write
+      actions: write
+      checks: write
+      deployments: write
+      discussions: write
+      id-token: write
+      issues: write
+      packages: write
+      pages: write
+      pull-requests: write
+      security-events: write
 
     steps:
       - uses: actions/checkout@v3
@@ -22,18 +32,18 @@ jobs:
 
       - run: pnpm build
 
-      - name: Create snapshot version for @pr
-        run: pnpm changeset version --snapshot ${{ github.event.pull_request.user.login }}
+      - name: Create snapshot version for @dev-only-pr
+        run: pnpm changeset version --snapshot dev-only-pr-${{ github.event.pull_request.number }}
 
       # - name: NPM authentication
       #   run: pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
       #   env:
       #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Release to @pr
+      - name: Release to @dev-only-pr
         uses: changesets/action@v1
         with:
-          publish: pnpm changeset publish --tag pr
+          publish: pnpm changeset publish --tag dev-only-pr
           createGithubReleases: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
