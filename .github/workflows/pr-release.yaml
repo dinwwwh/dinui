@@ -15,10 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Context vars
-        id: vars
-        run: |
-          echo "short_sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+      - uses: benjlevesque/short-sha@v3.0
+        id: short-sha
 
       - name: Find pr-release comment
         uses: peter-evans/find-comment@v3
@@ -38,8 +36,10 @@ jobs:
             <!--pr-release-->
             ## PR-release for testing
 
-            Latest commit: `${{ steps.vars.outputs.short_sha }}`
+            Latest commit: `${{ steps.short-sha.outputs.sha }}`
             Status: 👷 In process...
+
+            [View logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ github.job }})
           edit-mode: replace
 
       - uses: pnpm/action-setup@v2
@@ -67,8 +67,10 @@ jobs:
             <!--pr-release-->
             ## PR-release for testing
 
-            Latest commit: `${{ steps.vars.outputs.short_sha }}`
+            Latest commit: `${{ steps.short-sha.outputs.sha }}`
             Status: ❌ Failed
+
+            [View logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ github.job }})
           edit-mode: replace
 
       - name: Get @dinui/react version
@@ -88,12 +90,14 @@ jobs:
             <!--pr-release-->
             ## PR-release for testing
 
-            Latest commit: `${{ steps.vars.outputs.short_sha }}`
+            Latest commit: `${{ steps.short-sha.outputs.sha }}`
             Status: ✅ Published
 
             ```bash
             npm install @dinui/react@${{ steps.dinui-react-version.outputs.current-version}}
             ```
+
+            [View logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ github.job }})
           edit-mode: replace
 
       - name: Exit with failed status
