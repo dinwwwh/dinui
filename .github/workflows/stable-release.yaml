@@ -1,10 +1,14 @@
 name: stable-release
 
+# on:
+#   workflow_run:
+#     workflows: ['main-quality']
+#     types:
+#       - completed
+
 on:
-  workflow_run:
-    workflows: ['main-quality']
-    types:
-      - completed
+  pull_request:
+    branches: [main]
 
 jobs:
   release:
