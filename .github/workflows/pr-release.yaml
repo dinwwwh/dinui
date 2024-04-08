@@ -61,6 +61,6 @@ jobs:
             <!--pr-release-->
             You can install pre-release for this pull-request
             ```bash
-            npm add @dinui/react@${{ steps.package-version.outputs.current-version}}
+            npm add @dinui/react@${{ steps.dinui-react-version.outputs.current-version}}
             ```
           edit-mode: replace
