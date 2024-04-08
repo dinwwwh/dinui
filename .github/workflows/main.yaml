@@ -32,6 +32,9 @@ jobs:
       contents: write
       pull-requests: write
 
+    outputs:
+      hasChangesets: ${{ steps.changesets.outputs.hasChangesets }}
+
     steps:
       - uses: actions/checkout@v3
 
@@ -62,7 +65,7 @@ jobs:
   next-release:
     needs: [stable-release]
 
-    if: ${{ needs.stable-release.result == 'success' }}
+    if: ${{ needs.stable-release.result == 'success' && needs.stable-release.outputs.hasChangesets == 'true' }}
 
     runs-on: ubuntu-latest
 
