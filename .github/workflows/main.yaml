@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v3
 
       - run: pnpm i
 
@@ -36,16 +36,16 @@ jobs:
       hasChangesets: ${{ steps.changesets.outputs.hasChangesets }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v3
+
+      - run: pnpm i
 
       - name: NPM registry authentication
         run: pnpm config set '//registry.npmjs.org/:_authToken' \"${NPM_TOKEN}\"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - run: pnpm i
 
       - name: Changesets version or deploy and publish on @latest
         id: changesets
@@ -69,16 +69,16 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v3
+
+      - run: pnpm i
 
       - name: NPM registry authentication
         run: pnpm config set '//registry.npmjs.org/:_authToken' \"${NPM_TOKEN}\"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - run: pnpm i
 
       - run: pnpm changeset version --snapshot next
         env:
