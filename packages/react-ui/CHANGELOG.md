@@ -1,5 +1,11 @@
 # @dinui/react
 
+## 0.0.8
+
+### Patch Changes
+
+- [`7e655d6`](https://github.com/dinsterizer/dinui/commit/7e655d6661ce3e343ca4f0b2f58f279163383caf) Thanks [@dinsterizer](https://github.com/dinsterizer)! - ci: fix does create github releases
+
 ## 0.0.7
 
 ### Patch Changes
