@@ -3,9 +3,8 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
+    "build:packages": "turbo build --filter=./packages/*",
     "preview": "turbo preview",
-    "deploy:preview": "turbo deploy:preview",
-    "deploy:production": "turbo deploy:production",
     "type:check": "turbo type:check",
     "lint:check": "eslint --max-warnings 0 --report-unused-disable-directives .",
     "lint:fix": "eslint --fix --max-warnings 0 --report-unused-disable-directives .",
@@ -13,6 +12,8 @@
     "format:fix": "prettier --write ."
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.5.0",
+    "@changesets/cli": "^2.27.1",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "concurrently": "^8.2.2",
