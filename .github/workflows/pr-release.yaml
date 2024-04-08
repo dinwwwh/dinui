@@ -39,33 +39,25 @@ jobs:
             ## PR-release for testing
 
             Latest commit: `${{ steps.vars.outputs.short_sha }}`
-            Status: 👷 Build in progress...
+            Status: 👷 In process...
           edit-mode: replace
 
       - uses: pnpm/action-setup@v2
 
-      - run: pnpm i
-
-      - run: pnpm build:packages
-
-      - run: pnpm changeset version --snapshot dev-pr-${{ github.event.pull_request.number }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: NPM registry authentication
-        run: pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+      - name: Publish packages
+        id: publish
+        continue-on-error: true
+        run: |
+          pnpm i
+          pnpm changeset version --snapshot dev-pr-${{ github.event.pull_request.number }}
+          pnpm build:ccc
+          pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+          pnpm changeset publish --tag dev-pr
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - run: pnpm changeset publish --tag dev-pr
-
-      - name: Get @dinui/react version
-        uses: martinbeentjes/npm-get-version-action@v1.3.1
-        id: dinui-react-version
-        with:
-          path: packages/react-ui
-
-      - name: Update pr-released comment
+      - name: Update pr-released comment with failed status
+        if: steps.publish.outputs.exit_code == 0
         uses: peter-evans/create-or-update-comment@v4
         with:
           comment-id: ${{ steps.pr-couc.outputs.comment-id }}
@@ -75,7 +67,28 @@ jobs:
             ## PR-release for testing
 
             Latest commit: `${{ steps.vars.outputs.short_sha }}`
-            Status: ✅ Published successfully
+            Status: ❌ Failed
+          edit-mode: replace
+
+      - name: Get @dinui/react version
+        if: steps.publish.outputs.exit_code == 0
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+        id: dinui-react-version
+        with:
+          path: packages/react-ui
+
+      - name: Update pr-released comment with published status
+        if: steps.publish.outputs.exit_code == 0
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ steps.pr-couc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            <!--pr-release-->
+            ## PR-release for testing
+
+            Latest commit: `${{ steps.vars.outputs.short_sha }}`
+            Status: ✅ Published
 
             ```bash
             npm install @dinui/react@${{ steps.dinui-react-version.outputs.current-version}}
