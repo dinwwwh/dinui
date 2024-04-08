@@ -1,5 +1,11 @@
 # @dinui/react
 
+## 0.0.7
+
+### Patch Changes
+
+- [`8a4a73d`](https://github.com/dinsterizer/dinui/commit/8a4a73d0dd7f4a09176fa366faf26a4e105fc094) Thanks [@dinsterizer](https://github.com/dinsterizer)! - ci: optimize next release
+
 ## 0.0.6
 
 ### Patch Changes
