@@ -9,13 +9,27 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      id-token: write
-      contents: write
-      packages: write
-      pull-requests: read
-      issues: read
+      contents: read
+      pull-requests: write
 
     steps:
+      - uses: peter-evans/find-comment@v3
+        id: pr-fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: '<!--pr-release-->'
+
+      - uses: peter-evans/create-or-update-comment@v4
+        id: pr-couc
+        with:
+          comment-id: ${{ steps.pr-fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            <!--pr-release-->
+            Pull request releasing...
+          edit-mode: replace
+
       - uses: actions/checkout@v3
 
       - uses: pnpm/action-setup@v2
@@ -24,21 +38,29 @@ jobs:
 
       - run: pnpm build:packages
 
-      - name: Create snapshot version for @dev-only-pr
-        run: pnpm changeset version --snapshot dev-only-pr-${{ github.event.pull_request.number }}
+      - run: pnpm changeset version --snapshot dev-pr-${{ github.event.pull_request.number }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: NPM authentication
-      #   run: pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-      #   env:
-      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Release to @dev-only-pr
-        uses: changesets/action@v1
-        with:
-          publish: pnpm changeset publish --tag dev-only-pr
-          createGithubReleases: false
+      - run: pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - run: pnpm changeset publish --tag dev-pr
+
+      - uses: martinbeentjes/npm-get-version-action@v1.3.1
+        id: dinui-react-version
+        with:
+          path: packages/react-ui
+
+      - uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ steps.pr-couc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            <!--pr-release-->
+            You can install pre-release for this pull-request
+            ```bash
+            npm add @dinui/react@${{ steps.package-version.outputs.current-version}}
+            ```
+          edit-mode: replace
