@@ -7,12 +7,14 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+
     permissions:
-      id-token: write
-      contents: write
+      id-token: read
+      contents: read
       packages: write
-      pull-requests: write
+      pull-requests: read
       issues: read
+
     steps:
       - uses: actions/checkout@v3
 
@@ -24,6 +26,8 @@ jobs:
 
       - name: Create snapshot version for @dev-only-pr
         run: pnpm changeset version --snapshot dev-only-pr-${{ github.event.pull_request.number }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # - name: NPM authentication
       #   run: pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"

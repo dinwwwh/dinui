@@ -11,8 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      pull-requests: write
+      id-token: write
       contents: write
+      packages: write
+      pull-requests: write
+      issues: read
 
     steps:
       - uses: actions/checkout@v3
@@ -37,6 +40,8 @@ jobs:
 
       - name: Create snapshot version for @next
         run: pnpm changeset version --snapshot next
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Release to @next
         run: pnpm changeset publish --tag next
