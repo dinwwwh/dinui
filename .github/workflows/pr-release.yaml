@@ -58,7 +58,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Update pr-release comment with failed status
-        if: steps.publish.outputs.exit_code != 0
+        if: steps.publish.outcome != 'success'
         uses: peter-evans/create-or-update-comment@v4
         with:
           comment-id: ${{ steps.pr-couc.outputs.comment-id }}
@@ -72,14 +72,14 @@ jobs:
           edit-mode: replace
 
       - name: Get @dinui/react version
-        if: steps.publish.outputs.exit_code == 0
+        if: steps.publish.outcome == 'success'
         uses: martinbeentjes/npm-get-version-action@v1.3.1
         id: dinui-react-version
         with:
           path: packages/react-ui
 
       - name: Update pr-release comment with published status
-        if: steps.publish.outputs.exit_code == 0
+        if: steps.publish.outcome == 'success'
         uses: peter-evans/create-or-update-comment@v4
         with:
           comment-id: ${{ steps.pr-couc.outputs.comment-id }}
