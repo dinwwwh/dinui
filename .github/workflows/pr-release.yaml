@@ -13,24 +13,34 @@ jobs:
       pull-requests: write
 
     steps:
-      - uses: peter-evans/find-comment@v3
+      - uses: actions/checkout@v3
+
+      - name: Context vars
+        id: vars
+        run: |
+          echo "short_sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Find pr-release comment
+        uses: peter-evans/find-comment@v3
         id: pr-fc
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-author: 'github-actions[bot]'
           body-includes: '<!--pr-release-->'
 
-      - uses: peter-evans/create-or-update-comment@v4
+      - name: Create or update pr-releasing...comment
+        uses: peter-evans/create-or-update-comment@v4
         id: pr-couc
         with:
           comment-id: ${{ steps.pr-fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             <!--pr-release-->
-            Pull request releasing...
-          edit-mode: replace
+            Pr-release for testing:
 
-      - uses: actions/checkout@v3
+            Latest commit: `${{ steps.vars.outputs.short_sha }}`
+            Status: 👷 Build in progress...
+          edit-mode: replace
 
       - uses: pnpm/action-setup@v2
 
@@ -42,25 +52,32 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - run: pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+      - name: NPM registry authentication
+        run: pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - run: pnpm changeset publish --tag dev-pr
 
-      - uses: martinbeentjes/npm-get-version-action@v1.3.1
+      - name: Get @dinui/react version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
         id: dinui-react-version
         with:
           path: packages/react-ui
 
-      - uses: peter-evans/create-or-update-comment@v4
+      - name: Update pr-released comment
+        uses: peter-evans/create-or-update-comment@v4
         with:
           comment-id: ${{ steps.pr-couc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             <!--pr-release-->
-            You can install pre-release for this pull-request
+            Pr-release for testing:
+
+            Latest commit: `${{ steps.vars.outputs.short_sha }}`
+            Status: ✅ Published successfully
+
             ```bash
-            npm add @dinui/react@${{ steps.dinui-react-version.outputs.current-version}}
+            npm install @dinui/react@${{ steps.dinui-react-version.outputs.current-version}}
             ```
           edit-mode: replace
