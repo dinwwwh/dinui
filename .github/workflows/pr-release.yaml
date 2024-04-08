@@ -36,7 +36,7 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             <!--pr-release-->
-            PR-release for testing:
+            ## PR-release for testing
 
             Latest commit: `${{ steps.vars.outputs.short_sha }}`
             Status: 👷 Build in progress...
@@ -72,7 +72,7 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             <!--pr-release-->
-            PR-release for testing:
+            ## PR-release for testing
 
             Latest commit: `${{ steps.vars.outputs.short_sha }}`
             Status: ✅ Published successfully
