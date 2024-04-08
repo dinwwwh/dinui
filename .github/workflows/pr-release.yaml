@@ -50,7 +50,7 @@ jobs:
         run: |
           pnpm i
           pnpm changeset version --snapshot dev-pr-${{ github.event.pull_request.number }}
-          pnpm build:ccc
+          pnpm build:packages
           pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
           pnpm changeset publish --tag dev-pr
         env:
