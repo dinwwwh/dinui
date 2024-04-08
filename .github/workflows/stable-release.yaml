@@ -21,7 +21,7 @@ jobs:
 
       - run: pnpm i
 
-      - run: pnpm build:packages
+      - run: pnpm build
 
       - name: NPM registry authentication
         run: pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
@@ -33,6 +33,7 @@ jobs:
         with:
           commit: 'chore(release): version packages'
           title: 'chore(release): version packages'
-          publish: pnpm changeset publish
+          publish: pnpm dlx wrangler pages deploy --project-name=dinui-stable --branch=main ./apps/web/dist && pnpm changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
