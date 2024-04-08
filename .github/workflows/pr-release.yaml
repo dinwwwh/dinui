@@ -95,3 +95,7 @@ jobs:
             npm install @dinui/react@${{ steps.dinui-react-version.outputs.current-version}}
             ```
           edit-mode: replace
+
+      - name: Exit with failed status
+        if: steps.publish.outcome != 'success'
+        run: exit 1
