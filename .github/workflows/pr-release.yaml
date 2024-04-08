@@ -17,6 +17,11 @@ jobs:
 
       - uses: pnpm/action-setup@v2
 
+      - name: NPM registry authentication
+        run: pnpm config set '//registry.npmjs.org/:_authToken' \"${NPM_TOKEN}\"
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - run: pnpm i
 
       - name: Context vars
@@ -54,11 +59,9 @@ jobs:
         run: |
           pnpm changeset version --snapshot dev-pr-${{ github.event.pull_request.number }}
           pnpm build:packages
-          pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
           pnpm changeset publish --tag dev-pr
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Update pr-release comment with failed status
         if: steps.publish.outcome != 'success'
