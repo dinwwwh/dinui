@@ -43,7 +43,7 @@ jobs:
       - run: pnpm i
 
       - name: NPM registry authentication
-        run: pnpm config set '//registry.npmjs.org/:_authToken' \"${NPM_TOKEN}\"
+        run: pnpm config set -g '//registry.npmjs.org/:_authToken' \"${NPM_TOKEN}\"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -76,7 +76,7 @@ jobs:
       - run: pnpm i
 
       - name: NPM registry authentication
-        run: pnpm config set '//registry.npmjs.org/:_authToken' \"${NPM_TOKEN}\"
+        run: pnpm config set -g '//registry.npmjs.org/:_authToken' \"${NPM_TOKEN}\"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
