@@ -32,14 +32,19 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Check or release to @latest
+      - name: Check changesets on @latest
+        id: changesets
         uses: changesets/action@v1
         with:
           commit: 'chore(release): version packages'
           title: 'chore(release): version packages'
-          publish: |
-            pnpm dlx wrangler pages deploy --project-name=dinui-stable --branch=main ./apps/web/dist 
-            pnpm changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy and publish
+        if: steps.changesets.outputs.hasChangesets == 'false'
+        run: |
+          pnpm dlx wrangler pages deploy --project-name=dinui-stable --branch=main ./apps/web/dist 
+          pnpm changeset publish
+        env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
