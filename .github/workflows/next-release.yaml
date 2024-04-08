@@ -20,15 +20,14 @@ jobs:
 
       - run: pnpm i
 
-      - run: pnpm build:packages
-
-      - name: NPM registry authentication
-        run: pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - run: pnpm changeset version --snapshot next
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - run: pnpm changeset publish --tag next
+      - name: Publish
+        run: |
+          pnpm build:packages
+          pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+          pnpm changeset publish --tag next
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

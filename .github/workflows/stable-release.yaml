@@ -21,13 +21,6 @@ jobs:
 
       - run: pnpm i
 
-      - run: pnpm build
-
-      - name: NPM registry authentication
-        run: pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: Check changesets on @latest
         id: changesets
         uses: changesets/action@v1
@@ -40,7 +33,10 @@ jobs:
       - name: Deploy and publish
         if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
-          pnpm dlx wrangler pages deploy --project-name=dinui-stable --branch=main ./apps/web/dist 
+          pnpm build
+          pnpm dlx wrangler pages deploy --project-name=dinui-stable --branch=main ./apps/web/dist
+          pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}" 
           pnpm changeset publish
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
