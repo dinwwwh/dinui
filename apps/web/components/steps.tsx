@@ -6,6 +6,7 @@ const StepsRoot = forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<'div
     return <div {...props} ref={ref} className={cn('mb-12 ml-3 border-l pl-7', props.className)} />
   },
 )
+StepsRoot.displayName = 'Steps'
 
 const StepHeading = forwardRef<HTMLHeadingElement, React.ComponentPropsWithoutRef<'h3'>>(
   (props, ref) => {
@@ -24,6 +25,8 @@ const StepHeading = forwardRef<HTMLHeadingElement, React.ComponentPropsWithoutRe
     )
   },
 )
+StepHeading.displayName = 'StepHeading'
+
 export const Steps = Object.assign(StepsRoot, {
   Heading: StepHeading,
 })

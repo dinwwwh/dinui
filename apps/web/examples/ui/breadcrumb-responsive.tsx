@@ -47,7 +47,7 @@ export default function BreadcrumbResponsive() {
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink href={items[0].href}>{items[0].label}</BreadcrumbLink>
+          <BreadcrumbLink href={items[0]?.href}>{items[0]?.label}</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         {items.length > ITEMS_TO_DISPLAY ? (

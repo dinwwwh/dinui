@@ -51,6 +51,7 @@ export function CodeBlock({
 
     return {
       default: () => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         const { copy, copied } = useClipboard()
 
         return (
