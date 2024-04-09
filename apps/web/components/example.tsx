@@ -1,9 +1,8 @@
+import { CodeBlock } from './code-block'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@dinui/react/tabs'
 import { cn } from '@dinui/react/utils'
 import { IconLoader2 } from '@tabler/icons-react'
 import { Suspense, lazy } from 'react'
-import { codeToHtml } from 'shiki'
-import githubDarkDimmed from 'shiki/themes/github-dark-dimmed.mjs'
 
 const exampleComponents = import.meta.glob('../examples/**/*.tsx') as {
   [key: string]: () => Promise<{
@@ -90,56 +89,5 @@ function ExampleCode(props: { fullPath: string }) {
     throw new Error(`Component does not exists on [${props.fullPath}]`)
   }
 
-  const Code = lazy(async () => {
-    const code = await loadCode()
-    const html = await codeToHtml(code, {
-      lang: 'tsx',
-      theme: 'github-light',
-      themes: {
-        light: 'github-light',
-        dark: githubDarkDimmed,
-        // dim: 'github-dimmed',
-      },
-      transformers: [
-        {
-          pre: (el) => {
-            el.properties.class += ' vocs_Pre'
-            return el
-          },
-          code: (el) => {
-            el.properties.class += ' vocs_Code'
-            return el
-          },
-          span: (el) => {
-            el.properties.class += ' vocs_Span'
-            return el
-          },
-        },
-      ],
-    })
-    return {
-      default: () => {
-        return (
-          <div className="vocs_CodeBlock">
-            <div className="vocs_Pre_wrapper" dangerouslySetInnerHTML={{ __html: html }} />
-          </div>
-        )
-      },
-    }
-  })
-
-  return (
-    <Suspense
-      fallback={
-        <div className="flex items-center justify-center p-5 md:p-12 min-h-[350px] border border-gray-200 dark:border-gray-800 rounded-md">
-          <div className="flex items-center text-sm text-gray-700 dark:text-gray-300 justify-center">
-            <IconLoader2 className="mr-2 h-4 w-4 animate-spin" />
-            Loading...
-          </div>
-        </div>
-      }
-    >
-      <Code />
-    </Suspense>
-  )
+  return <CodeBlock code={loadCode} />
 }
