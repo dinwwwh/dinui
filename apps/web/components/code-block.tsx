@@ -3,6 +3,7 @@ import { IconCheck, IconCopy, IconLoader2 } from '@tabler/icons-react'
 import { useClipboard } from 'foxact/use-clipboard'
 import { Suspense, lazy } from 'react'
 import type { codeToHtml } from 'shiki'
+import githubDarkDimmed from 'shiki/themes/github-dark-dimmed.mjs'
 
 type Lang = Parameters<typeof codeToHtml>[1]['lang']
 
@@ -14,9 +15,8 @@ export function CodeBlock({
   lang?: Lang
 }) {
   const Code = lazy(async () => {
-    const [{ codeToHtml }, githubDarkDimmed, codeString] = await Promise.all([
+    const [{ codeToHtml }, codeString] = await Promise.all([
       import('shiki'),
-      import('shiki/themes/github-dark-dimmed.mjs'),
       typeof code === 'string' ? code : code(),
     ])
 
@@ -25,7 +25,7 @@ export function CodeBlock({
       theme: 'github-light',
       themes: {
         light: 'github-light',
-        dark: githubDarkDimmed as unknown as undefined,
+        dark: githubDarkDimmed,
       },
       transformers: [
         {
