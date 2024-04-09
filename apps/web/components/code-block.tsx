@@ -2,17 +2,26 @@ import { Button } from '@dinui/react/button'
 import { IconCheck, IconCopy, IconLoader2 } from '@tabler/icons-react'
 import { useClipboard } from 'foxact/use-clipboard'
 import { Suspense, lazy } from 'react'
+import type { codeToHtml } from 'shiki'
 
-export function CodeBlock({ code }: { code: string | (() => Promise<string>) }) {
+type Lang = Parameters<typeof codeToHtml>[1]['lang']
+
+export function CodeBlock({
+  code,
+  lang = 'tsx',
+}: {
+  code: string | (() => Promise<string>)
+  lang?: Lang
+}) {
   const Code = lazy(async () => {
-    const [{ codeToHtml }, githubDarkDimmed] = await Promise.all([
+    const [{ codeToHtml }, githubDarkDimmed, codeString] = await Promise.all([
       import('shiki'),
       import('shiki/themes/github-dark-dimmed.mjs'),
+      typeof code === 'string' ? code : code(),
     ])
 
-    const codeString = typeof code === 'string' ? code : await code()
     const html = await codeToHtml(codeString, {
-      lang: 'tsx',
+      lang: lang,
       theme: 'github-light',
       themes: {
         light: 'github-light',
