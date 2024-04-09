@@ -85,7 +85,7 @@ export function UnifiedPackageManager({ action, name }: Props) {
         <Tabs.List.Trigger value="bun">bun</Tabs.List.Trigger>
       </Tabs.List>
 
-      <div className="bg-[color:var(--vocs-color\_codeBlockBackground)] rounded-md border px-5 relative h-11 flex items-center">
+      <div className="bg-[color:var(--vocs-color\_codeBlockBackground)] rounded-md border px-5 relative h-14 flex items-center text-nowrap overflow-auto">
         <span className="font-mono text-sm font-semibold text-gray-950 dark:text-white">
           {cli.base}
         </span>

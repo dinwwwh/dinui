@@ -1,8 +1,10 @@
 import { Callout } from './callout'
-import { CopyPasteComponentCode } from './copy-paste-component-code'
+import {
+  ComponentDependenciesInstallation,
+  CopyPasteComponentCode,
+} from './copy-paste-component-code'
 import { Steps } from './steps'
 import { Tabs } from './tabs'
-import { UnifiedPackageManager } from './unified-package-manager'
 import { cn } from '@dinui/react/utils'
 import { Link } from 'react-router-dom'
 
@@ -29,7 +31,7 @@ export function ComponentInstallationGuide({ path, ...props }: Props) {
 
           <Steps>
             <Steps.Heading>Install dependencies</Steps.Heading>
-            <UnifiedPackageManager action="add" name="" />
+            <ComponentDependenciesInstallation path={path} />
             <Steps.Heading>Copy and paste the following code into your project</Steps.Heading>
             <CopyPasteComponentCode path={path} />
           </Steps>
