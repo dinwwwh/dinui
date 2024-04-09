@@ -25,6 +25,7 @@
     "recharts": "^2.12.4",
     "tailwind-merge": "^2.2.2",
     "tailwind-variants": "^0.2.1",
+    "ts-pattern": "^5.1.1",
     "vocs": "1.0.0-alpha.46"
   },
   "devDependencies": {

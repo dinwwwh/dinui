@@ -1,13 +1,12 @@
 'use client'
 
 import * as TabsPrimitive from '@radix-ui/react-tabs'
-import { assign } from 'radash'
 import * as React from 'react'
 import { tv } from 'tailwind-variants'
 
 const tabs = tv({
   slots: {
-    list: 'flex h-9 items-center justify-start text-gray-500 dark:text-gray-400 border-b',
+    list: 'flex h-9 items-center justify-start text-gray-500 dark:text-gray-400 border-b mb-3',
     trigger: [
       'inline-flex items-center justify-center whitespace-nowrap px-4 pb-3 pt-2 h-9',
       'border-b-2 border-b-transparent data-[state=active]:border-b-gray-700 dark:data-[state=active]:border-b-gray-300',
@@ -17,7 +16,7 @@ const tabs = tv({
       'ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 dark:ring-offset-gray-950 dark:focus-visible:ring-gray-300 ',
     ],
     content:
-      'mt-3 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 dark:ring-offset-gray-950 dark:focus-visible:ring-gray-300',
+      'ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 dark:ring-offset-gray-950 dark:focus-visible:ring-gray-300',
   },
 })
 

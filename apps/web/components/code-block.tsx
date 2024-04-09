@@ -61,7 +61,7 @@ export function CodeBlock({
               type="button"
               variant="ghost"
               size="icon"
-              className="size-6 absolute top-3 right-3 text-gray-700"
+              className="size-6 absolute top-3 right-3 text-gray-700 dark:text-gray-300"
               onClick={() => copy(codeString)}
             >
               {copied ? <IconCheck className="size-3.5" /> : <IconCopy className="size-3.5" />}
