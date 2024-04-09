@@ -34,6 +34,7 @@ export function ComponentInstallationGuide({ path, ...props }: Props) {
             <ComponentDependenciesInstallation path={path} />
             <Steps.Heading>Copy and paste the following code into your project</Steps.Heading>
             <CopyPasteComponentCode path={path} />
+            <Steps.Heading>Update the import paths to match your project setup</Steps.Heading>
           </Steps>
         </Tabs.Content>
       </Tabs>
