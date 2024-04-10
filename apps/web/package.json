@@ -29,6 +29,7 @@
     "vocs": "1.0.0-alpha.46"
   },
   "devDependencies": {
+    "@dinui/cli": "workspace:^",
     "@types/react": "^18.2.74",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
