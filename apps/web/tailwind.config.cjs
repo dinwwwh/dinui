@@ -14,17 +14,17 @@ module.exports = {
     './node_modules/@dinui/react/utils.ts',
   ],
   theme: {
-    fontFamily: {
-      sans: ['"Inter"', ...defaultTheme.fontFamily.sans],
-    },
-    container: {
-      center: true,
-      padding: '1rem',
-      screens: {
-        '2xl': '1400px',
-      },
-    },
     extend: {
+      fontFamily: {
+        sans: ['"Inter"', ...defaultTheme.fontFamily.sans],
+      },
+      container: {
+        center: true,
+        padding: '1rem',
+        screens: {
+          '2xl': '1400px',
+        },
+      },
       colors: {
         gray: tailwindColors.zinc,
         brand: tailwindColors.violet,

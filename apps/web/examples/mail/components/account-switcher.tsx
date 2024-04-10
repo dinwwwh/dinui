@@ -14,7 +14,7 @@ interface AccountSwitcherProps {
 }
 
 export function AccountSwitcher({ isCollapsed, accounts }: AccountSwitcherProps) {
-  const [selectedAccount, setSelectedAccount] = React.useState<string>(accounts[0].email)
+  const [selectedAccount, setSelectedAccount] = React.useState<string>(accounts[0]?.email as string)
 
   return (
     <Select defaultValue={selectedAccount} onValueChange={setSelectedAccount}>

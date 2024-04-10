@@ -5,12 +5,20 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply text-gray-900 dark:text-white;
-}
+@layer base {
+  *,
+  ::before,
+  ::after {
+    @apply border-gray-200 dark:border-gray-800;
+  }
 
-* {
-  @apply scrollbar scrollbar-thin;
+  body {
+    @apply text-gray-900 dark:text-white;
+  }
+
+  * {
+    @apply scrollbar scrollbar-thin;
+  }
 }
 
 :root {
