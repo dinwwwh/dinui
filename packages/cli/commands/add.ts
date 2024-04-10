@@ -2,6 +2,8 @@ import { env } from '../env'
 import { getDinUIComponents, isDinUIInstalledCorrectly } from '../utils/project-infos'
 import chalk from 'chalk'
 import { Command, program } from 'commander'
+import fs from 'fs-extra'
+import path from 'path'
 import prompts from 'prompts'
 
 export const add = new Command()
@@ -35,13 +37,25 @@ export const add = new Command()
         )
       }
 
+      const availableComponents = await getDinUIComponents(opts)
+
+      for (const component of components) {
+        if (!availableComponents.includes(component)) {
+          program.error(
+            chalk.red(
+              `error: [${component}] component does not exist, please try updating ${env.PROJECT_NAME}`,
+            ),
+          )
+        }
+      }
+
       if (!components.length) {
-        const choices = (await getDinUIComponents(opts)).map((name) => ({
+        const choices = availableComponents.map((name) => ({
           title: name,
           value: name,
         }))
 
-        const { components } = await prompts({
+        const answers = await prompts({
           name: 'components',
           type: 'autocompleteMultiselect',
           message: 'Pick components',
@@ -49,7 +63,23 @@ export const add = new Command()
           instructions: false,
         })
 
-        console.log(components)
+        components.push(...answers.components)
+      }
+
+      if (!opts.directory) {
+        const initial = (await fs.exists(path.resolve(opts.cwd, './src')))
+          ? './src/components/ui'
+          : './components/ui'
+
+        const answers = await prompts({
+          name: 'directory',
+          type: 'text',
+          initial,
+          message: 'Where components place',
+          instructions: false,
+        })
+
+        opts.directory = answers.directory
       }
     },
   )
