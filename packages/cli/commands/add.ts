@@ -1,20 +1,14 @@
 import { env } from '../env'
-import { cancel, intro, outro, spinner, text, note } from '@clack/prompts'
+import { getDinUIComponents, isDinUIInstalledCorrectly } from '../utils/project-infos'
+import chalk from 'chalk'
 import { Command, program } from 'commander'
-import color from 'picocolors'
-import { z } from 'zod'
-
-const optionsSchema = z.object({
-  dir: z.string(),
-  yes: z.boolean(),
-  overwrite: z.boolean(),
-})
+import prompts from 'prompts'
 
 export const add = new Command()
   .name('add')
   .description('add one or many component to your project')
   .argument('[components...]', 'the components to add')
-  .requiredOption('-d, --dir <directory>', 'the relative directory path to add the component to.')
+  .option('-d, --dir <directory>', 'the relative directory path to add the component to.')
   .option('-y, --yes', 'skip confirmation prompt.', false)
   .option('-o, --overwrite', 'overwrite existing components.', false)
   .option(
@@ -22,41 +16,40 @@ export const add = new Command()
     'the working directory. defaults to the current directory.',
     process.cwd(),
   )
-  .showHelpAfterError(color.blue('info: add --help for additional information '))
-  .action(async (components, opts) => {
-    intro(`${color.bgCyan(` ${env.PROJECT_NAME} `)}`)
-    const options = optionsSchema
-      .extend({
-        components: z.string(),
-      })
-      .safeParse({
-        ...opts,
-        components,
-      })
-
-    if (!options.success) {
-      cancel(`${color.bgRed(' Invalid options! ')}`)
-      program.error(`${color.bgRed(options.error.toString())}`)
-    }
-
-    const meaning = await text({
-      message: 'What is the meaning of life?',
-      placeholder: 'Not sure',
-      initialValue: '42',
-      validate(value) {
-        if (value.length === 0) return `Value is required!`
+  .showHelpAfterError(chalk.blue('info: add --help for additional information '))
+  .action(
+    async (
+      components: string[],
+      opts: {
+        directory?: string
+        yes: boolean
+        overwrite: boolean
+        cwd: string
       },
-    })
+    ) => {
+      if (!(await isDinUIInstalledCorrectly(opts))) {
+        program.error(
+          chalk.red(
+            `error: ${env.PROJECT_NAME} not detected - please install first ${env.DOCS_URL}`,
+          ),
+        )
+      }
 
-    const s = spinner()
-    s.start('Installing via npm')
-    // Do installation
-    await new Promise((r) => setTimeout(r, 1000))
-    s.stop('Installed via npm')
+      if (!components.length) {
+        const choices = (await getDinUIComponents(opts)).map((name) => ({
+          title: name,
+          value: name,
+        }))
 
-    cancel('Operation cancelled.')
-    program.error(`${color.bgRed('error: something went wrong! ')}`)
-    // process.exit(1)
+        const { components } = await prompts({
+          name: 'components',
+          type: 'autocompleteMultiselect',
+          message: 'Pick components',
+          choices,
+          instructions: false,
+        })
 
-    outro(`Problems? ${color.underline(color.cyan(env.PROBLEM_URL))}`)
-  })
+        console.log(components)
+      }
+    },
+  )

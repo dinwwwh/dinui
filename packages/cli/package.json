@@ -2,6 +2,7 @@
   "name": "@dinui/cli",
   "version": "0.0.0",
   "homepage": "https://ui.dinsterizer.com",
+  "type": "module",
   "author": {
     "name": "Din",
     "email": "dinsterizer@gmail.com",
@@ -20,21 +21,22 @@
     "dinui": "./dist/bin.js"
   },
   "scripts": {
-    "dev": "tsup bin.ts --watch",
-    "build": "tsup bin.ts",
+    "dev": "tsup bin.ts --format=esm --watch",
+    "build": "tsup bin.ts --format=esm",
     "type:check": "tsc --noEmit"
   },
   "dependencies": {
-    "@clack/prompts": "^0.7.0",
     "@types/node": "^20.12.7",
+    "chalk": "^5.3.0",
     "commander": "^12.0.0",
     "fs-extra": "^11.2.0",
-    "picocolors": "^1.0.0",
+    "prompts": "^2.4.2",
     "type-fest": "^4.15.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
+    "@types/prompts": "^2.4.9",
     "tsup": "^8.0.2",
     "typescript": "^5.4.4"
   }
