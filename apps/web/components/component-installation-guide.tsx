@@ -25,6 +25,8 @@ export function ComponentInstallationGuide({ path, ...props }: Props) {
         </Tabs.List>
         <Tabs.Content value="default">
           <InstallationNote />
+
+          {props.children ? <Steps>{props.children}</Steps> : null}
         </Tabs.Content>
         <Tabs.Content value="manual">
           <InstallationNote />
@@ -35,6 +37,8 @@ export function ComponentInstallationGuide({ path, ...props }: Props) {
             <Steps.Heading>Copy and paste the following code into your project</Steps.Heading>
             <CopyPasteComponentCode path={path} />
             <Steps.Heading>Update the import paths to match your project setup</Steps.Heading>
+
+            {props.children}
           </Steps>
         </Tabs.Content>
       </Tabs>
