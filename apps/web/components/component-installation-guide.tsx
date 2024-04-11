@@ -1,4 +1,3 @@
-import { Callout } from './callout'
 import {
   ComponentDependenciesInstallation,
   CopyPasteComponentCode,
@@ -37,7 +36,7 @@ export function ComponentInstallationGuide({ path, ...props }: Props) {
             <Steps.Heading>Run the following command in your project</Steps.Heading>
             <UnifiedPackageManager
               action="dlx"
-              name={`@dinui/cli@latest add ${path.replace(/(.\/)?ui\//, '')} -d ./components/ui`}
+              name={`@dinui/cli@latest add -d ./components/ui ${path.replace(/(.\/)?ui\//, '')}`}
             />
 
             <Steps.Heading>Update the import paths to match your project setup</Steps.Heading>
