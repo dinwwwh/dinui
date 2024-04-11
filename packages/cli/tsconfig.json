@@ -1,20 +1,16 @@
 {
   "compilerOptions": {
-    "lib": ["es2022", "dom", "dom.iterable"],
-    "types": [],
+    "lib": ["es2022"],
+    "types": ["@types/node"],
 
     "skipLibCheck": true,
     "target": "es2022",
     "resolveJsonModule": true,
     "moduleDetection": "force",
     "isolatedModules": true,
-    "jsx": "react-jsx",
 
-    "declaration": true,
-    "composite": true,
-    "declarationMap": true,
     "moduleResolution": "Bundler",
-    "module": "ES2022",
+    "module": "es2022",
     "outDir": "build",
     "sourceMap": true,
 

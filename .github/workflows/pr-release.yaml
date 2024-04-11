@@ -86,6 +86,13 @@ jobs:
         with:
           path: packages/react-ui
 
+      - name: Get @dinui/cli version
+        if: steps.publish.outcome == 'success'
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+        id: dinui-cli-version
+        with:
+          path: packages/cli
+
       - name: Update pr-release comment with published status
         if: steps.publish.outcome == 'success'
         uses: peter-evans/create-or-update-comment@v4
@@ -101,6 +108,7 @@ jobs:
 
             ```bash
             npm install @dinui/react@${{ steps.dinui-react-version.outputs.current-version}}
+            npx @dinui/cli@${{ steps.dinui-cli-version.outputs.current-version}}
             ```
 
             [View logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ github.job }})

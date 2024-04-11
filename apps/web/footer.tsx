@@ -11,7 +11,7 @@ export default function Footer() {
         >
           Din
         </a>
-        . Released under the MIT License, the source code is available on{' '}
+        . The source code is available on{' '}
         <a
           href="https://github.com/dinsterizer/dinui"
           target="_blank"
@@ -20,7 +20,7 @@ export default function Footer() {
         >
           GitHub
         </a>
-        .
+        , and released under the MIT License.
       </p>
     </div>
   )
