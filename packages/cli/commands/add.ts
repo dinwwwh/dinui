@@ -1,4 +1,5 @@
 import { env } from '../env'
+import { getPersistedOption, setPersistedOption } from '../utils/options'
 import { getDinUIComponents, isDinUIInstalledCorrectly } from '../utils/project-infos'
 import chalk from 'chalk'
 import { Command, program } from 'commander'
@@ -77,9 +78,11 @@ export const add = new Command()
       const directory = await (async () => {
         if (_opts.dir) return _opts.dir
 
-        const initial = (await fs.exists(path.resolve(_opts.cwd, './src')))
-          ? './src/components/ui'
-          : './components/ui'
+        const initial =
+          (await getPersistedOption('add_initialDirectory', { cwd })) ||
+          ((await fs.exists(path.resolve(_opts.cwd, './src')))
+            ? './src/components/ui'
+            : './components/ui')
 
         const answers = await prompts({
           name: 'directory',
@@ -91,6 +94,7 @@ export const add = new Command()
 
         return answers.directory as string
       })()
+      directory && (await setPersistedOption('add_initialDirectory', directory, { cwd }))
 
       for (const component of components) {
         const spinner = ora(`Adding "${component}" component...`).start()
