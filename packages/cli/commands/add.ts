@@ -3,16 +3,19 @@ import { getDinUIComponents, isDinUIInstalledCorrectly } from '../utils/project-
 import chalk from 'chalk'
 import { Command, program } from 'commander'
 import fs from 'fs-extra'
+import ora from 'ora'
 import path from 'path'
+import detachPreferredPM from 'preferred-pm'
 import prompts from 'prompts'
+import { $ } from 'zx'
 
 export const add = new Command()
   .name('add')
-  .description('add one or many component to your project')
+  .description('add one or many components to your project')
   .argument('[components...]', 'the components to add')
   .option('-d, --dir <directory>', 'the relative directory path to add the component to.')
-  .option('-y, --yes', 'skip confirmation prompt.', false)
-  .option('-o, --overwrite', 'overwrite existing components.', false)
+  .option('-o, --override', 'overwrite existing components.', false)
+  .option('-a, --all', 'add all available components.', false)
   .option(
     '-c, --cwd <cwd>',
     'the working directory. defaults to the current directory.',
@@ -21,15 +24,17 @@ export const add = new Command()
   .showHelpAfterError(chalk.blue('info: add --help for additional information '))
   .action(
     async (
-      components: string[],
-      opts: {
-        directory?: string
-        yes: boolean
-        overwrite: boolean
+      _components: string[],
+      _opts: {
+        dir?: string
+        all: boolean
+        override: boolean
         cwd: string
       },
     ) => {
-      if (!(await isDinUIInstalledCorrectly(opts))) {
+      const { cwd, all, override } = _opts
+
+      if (!(await isDinUIInstalledCorrectly({ cwd }))) {
         program.error(
           chalk.red(
             `error: ${env.PROJECT_NAME} not detected - please install first ${env.DOCS_URL}`,
@@ -37,19 +42,12 @@ export const add = new Command()
         )
       }
 
-      const availableComponents = await getDinUIComponents(opts)
+      const availableComponents = await getDinUIComponents({ cwd })
 
-      for (const component of components) {
-        if (!availableComponents.includes(component)) {
-          program.error(
-            chalk.red(
-              `error: [${component}] component does not exist, please try updating ${env.PROJECT_NAME}`,
-            ),
-          )
-        }
-      }
+      const components = await (async () => {
+        if (all) return availableComponents
+        if (_components.length > 0) return _components
 
-      if (!components.length) {
         const choices = availableComponents.map((name) => ({
           title: name,
           value: name,
@@ -63,11 +61,23 @@ export const add = new Command()
           instructions: false,
         })
 
-        components.push(...answers.components)
+        return answers.components as string[]
+      })()
+
+      for (const component of components) {
+        if (!availableComponents.includes(component)) {
+          program.error(
+            chalk.red(
+              `error: "${component}" component does not exist, please try updating ${env.PROJECT_NAME}.`,
+            ),
+          )
+        }
       }
 
-      if (!opts.directory) {
-        const initial = (await fs.exists(path.resolve(opts.cwd, './src')))
+      const directory = await (async () => {
+        if (_opts.dir) return _opts.dir
+
+        const initial = (await fs.exists(path.resolve(_opts.cwd, './src')))
           ? './src/components/ui'
           : './components/ui'
 
@@ -79,7 +89,59 @@ export const add = new Command()
           instructions: false,
         })
 
-        opts.directory = answers.directory
+        return answers.directory as string
+      })()
+
+      for (const component of components) {
+        const spinner = ora(`Adding "${component}" component...`).start()
+
+        const componentDir = path.resolve(cwd, directory)
+        const componentPath = path.resolve(componentDir, `${component}.tsx`)
+        const componentCode = await fs.readFile(
+          path.resolve(cwd, `./node_modules/@dinui/react/ui/${component}.tsx`),
+          { encoding: 'utf8' },
+        )
+        const isComponentExisted = await fs.exists(componentPath)
+
+        if (isComponentExisted && !override) {
+          spinner.stop()
+          const answers = await prompts({
+            name: 'override',
+            type: 'confirm',
+            message: `The "${component}" component already exists, would you like to overwrite?`,
+            initial: true,
+          })
+
+          if (!answers.override) continue
+        }
+
+        spinner.start(`Adding "${component}" component...`)
+        await fs.ensureDir(componentDir)
+        await fs.writeFile(path.resolve(cwd, directory, `${component}.tsx`), componentCode)
+
+        spinner.text = `Installing dependencies for "${component}" component...`
+        const dependencies = [
+          ...componentCode.matchAll(
+            /from '((@[a-z0-9-~][a-z0-9-._~]*\/)?([a-z0-9-~][a-z0-9-._~]*))/g,
+          ),
+        ]
+          .map((m) => m[1] as string)
+          .filter((d) => !['react'].includes(d))
+
+        if (dependencies.length) {
+          try {
+            const pm = await detachPreferredPM(cwd)
+            if (!pm) throw new Error('Cannot detach preferred package manager.')
+
+            $.cwd = path.resolve(cwd)
+            await $`${pm.name} ${pm.name === 'npm' ? 'install' : 'add'} ${dependencies}`
+          } catch (e) {
+            spinner.fail(`The "${component}" component failed when installing dependencies.`)
+            continue
+          }
+        }
+
+        spinner.succeed(`The "${component}" component successfully added to your project!`)
       }
     },
   )

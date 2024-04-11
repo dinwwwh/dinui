@@ -9,13 +9,7 @@ export async function getProjectPackageInfos(opts: { cwd: string }) {
 }
 
 export async function isDinUIInstalledCorrectly(opts: { cwd: string }) {
-  const infos = await getProjectPackageInfos(opts)
-
-  const dependencies = infos.dependencies ?? {}
-
-  if (Object.keys(dependencies).includes('@dinui/react')) return true
-
-  return false
+  return fs.exists(path.resolve(opts.cwd, './node_modules/@dinui/react'))
 }
 
 export async function getDinUIComponents(opts: { cwd: string }) {

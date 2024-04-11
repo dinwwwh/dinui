@@ -4,6 +4,7 @@ import { getCliVersion } from './utils/cli-infos'
 import chalk from 'chalk'
 import { Command } from 'commander'
 
+process.on('exit', (code) => process.exit(code))
 process.on('SIGINT', () => process.exit(0))
 process.on('SIGTERM', () => process.exit(0))
 
