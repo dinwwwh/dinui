@@ -29,7 +29,7 @@ export default function DialogCloseButton() {
             <Label htmlFor="link" className="sr-only">
               Link
             </Label>
-            <Input id="link" defaultValue="https://ui.dinsterizer.com/installation" readOnly />
+            <Input id="link" defaultValue="https://ui.dinwwwh.com/installation" readOnly />
           </div>
           <Button type="submit" size="sm" className="px-3">
             <span className="sr-only">Copy</span>

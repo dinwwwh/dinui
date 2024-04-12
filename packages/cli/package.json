@@ -1,16 +1,16 @@
 {
   "name": "@dinui/cli",
   "version": "0.1.0",
-  "homepage": "https://ui.dinsterizer.com",
+  "homepage": "https://ui.dinwwwh.com",
   "type": "module",
   "author": {
-    "name": "Din",
-    "email": "dinsterizer@gmail.com",
-    "url": "https://dinsterizer.com"
+    "name": "dinwwwh",
+    "email": "dinwwwh@gmail.com",
+    "url": "https://dinwwwh.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dinsterizer/ui.git",
+    "url": "https://github.com/dinwwwh/ui.git",
     "directory": "packages/cli"
   },
   "publishConfig": {

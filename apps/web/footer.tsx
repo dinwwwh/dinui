@@ -4,16 +4,16 @@ export default function Footer() {
       <p className="text-balance text-sm leading-loose text-gray-600 md:text-left">
         Built by{' '}
         <a
-          href="https://x.com/dinsterizer"
+          href="https://x.com/dinwwwh"
           target="_blank"
           rel="noreferrer"
           className="font-medium underline underline-offset-4"
         >
-          Din
+          dinwwwh
         </a>
         . The source code is available on{' '}
         <a
-          href="https://github.com/dinsterizer/dinui"
+          href="https://github.com/dinwwwh/dinui"
           target="_blank"
           rel="noreferrer"
           className="font-medium underline underline-offset-4"

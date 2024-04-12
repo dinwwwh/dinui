@@ -1,15 +1,15 @@
 {
   "name": "@dinui/react",
   "version": "0.0.10",
-  "homepage": "https://ui.dinsterizer.com",
+  "homepage": "https://ui.dinwwwh.com",
   "author": {
-    "name": "Din",
-    "email": "dinsterizer@gmail.com",
-    "url": "https://dinsterizer.com"
+    "name": "dinwwwh",
+    "email": "dinwwwh@gmail.com",
+    "url": "https://dinwwwh.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dinsterizer/ui.git",
+    "url": "https://github.com/dinwwwh/ui.git",
     "directory": "packages/react-ui"
   },
   "publishConfig": {
