@@ -1,5 +1,11 @@
 # @dinui/cli
 
+## 0.1.1
+
+### Patch Changes
+
+- [`885ac91`](https://github.com/dinwwwh/dinui/commit/885ac915ab5101c0cc492f40d9798a12ae699352) Thanks [@dinwwwh](https://github.com/dinwwwh)! - chore: update author name
+
 ## 0.1.0
 
 ### Minor Changes
