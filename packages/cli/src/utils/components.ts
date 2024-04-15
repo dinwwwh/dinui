@@ -2,8 +2,6 @@ import fg from 'fast-glob'
 import fs from 'fs-extra'
 import path from 'path'
 
-console.log(path.resolve(process.cwd(), './node_modules/@dinui/react/src'))
-
 export async function loadComponents(opts: { cwd: string }) {
   const basePath = getBaseComponentPath(opts)
   const globComponentPaths = await fg(path.resolve(basePath, './**/*.tsx'))
