@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "lib": ["es2022"],
     "types": ["@types/node"],
 
@@ -17,5 +18,5 @@
     "strict": true,
     "noUncheckedIndexedAccess": true
   },
-  "exclude": ["node_modules", "build"]
+  "include": ["src"]
 }

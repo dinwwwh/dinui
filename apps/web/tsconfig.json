@@ -16,8 +16,8 @@
     "jsx": "react-jsx",
     "paths": {
       "@web/*": ["./*"],
-      "@dinui/react/utils": ["../../packages/react-ui/utils"],
-      "@dinui/react/*": ["../../packages/react-ui/ui/*"]
+      "@dinui/react/utils": ["../../packages/react-ui/src/utils"],
+      "@dinui/react/*": ["../../packages/react-ui/src/ui/*"]
     },
 
     /* Linting */

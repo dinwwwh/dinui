@@ -1,6 +1,7 @@
 {
   "name": "@dinui/react",
   "version": "0.0.11",
+  "type": "module",
   "homepage": "https://ui.dinwwwh.com",
   "author": {
     "name": "dinwwwh",
@@ -18,196 +19,196 @@
   "license": "MIT",
   "exports": {
     "./accordion": {
-      "types": "./build/ui/accordion.d.ts",
-      "default": "./build/ui/accordion.js"
+      "types": "./build/src/ui/accordion.d.ts",
+      "default": "./build/src/ui/accordion.js"
     },
     "./alert-dialog": {
-      "types": "./build/ui/alert-dialog.d.ts",
-      "default": "./build/ui/alert-dialog.js"
+      "types": "./build/src/ui/alert-dialog.d.ts",
+      "default": "./build/src/ui/alert-dialog.js"
     },
     "./alert": {
-      "types": "./build/ui/alert.d.ts",
-      "default": "./build/ui/alert.js"
+      "types": "./build/src/ui/alert.d.ts",
+      "default": "./build/src/ui/alert.js"
     },
     "./aspect-ratio": {
-      "types": "./build/ui/aspect-ratio.d.ts",
-      "default": "./build/ui/aspect-ratio.js"
+      "types": "./build/src/ui/aspect-ratio.d.ts",
+      "default": "./build/src/ui/aspect-ratio.js"
     },
     "./avatar": {
-      "types": "./build/ui/avatar.d.ts",
-      "default": "./build/ui/avatar.js"
+      "types": "./build/src/ui/avatar.d.ts",
+      "default": "./build/src/ui/avatar.js"
     },
     "./badge": {
-      "types": "./build/ui/badge.d.ts",
-      "default": "./build/ui/badge.js"
+      "types": "./build/src/ui/badge.d.ts",
+      "default": "./build/src/ui/badge.js"
     },
     "./breadcrumb": {
-      "types": "./build/ui/breadcrumb.d.ts",
-      "default": "./build/ui/breadcrumb.js"
+      "types": "./build/src/ui/breadcrumb.d.ts",
+      "default": "./build/src/ui/breadcrumb.js"
     },
     "./button": {
-      "types": "./build/ui/button.d.ts",
-      "default": "./build/ui/button.js"
+      "types": "./build/src/ui/button.d.ts",
+      "default": "./build/src/ui/button.js"
     },
     "./calendar": {
-      "types": "./build/ui/calendar.d.ts",
-      "default": "./build/ui/calendar.js"
+      "types": "./build/src/ui/calendar.d.ts",
+      "default": "./build/src/ui/calendar.js"
     },
     "./card": {
-      "types": "./build/ui/card.d.ts",
-      "default": "./build/ui/card.js"
+      "types": "./build/src/ui/card.d.ts",
+      "default": "./build/src/ui/card.js"
     },
     "./carousel": {
-      "types": "./build/ui/carousel.d.ts",
-      "default": "./build/ui/carousel.js"
+      "types": "./build/src/ui/carousel.d.ts",
+      "default": "./build/src/ui/carousel.js"
     },
     "./checkbox": {
-      "types": "./build/ui/checkbox.d.ts",
-      "default": "./build/ui/checkbox.js"
+      "types": "./build/src/ui/checkbox.d.ts",
+      "default": "./build/src/ui/checkbox.js"
     },
     "./collapsible": {
-      "types": "./build/ui/collapsible.d.ts",
-      "default": "./build/ui/collapsible.js"
+      "types": "./build/src/ui/collapsible.d.ts",
+      "default": "./build/src/ui/collapsible.js"
     },
     "./command": {
-      "types": "./build/ui/command.d.ts",
-      "default": "./build/ui/command.js"
+      "types": "./build/src/ui/command.d.ts",
+      "default": "./build/src/ui/command.js"
     },
     "./context-menu": {
-      "types": "./build/ui/context-menu.d.ts",
-      "default": "./build/ui/context-menu.js"
+      "types": "./build/src/ui/context-menu.d.ts",
+      "default": "./build/src/ui/context-menu.js"
     },
     "./dialog": {
-      "types": "./build/ui/dialog.d.ts",
-      "default": "./build/ui/dialog.js"
+      "types": "./build/src/ui/dialog.d.ts",
+      "default": "./build/src/ui/dialog.js"
     },
     "./drawer": {
-      "types": "./build/ui/drawer.d.ts",
-      "default": "./build/ui/drawer.js"
+      "types": "./build/src/ui/drawer.d.ts",
+      "default": "./build/src/ui/drawer.js"
     },
     "./dropdown-menu": {
-      "types": "./build/ui/dropdown-menu.d.ts",
-      "default": "./build/ui/dropdown-menu.js"
+      "types": "./build/src/ui/dropdown-menu.d.ts",
+      "default": "./build/src/ui/dropdown-menu.js"
     },
     "./form": {
-      "types": "./build/ui/form.d.ts",
-      "default": "./build/ui/form.js"
+      "types": "./build/src/ui/form.d.ts",
+      "default": "./build/src/ui/form.js"
     },
     "./hover-card": {
-      "types": "./build/ui/hover-card.d.ts",
-      "default": "./build/ui/hover-card.js"
+      "types": "./build/src/ui/hover-card.d.ts",
+      "default": "./build/src/ui/hover-card.js"
     },
     "./input-otp": {
-      "types": "./build/ui/input-otp.d.ts",
-      "default": "./build/ui/input-otp.js"
+      "types": "./build/src/ui/input-otp.d.ts",
+      "default": "./build/src/ui/input-otp.js"
     },
     "./input": {
-      "types": "./build/ui/input.d.ts",
-      "default": "./build/ui/input.js"
+      "types": "./build/src/ui/input.d.ts",
+      "default": "./build/src/ui/input.js"
     },
     "./label": {
-      "types": "./build/ui/label.d.ts",
-      "default": "./build/ui/label.js"
+      "types": "./build/src/ui/label.d.ts",
+      "default": "./build/src/ui/label.js"
     },
     "./menubar": {
-      "types": "./build/ui/menubar.d.ts",
-      "default": "./build/ui/menubar.js"
+      "types": "./build/src/ui/menubar.d.ts",
+      "default": "./build/src/ui/menubar.js"
     },
     "./navigation-menu": {
-      "types": "./build/ui/navigation-menu.d.ts",
-      "default": "./build/ui/navigation-menu.js"
+      "types": "./build/src/ui/navigation-menu.d.ts",
+      "default": "./build/src/ui/navigation-menu.js"
     },
     "./pagination": {
-      "types": "./build/ui/pagination.d.ts",
-      "default": "./build/ui/pagination.js"
+      "types": "./build/src/ui/pagination.d.ts",
+      "default": "./build/src/ui/pagination.js"
     },
     "./popover": {
-      "types": "./build/ui/popover.d.ts",
-      "default": "./build/ui/popover.js"
+      "types": "./build/src/ui/popover.d.ts",
+      "default": "./build/src/ui/popover.js"
     },
     "./progress": {
-      "types": "./build/ui/progress.d.ts",
-      "default": "./build/ui/progress.js"
+      "types": "./build/src/ui/progress.d.ts",
+      "default": "./build/src/ui/progress.js"
     },
     "./radio-group": {
-      "types": "./build/ui/radio-group.d.ts",
-      "default": "./build/ui/radio-group.js"
+      "types": "./build/src/ui/radio-group.d.ts",
+      "default": "./build/src/ui/radio-group.js"
     },
     "./resizable": {
-      "types": "./build/ui/resizable.d.ts",
-      "default": "./build/ui/resizable.js"
+      "types": "./build/src/ui/resizable.d.ts",
+      "default": "./build/src/ui/resizable.js"
     },
     "./scroll-area": {
-      "types": "./build/ui/scroll-area.d.ts",
-      "default": "./build/ui/scroll-area.js"
+      "types": "./build/src/ui/scroll-area.d.ts",
+      "default": "./build/src/ui/scroll-area.js"
     },
     "./select": {
-      "types": "./build/ui/select.d.ts",
-      "default": "./build/ui/select.js"
+      "types": "./build/src/ui/select.d.ts",
+      "default": "./build/src/ui/select.js"
     },
     "./separator": {
-      "types": "./build/ui/separator.d.ts",
-      "default": "./build/ui/separator.js"
+      "types": "./build/src/ui/separator.d.ts",
+      "default": "./build/src/ui/separator.js"
     },
     "./sheet": {
-      "types": "./build/ui/sheet.d.ts",
-      "default": "./build/ui/sheet.js"
+      "types": "./build/src/ui/sheet.d.ts",
+      "default": "./build/src/ui/sheet.js"
     },
     "./skeleton": {
-      "types": "./build/ui/skeleton.d.ts",
-      "default": "./build/ui/skeleton.js"
+      "types": "./build/src/ui/skeleton.d.ts",
+      "default": "./build/src/ui/skeleton.js"
     },
     "./slider": {
-      "types": "./build/ui/slider.d.ts",
-      "default": "./build/ui/slider.js"
+      "types": "./build/src/ui/slider.d.ts",
+      "default": "./build/src/ui/slider.js"
     },
     "./sonner": {
-      "types": "./build/ui/sonner.d.ts",
-      "default": "./build/ui/sonner.js"
+      "types": "./build/src/ui/sonner.d.ts",
+      "default": "./build/src/ui/sonner.js"
     },
     "./switch": {
-      "types": "./build/ui/switch.d.ts",
-      "default": "./build/ui/switch.js"
+      "types": "./build/src/ui/switch.d.ts",
+      "default": "./build/src/ui/switch.js"
     },
     "./table": {
-      "types": "./build/ui/table.d.ts",
-      "default": "./build/ui/table.js"
+      "types": "./build/src/ui/table.d.ts",
+      "default": "./build/src/ui/table.js"
     },
     "./tabs": {
-      "types": "./build/ui/tabs.d.ts",
-      "default": "./build/ui/tabs.js"
+      "types": "./build/src/ui/tabs.d.ts",
+      "default": "./build/src/ui/tabs.js"
     },
     "./textarea": {
-      "types": "./build/ui/textarea.d.ts",
-      "default": "./build/ui/textarea.js"
+      "types": "./build/src/ui/textarea.d.ts",
+      "default": "./build/src/ui/textarea.js"
     },
     "./toast": {
-      "types": "./build/ui/toast.d.ts",
-      "default": "./build/ui/toast.js"
+      "types": "./build/src/ui/toast.d.ts",
+      "default": "./build/src/ui/toast.js"
     },
     "./toaster": {
-      "types": "./build/ui/toaster.d.ts",
-      "default": "./build/ui/toaster.js"
+      "types": "./build/src/ui/toaster.d.ts",
+      "default": "./build/src/ui/toaster.js"
     },
     "./toggle-group": {
-      "types": "./build/ui/toggle-group.d.ts",
-      "default": "./build/ui/toggle-group.js"
+      "types": "./build/src/ui/toggle-group.d.ts",
+      "default": "./build/src/ui/toggle-group.js"
     },
     "./toggle": {
-      "types": "./build/ui/toggle.d.ts",
-      "default": "./build/ui/toggle.js"
+      "types": "./build/src/ui/toggle.d.ts",
+      "default": "./build/src/ui/toggle.js"
     },
     "./tooltip": {
-      "types": "./build/ui/tooltip.d.ts",
-      "default": "./build/ui/tooltip.js"
+      "types": "./build/src/ui/tooltip.d.ts",
+      "default": "./build/src/ui/tooltip.js"
     },
     "./use-toast": {
-      "types": "./build/ui/use-toast.d.ts",
-      "default": "./build/ui/use-toast.js"
+      "types": "./build/src/ui/use-toast.d.ts",
+      "default": "./build/src/ui/use-toast.js"
     },
     "./utils": {
-      "types": "./build/utils.d.ts",
-      "default": "./build/utils.js"
+      "types": "./build/src/utils.d.ts",
+      "default": "./build/src/utils.js"
     }
   },
   "scripts": {

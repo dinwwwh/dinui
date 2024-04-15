@@ -21,8 +21,8 @@
     "dinui": "./dist/bin.js"
   },
   "scripts": {
-    "dev": "tsup bin.ts --format=esm --watch",
-    "build": "tsup bin.ts --format=esm",
+    "dev": "tsup src/bin.ts --format=esm --watch",
+    "build": "tsup src/bin.ts --format=esm",
     "type:check": "tsc --noEmit"
   },
   "dependencies": {

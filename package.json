@@ -1,15 +1,16 @@
 {
   "name": "@dinui/monorepo",
+  "type": "module",
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
     "build:packages": "turbo build --filter=./packages/*",
     "preview": "turbo preview",
     "type:check": "turbo type:check",
-    "lint:check": "eslint --max-warnings 0 --report-unused-disable-directives .",
-    "lint:fix": "eslint --fix --max-warnings 0 --report-unused-disable-directives .",
-    "format:check": "prettier --check .",
-    "format:fix": "prettier --write .",
+    "lint:check": "eslint --report-unused-disable-directives --max-warnings 0 {apps,packages}/*/src/**/*.{js,jsx,ts,tsx}",
+    "lint:fix": "eslint --report-unused-disable-directives --max-warnings 0 --fix {apps,packages}/*/src/**/*.{js,jsx,ts,tsx}",
+    "format:check": "prettier --check --ignore-unknown {apps,packages}/*/src/**/*.*",
+    "format:fix": "prettier --write --ignore-unknown {apps,packages}/*/src/**/*.*",
     "release:stable": "pnpm build && pnpm dlx wrangler pages deploy --project-name=dinui-stable --branch=main ./apps/web/dist && pnpm changeset publish"
   },
   "devDependencies": {

@@ -1,4 +1,5 @@
 import starlightPlugin from '@astrojs/starlight-tailwind'
+import tailwindScrollbarPlugin from 'tailwind-scrollbar'
 import { scopedPreflightStyles, isolateInsideOfContainer } from 'tailwindcss-scoped-preflight'
 import colors from 'tailwindcss/colors'
 import defaultConfig from 'tailwindcss/defaultConfig'
@@ -6,12 +7,8 @@ import defaultConfig from 'tailwindcss/defaultConfig'
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    './components/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
-    './content/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
-    './examples/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
-    './styles/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
-    './node_modules/@dinui/react/ui/**/*.{tsx,ts}',
-    './node_modules/@dinui/react/utils.ts',
+    './src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
+    './node_modules/@dinui/react/src/**/*.{tsx,ts}',
   ],
   theme: {
     extend: {
@@ -30,6 +27,6 @@ export default {
     scopedPreflightStyles({
       isolationStrategy: isolateInsideOfContainer('.not-content'),
     }),
-    require('tailwind-scrollbar'),
+    tailwindScrollbarPlugin,
   ],
 }

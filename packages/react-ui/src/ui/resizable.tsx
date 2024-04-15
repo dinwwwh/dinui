@@ -1,6 +1,6 @@
 'use client'
 
-import type * as _A from '../node_modules/react-resizable-panels/dist/declarations/src/PanelResizeHandleRegistry'
+import type * as _A from '../../node_modules/react-resizable-panels/dist/declarations/src/PanelResizeHandleRegistry'
 import { DragHandleDots2Icon } from '@radix-ui/react-icons'
 import * as ResizablePrimitive from 'react-resizable-panels'
 import { twMerge } from 'tailwind-merge'

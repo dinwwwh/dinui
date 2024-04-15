@@ -6,7 +6,6 @@ import { defineConfig } from 'astro/config'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://ui.dinwwwh.com',
-  srcDir: '.',
   integrations: [
     react(),
     tailwind({
@@ -32,7 +31,7 @@ export default defineConfig({
           },
         },
       ],
-      customCss: ['./styles/globals.css'],
+      customCss: ['./src/styles/globals.css'],
     }),
   ],
 })
