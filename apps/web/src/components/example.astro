@@ -14,8 +14,12 @@ const exampleCode = await loadExampleCode({ path })
 <Tabs>
   <TabItem label="Preview">
     <div class="not-content twp">
-      <div class="flex items-center justify-center p-5 md:p-12 min-h-[350px] border rounded-md">
-        <ExampleComponent path={path} client:idle />
+      <div class="border rounded-md w-full overflow-auto">
+        <div class="flex items-center justify-center p-5 md:p-12 min-h-[350px]">
+          <div>
+            <ExampleComponent path={path} client:idle />
+          </div>
+        </div>
       </div>
     </div>
   </TabItem>
