@@ -25,7 +25,7 @@ export default {
   plugins: [
     starlightPlugin(),
     scopedPreflightStyles({
-      isolationStrategy: isolateInsideOfContainer('.not-content'),
+      isolationStrategy: isolateInsideOfContainer('.twp'),
     }),
     tailwindScrollbarPlugin,
   ],
