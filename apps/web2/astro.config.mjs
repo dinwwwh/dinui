@@ -1,30 +1,28 @@
-import starlight from '@astrojs/starlight'
-import { defineConfig } from 'astro/config'
+import starlight from '@astrojs/starlight';
+import { defineConfig } from 'astro/config';
+
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://ui.dinwwwh.com',
   srcDir: '.',
-  integrations: [
-    starlight({
-      title: 'DinUI',
-      social: {
-        github: 'https://github.com/dinwwwh/dinui',
-        'x.com': 'https://x.com/dinwwwh',
-      },
-      sidebar: [
-        {
-          label: 'Guides',
-          items: [
-            // Each item here is one entry in the navigation menu.
-            { label: 'Example Guide', link: '/guides/example/' },
-          ],
-        },
-        {
-          label: 'Reference',
-          autogenerate: { directory: 'reference' },
-        },
-      ],
-    }),
-  ],
-})
+  integrations: [starlight({
+    title: 'DinUI',
+    social: {
+      github: 'https://github.com/dinwwwh/dinui',
+      'x.com': 'https://x.com/dinwwwh'
+    },
+    sidebar: [{
+      label: 'Getting Started',
+      autogenerate: {
+        directory: 'getting-started'
+      }
+    }, {
+      label: 'UI',
+      autogenerate: {
+        directory: 'ui'
+      }
+    }]
+  }), react()]
+});

@@ -1,8 +1,15 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
+    "baseUrl": "/home/dinwwwh/dinui/apps/web2",
     "paths": {
-      "@web/*": ["./*"]
-    }
+      "@web/*": ["./*"],
+      "@dinui/react/utils": ["../../packages/react-ui/utils"],
+      "@dinui/react/*": ["../../packages/react-ui/ui/*"]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+
+    "noUncheckedIndexedAccess": true
   }
 }
