@@ -7,7 +7,7 @@ export async function loadComponents(opts: { cwd: string }) {
   const globComponentPaths = await fg(path.resolve(basePath, './**/*.tsx'))
 
   return globComponentPaths.map((path) =>
-    path.replace(basePath, '').replace('/ui/', '').replace('.tsx', ''),
+    path.replace(basePath, '').replace('ui/', '').replace('.tsx', ''),
   )
 }
 
@@ -28,5 +28,5 @@ export function getComponentDependencies(opts: { code: string }) {
 }
 
 export function getBaseComponentPath(opts: { cwd: string }) {
-  return path.resolve(opts.cwd, './node_modules/@dinui/react/src')
+  return path.resolve(opts.cwd, './node_modules/@dinui/react/src') + '/'
 }
