@@ -1,0 +1,35 @@
+---
+title: Avatar
+description: An image element with a fallback for representing the user.
+component: true
+links:
+  doc: https://www.radix-ui.com/docs/primitives/components/avatar
+  api: https://www.radix-ui.com/docs/primitives/components/avatar#api-reference
+---
+
+# Avatar
+
+An image element with a fallback for representing the user.
+
+import Example from '@web/components/example.astro'
+
+<Example path="ui/avatar-demo" />
+
+## Installation
+
+import InstallationGuide from '@web/components/installation-guide.astro'
+
+<InstallationGuide path="ui/avatar" />
+
+## Usage
+
+```tsx
+import { Avatar, AvatarFallback, AvatarImage } from '@dinui/react/avatar'
+```
+
+```tsx
+<Avatar>
+  <AvatarImage src="https://github.com/dinwwwh.png" />
+  <AvatarFallback>DN</AvatarFallback>
+</Avatar>
+```

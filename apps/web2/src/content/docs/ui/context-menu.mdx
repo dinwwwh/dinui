@@ -1,0 +1,45 @@
+---
+title: Context Menu
+description: Displays a menu to the user — such as a set of actions or functions — triggered by a button.
+component: true
+links:
+  doc: https://www.radix-ui.com/docs/primitives/components/context-menu
+  api: https://www.radix-ui.com/docs/primitives/components/context-menu#api-reference
+---
+
+# Context Menu
+
+Displays a menu to the user — such as a set of actions or functions — triggered by a button.
+
+import Example from '@web/components/example.astro'
+
+<Example path="ui/context-menu-demo" />
+
+## Installation
+
+import InstallationGuide from '@web/components/installation-guide.astro'
+
+<InstallationGuide path="ui/context-menu" />
+
+## Usage
+
+```tsx
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+} from '@dinui/react/context-menu'
+```
+
+```tsx
+<ContextMenu>
+  <ContextMenuTrigger>Right click</ContextMenuTrigger>
+  <ContextMenuContent>
+    <ContextMenuItem>Profile</ContextMenuItem>
+    <ContextMenuItem>Billing</ContextMenuItem>
+    <ContextMenuItem>Team</ContextMenuItem>
+    <ContextMenuItem>Subscription</ContextMenuItem>
+  </ContextMenuContent>
+</ContextMenu>
+```

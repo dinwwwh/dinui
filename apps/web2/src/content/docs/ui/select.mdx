@@ -1,0 +1,52 @@
+---
+title: Select
+description: Displays a list of options for the user to pick from—triggered by a button.
+component: true
+featured: true
+links:
+  doc: https://www.radix-ui.com/docs/primitives/components/select
+  api: https://www.radix-ui.com/docs/primitives/components/select#api-reference
+---
+
+# Select
+
+Displays a list of options for the user to pick from—triggered by a button.
+
+import Example from '@web/components/example.astro'
+
+<Example path="ui/select-demo" />
+
+## Installation
+
+import InstallationGuide from '@web/components/installation-guide.astro'
+
+<InstallationGuide path="ui/select" />
+
+## Usage
+
+```tsx
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@dinui/react/select'
+```
+
+```tsx
+<Select>
+  <SelectTrigger className="w-[180px]">
+    <SelectValue placeholder="Theme" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="light">Light</SelectItem>
+    <SelectItem value="dark">Dark</SelectItem>
+    <SelectItem value="system">System</SelectItem>
+  </SelectContent>
+</Select>
+```
+
+## Examples
+
+### Scrollable
+
+<Example path="ui/select-scrollable" />
+
+### Form
+
+<Example path="ui/select-form" />

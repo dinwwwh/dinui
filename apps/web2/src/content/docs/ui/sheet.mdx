@@ -1,0 +1,77 @@
+---
+title: Sheet
+description: Extends the Dialog component to display content that complements the main content of the screen.
+component: true
+links:
+  doc: https://www.radix-ui.com/docs/primitives/components/dialog
+  api: https://www.radix-ui.com/docs/primitives/components/dialog#api-reference
+---
+
+# Sheet
+
+Extends the Dialog component to display content that complements the main content of the screen.
+
+import Example from '@web/components/example.astro'
+
+<Example path="ui/sheet-demo" />
+
+### Installation
+
+import InstallationGuide from '@web/components/installation-guide.astro'
+
+<InstallationGuide path="ui/sheet" />
+
+## Usage
+
+```tsx
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@dinui/react/sheet'
+```
+
+```tsx
+<Sheet>
+  <SheetTrigger>Open</SheetTrigger>
+  <SheetContent>
+    <SheetHeader>
+      <SheetTitle>Are you absolutely sure?</SheetTitle>
+      <SheetDescription>
+        This action cannot be undone. This will permanently delete your account and remove your data
+        from our servers.
+      </SheetDescription>
+    </SheetHeader>
+  </SheetContent>
+</Sheet>
+```
+
+## Examples
+
+### Side
+
+Use the `side` property to `<SheetContent />` to indicate the edge of the screen where the component will appear. The values can be `top`, `right`, `bottom` or `left`.
+
+<Example path="ui/sheet-side" />
+
+### Size
+
+You can adjust the size of the sheet using CSS classes:
+
+```tsx {3}
+<Sheet>
+  <SheetTrigger>Open</SheetTrigger>
+  <SheetContent className="w-[400px] sm:w-[540px]">
+    <SheetHeader>
+      <SheetTitle>Are you absolutely sure?</SheetTitle>
+      <SheetDescription>
+        This action cannot be undone. This will permanently delete your account and remove your data
+        from our servers.
+      </SheetDescription>
+    </SheetHeader>
+  </SheetContent>
+</Sheet>
+```
