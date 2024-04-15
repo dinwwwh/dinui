@@ -8,7 +8,13 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  "tailwindCSS.classAttributes": ["class", "className", ".*Variants", ".*Variants: .*"],
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "class:list",
+    ".*Variants",
+    ".*Variants: .*"
+  ],
   "tailwindCSS.experimental.classRegex": [
     ["tv\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
     ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
