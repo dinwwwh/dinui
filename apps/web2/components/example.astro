@@ -13,10 +13,11 @@ const exampleCode = await loadExampleCode({ path })
 
 <Tabs>
   <TabItem label="Preview">
-    <ExampleComponent path={path} client:visible />
+    <div class="not-content">
+      <ExampleComponent path={path} client:visible />
+    </div>
   </TabItem>
   <TabItem label="Code">
     <Code code={exampleCode} lang="tsx" />
   </TabItem>
 </Tabs>
-@web/examples
