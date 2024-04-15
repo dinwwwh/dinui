@@ -7,13 +7,3 @@ export async function getProjectPackageInfos(opts: { cwd: string }) {
 
   return fs.readJson(packageJsonPath) as Promise<PackageJson>
 }
-
-export async function isDinUIInstalledCorrectly(opts: { cwd: string }) {
-  return fs.exists(path.resolve(opts.cwd, './node_modules/@dinui/react'))
-}
-
-export async function getDinUIComponents(opts: { cwd: string }) {
-  const ui = await fs.readdir(path.resolve(opts.cwd, './node_modules/@dinui/react/ui'))
-
-  return ui.filter((file) => file.endsWith('.tsx')).map((file) => file.replace('.tsx', ''))
-}
