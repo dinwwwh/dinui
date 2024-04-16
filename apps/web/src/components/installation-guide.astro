@@ -32,149 +32,151 @@ const componentDependencies = [
   .filter((d) => !['react'].includes(d))
 ---
 
-<Tabs>
-  <TabItem label="Default">
-    <Steps>
-      <ol>
-        <li>
-          <p>
-            Follow{' '}
-            <a
-              href="/installation"
-              class="text-wbrand-600 hover:text-wbrand-700 dark:text-wbrand-400 dark:hover:text-wbrand-400/80"
-            >
-              Installation Guide
-            </a>
-          </p>
-          <div>
-            To enable DinUI functionality in your project, you will need to properly set up Tailwind
-            and install the necessary dependencies.
-          </div>
-        </li>
+<div class="py-6">
+  <Tabs>
+    <TabItem label="Default">
+      <Steps>
+        <ol class="pt-2">
+          <li>
+            <p>
+              Follow{' '}
+              <a
+                href="/installation"
+                class="text-wbrand-600 hover:text-wbrand-700 dark:text-wbrand-400 dark:hover:text-wbrand-400/80"
+              >
+                Installation Guide
+              </a>
+            </p>
+            <div>
+              To enable DinUI functionality in your project, you will need to properly set up
+              Tailwind and install the necessary dependencies.
+            </div>
+          </li>
 
-        <slot />
+          <slot />
 
-        <li>
-          <p>All done</p>
-          <div>You now can start using this component in your project.</div>
-        </li>
-      </ol>
-    </Steps>
-  </TabItem>
-  <TabItem label="CLI">
-    <Steps>
-      <ol>
-        <li>
-          <p>
-            Follow{' '}
-            <a
-              href="/installation"
-              class="text-wbrand-600 hover:text-wbrand-700 dark:text-wbrand-400 dark:hover:text-wbrand-400/80"
-            >
-              Installation Guide
-            </a>
-          </p>
-          <div>
-            To enable DinUI functionality in your project, you will need to properly set up Tailwind
-            and install the necessary dependencies.
-          </div>
-        </li>
+          <li>
+            <p>All done</p>
+            <div>You now can start using this component in your project.</div>
+          </li>
+        </ol>
+      </Steps>
+    </TabItem>
+    <TabItem label="CLI">
+      <Steps>
+        <ol class="pt-2">
+          <li>
+            <p>
+              Follow{' '}
+              <a
+                href="/installation"
+                class="text-wbrand-600 hover:text-wbrand-700 dark:text-wbrand-400 dark:hover:text-wbrand-400/80"
+              >
+                Installation Guide
+              </a>
+            </p>
+            <div>
+              To enable DinUI functionality in your project, you will need to properly set up
+              Tailwind and install the necessary dependencies.
+            </div>
+          </li>
 
-        <li>
-          <p>Run the following command in your project</p>
-          <Tabs>
-            <TabItem label="npm">
-              <Code
-                lang="bash"
-                code={`npx @dinui/cli@latest add -d ./components/ui ${componentName}`}
-              />
-            </TabItem>
-            <TabItem label="yarn">
-              <Code
-                lang="bash"
-                code={`yarn dlx @dinui/cli@latest add -d ./components/ui ${componentName}`}
-              />
-            </TabItem>
-            <TabItem label="pnpm">
-              <Code
-                lang="bash"
-                code={`pnpm dlx @dinui/cli@latest add -d ./components/ui ${componentName}`}
-              />
-            </TabItem>
-            <TabItem label="bun">
-              <Code
-                lang="bash"
-                code={`bunx @dinui/cli@latest add -d ./components/ui ${componentName}`}
-              />
-            </TabItem>
-          </Tabs>
-        </li>
+          <li>
+            <p>Run the following command in your project</p>
+            <Tabs>
+              <TabItem label="npm">
+                <Code
+                  lang="bash"
+                  code={`npx @dinui/cli@latest add -d ./components/ui ${componentName}`}
+                />
+              </TabItem>
+              <TabItem label="yarn">
+                <Code
+                  lang="bash"
+                  code={`yarn dlx @dinui/cli@latest add -d ./components/ui ${componentName}`}
+                />
+              </TabItem>
+              <TabItem label="pnpm">
+                <Code
+                  lang="bash"
+                  code={`pnpm dlx @dinui/cli@latest add -d ./components/ui ${componentName}`}
+                />
+              </TabItem>
+              <TabItem label="bun">
+                <Code
+                  lang="bash"
+                  code={`bunx @dinui/cli@latest add -d ./components/ui ${componentName}`}
+                />
+              </TabItem>
+            </Tabs>
+          </li>
 
-        <slot />
+          <slot />
 
-        <li>
-          <p>Update the import paths to match your project setup</p>
-        </li>
+          <li>
+            <p>Update the import paths to match your project setup</p>
+          </li>
 
-        <li>
-          <p>All done</p>
-          <div>You now can start using this component in your project.</div>
-        </li>
-      </ol>
-    </Steps>
-  </TabItem>
-  <TabItem label="Manual">
-    <Steps>
-      <ol>
-        <li>
-          <p>
-            Follow{' '}
-            <a
-              href="/installation"
-              class="text-wbrand-600 hover:text-wbrand-700 dark:text-wbrand-400 dark:hover:text-wbrand-400/80"
-            >
-              Installation Guide
-            </a>
-          </p>
-          <div>
-            To enable DinUI functionality in your project, you will need to properly set up Tailwind
-            and install the necessary dependencies.
-          </div>
-        </li>
-        <li>
-          <p>Install dependencies</p>
-          <Tabs>
-            <TabItem label="npm">
-              <Code lang="bash" code={`npm install ${componentDependencies.join(' ')}`} />
-            </TabItem>
-            <TabItem label="yarn">
-              <Code lang="bash" code={`yarn add ${componentDependencies.join(' ')}`} />
-            </TabItem>
-            <TabItem label="pnpm">
-              <Code lang="bash" code={`pnpm add ${componentDependencies.join(' ')}`} />
-            </TabItem>
-            <TabItem label="bun">
-              <Code lang="bash" code={`bun add ${componentDependencies.join(' ')}`} />
-            </TabItem>
-          </Tabs>
-        </li>
+          <li>
+            <p>All done</p>
+            <div>You now can start using this component in your project.</div>
+          </li>
+        </ol>
+      </Steps>
+    </TabItem>
+    <TabItem label="Manual">
+      <Steps>
+        <ol class="pt-2">
+          <li>
+            <p>
+              Follow{' '}
+              <a
+                href="/installation"
+                class="text-wbrand-600 hover:text-wbrand-700 dark:text-wbrand-400 dark:hover:text-wbrand-400/80"
+              >
+                Installation Guide
+              </a>
+            </p>
+            <div>
+              To enable DinUI functionality in your project, you will need to properly set up
+              Tailwind and install the necessary dependencies.
+            </div>
+          </li>
+          <li>
+            <p>Install dependencies</p>
+            <Tabs>
+              <TabItem label="npm">
+                <Code lang="bash" code={`npm install ${componentDependencies.join(' ')}`} />
+              </TabItem>
+              <TabItem label="yarn">
+                <Code lang="bash" code={`yarn add ${componentDependencies.join(' ')}`} />
+              </TabItem>
+              <TabItem label="pnpm">
+                <Code lang="bash" code={`pnpm add ${componentDependencies.join(' ')}`} />
+              </TabItem>
+              <TabItem label="bun">
+                <Code lang="bash" code={`bun add ${componentDependencies.join(' ')}`} />
+              </TabItem>
+            </Tabs>
+          </li>
 
-        <li>
-          <p>Copy and paste the following code into your project</p>
-          <Code code={componentCode} lang="tsx" />
-        </li>
+          <li>
+            <p>Copy and paste the following code into your project</p>
+            <Code code={componentCode} lang="tsx" />
+          </li>
 
-        <slot />
+          <slot />
 
-        <li>
-          <p>Update the import paths to match your project setup</p>
-        </li>
+          <li>
+            <p>Update the import paths to match your project setup</p>
+          </li>
 
-        <li>
-          <p>All done</p>
-          <div>You now can start using this component in your project.</div>
-        </li>
-      </ol>
-    </Steps>
-  </TabItem>
-</Tabs>
+          <li>
+            <p>All done</p>
+            <div>You now can start using this component in your project.</div>
+          </li>
+        </ol>
+      </Steps>
+    </TabItem>
+  </Tabs>
+</div>
