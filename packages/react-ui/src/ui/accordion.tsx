@@ -5,14 +5,13 @@ import { IconChevronDown } from '@tabler/icons-react'
 import * as React from 'react'
 import { tv } from 'tailwind-variants'
 
-const accordion = tv({
+export const accordion = tv({
   slots: {
     item: 'border-b',
     trigger:
-      'flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180',
-    trigger_header: 'flex',
+      'w-full flex items-center justify-between py-4 text-sm gap-3 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180',
     trigger_icon:
-      'h-4 w-4 shrink-0 text-wgray-500 transition-transform duration-200 dark:text-wgray-400',
+      'size-4 shrink-0 text-wgray-500 transition-transform duration-200 dark:text-wgray-400',
     content:
       'overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
     content_wrapper: 'pb-4',
@@ -47,13 +46,10 @@ const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   AccordionTriggerProps
 >(({ headerProps, iconProps, children, ...props }, ref) => {
-  const { trigger, trigger_icon, trigger_header } = accordion()
+  const { trigger, trigger_icon } = accordion()
 
   return (
-    <AccordionPrimitive.Header
-      {...headerProps}
-      className={trigger_header({ className: headerProps?.className })}
-    >
+    <AccordionPrimitive.Header {...headerProps}>
       <AccordionPrimitive.Trigger
         {...props}
         ref={ref}
@@ -103,4 +99,3 @@ const Accordion = Object.assign(AccordionRoot, {
 })
 
 export default Accordion
-export { accordion }

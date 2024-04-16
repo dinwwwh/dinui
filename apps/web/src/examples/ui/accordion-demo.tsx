@@ -2,7 +2,7 @@ import Accordion from '@dinui/react/accordion'
 
 export default function AccordionDemo() {
   return (
-    <Accordion type="single" collapsible className="w-full">
+    <Accordion type="single" collapsible className="w-full" defaultValue="item-2">
       <Accordion.Item value="item-1">
         <Accordion.Item.Trigger>Is it accessible?</Accordion.Item.Trigger>
         <Accordion.Item.Content>
