@@ -14,12 +14,13 @@ const exampleCode = await loadExampleCode({ path })
 <Tabs>
   <TabItem label="Preview">
     <div class="not-content twp">
-      <div class="border rounded-md w-full overflow-auto">
-        <div class="flex items-center justify-center p-5 md:p-12 min-h-[350px]">
-          <div>
-            <ExampleComponent path={path} client:idle />
-          </div>
-        </div>
+      <div
+        class:list={[
+          'border rounded-md w-full overflow-auto',
+          '[&>astro-island]:flex [&>astro-island]:items-center [&>astro-island]:justify-center [&>astro-island]:p-5 md:[&>astro-island]:p-12 [&>astro-island]:min-h-[350px]',
+        ]}
+      >
+        <ExampleComponent path={path} client:idle />
       </div>
     </div>
   </TabItem>
