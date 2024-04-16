@@ -17,7 +17,7 @@ export default {
         },
       },
       colors: {
-        wgray: colors.gray,
+        wgray: colors.neutral,
         wbrand: colors.violet,
         werror: colors.red,
         wwarning: colors.amber,

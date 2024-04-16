@@ -13,3 +13,35 @@
     @apply scrollbar-thin;
   }
 }
+
+:root {
+  --sl-font: theme(fontFamily.sans);
+  --sl-font-mono: theme(fontFamily.mono);
+
+  --sl-color-white: white;
+  --sl-color-gray-1: theme(colors.wgray.300);
+  --sl-color-gray-2: theme(colors.wgray.400);
+  --sl-color-gray-3: theme(colors.wgray.500);
+  --sl-color-gray-4: theme(colors.wgray.700);
+  --sl-color-gray-5: theme(colors.wgray.800);
+  --sl-color-gray-6: theme(colors.wgray.900);
+  --sl-color-black: theme(colors.wgray.950);
+  --sl-color-accent-low: theme(colors.wbrand.900);
+  --sl-color-accent: theme(colors.wbrand.600);
+  --sl-color-accent-high: theme(colors.wbrand.200);
+}
+
+:root[data-theme='light'] {
+  --sl-color-white: theme(colors.wgray.900);
+  --sl-color-gray-1: theme(colors.wgray.800);
+  --sl-color-gray-2: theme(colors.wgray.700);
+  --sl-color-gray-3: theme(colors.wgray.500);
+  --sl-color-gray-4: theme(colors.wgray.400);
+  --sl-color-gray-5: theme(colors.wgray.300);
+  --sl-color-gray-6: theme(colors.wgray.200);
+  --sl-color-gray-7: theme(colors.wgray.100);
+  --sl-color-black: white;
+  --sl-color-accent-low: theme(colors.wbrand.200);
+  --sl-color-accent: theme(colors.wbrand.600);
+  --sl-color-accent-high: theme(colors.wbrand.900);
+}
