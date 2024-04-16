@@ -1,0 +1,90 @@
+---
+title: Button
+description: Displays a button or a component that looks like a button.
+featured: true
+component: true
+---
+
+Displays a button or a component that looks like a button.
+
+import Example from '@web/components/example.astro'
+
+<Example path="ui/button-demo" />
+
+## Installation
+
+import InstallationGuide from '@web/components/installation-guide.astro'
+
+<InstallationGuide path="ui/button" />
+
+## Usage
+
+```tsx
+import { Button } from '@dinui/react/button'
+```
+
+```tsx
+<Button variant="outline">Button</Button>
+```
+
+## Link
+
+You can use the `button` helper to create a link that looks like a button.
+
+```tsx
+import { button } from '@dinui/react/button'
+```
+
+```tsx
+<Link className={button({ variant: 'outline' })}>Click here</Link>
+```
+
+Alternatively, you can set the `asChild` parameter and nest the link component.
+
+```tsx
+<Button asChild>
+  <Link href="/login">Login</Link>
+</Button>
+```
+
+## Examples
+
+### Primary
+
+<Example path="ui/button-demo" />
+
+### Secondary
+
+<Example path="ui/button-secondary" />
+
+### Destructive
+
+<Example path="ui/button-destructive" />
+
+### Outline
+
+<Example path="ui/button-outline" />
+
+### Ghost
+
+<Example path="ui/button-ghost" />
+
+### Link
+
+<Example path="ui/button-link" />
+
+### Icon
+
+<Example path="ui/button-icon" />
+
+### With Icon
+
+<Example path="ui/button-with-icon" />
+
+### Loading
+
+<Example path="ui/button-loading" />
+
+### As Child
+
+<Example path="ui/button-as-child" />
