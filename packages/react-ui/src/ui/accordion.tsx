@@ -1,54 +1,106 @@
 'use client'
 
 import * as AccordionPrimitive from '@radix-ui/react-accordion'
-import { ChevronDownIcon } from '@radix-ui/react-icons'
+import { IconChevronDown } from '@tabler/icons-react'
 import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import { tv } from 'tailwind-variants'
 
-export const Accordion = AccordionPrimitive.Root
+const accordion = tv({
+  slots: {
+    item: 'border-b',
+    trigger:
+      'flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180',
+    trigger_header: 'flex',
+    trigger_icon:
+      'h-4 w-4 shrink-0 text-wgray-500 transition-transform duration-200 dark:text-wgray-400',
+    content:
+      'overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
+    content_wrapper: 'pb-4',
+  },
+})
 
-export const AccordionItem = React.forwardRef<
+const AccordionRoot = AccordionPrimitive.Root
+
+const AccordionItem = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
->(({ className, ...props }, ref) => (
-  <AccordionPrimitive.Item
-    ref={ref}
-    className={twMerge('border-b border-wgray-200 dark:border-wgray-800', className)}
-    {...props}
-  />
-))
+>((props, ref) => {
+  const { item } = accordion()
+
+  return (
+    <AccordionPrimitive.Item
+      {...props}
+      ref={ref}
+      className={item({ className: props.className })}
+    />
+  )
+})
 AccordionItem.displayName = 'AccordionItem'
 
-export const AccordionTrigger = React.forwardRef<
+interface AccordionTriggerProps
+  extends React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> {
+  headerProps?: React.ComponentProps<typeof AccordionPrimitive.Header>
+  iconProps?: React.ComponentProps<typeof IconChevronDown>
+}
+
+const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
-  <AccordionPrimitive.Header className="flex">
-    <AccordionPrimitive.Trigger
-      ref={ref}
-      className={twMerge(
-        'flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180',
-        className,
-      )}
-      {...props}
+  AccordionTriggerProps
+>(({ headerProps, iconProps, children, ...props }, ref) => {
+  const { trigger, trigger_icon, trigger_header } = accordion()
+
+  return (
+    <AccordionPrimitive.Header
+      {...headerProps}
+      className={trigger_header({ className: headerProps?.className })}
     >
-      {children}
-      <ChevronDownIcon className="h-4 w-4 shrink-0 text-wgray-500 transition-transform duration-200 dark:text-wgray-400" />
-    </AccordionPrimitive.Trigger>
-  </AccordionPrimitive.Header>
-))
+      <AccordionPrimitive.Trigger
+        {...props}
+        ref={ref}
+        className={trigger({ className: props.className })}
+      >
+        {children}
+        <IconChevronDown
+          {...iconProps}
+          className={trigger_icon({ className: iconProps?.className })}
+        />
+      </AccordionPrimitive.Trigger>
+    </AccordionPrimitive.Header>
+  )
+})
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName
 
-export const AccordionContent = React.forwardRef<
+interface AccordionContentProps
+  extends React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content> {
+  wrapperProps?: React.ComponentProps<'div'>
+}
+
+const AccordionContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
->(({ className, children, ...props }, ref) => (
-  <AccordionPrimitive.Content
-    ref={ref}
-    className="overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
-    {...props}
-  >
-    <div className={twMerge('pb-4 pt-0', className)}>{children}</div>
-  </AccordionPrimitive.Content>
-))
+  AccordionContentProps
+>(({ wrapperProps, children, ...props }, ref) => {
+  const { content, content_wrapper } = accordion()
+
+  return (
+    <AccordionPrimitive.Content
+      {...props}
+      ref={ref}
+      className={content({ className: props.className })}
+    >
+      <div {...wrapperProps} className={content_wrapper({ className: wrapperProps?.className })}>
+        {children}
+      </div>
+    </AccordionPrimitive.Content>
+  )
+})
 AccordionContent.displayName = AccordionPrimitive.Content.displayName
+
+const Accordion = Object.assign(AccordionRoot, {
+  Item: Object.assign(AccordionItem, {
+    Trigger: AccordionTrigger,
+    Content: AccordionContent,
+  }),
+})
+
+export default Accordion
+export { accordion }

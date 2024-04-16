@@ -1,29 +1,28 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@dinui/react/accordion'
+import Accordion from '@dinui/react/accordion'
 
 export default function AccordionDemo() {
   return (
     <Accordion type="single" collapsible className="w-full">
-      <AccordionItem value="item-1">
-        <AccordionTrigger>Is it accessible?</AccordionTrigger>
-        <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="item-2">
-        <AccordionTrigger>Is it styled?</AccordionTrigger>
-        <AccordionContent>
+      <Accordion.Item value="item-1">
+        <Accordion.Item.Trigger>Is it accessible?</Accordion.Item.Trigger>
+        <Accordion.Item.Content>
+          Yes. It adheres to the WAI-ARIA design pattern.
+        </Accordion.Item.Content>
+      </Accordion.Item>
+
+      <Accordion.Item value="item-2">
+        <Accordion.Item.Trigger>Is it styled?</Accordion.Item.Trigger>
+        <Accordion.Item.Content>
           Yes. It comes with default styles that matches the other components&apos; aesthetic.
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="item-3">
-        <AccordionTrigger>Is it animated?</AccordionTrigger>
-        <AccordionContent>
+        </Accordion.Item.Content>
+      </Accordion.Item>
+
+      <Accordion.Item value="item-3">
+        <Accordion.Item.Trigger>Is it animated?</Accordion.Item.Trigger>
+        <Accordion.Item.Content>
           Yes. It's animated by default, but you can disable it if you prefer.
-        </AccordionContent>
-      </AccordionItem>
+        </Accordion.Item.Content>
+      </Accordion.Item>
     </Accordion>
   )
 }
