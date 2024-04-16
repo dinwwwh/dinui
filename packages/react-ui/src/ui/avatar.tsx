@@ -35,7 +35,7 @@ export const AvatarFallback = React.forwardRef<
   <AvatarPrimitive.Fallback
     ref={ref}
     className={twMerge(
-      'flex h-full w-full items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800',
+      'flex h-full w-full items-center justify-center rounded-full bg-wgray-100 dark:bg-wgray-800',
       className,
     )}
     {...props}

@@ -11,7 +11,7 @@ export default function CalendarDemo() {
       mode="single"
       selected={date}
       onSelect={setDate}
-      className="rounded-md border border-gray-200 dark:border-gray-800 shadow"
+      className="rounded-md border border-wgray-200 dark:border-wgray-800 shadow"
     />
   )
 }

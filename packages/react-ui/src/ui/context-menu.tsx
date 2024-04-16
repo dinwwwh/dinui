@@ -26,7 +26,7 @@ export const ContextMenuSubTrigger = React.forwardRef<
   <ContextMenuPrimitive.SubTrigger
     ref={ref}
     className={twMerge(
-      'flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-gray-100 focus:text-gray-900 data-[state=open]:bg-gray-100 data-[state=open]:text-gray-900 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[state=open]:bg-gray-800 dark:data-[state=open]:text-gray-50',
+      'flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-wgray-100 focus:text-wgray-900 data-[state=open]:bg-wgray-100 data-[state=open]:text-wgray-900 dark:focus:bg-wgray-800 dark:focus:text-wgray-50 dark:data-[state=open]:bg-wgray-800 dark:data-[state=open]:text-wgray-50',
       inset && 'pl-8',
       className,
     )}
@@ -45,7 +45,7 @@ export const ContextMenuSubContent = React.forwardRef<
   <ContextMenuPrimitive.SubContent
     ref={ref}
     className={twMerge(
-      'z-50 min-w-[8rem] overflow-hidden rounded-md border border-gray-200 dark:border-gray-800 bg-white p-1 text-gray-950 shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2  dark:bg-gray-950 dark:text-gray-50',
+      'z-50 min-w-[8rem] overflow-hidden rounded-md border border-wgray-200 dark:border-wgray-800 bg-white p-1 text-wgray-950 shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2  dark:bg-wgray-950 dark:text-wgray-50',
       className,
     )}
     {...props}
@@ -61,7 +61,7 @@ export const ContextMenuContent = React.forwardRef<
     <ContextMenuPrimitive.Content
       ref={ref}
       className={twMerge(
-        'z-50 min-w-[8rem] overflow-hidden rounded-md border border-gray-200 dark:border-gray-800 bg-white p-1 text-gray-950 shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2  dark:bg-gray-950 dark:text-gray-50',
+        'z-50 min-w-[8rem] overflow-hidden rounded-md border border-wgray-200 dark:border-wgray-800 bg-white p-1 text-wgray-950 shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2  dark:bg-wgray-950 dark:text-wgray-50',
         className,
       )}
       {...props}
@@ -79,7 +79,7 @@ export const ContextMenuItem = React.forwardRef<
   <ContextMenuPrimitive.Item
     ref={ref}
     className={twMerge(
-      'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-gray-100 focus:text-gray-900 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-gray-800 dark:focus:text-gray-50',
+      'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-wgray-100 focus:text-wgray-900 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-wgray-800 dark:focus:text-wgray-50',
       inset && 'pl-8',
       className,
     )}
@@ -95,7 +95,7 @@ export const ContextMenuCheckboxItem = React.forwardRef<
   <ContextMenuPrimitive.CheckboxItem
     ref={ref}
     className={twMerge(
-      'relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-gray-100 focus:text-gray-900 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-gray-800 dark:focus:text-gray-50',
+      'relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-wgray-100 focus:text-wgray-900 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-wgray-800 dark:focus:text-wgray-50',
       className,
     )}
     checked={checked}
@@ -118,7 +118,7 @@ export const ContextMenuRadioItem = React.forwardRef<
   <ContextMenuPrimitive.RadioItem
     ref={ref}
     className={twMerge(
-      'relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-gray-100 focus:text-gray-900 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-gray-800 dark:focus:text-gray-50',
+      'relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-wgray-100 focus:text-wgray-900 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-wgray-800 dark:focus:text-wgray-50',
       className,
     )}
     {...props}
@@ -142,7 +142,7 @@ export const ContextMenuLabel = React.forwardRef<
   <ContextMenuPrimitive.Label
     ref={ref}
     className={twMerge(
-      'px-2 py-1.5 text-sm font-semibold text-gray-950 dark:text-gray-50',
+      'px-2 py-1.5 text-sm font-semibold text-wgray-950 dark:text-wgray-50',
       inset && 'pl-8',
       className,
     )}
@@ -157,7 +157,7 @@ export const ContextMenuSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ContextMenuPrimitive.Separator
     ref={ref}
-    className={twMerge('-mx-1 my-1 h-px bg-gray-200 dark:bg-gray-800', className)}
+    className={twMerge('-mx-1 my-1 h-px bg-wgray-200 dark:bg-wgray-800', className)}
     {...props}
   />
 ))
@@ -170,7 +170,7 @@ export const ContextMenuShortcut = ({
   return (
     <span
       className={twMerge(
-        'ml-auto text-xs tracking-widest text-gray-500 dark:text-gray-400',
+        'ml-auto text-xs tracking-widest text-wgray-500 dark:text-wgray-400',
         className,
       )}
       {...props}

@@ -40,8 +40,8 @@ export const InputOTPSlot = React.forwardRef<
     <div
       ref={ref}
       className={twMerge(
-        'relative flex h-9 w-9 items-center justify-center border-y border-r border-gray-200 dark:border-gray-800 text-sm shadow-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md ',
-        isActive && 'z-10 ring-1 ring-gray-950 dark:ring-gray-300',
+        'relative flex h-9 w-9 items-center justify-center border-y border-r border-wgray-200 dark:border-wgray-800 text-sm shadow-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md ',
+        isActive && 'z-10 ring-1 ring-wgray-950 dark:ring-wgray-300',
         className,
       )}
       {...props}
@@ -49,7 +49,7 @@ export const InputOTPSlot = React.forwardRef<
       {char}
       {hasFakeCaret && (
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="h-4 w-px animate-caret-blink bg-gray-950 duration-1000 dark:bg-gray-50" />
+          <div className="h-4 w-px animate-caret-blink bg-wgray-950 duration-1000 dark:bg-wgray-50" />
         </div>
       )}
     </div>

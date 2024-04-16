@@ -23,13 +23,13 @@ export const RadioGroupItem = React.forwardRef<
     <RadioGroupPrimitive.Item
       ref={ref}
       className={twMerge(
-        'aspect-square h-4 w-4 rounded-full border border-gray-900 text-gray-900 shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-50 dark:text-gray-50 dark:focus-visible:ring-gray-300',
+        'aspect-square h-4 w-4 rounded-full border border-wgray-900 text-wgray-900 shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-wgray-950 disabled:cursor-not-allowed disabled:opacity-50 dark:border-wgray-50 dark:text-wgray-50 dark:focus-visible:ring-wgray-300',
         className,
       )}
       {...props}
     >
       <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
-        <CheckIcon className="h-3.5 w-3.5 fill-gray-900" />
+        <CheckIcon className="h-3.5 w-3.5 fill-wgray-900" />
       </RadioGroupPrimitive.Indicator>
     </RadioGroupPrimitive.Item>
   )

@@ -5,12 +5,12 @@ import * as React from 'react'
 import { tv, type VariantProps } from 'tailwind-variants'
 
 export const toggle = tv({
-  base: 'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-gray-100 data-[state=on]:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-400 dark:focus-visible:ring-gray-300 dark:data-[state=on]:bg-gray-800 dark:data-[state=on]:text-gray-50',
+  base: 'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-wgray-100 hover:text-wgray-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-wgray-950 disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-wgray-100 data-[state=on]:text-wgray-900 dark:hover:bg-wgray-800 dark:hover:text-wgray-400 dark:focus-visible:ring-wgray-300 dark:data-[state=on]:bg-wgray-800 dark:data-[state=on]:text-wgray-50',
   variants: {
     variant: {
       default: 'bg-transparent',
       outline:
-        'border border-gray-200 dark:border-gray-800 bg-transparent shadow-sm hover:bg-gray-100 hover:text-gray-900  dark:hover:bg-gray-800 dark:hover:text-gray-50',
+        'border border-wgray-200 dark:border-wgray-800 bg-transparent shadow-sm hover:bg-wgray-100 hover:text-wgray-900  dark:hover:bg-wgray-800 dark:hover:text-wgray-50',
     },
     size: {
       default: 'h-9 px-3',

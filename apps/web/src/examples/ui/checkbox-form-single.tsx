@@ -45,7 +45,7 @@ export default function CheckboxReactHookFormSingle() {
           control={form.control}
           name="mobile"
           render={({ field }) => (
-            <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border border-gray-200 dark:border-gray-800 p-4 shadow">
+            <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border border-wgray-200 dark:border-wgray-800 p-4 shadow">
               <FormControl>
                 <Checkbox checked={field.value} onCheckedChange={field.onChange} />
               </FormControl>

@@ -18,7 +18,7 @@ export const BreadcrumbList = React.forwardRef<
   <ol
     ref={ref}
     className={twMerge(
-      'flex flex-wrap items-center gap-1.5 break-words text-sm text-gray-500 sm:gap-2.5 dark:text-gray-400',
+      'flex flex-wrap items-center gap-1.5 break-words text-sm text-wgray-500 sm:gap-2.5 dark:text-wgray-400',
       className,
     )}
     {...props}
@@ -45,7 +45,7 @@ export const BreadcrumbLink = React.forwardRef<
     <Comp
       ref={ref}
       className={twMerge(
-        'transition-colors hover:text-gray-950 dark:hover:text-gray-50',
+        'transition-colors hover:text-wgray-950 dark:hover:text-wgray-50',
         className,
       )}
       {...props}
@@ -63,7 +63,7 @@ export const BreadcrumbPage = React.forwardRef<
     role="link"
     aria-disabled="true"
     aria-current="page"
-    className={twMerge('font-normal text-gray-950 dark:text-gray-50', className)}
+    className={twMerge('font-normal text-wgray-950 dark:text-wgray-50', className)}
     {...props}
   />
 ))

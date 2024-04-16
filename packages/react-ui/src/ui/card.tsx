@@ -6,7 +6,7 @@ export const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDi
     <div
       ref={ref}
       className={twMerge(
-        'rounded-xl border border-gray-200 dark:border-gray-800 bg-white text-gray-950 shadow dark:bg-gray-950 dark:text-gray-50',
+        'rounded-xl border border-wgray-200 dark:border-wgray-800 bg-white text-wgray-950 shadow dark:bg-wgray-950 dark:text-wgray-50',
         className,
       )}
       {...props}
@@ -40,7 +40,7 @@ export const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={twMerge('text-sm text-gray-500 dark:text-gray-400', className)}
+    className={twMerge('text-sm text-wgray-500 dark:text-wgray-400', className)}
     {...props}
   />
 ))

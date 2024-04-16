@@ -39,12 +39,12 @@ export const DrawerContent = React.forwardRef<
     <DrawerPrimitive.Content
       ref={ref}
       className={twMerge(
-        'fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border border-gray-200 dark:border-gray-800 bg-white  dark:bg-gray-950',
+        'fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border border-wgray-200 dark:border-wgray-800 bg-white  dark:bg-wgray-950',
         className,
       )}
       {...props}
     >
-      <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-gray-100 dark:bg-gray-800" />
+      <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-wgray-100 dark:bg-wgray-800" />
       {children}
     </DrawerPrimitive.Content>
   </DrawerPortal>
@@ -79,7 +79,7 @@ export const DrawerDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DrawerPrimitive.Description
     ref={ref}
-    className={twMerge('text-sm text-gray-500 dark:text-gray-400', className)}
+    className={twMerge('text-sm text-wgray-500 dark:text-wgray-400', className)}
     {...props}
   />
 ))

@@ -17,7 +17,7 @@ export const TableHeader = React.forwardRef<
   <thead
     ref={ref}
     className={twMerge(
-      'dark:[&_tr]:border-gray-700 [&_tr]:border-gray-200 [&_tr]:border-b',
+      'dark:[&_tr]:border-wgray-700 [&_tr]:border-wgray-200 [&_tr]:border-b',
       className,
     )}
     {...props}
@@ -40,7 +40,7 @@ export const TableFooter = React.forwardRef<
   <tfoot
     ref={ref}
     className={twMerge(
-      'border-gray-200 dark:border-gray-800 border-t bg-gray-100/50 font-medium [&>tr]:last:border-b-0 dark:bg-gray-800/50',
+      'border-wgray-200 dark:border-wgray-800 border-t bg-wgray-100/50 font-medium [&>tr]:last:border-b-0 dark:bg-wgray-800/50',
       className,
     )}
     {...props}
@@ -55,7 +55,7 @@ export const TableRow = React.forwardRef<
   <tr
     ref={ref}
     className={twMerge(
-      'border-gray-200 dark:border-gray-800 border-b transition-colors hover:bg-gray-100/50 data-[state=selected]:bg-gray-100 dark:hover:bg-gray-800/50 dark:data-[state=selected]:bg-gray-800',
+      'border-wgray-200 dark:border-wgray-800 border-b transition-colors hover:bg-wgray-100/50 data-[state=selected]:bg-wgray-100 dark:hover:bg-wgray-800/50 dark:data-[state=selected]:bg-wgray-800',
       className,
     )}
     {...props}
@@ -70,7 +70,7 @@ export const TableHead = React.forwardRef<
   <th
     ref={ref}
     className={twMerge(
-      'h-10 px-2 text-left align-middle font-medium text-gray-500 [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] dark:text-gray-400',
+      'h-10 px-2 text-left align-middle font-medium text-wgray-500 [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] dark:text-wgray-400',
       className,
     )}
     {...props}
@@ -99,7 +99,7 @@ export const TableCaption = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <caption
     ref={ref}
-    className={twMerge('mt-4 text-sm text-gray-500 dark:text-gray-400', className)}
+    className={twMerge('mt-4 text-sm text-wgray-500 dark:text-wgray-400', className)}
     {...props}
   />
 ))

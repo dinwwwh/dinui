@@ -40,10 +40,12 @@ export default function ComboboxDropdownMenu() {
   const [open, setOpen] = React.useState(false)
 
   return (
-    <div className="flex w-full flex-col items-start justify-between rounded-md border border-gray-200 dark:border-gray-800 px-4 py-3 sm:flex-row sm:items-center">
+    <div className="flex w-full flex-col items-start justify-between rounded-md border border-wgray-200 dark:border-wgray-800 px-4 py-3 sm:flex-row sm:items-center">
       <p className="text-sm font-medium leading-none">
-        <span className="mr-2 rounded-lg bg-gray-900 px-2 py-1 text-xs text-gray-50">{label}</span>
-        <span className="text-gray-500">Create a new project</span>
+        <span className="mr-2 rounded-lg bg-wgray-900 px-2 py-1 text-xs text-wgray-50">
+          {label}
+        </span>
+        <span className="text-wgray-500">Create a new project</span>
       </p>
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>

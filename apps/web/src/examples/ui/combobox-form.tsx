@@ -75,7 +75,7 @@ export default function ComboboxForm() {
                     <Button
                       variant="outline"
                       role="combobox"
-                      className={cn('w-[200px] justify-between', !field.value && 'text-gray-500')}
+                      className={cn('w-[200px] justify-between', !field.value && 'text-wgray-500')}
                     >
                       {field.value
                         ? languages.find((language) => language.value === field.value)?.label

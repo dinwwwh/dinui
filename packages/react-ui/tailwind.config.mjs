@@ -5,6 +5,15 @@ import defaultConfig from 'tailwindcss/defaultConfig'
 export default {
   content: ['./node_modules/@dinui/react/src/**/*.{tsx,ts}'],
   theme: {
+    // STRICT Mode
+    colors: {
+      wgray: colors.neutral,
+      wbrand: colors.violet,
+      werror: colors.red,
+      wwarning: colors.amber,
+      wsuccess: colors.green,
+    },
+
     extend: {
       fontFamily: {
         sans: ['"Inter Variable"', ...defaultConfig.theme.fontFamily.sans],
@@ -15,13 +24,6 @@ export default {
         screens: {
           '2xl': '1400px',
         },
-      },
-      colors: {
-        wgray: colors.neutral,
-        wbrand: colors.violet,
-        werror: colors.red,
-        wwarning: colors.amber,
-        wsuccess: colors.green,
       },
       keyframes: {
         'accordion-down': {

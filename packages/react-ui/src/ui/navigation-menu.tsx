@@ -40,7 +40,7 @@ NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName
 export const NavigationMenuItem = NavigationMenuPrimitive.Item
 
 export const navigationMenuTriggerStyle = tv({
-  base: 'group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50',
+  base: 'group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-wgray-100 hover:text-wgray-900 focus:bg-wgray-100 focus:text-wgray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-wgray-100/50 data-[state=open]:bg-wgray-100/50 dark:bg-wgray-950 dark:hover:bg-wgray-800 dark:hover:text-wgray-50 dark:focus:bg-wgray-800 dark:focus:text-wgray-50 dark:data-[active]:bg-wgray-800/50 dark:data-[state=open]:bg-wgray-800/50',
 })
 
 export const NavigationMenuTrigger = React.forwardRef<
@@ -86,7 +86,7 @@ export const NavigationMenuViewport = React.forwardRef<
   <div className={twMerge('absolute left-0 top-full flex justify-center')}>
     <NavigationMenuPrimitive.Viewport
       className={twMerge(
-        'origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border border-gray-200 dark:border-gray-800 bg-white text-gray-950 shadow data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]  dark:bg-gray-950 dark:text-gray-50',
+        'origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border border-wgray-200 dark:border-wgray-800 bg-white text-wgray-950 shadow data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]  dark:bg-wgray-950 dark:text-wgray-50',
         className,
       )}
       ref={ref}
@@ -108,7 +108,7 @@ export const NavigationMenuIndicator = React.forwardRef<
     )}
     {...props}
   >
-    <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-gray-200 shadow-md dark:bg-gray-800" />
+    <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-wgray-200 shadow-md dark:bg-wgray-800" />
   </NavigationMenuPrimitive.Indicator>
 ))
 NavigationMenuIndicator.displayName = NavigationMenuPrimitive.Indicator.displayName

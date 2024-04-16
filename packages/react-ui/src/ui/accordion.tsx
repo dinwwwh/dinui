@@ -13,7 +13,7 @@ export const AccordionItem = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Item
     ref={ref}
-    className={twMerge('border-b border-gray-200 dark:border-gray-800', className)}
+    className={twMerge('border-b border-wgray-200 dark:border-wgray-800', className)}
     {...props}
   />
 ))
@@ -33,7 +33,7 @@ export const AccordionTrigger = React.forwardRef<
       {...props}
     >
       {children}
-      <ChevronDownIcon className="h-4 w-4 shrink-0 text-gray-500 transition-transform duration-200 dark:text-gray-400" />
+      <ChevronDownIcon className="h-4 w-4 shrink-0 text-wgray-500 transition-transform duration-200 dark:text-wgray-400" />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ))
