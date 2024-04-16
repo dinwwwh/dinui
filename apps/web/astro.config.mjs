@@ -17,6 +17,9 @@ export default defineConfig({
         github: 'https://github.com/dinwwwh/dinui',
         'x.com': 'https://x.com/dinwwwh',
       },
+      editLink: {
+        baseUrl: 'https://github.com/dinwwwh/dinui/tree/main/apps/web/',
+      },
       sidebar: [
         {
           label: 'Getting Started',
