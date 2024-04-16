@@ -1,5 +1,11 @@
 # @dinui/cli
 
+## 0.1.2
+
+### Patch Changes
+
+- [#22](https://github.com/dinwwwh/dinui/pull/22) [`b51acc9`](https://github.com/dinwwwh/dinui/commit/b51acc925bd3e9208f048720cf69803b5c6fecf5) Thanks [@dinwwwh](https://github.com/dinwwwh)! - chore: make it compatible with `src` folder
+
 ## 0.1.1
 
 ### Patch Changes
