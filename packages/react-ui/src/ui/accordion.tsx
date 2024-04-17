@@ -2,14 +2,16 @@
 
 import * as AccordionPrimitive from '@radix-ui/react-accordion'
 import { IconChevronDown } from '@tabler/icons-react'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { tv } from 'tailwind-variants'
 
 export const accordion = tv({
   slots: {
     item: 'border-b',
-    trigger:
-      'w-full flex items-center justify-between py-4 text-sm gap-3 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180',
+    trigger: [
+      'w-full flex items-center justify-between py-4 text-sm gap-3 font-medium transition-all hover:underline',
+      '[&[data-state=open]>[data-el=icon]]:rotate-180',
+    ],
     trigger_icon:
       'size-4 shrink-0 text-wgray-500 transition-transform duration-200 dark:text-wgray-400',
     content:
@@ -20,7 +22,7 @@ export const accordion = tv({
 
 const AccordionRoot = AccordionPrimitive.Root
 
-const AccordionItem = React.forwardRef<
+const AccordionItem = forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
 >((props, ref) => {
@@ -37,12 +39,12 @@ const AccordionItem = React.forwardRef<
 AccordionItem.displayName = 'AccordionItem'
 
 interface AccordionTriggerProps
-  extends React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> {
+  extends Omit<React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>, 'asChild'> {
   headerProps?: React.ComponentProps<typeof AccordionPrimitive.Header>
   iconProps?: React.ComponentProps<typeof IconChevronDown>
 }
 
-const AccordionTrigger = React.forwardRef<
+const AccordionTrigger = forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   AccordionTriggerProps
 >(({ headerProps, iconProps, children, ...props }, ref) => {
@@ -56,8 +58,10 @@ const AccordionTrigger = React.forwardRef<
         className={trigger({ className: props.className })}
       >
         {children}
+
         <IconChevronDown
           {...iconProps}
+          data-el="icon"
           className={trigger_icon({ className: iconProps?.className })}
         />
       </AccordionPrimitive.Trigger>
@@ -71,7 +75,7 @@ interface AccordionContentProps
   wrapperProps?: React.ComponentProps<'div'>
 }
 
-const AccordionContent = React.forwardRef<
+const AccordionContent = forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
   AccordionContentProps
 >(({ wrapperProps, children, ...props }, ref) => {
