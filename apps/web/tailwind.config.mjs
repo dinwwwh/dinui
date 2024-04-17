@@ -27,6 +27,8 @@ export default {
         gray: colors.zinc,
 
         // DinUI colors
+        wwhite: colors.white,
+        wblack: colors.black,
         wgray: colors.neutral,
         wbrand: colors.violet,
         werror: colors.red,

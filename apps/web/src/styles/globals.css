@@ -14,6 +14,12 @@
     /* Make sure manually set border colors */
     @apply border-werror-900;
   }
+
+  body {
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
+  }
 }
 
 :root {
