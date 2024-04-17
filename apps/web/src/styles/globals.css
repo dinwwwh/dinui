@@ -9,8 +9,10 @@
   *,
   ::before,
   ::after {
-    @apply border-wgray-200 dark:border-wgray-800;
     @apply scrollbar-thin;
+
+    /* Make sure manually set border colors */
+    @apply border-werror-900;
   }
 }
 
