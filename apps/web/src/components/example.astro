@@ -4,36 +4,29 @@ import { loadExampleCode, ExampleComponent } from '@web/examples'
 
 interface Props {
   path: string
-  codeOnly?: boolean
 }
 
-const { path, codeOnly = false } = Astro.props
+const { path } = Astro.props
 
 const exampleCode = await loadExampleCode({ path })
 ---
 
 <div class="pt-4">
-  {
-    codeOnly ? (
+  <Tabs>
+    <TabItem label="Preview">
+      <div class="not-content twp">
+        <div
+          class:list={[
+            'border rounded-md w-full overflow-auto border-gray-200 dark:border-gray-800',
+            '[&>astro-island]:flex [&>astro-island]:items-center [&>astro-island]:justify-center [&>astro-island]:p-5 md:[&>astro-island]:p-12 [&>astro-island]:min-h-[350px]',
+          ]}
+        >
+          <ExampleComponent path={path} client:idle />
+        </div>
+      </div>
+    </TabItem>
+    <TabItem label="Code">
       <Code code={exampleCode} lang="tsx" />
-    ) : (
-      <Tabs>
-        <TabItem label="Preview">
-          <div class="not-content twp">
-            <div
-              class:list={[
-                'border rounded-md w-full overflow-auto border-gray-200 dark:border-gray-800',
-                '[&>astro-island]:flex [&>astro-island]:items-center [&>astro-island]:justify-center [&>astro-island]:p-5 md:[&>astro-island]:p-12 [&>astro-island]:min-h-[350px]',
-              ]}
-            >
-              <ExampleComponent path={path} client:idle />
-            </div>
-          </div>
-        </TabItem>
-        <TabItem label="Code">
-          <Code code={exampleCode} lang="tsx" />
-        </TabItem>
-      </Tabs>
-    )
-  }
+    </TabItem>
+  </Tabs>
 </div>
