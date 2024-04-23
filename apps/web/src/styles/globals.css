@@ -1,6 +1,3 @@
-@import '@fontsource-variable/inter';
-@import '@fontsource-variable/jetbrains-mono';
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,13 +6,11 @@
   *,
   ::before,
   ::after {
-    @apply scrollbar-thin;
-
-    /* Make sure manually set border colors */
-    @apply border-werror-900;
+    @apply border-wgray-200 scrollbar-thin;
   }
 
   body {
+    @apply bg-wgray-50 text-wgray-900;
     font-feature-settings:
       'rlig' 1,
       'calt' 1;
@@ -27,29 +22,29 @@
   --sl-font-mono: theme(fontFamily.mono);
 
   --sl-color-white: white;
-  --sl-color-gray-1: theme(colors.wgray.300);
-  --sl-color-gray-2: theme(colors.wgray.400);
-  --sl-color-gray-3: theme(colors.wgray.500);
-  --sl-color-gray-4: theme(colors.wgray.700);
-  --sl-color-gray-5: theme(colors.wgray.800);
-  --sl-color-gray-6: theme(colors.wgray.900);
-  --sl-color-black: theme(colors.wgray.950);
-  --sl-color-accent-low: theme(colors.wbrand.900);
-  --sl-color-accent: theme(colors.wbrand.600);
-  --sl-color-accent-high: theme(colors.wbrand.200);
+  --sl-color-gray-1: theme(colors.neutral.300);
+  --sl-color-gray-2: theme(colors.neutral.400);
+  --sl-color-gray-3: theme(colors.neutral.500);
+  --sl-color-gray-4: theme(colors.neutral.700);
+  --sl-color-gray-5: theme(colors.neutral.800);
+  --sl-color-gray-6: theme(colors.neutral.900);
+  --sl-color-black: theme(colors.neutral.950);
+  --sl-color-accent-low: theme(colors.teal.900);
+  --sl-color-accent: theme(colors.teal.500);
+  --sl-color-accent-high: theme(colors.teal.300);
 }
 
 :root[data-theme='light'] {
-  --sl-color-white: theme(colors.wgray.900);
-  --sl-color-gray-1: theme(colors.wgray.800);
-  --sl-color-gray-2: theme(colors.wgray.700);
-  --sl-color-gray-3: theme(colors.wgray.500);
-  --sl-color-gray-4: theme(colors.wgray.400);
-  --sl-color-gray-5: theme(colors.wgray.300);
-  --sl-color-gray-6: theme(colors.wgray.200);
-  --sl-color-gray-7: theme(colors.wgray.100);
+  --sl-color-white: theme(colors.neutral.900);
+  --sl-color-gray-1: theme(colors.neutral.800);
+  --sl-color-gray-2: theme(colors.neutral.700);
+  --sl-color-gray-3: theme(colors.neutral.500);
+  --sl-color-gray-4: theme(colors.neutral.400);
+  --sl-color-gray-5: theme(colors.neutral.300);
+  --sl-color-gray-6: theme(colors.neutral.200);
+  --sl-color-gray-7: theme(colors.neutral.100);
   --sl-color-black: white;
-  --sl-color-accent-low: theme(colors.wbrand.200);
-  --sl-color-accent: theme(colors.wbrand.600);
-  --sl-color-accent-high: theme(colors.wbrand.900);
+  --sl-color-accent-low: theme(colors.teal.200);
+  --sl-color-accent: theme(colors.teal.500);
+  --sl-color-accent-high: theme(colors.teal.900);
 }

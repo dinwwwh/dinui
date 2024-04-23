@@ -43,7 +43,11 @@ export default defineConfig({
           },
         },
       ],
-      customCss: ['./src/styles/globals.css'],
+      customCss: [
+        '@fontsource-variable/inter',
+        '@fontsource-variable/jetbrains-mono',
+        './src/styles/globals.css',
+      ],
     }),
   ],
 })

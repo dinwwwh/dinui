@@ -252,6 +252,7 @@
     "@tabler/icons-react": "^3.1.0",
     "clsx": "^2.1.0",
     "cmdk": "^1.0.0",
+    "color": "^4.2.3",
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.0.0",
     "input-otp": "^1.2.4",
@@ -268,9 +269,12 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/color": "^3.0.6",
     "@types/react": "^18.2.67",
     "tailwindcss": "^3.4.3",
     "tailwindcss-animate": "^1.0.7",
+    "tailwindcss-themer": "^4.0.0",
+    "type-fest": "^4.15.0",
     "typescript": "^5.4.2"
   }
 }

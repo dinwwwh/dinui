@@ -274,6 +274,9 @@ importers:
       cmdk:
         specifier: ^1.0.0
         version: 1.0.0(@types/react@18.2.67)(react-dom@18.2.0)(react@18.2.0)
+      color:
+        specifier: ^4.2.3
+        version: 4.2.3
       date-fns:
         specifier: ^3.6.0
         version: 3.6.0
@@ -317,6 +320,9 @@ importers:
         specifier: ^3.22.4
         version: 3.22.4
     devDependencies:
+      '@types/color':
+        specifier: ^3.0.6
+        version: 3.0.6
       '@types/react':
         specifier: ^18.2.67
         version: 18.2.67
@@ -326,6 +332,12 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.3)
+      tailwindcss-themer:
+        specifier: ^4.0.0
+        version: 4.0.0(tailwindcss@3.4.3)
+      type-fest:
+        specifier: ^4.15.0
+        version: 4.15.0
       typescript:
         specifier: ^5.4.2
         version: 5.4.2
@@ -3121,6 +3133,22 @@ packages:
     resolution: {integrity: sha512-WXCyOcRtH37HAUkpXhUduaxdm82b4GSlyTqajXviN4EfiuPgNYR109xMCKvpl6zPIpua0DGlMEDCq+g8EdoheQ==}
     dependencies:
       '@babel/types': 7.24.0
+
+  /@types/color-convert@2.0.3:
+    resolution: {integrity: sha512-2Q6wzrNiuEvYxVQqhh7sXM2mhIhvZR/Paq4FdsQkOMgWsCIkKvSGj8Le1/XalulrmgOzPMqNa0ix+ePY4hTrfg==}
+    dependencies:
+      '@types/color-name': 1.1.4
+    dev: true
+
+  /@types/color-name@1.1.4:
+    resolution: {integrity: sha512-hulKeREDdLFesGQjl96+4aoJSHY5b2GRjagzzcqCfIrWhe5vkCqIvrLbqzBaI1q94Vg8DNJZZqTR5ocdWmWclg==}
+    dev: true
+
+  /@types/color@3.0.6:
+    resolution: {integrity: sha512-NMiNcZFRUAiUUCCf7zkAelY8eV3aKqfbzyFQlXpPIEeoNDbsEHGpb854V3gzTsGKYj830I5zPuOwU/TP5/cW6A==}
+    dependencies:
+      '@types/color-convert': 2.0.3
+    dev: true
 
   /@types/d3-array@3.2.1:
     resolution: {integrity: sha512-Y2Jn2idRrLzUfAKV2LyRImR+y4oa2AntrgID95SHJxuMUrkNXmanDSed71sRNZysveJVt1hLLemQZIady0FpEg==}
@@ -6325,6 +6353,10 @@ packages:
       object.values: 1.1.7
     dev: true
 
+  /just-unique@4.2.0:
+    resolution: {integrity: sha512-cxQGGUiit6CGUpuuiezY8N4m1wgF4o7127rXEXDFcxeDUFfdV7gSkwA26Fe2wWBiNQq2SZOgN4gSmMxB/StA8Q==}
+    dev: true
+
   /kind-of@6.0.3:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
     engines: {node: '>=0.10.0'}
@@ -6384,6 +6416,10 @@ packages:
 
   /lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
+    dev: true
+
+  /lodash.mergewith@4.6.2:
+    resolution: {integrity: sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==}
     dev: true
 
   /lodash.sortby@4.7.0:
@@ -8692,6 +8728,18 @@ packages:
       tailwindcss: 3.4.3
     dev: false
 
+  /tailwindcss-themer@4.0.0(tailwindcss@3.4.3):
+    resolution: {integrity: sha512-kngKDW+z36JtjvaNziX0aesO95r8f5+3FFdANVFDt1uzNHZsL6XLla1YDK6EBAYFqPichoPDbO4lrrTyB+UAbA==}
+    peerDependencies:
+      tailwindcss: ^3.1.0
+    dependencies:
+      color: 4.2.3
+      just-unique: 4.2.0
+      lodash.merge: 4.6.2
+      lodash.mergewith: 4.6.2
+      tailwindcss: 3.4.3
+    dev: true
+
   /tailwindcss@3.4.3:
     resolution: {integrity: sha512-U7sxQk/n397Bmx4JHbJx/iSOOv5G+II3f1kpLpY2QeUv5DcPdcTsYLlusZfq1NthHS1c1cZoyFmmkex1rzke0A==}
     engines: {node: '>=14.0.0'}
@@ -9006,7 +9054,6 @@ packages:
   /type-fest@4.15.0:
     resolution: {integrity: sha512-tB9lu0pQpX5KJq54g+oHOLumOx+pMep4RaM6liXh2PKmVRFF+/vAtUP0ZaJ0kOySfVNjF6doBWPHhBhISKdlIA==}
     engines: {node: '>=16'}
-    dev: false
 
   /typed-array-buffer@1.0.0:
     resolution: {integrity: sha512-Y8KTSIglk9OZEr8zywiIHG/kmQ7KWyjseXs1CbSo8vC42w7hg2HgYTxSWwP0+is7bWDc1H+Fo026CpHFwm8tkw==}
