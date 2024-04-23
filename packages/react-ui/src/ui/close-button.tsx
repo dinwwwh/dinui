@@ -7,11 +7,9 @@ export const button = tv({
   slots: {
     root: [
       'inline-flex items-center justify-center whitespace-nowrap rounded-lg',
-      'text-sm font-medium transition-colors disabled:opacity-50 focus-visible:outline-none',
-      'text-wgray-400 hover:text-wgray-500',
-      'dark:text-wgray-600 hover:text-wgray-500',
-      'hover:bg-wgray-50 dark:hover:bg-wgray-900',
-      'ring-wgray-400/15 focus:ring-4',
+      'text-sm font-medium transition-colors disabled:opacity-50',
+      'text-wgray-500 hover:text-wgray-600',
+      'hover:bg-wgray-50',
     ],
     root_icon: null,
   },

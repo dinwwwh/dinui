@@ -7,6 +7,7 @@
   ::before,
   ::after {
     @apply border-wgray-200 scrollbar-thin;
+    @apply focus-visible:outline outline-4 outline-wbrand-500/40;
   }
 
   body {

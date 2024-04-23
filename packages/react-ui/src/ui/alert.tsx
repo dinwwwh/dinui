@@ -12,134 +12,27 @@ import { P, match } from 'ts-pattern'
 
 export const alert = tv({
   slots: {
-    root: 'flex rounded-md py-4 pl-2 pr-4',
-    icon_wrapper: 'place-self-start p-2 rounded-full -mt-1',
+    root: 'flex rounded-md py-4 pl-2 pr-4 bg-wwhite border',
+    icon_wrapper: 'place-self-start p-1 rounded-full ml-1',
     icon: 'flex-shrink-0 size-4',
     content: 'ml-3 flex-1',
     title: 'text-sm font-medium',
-    description: 'mt-1 text-sm',
+    description: 'mt-1 text-sm text-wgray-700',
     closeButton: '-mt-2.5 -mr-2.5',
   },
   variants: {
-    wvariant: {
-      base: {
-        root: 'bg-wwhite dark:bg-wgray-950 border border-wgray-200 dark:border-wgray-800',
-      },
-      soft: null,
-    },
-    wborder: {
-      none: null,
-      left: null,
-    },
     wcolor: {
-      wbrand: {
-        icon_wrapper: 'bg-wbrand-50 dark:bg-wbrand-900/25',
-        icon: 'text-wbrand-500 dark:text-wbrand-400',
+      none: {},
+      brand: {
+        icon: 'text-wbrand-600',
       },
-      wgray: {
-        icon_wrapper: 'bg-wgray-50 dark:bg-wgray-900/25',
-        icon: 'text-wgray-500 dark:text-wgray-400',
-      },
-      wsuccess: {
-        icon_wrapper: 'bg-wsuccess-50 dark:bg-wsuccess-900/25',
-        icon: 'text-wsuccess-500 dark:text-wsuccess-400',
-      },
-      wwarning: {
-        icon_wrapper: 'bg-wwarning-50 dark:bg-wwarning-900/25',
-        icon: 'text-wwarning-500 dark:text-wwarning-400',
-      },
-      werror: {
-        icon_wrapper: 'bg-werror-50 dark:bg-werror-900/25',
-        icon: 'text-werror-500 dark:text-werror-400',
+      danger: {
+        icon: 'text-wdanger-600',
       },
     },
   },
-  compoundVariants: [
-    {
-      wvariant: 'soft',
-      wcolor: 'wbrand',
-      className: {
-        root: 'bg-wbrand-50 dark:bg-wbrand-900 text-wbrand-700 dark:text-wbrand-300',
-        description: 'text-wbrand-600 dark:text-wbrand-400',
-      },
-    },
-    {
-      wvariant: 'soft',
-      wcolor: 'wgray',
-      className: {
-        root: 'bg-wgray-50 dark:bg-wgray-900 text-wgray-700 dark:text-wgray-300',
-        description: 'text-wgray-600 dark:text-wgray-400',
-      },
-    },
-    {
-      wvariant: 'soft',
-      wcolor: 'wsuccess',
-      className: {
-        root: 'bg-wsuccess-50 dark:bg-wsuccess-900 text-wsuccess-700 dark:text-wsuccess-300',
-        description: 'text-wsuccess-600 dark:text-wsuccess-400',
-      },
-    },
-    {
-      wvariant: 'soft',
-      wcolor: 'wwarning',
-      className: {
-        root: 'bg-wwarning-50 dark:bg-wwarning-900 text-wwarning-700 dark:text-wwarning-300',
-        description: 'text-wwarning-600 dark:text-wwarning-400',
-      },
-    },
-    {
-      wvariant: 'soft',
-      wcolor: 'werror',
-      className: {
-        root: 'bg-werror-50 dark:bg-werror-900 text-werror-700 dark:text-werror-300',
-        description: 'text-werror-600 dark:text-werror-400',
-      },
-    },
-    {
-      wvariant: 'soft',
-      wcolor: 'wbrand',
-      wborder: 'left',
-      className: {
-        root: 'border-l-2 border-wbrand-700 dark:border-wbrand-300',
-      },
-    },
-    {
-      wvariant: 'soft',
-      wcolor: 'wgray',
-      wborder: 'left',
-      className: {
-        root: 'border-l-2 border-wgray-700 dark:border-wgray-300',
-      },
-    },
-    {
-      wvariant: 'soft',
-      wcolor: 'wsuccess',
-      wborder: 'left',
-      className: {
-        root: 'border-l-2 border-wsuccess-700 dark:border-wsuccess-300',
-      },
-    },
-    {
-      wvariant: 'soft',
-      wcolor: 'wwarning',
-      wborder: 'left',
-      className: {
-        root: 'border-l-2 border-wwarning-700 dark:border-wwarning-300',
-      },
-    },
-    {
-      wvariant: 'soft',
-      wcolor: 'werror',
-      wborder: 'left',
-      className: {
-        root: 'border-l-2 border-werror-700 dark:border-werror-300',
-      },
-    },
-  ],
   defaultVariants: {
-    wvariant: 'base',
-    wborder: 'none',
-    wcolor: 'wbrand',
+    wcolor: 'none',
   },
 })
 
@@ -150,8 +43,8 @@ const AlertContext = createContext<AlertVariantProps>(alert.defaultVariants)
 const AlertRoot = forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & AlertVariantProps
->(({ className, wvariant, wcolor, wborder, ...props }, ref) => {
-  const variantOpts = { wvariant, wcolor, wborder }
+>(({ className, wcolor, ...props }, ref) => {
+  const variantOpts = { wcolor }
   const { root } = alert(variantOpts)
 
   return (
@@ -175,10 +68,8 @@ const AlertIcon = forwardRef<HTMLDivElement, AlertIconProps>(({ wrapperProps, ..
       <Slot {...props} ref={ref} className={icon({ className: props.className })}>
         {props.children ||
           match(variantOpts.wcolor)
-            .with(P.union(undefined, 'wbrand', 'wgray'), () => <IconExclamationCircle />)
-            .with('wsuccess', () => <IconCircleCheck />)
-            .with('wwarning', () => <IconAlertTriangle />)
-            .with('werror', () => <IconCircleX />)
+            .with(P.union(undefined, 'none', 'brand'), () => <IconExclamationCircle />)
+            .with('danger', () => <IconCircleX />)
             .exhaustive()}
       </Slot>
     </div>

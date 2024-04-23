@@ -1,4 +1,4 @@
-import baseConfig from './node_modules/@dinui/react/tailwind.config.ts'
+import baseConfig from '../../packages/react-ui/tailwind.config'
 import starlightPlugin from '@astrojs/starlight-tailwind'
 import type { Config } from 'tailwindcss'
 import { scopedPreflightStyles, isolateInsideOfContainer } from 'tailwindcss-scoped-preflight'

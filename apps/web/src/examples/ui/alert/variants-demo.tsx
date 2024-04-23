@@ -4,7 +4,7 @@ import { IconPercentage } from '@tabler/icons-react'
 export default function AlertVariantsDemo() {
   return (
     <div className="flex flex-wrap flex-col gap-4">
-      <Alert wvariant="base">
+      <Alert>
         <Alert.Icon />
 
         <Alert.Content>
@@ -18,7 +18,7 @@ export default function AlertVariantsDemo() {
         <Alert.CloseButton />
       </Alert>
 
-      <Alert wvariant="base" wcolor="werror">
+      <Alert wcolor="brand">
         <Alert.Icon>
           <IconPercentage />
         </Alert.Icon>
@@ -34,7 +34,7 @@ export default function AlertVariantsDemo() {
         <Alert.CloseButton />
       </Alert>
 
-      <Alert wvariant="base">
+      <Alert wcolor="danger">
         <Alert.Icon />
 
         <Alert.Content>
