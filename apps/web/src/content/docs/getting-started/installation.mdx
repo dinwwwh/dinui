@@ -22,7 +22,10 @@ This installation guide may be simplified in the future as the project is still 
     <li>Install `npm install @dinui/react`</li>
     <li>
       Config your `tailwind.config.ts` file match minimum requirements bellow
-      <Code code={twConfigCode} lang="ts" />
+      <Code
+        code={twConfigCode.replace("from './src/tailwind'", "from '@dinui/react/tailwind'")}
+        lang="ts"
+      />
     </li>
     <li>
       Config your `globals.css` file match minimum requirements bellow
