@@ -18,7 +18,7 @@ export default function AlertVariantsDemo() {
         <Alert.CloseButton />
       </Alert>
 
-      <Alert variant="brand">
+      <Alert color="brand">
         <Alert.Icon>
           <IconPercentage />
         </Alert.Icon>
@@ -34,7 +34,7 @@ export default function AlertVariantsDemo() {
         <Alert.CloseButton />
       </Alert>
 
-      <Alert variant="danger">
+      <Alert color="danger">
         <Alert.Icon />
 
         <Alert.Content>

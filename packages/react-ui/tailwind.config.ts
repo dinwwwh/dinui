@@ -1,6 +1,83 @@
+import { createThemes } from './src/tailwind'
 import type { Config } from 'tailwindcss'
-import multiThemePlugin from 'tailwindcss-themer'
 import colors from 'tailwindcss/colors'
+
+const themes = createThemes([
+  {
+    name: 'light',
+    selectors: ['[data-theme=light]'],
+    colors: {
+      'bg': colors.neutral[50],
+      'bg--contrast': colors.white,
+      'bg--hover': colors.neutral[100],
+      'bg--active': colors.neutral[100],
+      'bg--muted': colors.neutral[200],
+
+      'fg': colors.neutral[900],
+      'fg-weak': colors.neutral[700],
+      'fg-weak--hover': colors.neutral[800],
+      'fg-weaker': colors.neutral[500],
+      'fg-weaker--hover': colors.neutral[600],
+
+      'fg-brand': colors.teal[600],
+      'fg-brand--hover': colors.teal[700],
+
+      'fg-danger': colors.rose[600],
+      'fg-danger--hover': colors.rose[700],
+
+      'border': colors.neutral[200],
+      'outline': colors.teal[500] + '66' /** 40% opacity in hash color */,
+
+      'surface': {
+        bg: colors.white,
+      },
+
+      'brand': {
+        'bg': colors.teal[500],
+        'bg--hover': colors.teal[600],
+
+        'fg': colors.white,
+      },
+    },
+  },
+  {
+    name: 'dark',
+    selectors: ['[data-theme=dark]'],
+    colors: {
+      'bg': colors.neutral[950],
+      'bg--contrast': colors.neutral[900],
+      'bg--hover': colors.neutral[700],
+      'bg--active': colors.neutral[800],
+      'bg--muted': colors.neutral[600],
+
+      'fg': colors.neutral[50],
+      'fg-weak': colors.neutral[200],
+      'fg-weak--hover': colors.neutral[100],
+      'fg-weaker': colors.neutral[400],
+      'fg-weaker--hover': colors.neutral[300],
+
+      'fg-brand': colors.teal[400],
+      'fg-brand--hover': colors.teal[300],
+
+      'fg-danger': colors.rose[400],
+      'fg-danger--hover': colors.rose[300],
+
+      'border': colors.neutral[800],
+      'outline': colors.teal[500] + '66' /** 40% opacity in hash color */,
+
+      'surface': {
+        bg: colors.neutral[900],
+      },
+
+      'brand': {
+        'bg': colors.teal[500],
+        'bg--hover': colors.teal[400],
+
+        'fg': colors.white,
+      },
+    },
+  },
+])
 
 export default {
   content: ['./node_modules/@dinui/react/src/**/*.{tsx,ts}'],
@@ -32,83 +109,5 @@ export default {
       },
     },
   },
-  plugins: [
-    require('tailwindcss-animate'),
-    multiThemePlugin({
-      defaultTheme: {
-        extend: {
-          textColor: {
-            wgray: {
-              '900': colors.neutral[100],
-              '800': colors.neutral[200],
-              '700': colors.neutral[300],
-              '600': colors.neutral[400],
-              '500': colors.neutral[500],
-            },
-            wbrand: {
-              '600': colors.teal[400],
-            },
-            wdanger: {
-              '600': colors.rose[400],
-            },
-          },
-          backgroundColor: {
-            wwhite: colors.neutral[950],
-            wgray: {
-              '50': colors.neutral[900],
-            },
-          },
-          borderColor: {
-            wgray: {
-              '200': colors.neutral[800],
-            },
-          },
-          outlineColor: {
-            wbrand: {
-              '500': colors.teal[500],
-            },
-          },
-        },
-      },
-      themes: [
-        {
-          name: 'light',
-          selectors: [":root[data-theme='light']"],
-          extend: {
-            textColor: {
-              wgray: {
-                '900': colors.neutral[900],
-                '800': colors.neutral[800],
-                '700': colors.neutral[700],
-                '600': colors.neutral[600],
-                '500': colors.neutral[500],
-              },
-              wbrand: {
-                '600': colors.teal[600],
-              },
-              wdanger: {
-                '600': colors.rose[600],
-              },
-            },
-            backgroundColor: {
-              wwhite: colors.white,
-              wgray: {
-                '50': colors.neutral[50],
-              },
-            },
-            borderColor: {
-              wgray: {
-                '200': colors.neutral[200],
-              },
-            },
-            outlineColor: {
-              wbrand: {
-                '500': colors.teal[500],
-              },
-            },
-          },
-        },
-      ],
-    }),
-  ],
+  plugins: [require('tailwindcss-animate'), themes],
 } satisfies Config

@@ -6,12 +6,13 @@
   *,
   ::before,
   ::after {
-    @apply border-wgray-200 scrollbar-thin;
-    @apply focus-visible:outline outline-4 outline-wbrand-500/40;
+    @apply scrollbar-thin;
+    @apply border-border;
+    @apply focus-visible:outline outline-4 outline-outline;
   }
 
   body {
-    @apply bg-wgray-50 text-wgray-900;
+    @apply bg-bg text-fg;
     font-feature-settings:
       'rlig' 1,
       'calt' 1;

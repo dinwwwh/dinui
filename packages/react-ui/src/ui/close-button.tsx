@@ -8,8 +8,8 @@ export const button = tv({
     root: [
       'inline-flex items-center justify-center whitespace-nowrap rounded-lg',
       'text-sm font-medium transition-colors disabled:opacity-50',
-      'text-wgray-500 hover:text-wgray-600',
-      'hover:bg-wgray-50',
+      'text-fg-weaker hover:text-fg-weaker--hover',
+      'hover:bg-bg--hover',
     ],
     root_icon: null,
   },

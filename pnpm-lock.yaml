@@ -268,6 +268,9 @@ importers:
       '@tabler/icons-react':
         specifier: ^3.1.0
         version: 3.1.0(react@18.2.0)
+      chalk:
+        specifier: ^5.3.0
+        version: 5.3.0
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -289,9 +292,9 @@ importers:
       next-themes:
         specifier: ^0.3.0
         version: 0.3.0(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
+      radash:
+        specifier: ^12.1.0
+        version: 12.1.0
       react-day-picker:
         specifier: ^8.10.0
         version: 8.10.0(date-fns@3.6.0)(react@18.2.0)
@@ -310,6 +313,9 @@ importers:
       tailwind-variants:
         specifier: ^0.2.1
         version: 0.2.1(tailwindcss@3.4.3)
+      tailwindcss-animate:
+        specifier: ^1.0.7
+        version: 1.0.7(tailwindcss@3.4.3)
       ts-pattern:
         specifier: ^5.1.1
         version: 5.1.1
@@ -326,15 +332,12 @@ importers:
       '@types/react':
         specifier: ^18.2.67
         version: 18.2.67
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
       tailwindcss:
         specifier: ^3.4.3
         version: 3.4.3
-      tailwindcss-animate:
-        specifier: ^1.0.7
-        version: 1.0.7(tailwindcss@3.4.3)
-      tailwindcss-themer:
-        specifier: ^4.0.0
-        version: 4.0.0(tailwindcss@3.4.3)
       type-fest:
         specifier: ^4.15.0
         version: 4.15.0
@@ -6353,10 +6356,6 @@ packages:
       object.values: 1.1.7
     dev: true
 
-  /just-unique@4.2.0:
-    resolution: {integrity: sha512-cxQGGUiit6CGUpuuiezY8N4m1wgF4o7127rXEXDFcxeDUFfdV7gSkwA26Fe2wWBiNQq2SZOgN4gSmMxB/StA8Q==}
-    dev: true
-
   /kind-of@6.0.3:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
     engines: {node: '>=0.10.0'}
@@ -6416,10 +6415,6 @@ packages:
 
   /lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
-    dev: true
-
-  /lodash.mergewith@4.6.2:
-    resolution: {integrity: sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==}
     dev: true
 
   /lodash.sortby@4.7.0:
@@ -7691,6 +7686,11 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /radash@12.1.0:
+    resolution: {integrity: sha512-b0Zcf09AhqKS83btmUeYBS8tFK7XL2e3RvLmZcm0sTdF1/UUlHSsjXdCcWNxe7yfmAlPve5ym0DmKGtTzP6kVQ==}
+    engines: {node: '>=14.18.0'}
+    dev: false
+
   /rc@1.2.8:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
     hasBin: true
@@ -7831,7 +7831,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
-    dev: false
 
   /read-cache@1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
@@ -8716,7 +8715,6 @@ packages:
       tailwindcss: '>=3.0.0 || insiders'
     dependencies:
       tailwindcss: 3.4.3
-    dev: true
 
   /tailwindcss-scoped-preflight@3.2.3(postcss@8.4.38)(tailwindcss@3.4.3):
     resolution: {integrity: sha512-L7fi0mkRMcg1MbmkKtJ3no0YGFHEYCePtPdpztzhppph+A3bryzYdnkCKYc6/wzQqmegkFqLgobRWHHPh05qTw==}
@@ -8727,18 +8725,6 @@ packages:
       postcss: 8.4.38
       tailwindcss: 3.4.3
     dev: false
-
-  /tailwindcss-themer@4.0.0(tailwindcss@3.4.3):
-    resolution: {integrity: sha512-kngKDW+z36JtjvaNziX0aesO95r8f5+3FFdANVFDt1uzNHZsL6XLla1YDK6EBAYFqPichoPDbO4lrrTyB+UAbA==}
-    peerDependencies:
-      tailwindcss: ^3.1.0
-    dependencies:
-      color: 4.2.3
-      just-unique: 4.2.0
-      lodash.merge: 4.6.2
-      lodash.mergewith: 4.6.2
-      tailwindcss: 3.4.3
-    dev: true
 
   /tailwindcss@3.4.3:
     resolution: {integrity: sha512-U7sxQk/n397Bmx4JHbJx/iSOOv5G+II3f1kpLpY2QeUv5DcPdcTsYLlusZfq1NthHS1c1cZoyFmmkex1rzke0A==}

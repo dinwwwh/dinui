@@ -1,38 +1,29 @@
 import CloseButton from './close-button'
 import { Slot } from '@radix-ui/react-slot'
-import {
-  IconAlertTriangle,
-  IconCircleCheck,
-  IconCircleX,
-  IconExclamationCircle,
-} from '@tabler/icons-react'
+import { IconCircleX, IconExclamationCircle } from '@tabler/icons-react'
 import { createContext, forwardRef, useContext } from 'react'
 import { tv, type VariantProps } from 'tailwind-variants'
 import { P, match } from 'ts-pattern'
 
 export const alert = tv({
   slots: {
-    root: 'flex rounded-md py-4 pl-2 pr-4 bg-wwhite border',
+    root: 'flex rounded-md py-4 pl-2 pr-4 bg-bg--contrast border',
     icon_wrapper: 'place-self-start p-1 rounded-full ml-1',
     icon: 'flex-shrink-0 size-4',
     content: 'ml-3 flex-1',
     title: 'text-sm font-medium',
-    description: 'mt-1 text-sm text-wgray-700',
+    description: 'mt-1 text-sm text-fg-weak',
     closeButton: '-mt-2.5 -mr-2.5',
   },
   variants: {
-    variant: {
-      default: {},
+    color: {
       brand: {
-        icon: 'text-wbrand-600',
+        icon: 'text-fg-brand',
       },
       danger: {
-        icon: 'text-wdanger-600',
+        icon: 'text-fg-danger',
       },
     },
-  },
-  defaultVariants: {
-    variant: 'default',
   },
 })
 
@@ -43,8 +34,8 @@ const AlertContext = createContext<AlertVariantProps>(alert.defaultVariants)
 const AlertRoot = forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & AlertVariantProps
->(({ className, variant, ...props }, ref) => {
-  const variantOpts = { variant }
+>(({ className, color, ...props }, ref) => {
+  const variantOpts = { color }
   const { root } = alert(variantOpts)
 
   return (
@@ -67,8 +58,8 @@ const AlertIcon = forwardRef<HTMLDivElement, AlertIconProps>(({ wrapperProps, ..
     <div {...wrapperProps} className={icon_wrapper({ className: wrapperProps?.className })}>
       <Slot {...props} ref={ref} className={icon({ className: props.className })}>
         {props.children ||
-          match(variantOpts.variant)
-            .with(P.union(undefined, 'default', 'brand'), () => <IconExclamationCircle />)
+          match(variantOpts.color)
+            .with(P.union(undefined, 'brand'), () => <IconExclamationCircle />)
             .with('danger', () => <IconCircleX />)
             .exhaustive()}
       </Slot>

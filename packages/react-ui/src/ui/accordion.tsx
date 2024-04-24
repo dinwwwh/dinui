@@ -7,16 +7,17 @@ import { tv } from 'tailwind-variants'
 
 export const accordion = tv({
   slots: {
-    item: 'border-b',
+    item: 'border-b group',
     trigger: [
       'w-full flex items-center justify-between py-4 gap-3 transition-all hover:underline',
       'text-sm font-medium',
       '[&[data-state=open]>[data-el=icon]]:rotate-180',
     ],
-    trigger_icon: 'size-4 shrink-0 text-wgray-500 transition-transform duration-200',
+    trigger_icon:
+      'size-4 shrink-0 text-fg-weaker duration-200 transition group-hover:text-fg-weaker--hover',
     content: [
       'overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
-      'text-sm text-wgray-700',
+      'text-sm text-fg-weak',
     ],
     content_wrapper: 'pb-4',
   },
