@@ -19,22 +19,22 @@ const themes = createThemes([
       'fg-weaker': colors.neutral[500],
       'fg-weaker--hover': colors.neutral[600],
 
-      'fg-brand': colors.teal[600],
-      'fg-brand--hover': colors.teal[700],
+      'fg-brand': colors.indigo[600],
+      'fg-brand--hover': colors.indigo[700],
 
       'fg-danger': colors.rose[600],
       'fg-danger--hover': colors.rose[700],
 
       'border': colors.neutral[200],
-      'outline': colors.teal[500] + '66' /** 40% opacity in hash color */,
+      'outline': colors.indigo[500] + '66' /** 40% opacity in hash color */,
 
       'surface': {
         bg: colors.white,
       },
 
       'brand': {
-        'bg': colors.teal[500],
-        'bg--hover': colors.teal[600],
+        'bg': colors.indigo[500],
+        'bg--hover': colors.indigo[600],
 
         'fg': colors.white,
       },
@@ -56,22 +56,22 @@ const themes = createThemes([
       'fg-weaker': colors.neutral[400],
       'fg-weaker--hover': colors.neutral[300],
 
-      'fg-brand': colors.teal[400],
-      'fg-brand--hover': colors.teal[300],
+      'fg-brand': colors.indigo[400],
+      'fg-brand--hover': colors.indigo[300],
 
       'fg-danger': colors.rose[400],
       'fg-danger--hover': colors.rose[300],
 
       'border': colors.neutral[800],
-      'outline': colors.teal[500] + '66' /** 40% opacity in hash color */,
+      'outline': colors.indigo[500] + '66' /** 40% opacity in hash color */,
 
       'surface': {
         bg: colors.neutral[900],
       },
 
       'brand': {
-        'bg': colors.teal[500],
-        'bg--hover': colors.teal[400],
+        'bg': colors.indigo[500],
+        'bg--hover': colors.indigo[400],
 
         'fg': colors.white,
       },

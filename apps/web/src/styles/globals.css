@@ -31,9 +31,9 @@
   --sl-color-gray-5: theme(colors.neutral.800);
   --sl-color-gray-6: theme(colors.neutral.900);
   --sl-color-black: theme(colors.neutral.950);
-  --sl-color-accent-low: theme(colors.teal.900);
-  --sl-color-accent: theme(colors.teal.500);
-  --sl-color-accent-high: theme(colors.teal.300);
+  --sl-color-accent-low: theme(colors.indigo.900);
+  --sl-color-accent: theme(colors.indigo.500);
+  --sl-color-accent-high: theme(colors.indigo.300);
 }
 
 :root[data-theme='light'] {
@@ -46,7 +46,7 @@
   --sl-color-gray-6: theme(colors.neutral.200);
   --sl-color-gray-7: theme(colors.neutral.100);
   --sl-color-black: white;
-  --sl-color-accent-low: theme(colors.teal.200);
-  --sl-color-accent: theme(colors.teal.500);
-  --sl-color-accent-high: theme(colors.teal.900);
+  --sl-color-accent-low: theme(colors.indigo.200);
+  --sl-color-accent: theme(colors.indigo.500);
+  --sl-color-accent-high: theme(colors.indigo.900);
 }
