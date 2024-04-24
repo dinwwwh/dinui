@@ -21,8 +21,8 @@ export const alert = tv({
     closeButton: '-mt-2.5 -mr-2.5',
   },
   variants: {
-    wcolor: {
-      none: {},
+    variant: {
+      default: {},
       brand: {
         icon: 'text-wbrand-600',
       },
@@ -32,7 +32,7 @@ export const alert = tv({
     },
   },
   defaultVariants: {
-    wcolor: 'none',
+    variant: 'default',
   },
 })
 
@@ -43,8 +43,8 @@ const AlertContext = createContext<AlertVariantProps>(alert.defaultVariants)
 const AlertRoot = forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & AlertVariantProps
->(({ className, wcolor, ...props }, ref) => {
-  const variantOpts = { wcolor }
+>(({ className, variant, ...props }, ref) => {
+  const variantOpts = { variant }
   const { root } = alert(variantOpts)
 
   return (
@@ -67,8 +67,8 @@ const AlertIcon = forwardRef<HTMLDivElement, AlertIconProps>(({ wrapperProps, ..
     <div {...wrapperProps} className={icon_wrapper({ className: wrapperProps?.className })}>
       <Slot {...props} ref={ref} className={icon({ className: props.className })}>
         {props.children ||
-          match(variantOpts.wcolor)
-            .with(P.union(undefined, 'none', 'brand'), () => <IconExclamationCircle />)
+          match(variantOpts.variant)
+            .with(P.union(undefined, 'default', 'brand'), () => <IconExclamationCircle />)
             .with('danger', () => <IconCircleX />)
             .exhaustive()}
       </Slot>
