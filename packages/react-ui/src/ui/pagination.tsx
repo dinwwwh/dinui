@@ -1,8 +1,8 @@
-import type { ButtonProps } from './button'
 import { button } from './button'
 import { ChevronLeftIcon, ChevronRightIcon, DotsHorizontalIcon } from '@radix-ui/react-icons'
 import * as React from 'react'
 import { twMerge } from 'tailwind-merge'
+import { VariantProps } from 'tailwind-variants'
 
 export const Pagination = ({ className, ...props }: React.ComponentProps<'nav'>) => (
   <nav
@@ -28,13 +28,13 @@ PaginationItem.displayName = 'PaginationItem'
 
 type PaginationLinkProps = {
   isActive?: boolean
-} & Pick<ButtonProps, 'size'> &
+} & Pick<VariantProps<typeof button>, 'size'> &
   React.ComponentProps<'a'>
 
 export const PaginationLink = ({
   className,
   isActive,
-  size = 'icon',
+  size = 'md',
   ...props
 }: PaginationLinkProps) => (
   <a
@@ -42,6 +42,8 @@ export const PaginationLink = ({
     className={button({
       variant: isActive ? 'outline' : 'ghost',
       size,
+      icon: true,
+    }).root({
       className,
     })}
     {...props}
@@ -55,7 +57,6 @@ export const PaginationPrevious = ({
 }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
     aria-label="Go to previous page"
-    size="default"
     className={twMerge('gap-1 pl-2.5', className)}
     {...props}
   >
@@ -71,7 +72,6 @@ export const PaginationNext = ({
 }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
     aria-label="Go to next page"
-    size="default"
     className={twMerge('gap-1 pr-2.5', className)}
     {...props}
   >

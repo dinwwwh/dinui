@@ -4,6 +4,7 @@ import { IconCircleX, IconExclamationCircle } from '@tabler/icons-react'
 import { createContext, forwardRef, useContext } from 'react'
 import { tv, type VariantProps } from 'tailwind-variants'
 import { P, match } from 'ts-pattern'
+import type { Merge } from 'type-fest'
 
 export const alert = tv({
   slots: {
@@ -46,9 +47,12 @@ const AlertRoot = forwardRef<
 })
 AlertRoot.displayName = 'AlertRoot'
 
-interface AlertIconProps extends React.ComponentPropsWithoutRef<'div'> {
-  wrapperProps?: React.ComponentProps<'div'>
-}
+type AlertIconProps = Merge<
+  React.ComponentPropsWithoutRef<'div'>,
+  {
+    wrapperProps?: React.ComponentProps<'div'>
+  }
+>
 
 const AlertIcon = forwardRef<HTMLDivElement, AlertIconProps>(({ wrapperProps, ...props }, ref) => {
   const variantOpts = useContext(AlertContext)

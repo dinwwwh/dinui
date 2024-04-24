@@ -26,6 +26,7 @@ export function Calendar({
         nav: 'space-x-1 flex items-center',
         nav_button: button({
           variant: 'outline',
+        }).root({
           className: 'h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100',
         }),
 
@@ -43,6 +44,7 @@ export function Calendar({
         ),
         day: button({
           variant: 'ghost',
+        }).root({
           className: 'h-8 w-8 p-0 font-normal aria-selected:opacity-100',
         }),
         day_range_start: 'day-range-start',

@@ -1,46 +1,185 @@
 import { Slot } from '@radix-ui/react-slot'
-import * as React from 'react'
+import { IconCircle } from '@tabler/icons-react'
+import { createContext, forwardRef, useContext } from 'react'
 import { tv, type VariantProps } from 'tailwind-variants'
+import { Merge } from 'type-fest'
 
 export const button = tv({
-  base: 'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-wgray-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-wgray-300',
+  slots: {
+    root: [
+      'inline-flex items-center justify-center transition',
+      'whitespace-nowrap',
+      'disabled:pointer-events-none disabled:opacity-50',
+    ],
+    leftIcon: null,
+    rightIcon: null,
+    icon: null,
+  },
   variants: {
     variant: {
-      default:
-        'bg-wgray-900 text-wgray-50 shadow hover:bg-wgray-900/90 dark:bg-wgray-50 dark:text-wgray-900 dark:hover:bg-wgray-50/90',
-      destructive:
-        'bg-red-500 text-wgray-50 shadow-sm hover:bg-red-500/90 dark:bg-red-900 dark:text-wgray-50 dark:hover:bg-red-900/90',
-      outline:
-        'border border-wgray-200 dark:border-wgray-800 bg-white shadow-sm hover:bg-wgray-100 hover:text-wgray-900  dark:bg-wgray-950 dark:hover:bg-wgray-800 dark:hover:text-wgray-50',
-      secondary:
-        'bg-wgray-100 text-wgray-900 shadow-sm hover:bg-wgray-100/80 dark:bg-wgray-800 dark:text-wgray-50 dark:hover:bg-wgray-800/80',
-      ghost:
-        'hover:bg-wgray-100 hover:text-wgray-900 dark:hover:bg-wgray-800 dark:hover:text-wgray-50',
-      link: 'text-wgray-900 underline-offset-4 hover:underline dark:text-wgray-50',
+      'brand-filled': {
+        root: 'bg-brand hover:bg-bg--hover',
+      },
+      'danger-filled': {
+        root: 'bg-danger hover:bg-bg--hover',
+      },
+
+      'outline': {
+        root: 'bg-bg--contrast hover:bg-bg--hover border text-fg-weak hover:text-fg-weak--hover',
+      },
+      'danger-outline': {
+        root: 'bg-bg--contrast  hover:bg-danger--hover border border-fg-danger text-fg-danger',
+      },
+
+      'ghost': {
+        root: 'hover:bg-bg--hover text-fg-weak hover:text-fg-weak--hover',
+      },
+      'brand-ghost': {
+        root: 'hover:bg-bg--hover text-fg-brand hover:text-fg-brand--hover',
+      },
+      'danger-ghost': {
+        root: 'hover:bg-bg--hover text-fg-danger hover:text-fg-danger--hover',
+      },
     },
     size: {
-      default: 'h-9 px-4 py-2',
-      sm: 'h-8 rounded-md px-3 text-xs',
-      lg: 'h-10 rounded-md px-8',
-      icon: 'h-9 w-9',
+      sm: {
+        root: ['h-8 px-3 rounded-md', 'text-xs font-medium'],
+        leftIcon: 'size-4 -ml-0.5 mr-1',
+        rightIcon: 'size-4 ml-1 -mr-0.5',
+        icon: 'size-4',
+      },
+      md: {
+        root: ['h-9 px-4 rounded-md', 'text-sm font-medium'],
+        leftIcon: 'size-[1.125rem] -ml-1 mr-1.5',
+        rightIcon: 'size-[1.125rem] ml-1.5 -mr-1',
+        icon: 'size-[1.125rem]',
+      },
+      lg: {
+        root: ['h-10 px-5 rounded-md', 'text-sm font-medium'],
+        leftIcon: 'size-5 -ml-1.5 mr-2',
+        rightIcon: 'size-5 ml-2 -mr-1.5',
+        icon: 'size-5',
+      },
+    },
+    icon: {
+      true: null,
     },
   },
+  compoundVariants: [
+    {
+      size: 'sm',
+      icon: true,
+      className: {
+        root: 'w-8 px-0',
+      },
+    },
+    {
+      size: 'md',
+      icon: true,
+      className: {
+        root: 'w-9 px-0',
+      },
+    },
+    {
+      size: 'lg',
+      icon: true,
+      className: {
+        root: 'w-10 px-0',
+      },
+    },
+  ],
   defaultVariants: {
-    variant: 'default',
-    size: 'default',
+    variant: 'brand-filled',
+    size: 'md',
   },
 })
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof button> {
-  asChild?: boolean
-}
+const ButtonContext = createContext<VariantProps<typeof button>>(button.defaultVariants)
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+type ButtonProps = Merge<
+  Merge<React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof button>>,
+  {
+    asChild?: boolean
+  }
+>
+
+const ButtonRoot = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ variant, size, icon, asChild = false, ...props }, ref) => {
+    const variantOpts = { variant, size, icon }
+    const { root } = button(variantOpts)
+
     const Comp = asChild ? Slot : 'button'
-    return <Comp className={button({ variant, size, className })} ref={ref} {...props} />
+
+    return (
+      <ButtonContext.Provider value={variantOpts}>
+        <Comp {...props} ref={ref} className={root({ className: props.className })} />
+      </ButtonContext.Provider>
+    )
   },
 )
-Button.displayName = 'Button'
+ButtonRoot.displayName = 'ButtonRoot'
+
+const LeftIcon = forwardRef<
+  React.ElementRef<typeof IconCircle>,
+  React.ComponentPropsWithoutRef<typeof IconCircle>
+>((props, ref) => {
+  const variantOpts = useContext(ButtonContext)
+  const { leftIcon } = button(variantOpts)
+
+  return (
+    <Slot
+      {...(props as React.HTMLAttributes<HTMLElement>)}
+      ref={ref as React.ForwardedRef<HTMLElement>}
+      className={leftIcon({ className: props.className })}
+    >
+      {props.children ?? <IconCircle />}
+    </Slot>
+  )
+})
+LeftIcon.displayName = 'LeftIcon'
+
+const RightIcon = forwardRef<
+  React.ElementRef<typeof IconCircle>,
+  React.ComponentPropsWithoutRef<typeof IconCircle>
+>((props, ref) => {
+  const variantOpts = useContext(ButtonContext)
+  const { rightIcon } = button(variantOpts)
+
+  return (
+    <Slot
+      {...(props as React.HTMLAttributes<HTMLElement>)}
+      ref={ref as React.ForwardedRef<HTMLElement>}
+      className={rightIcon({ className: props.className })}
+    >
+      {props.children ?? <IconCircle />}
+    </Slot>
+  )
+})
+RightIcon.displayName = 'RightIcon'
+
+const Icon = forwardRef<
+  React.ElementRef<typeof IconCircle>,
+  React.ComponentPropsWithoutRef<typeof IconCircle>
+>((props, ref) => {
+  const variantOpts = useContext(ButtonContext)
+  const { icon } = button(variantOpts)
+
+  return (
+    <Slot
+      {...(props as React.HTMLAttributes<HTMLElement>)}
+      ref={ref as React.ForwardedRef<HTMLElement>}
+      className={icon({ className: props.className })}
+    >
+      {props.children ?? <IconCircle />}
+    </Slot>
+  )
+})
+Icon.displayName = 'Icon'
+
+const Button = Object.assign(ButtonRoot, {
+  LeftIcon,
+  RightIcon,
+  Icon,
+})
+
+export default Button

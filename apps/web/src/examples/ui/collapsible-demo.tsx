@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@dinui/react/button'
+import Button from '@dinui/react/button'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@dinui/react/collapsible'
 import { CaretSortIcon } from '@radix-ui/react-icons'
 import * as React from 'react'

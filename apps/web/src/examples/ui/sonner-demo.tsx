@@ -1,4 +1,4 @@
-import { Button } from '@dinui/react/button'
+import Button from '@dinui/react/button'
 import { toast } from '@dinui/react/sonner'
 
 export default function SonnerDemo() {

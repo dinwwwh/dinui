@@ -9,7 +9,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@dinui/react/alert-dialog'
-import { Button } from '@dinui/react/button'
+import Button from '@dinui/react/button'
 
 export default function AlertDialogDemo() {
   return (

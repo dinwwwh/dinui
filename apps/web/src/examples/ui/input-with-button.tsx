@@ -1,4 +1,4 @@
-import { Button } from '@dinui/react/button'
+import Button from '@dinui/react/button'
 import { Input } from '@dinui/react/input'
 
 export default function InputWithButton() {

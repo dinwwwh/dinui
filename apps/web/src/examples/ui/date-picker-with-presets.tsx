@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@dinui/react/button'
+import Button from '@dinui/react/button'
 import { Calendar } from '@dinui/react/calendar'
 import { Popover, PopoverContent, PopoverTrigger } from '@dinui/react/popover'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@dinui/react/select'

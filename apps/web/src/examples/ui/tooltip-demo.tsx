@@ -1,4 +1,4 @@
-import { Button } from '@dinui/react/button'
+import Button from '@dinui/react/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@dinui/react/tooltip'
 
 export default function TooltipDemo() {

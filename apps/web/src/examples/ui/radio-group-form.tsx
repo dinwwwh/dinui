@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@dinui/react/button'
+import Button from '@dinui/react/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@dinui/react/form'
 import { RadioGroup, RadioGroupItem } from '@dinui/react/radio-group'
 import { toast } from '@dinui/react/use-toast'

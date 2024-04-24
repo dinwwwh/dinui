@@ -3,7 +3,7 @@ import { IconX } from '@tabler/icons-react'
 import { forwardRef } from 'react'
 import { tv, type VariantProps } from 'tailwind-variants'
 
-export const button = tv({
+export const closeButton = tv({
   slots: {
     root: [
       'inline-flex items-center justify-center whitespace-nowrap rounded-lg',
@@ -40,13 +40,13 @@ export const button = tv({
 
 export interface CloseButtonProps
   extends React.ComponentPropsWithoutRef<'button'>,
-    VariantProps<typeof button> {
+    VariantProps<typeof closeButton> {
   iconProps?: React.ComponentProps<typeof IconX>
 }
 
 const CloseButton = forwardRef<HTMLButtonElement, CloseButtonProps>(
   ({ iconProps, wsize, ...props }, ref) => {
-    const { root, root_icon } = button({ wsize, className: props.className })
+    const { root, root_icon } = closeButton({ wsize, className: props.className })
 
     return (
       <button {...props} ref={ref} className={root({ className: props.className })}>

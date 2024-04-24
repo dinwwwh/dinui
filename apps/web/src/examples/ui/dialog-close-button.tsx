@@ -1,4 +1,4 @@
-import { Button } from '@dinui/react/button'
+import Button from '@dinui/react/button'
 import {
   Dialog,
   DialogClose,
@@ -38,7 +38,7 @@ export default function DialogCloseButton() {
         </div>
         <DialogFooter className="sm:justify-start">
           <DialogClose asChild>
-            <Button type="button" variant="secondary">
+            <Button type="button" variant="outline">
               Close
             </Button>
           </DialogClose>

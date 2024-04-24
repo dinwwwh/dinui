@@ -1,4 +1,4 @@
-import { Button } from '@dinui/react/button'
+import Button from '@dinui/react/button'
 import {
   Drawer,
   DrawerClose,
@@ -77,7 +77,7 @@ export default function DrawerDemo() {
             <div className="flex items-center justify-center space-x-2">
               <Button
                 variant="outline"
-                size="icon"
+                icon
                 className="h-8 w-8 shrink-0 rounded-full"
                 onClick={() => onClick(-10)}
                 disabled={goal <= 200}
@@ -91,7 +91,7 @@ export default function DrawerDemo() {
               </div>
               <Button
                 variant="outline"
-                size="icon"
+                icon
                 className="h-8 w-8 shrink-0 rounded-full"
                 onClick={() => onClick(10)}
                 disabled={goal >= 400}

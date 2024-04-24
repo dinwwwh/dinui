@@ -1,4 +1,4 @@
-import { Button } from '@dinui/react/button'
+import Button from '@dinui/react/button'
 import { Input } from '@dinui/react/input'
 import { Label } from '@dinui/react/label'
 import { Popover, PopoverContent, PopoverTrigger } from '@dinui/react/popover'

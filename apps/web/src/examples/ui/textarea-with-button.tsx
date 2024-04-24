@@ -1,4 +1,4 @@
-import { Button } from '@dinui/react/button'
+import Button from '@dinui/react/button'
 import { Textarea } from '@dinui/react/textarea'
 
 export default function TextareaWithButton() {

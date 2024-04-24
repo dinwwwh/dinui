@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@dinui/react/avatar'
-import { Button } from '@dinui/react/button'
+import Button from '@dinui/react/button'
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@dinui/react/hover-card'
 import { CalendarIcon } from '@radix-ui/react-icons'
 
@@ -7,7 +7,7 @@ export default function HoverCardDemo() {
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
-        <Button variant="link">@nextjs</Button>
+        <Button variant="ghost">@nextjs</Button>
       </HoverCardTrigger>
       <HoverCardContent className="w-80">
         <div className="flex justify-between space-x-4">

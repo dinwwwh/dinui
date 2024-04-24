@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@dinui/react/button'
+import Button from '@dinui/react/button'
 import { useToast } from '@dinui/react/use-toast'
 
 export default function ToastWithTitle() {

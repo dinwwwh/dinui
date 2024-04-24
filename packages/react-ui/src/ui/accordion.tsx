@@ -4,6 +4,7 @@ import * as AccordionPrimitive from '@radix-ui/react-accordion'
 import { IconChevronDown } from '@tabler/icons-react'
 import { forwardRef } from 'react'
 import { tv } from 'tailwind-variants'
+import { Merge } from 'type-fest'
 
 export const accordion = tv({
   slots: {
@@ -41,11 +42,13 @@ const AccordionItem = forwardRef<
 })
 AccordionItem.displayName = 'AccordionItem'
 
-interface AccordionTriggerProps
-  extends Omit<React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>, 'asChild'> {
-  headerProps?: React.ComponentProps<typeof AccordionPrimitive.Header>
-  iconProps?: React.ComponentProps<typeof IconChevronDown>
-}
+type AccordionTriggerProps = Merge<
+  Omit<React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>, 'asChild'>,
+  {
+    headerProps?: React.ComponentProps<typeof AccordionPrimitive.Header>
+    iconProps?: React.ComponentProps<typeof IconChevronDown>
+  }
+>
 
 const AccordionTrigger = forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
@@ -73,10 +76,12 @@ const AccordionTrigger = forwardRef<
 })
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName
 
-interface AccordionContentProps
-  extends React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content> {
-  wrapperProps?: React.ComponentProps<'div'>
-}
+type AccordionContentProps = Merge<
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>,
+  {
+    wrapperProps?: React.ComponentProps<'div'>
+  }
+>
 
 const AccordionContent = forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
