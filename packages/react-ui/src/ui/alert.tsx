@@ -17,11 +17,11 @@ export const alert = tv({
     closeButton: '-mt-2.5 -mr-2.5',
   },
   variants: {
-    color: {
-      brand: {
+    variant: {
+      'brand-icon': {
         icon: 'text-fg-brand',
       },
-      danger: {
+      'danger-icon': {
         icon: 'text-fg-danger',
       },
     },
@@ -32,19 +32,20 @@ type AlertVariantProps = VariantProps<typeof alert>
 
 const AlertContext = createContext<AlertVariantProps>(alert.defaultVariants)
 
-const AlertRoot = forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & AlertVariantProps
->(({ className, color, ...props }, ref) => {
-  const variantOpts = { color }
-  const { root } = alert(variantOpts)
+type AlertRootProps = Merge<React.HTMLAttributes<HTMLDivElement>, AlertVariantProps>
 
-  return (
-    <AlertContext.Provider value={variantOpts}>
-      <div ref={ref} role="alert" className={root({ className })} {...props} />
-    </AlertContext.Provider>
-  )
-})
+const AlertRoot = forwardRef<HTMLDivElement, AlertRootProps>(
+  ({ className, variant, ...props }, ref) => {
+    const variantOpts = { variant }
+    const { root } = alert(variantOpts)
+
+    return (
+      <AlertContext.Provider value={variantOpts}>
+        <div ref={ref} role="alert" className={root({ className })} {...props} />
+      </AlertContext.Provider>
+    )
+  },
+)
 AlertRoot.displayName = 'AlertRoot'
 
 type AlertIconProps = Merge<
@@ -62,9 +63,9 @@ const AlertIcon = forwardRef<HTMLDivElement, AlertIconProps>(({ wrapperProps, ..
     <div {...wrapperProps} className={icon_wrapper({ className: wrapperProps?.className })}>
       <Slot {...props} ref={ref} className={icon({ className: props.className })}>
         {props.children ||
-          match(variantOpts.color)
-            .with(P.union(undefined, 'brand'), () => <IconExclamationCircle />)
-            .with('danger', () => <IconCircleX />)
+          match(variantOpts.variant)
+            .with(P.union(undefined, 'brand-icon'), () => <IconExclamationCircle />)
+            .with('danger-icon', () => <IconCircleX />)
             .exhaustive()}
       </Slot>
     </div>
