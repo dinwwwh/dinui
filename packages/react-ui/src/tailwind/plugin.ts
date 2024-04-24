@@ -94,8 +94,40 @@ This issue can arise when a child's color has the same name as a parent's color.
         }
       }
 
+      if (!twComponents[`.bg-${key}--contrast`]) {
+        twComponents[`.bg-${key}--contrast`] = {
+          backgroundColor: 'rgb(var(--color-bg--contrast))',
+          color: 'rgb(var(--color-fg))',
+        }
+      }
+
+      if (!twComponents[`.bg-${key}--hover`]) {
+        twComponents[`.bg-${key}--hover`] = {
+          backgroundColor: 'rgb(var(--color-bg--hover))',
+          color: 'rgb(var(--color-fg))',
+        }
+      }
+
+      if (!twComponents[`.bg-${key}--active`]) {
+        twComponents[`.bg-${key}--active`] = {
+          backgroundColor: 'rgb(var(--color-bg--active))',
+          color: 'rgb(var(--color-fg))',
+        }
+      }
+
+      if (!twComponents[`.bg-${key}--muted`]) {
+        twComponents[`.bg-${key}--muted`] = {
+          backgroundColor: 'rgb(var(--color-bg--muted))',
+          color: 'rgb(var(--color-fg))',
+        }
+      }
+
       for (const selector of selectors) {
         resolveColors([`${selector} .bg-${key}`], color)
+        resolveColors([`${selector} .bg-${key}--contrast`], color)
+        resolveColors([`${selector} .bg-${key}--hover`], color)
+        resolveColors([`${selector} .bg-${key}--active`], color)
+        resolveColors([`${selector} .bg-${key}--muted`], color)
       }
     }
   }

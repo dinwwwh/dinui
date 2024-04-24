@@ -38,6 +38,13 @@ const themes = createThemes([
 
         'fg': colors.white,
       },
+
+      'danger': {
+        'bg': colors.rose[500],
+        'bg--hover': colors.rose[600],
+
+        'fg': colors.white,
+      },
     },
   },
   {
@@ -72,6 +79,13 @@ const themes = createThemes([
       'brand': {
         'bg': colors.indigo[500],
         'bg--hover': colors.indigo[400],
+
+        'fg': colors.white,
+      },
+
+      'danger': {
+        'bg': colors.rose[500],
+        'bg--hover': colors.rose[400],
 
         'fg': colors.white,
       },
