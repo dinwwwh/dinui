@@ -1,7 +1,5 @@
 import baseConfig from '../../packages/react-ui/tailwind.config'
-import starlightPlugin from '@astrojs/starlight-tailwind'
 import type { Config } from 'tailwindcss'
-import { scopedPreflightStyles, isolateInsideOfContainer } from 'tailwindcss-scoped-preflight'
 import colors from 'tailwindcss/colors'
 import defaultConfig from 'tailwindcss/defaultConfig'
 
@@ -22,12 +20,5 @@ export default {
       },
     },
   },
-  plugins: [
-    ...baseConfig.plugins,
-    require('tailwind-scrollbar'),
-    starlightPlugin(),
-    scopedPreflightStyles({
-      isolationStrategy: isolateInsideOfContainer('.twp'),
-    }),
-  ],
+  plugins: [...baseConfig.plugins, require('tailwind-scrollbar')],
 } satisfies Config
