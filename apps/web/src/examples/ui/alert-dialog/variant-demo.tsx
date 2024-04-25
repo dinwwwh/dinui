@@ -20,7 +20,7 @@ export default function AlertDialogVariantDemo() {
         <AlertDialog.Content.Actions>
           <AlertDialog.Content.Cancel>Cancel</AlertDialog.Content.Cancel>
 
-          <AlertDialog.Content.Action>
+          <AlertDialog.Content.Action variant="danger-filled">
             Continue
             <AlertDialog.Content.Action.RightIcon>
               <IconSignRight />
