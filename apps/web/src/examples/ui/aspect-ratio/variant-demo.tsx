@@ -1,6 +1,6 @@
 import { AspectRatio } from '@dinui/react/aspect-ratio'
 
-export default function AspectRatioDemo() {
+export default function AspectRatioVariantDemo() {
   return (
     <AspectRatio ratio={16 / 9} className="overflow-hidden rounded-md">
       <img
