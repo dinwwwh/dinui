@@ -1,7 +1,7 @@
 import CloseButton from '@dinui/react/close-button'
 import { IconCircleX } from '@tabler/icons-react'
 
-export default function CloseButtonVariantsDemo() {
+export default function CloseButtonVariantDemo() {
   return (
     <div className="flex flex-wrap items-center gap-4">
       <CloseButton wsize="xs" />

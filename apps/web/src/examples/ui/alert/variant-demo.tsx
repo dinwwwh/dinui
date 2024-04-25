@@ -1,7 +1,7 @@
 import Alert from '@dinui/react/alert'
 import { IconPercentage } from '@tabler/icons-react'
 
-export default function AlertVariantsDemo() {
+export default function AlertVariantDemo() {
   return (
     <div className="flex flex-wrap flex-col gap-4">
       <Alert>

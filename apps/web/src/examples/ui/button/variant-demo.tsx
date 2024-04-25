@@ -1,6 +1,6 @@
 import Button from '@dinui/react/button'
 
-export default function ButtonVariantsDemo() {
+export default function ButtonVariantDemo() {
   return (
     <div className="flex flex-wrap gap-6 justify-center">
       <Button variant="brand-filled">Button</Button>

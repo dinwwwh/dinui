@@ -1,7 +1,7 @@
 import Button from '@dinui/react/button'
 import { IconUserCircle } from '@tabler/icons-react'
 
-export default function ButtonSizesDemo() {
+export default function ButtonSizeDemo() {
   return (
     <div className="flex flex-wrap gap-6 items-center">
       <Button size="sm">

@@ -1,6 +1,6 @@
 import Accordion from '@dinui/react/accordion'
 
-export default function AccordionDemo() {
+export default function AccordionVariantDemo() {
   return (
     <Accordion type="single" collapsible className="w-full" defaultValue="item-2">
       <Accordion.Item value="item-1">
