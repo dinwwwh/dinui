@@ -6,7 +6,7 @@ import { tv, type VariantProps } from 'tailwind-variants'
 import { P, match } from 'ts-pattern'
 import type { Merge } from 'type-fest'
 
-export const alert = tv({
+const alert = tv({
   slots: {
     root: 'flex rounded-md py-4 pl-2 pr-4 bg-bg--contrast border',
     icon_wrapper: 'place-self-start p-1 rounded-full ml-1',
@@ -32,30 +32,30 @@ type AlertVariantProps = VariantProps<typeof alert>
 
 const AlertContext = createContext<AlertVariantProps>(alert.defaultVariants)
 
-type AlertRootProps = Merge<React.HTMLAttributes<HTMLDivElement>, AlertVariantProps>
+const AlertRoot = forwardRef<
+  HTMLDivElement,
+  Merge<React.HTMLAttributes<HTMLDivElement>, AlertVariantProps>
+>(({ className, variant, ...props }, ref) => {
+  const variantOpts = { variant }
+  const { root } = alert(variantOpts)
 
-const AlertRoot = forwardRef<HTMLDivElement, AlertRootProps>(
-  ({ className, variant, ...props }, ref) => {
-    const variantOpts = { variant }
-    const { root } = alert(variantOpts)
-
-    return (
-      <AlertContext.Provider value={variantOpts}>
-        <div ref={ref} role="alert" className={root({ className })} {...props} />
-      </AlertContext.Provider>
-    )
-  },
-)
+  return (
+    <AlertContext.Provider value={variantOpts}>
+      <div ref={ref} role="alert" className={root({ className })} {...props} />
+    </AlertContext.Provider>
+  )
+})
 AlertRoot.displayName = 'AlertRoot'
 
-type AlertIconProps = Merge<
-  React.ComponentPropsWithoutRef<'div'>,
-  {
-    wrapperProps?: React.ComponentProps<'div'>
-  }
->
-
-const AlertIcon = forwardRef<HTMLDivElement, AlertIconProps>(({ wrapperProps, ...props }, ref) => {
+const AlertIcon = forwardRef<
+  HTMLDivElement,
+  Merge<
+    React.ComponentPropsWithoutRef<'div'>,
+    {
+      wrapperProps?: React.ComponentProps<'div'>
+    }
+  >
+>(({ wrapperProps, ...props }, ref) => {
   const variantOpts = useContext(AlertContext)
   const { icon, icon_wrapper } = alert(variantOpts)
 
@@ -131,3 +131,4 @@ const Alert = Object.assign(AlertRoot, {
 })
 
 export default Alert
+export { alert }

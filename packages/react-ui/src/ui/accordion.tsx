@@ -6,7 +6,7 @@ import { forwardRef } from 'react'
 import { tv } from 'tailwind-variants'
 import { Merge } from 'type-fest'
 
-export const accordion = tv({
+const accordion = tv({
   slots: {
     item: 'border-b group',
     trigger: [
@@ -42,17 +42,15 @@ const AccordionItem = forwardRef<
 })
 AccordionItem.displayName = 'AccordionItem'
 
-type AccordionTriggerProps = Merge<
-  Omit<React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>, 'asChild'>,
-  {
-    headerProps?: React.ComponentProps<typeof AccordionPrimitive.Header>
-    iconProps?: React.ComponentProps<typeof IconChevronDown>
-  }
->
-
 const AccordionTrigger = forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
-  AccordionTriggerProps
+  Merge<
+    Omit<React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>, 'asChild'>,
+    {
+      headerProps?: React.ComponentProps<typeof AccordionPrimitive.Header>
+      iconProps?: React.ComponentProps<typeof IconChevronDown>
+    }
+  >
 >(({ headerProps, iconProps, children, ...props }, ref) => {
   const { trigger, trigger_icon } = accordion()
 
@@ -76,16 +74,14 @@ const AccordionTrigger = forwardRef<
 })
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName
 
-type AccordionContentProps = Merge<
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>,
-  {
-    wrapperProps?: React.ComponentProps<'div'>
-  }
->
-
 const AccordionContent = forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
-  AccordionContentProps
+  Merge<
+    React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>,
+    {
+      wrapperProps?: React.ComponentProps<'div'>
+    }
+  >
 >(({ wrapperProps, children, ...props }, ref) => {
   const { content, content_wrapper } = accordion()
 
@@ -111,3 +107,4 @@ const Accordion = Object.assign(AccordionRoot, {
 })
 
 export default Accordion
+export { accordion, AccordionPrimitive }

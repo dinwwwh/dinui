@@ -96,27 +96,26 @@ export const button = tv({
 
 const ButtonContext = createContext<VariantProps<typeof button>>(button.defaultVariants)
 
-type ButtonProps = Merge<
-  Merge<React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof button>>,
-  {
-    asChild?: boolean
-  }
->
+const ButtonRoot = forwardRef<
+  HTMLButtonElement,
+  Merge<
+    Merge<React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof button>>,
+    {
+      asChild?: boolean
+    }
+  >
+>(({ variant, size, icon, asChild = false, ...props }, ref) => {
+  const variantOpts = { variant, size, icon }
+  const { root } = button(variantOpts)
 
-const ButtonRoot = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant, size, icon, asChild = false, ...props }, ref) => {
-    const variantOpts = { variant, size, icon }
-    const { root } = button(variantOpts)
+  const Comp = asChild ? Slot : 'button'
 
-    const Comp = asChild ? Slot : 'button'
-
-    return (
-      <ButtonContext.Provider value={variantOpts}>
-        <Comp {...props} ref={ref} className={root({ className: props.className })} />
-      </ButtonContext.Provider>
-    )
-  },
-)
+  return (
+    <ButtonContext.Provider value={variantOpts}>
+      <Comp {...props} ref={ref} className={root({ className: props.className })} />
+    </ButtonContext.Provider>
+  )
+})
 ButtonRoot.displayName = 'ButtonRoot'
 
 const LeftIcon = forwardRef<

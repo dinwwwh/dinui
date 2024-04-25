@@ -7,7 +7,7 @@ import React, { forwardRef } from 'react'
 import { tv } from 'tailwind-variants'
 import type { Merge } from 'type-fest'
 
-export const alertDialog = tv({
+const alertDialog = tv({
   slots: {
     content: [
       '@container',
@@ -163,3 +163,4 @@ const AlertDialog = Object.assign(AlertDialogPrimitive.Root, {
 })
 
 export default AlertDialog
+export { alertDialog, AlertDialogPrimitive }
