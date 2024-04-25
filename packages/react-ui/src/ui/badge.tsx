@@ -10,9 +10,7 @@ const badge = tv({
   },
   variants: {
     variant: {
-      filled: {
-        root: 'border-current',
-      },
+      filled: {},
       outline: {},
     },
     color: {
@@ -51,49 +49,49 @@ const badge = tv({
       variant: 'filled',
       color: 'brand',
       className: {
-        root: 'text-[#fff] bg-utility-brand-600',
+        root: 'text-[#fff] bg-utility-brand-500',
       },
     },
     {
       variant: 'filled',
       color: 'danger',
       className: {
-        root: 'text-[#fff] bg-utility-danger-600',
+        root: 'text-[#fff] bg-utility-danger-500',
       },
     },
     {
       variant: 'filled',
       color: 'gray',
       className: {
-        root: 'text-[#fff] bg-utility-gray-600',
+        root: 'text-[#fff] bg-utility-gray-500',
       },
     },
     {
       variant: 'filled',
       color: 'blue',
       className: {
-        root: 'text-[#fff] bg-utility-blue-600',
+        root: 'text-[#fff] bg-utility-blue-500',
       },
     },
     {
       variant: 'filled',
       color: 'pink',
       className: {
-        root: 'text-[#fff] bg-utility-pink-600',
+        root: 'text-[#fff] bg-utility-pink-500',
       },
     },
     {
       variant: 'filled',
       color: 'orange',
       className: {
-        root: 'text-[#fff] bg-utility-orange-600',
+        root: 'text-[#fff] bg-utility-orange-500',
       },
     },
     {
       variant: 'outline',
       color: 'brand',
       className: {
-        root: 'bg-utility-brand-50 border-utility-brand-200 text-utility-brand-600',
+        root: 'bg-utility-brand-50 border-utility-brand-200 text-utility-brand-700',
         leftDot: 'bg-utility-brand-500',
       },
     },
@@ -101,7 +99,7 @@ const badge = tv({
       variant: 'outline',
       color: 'danger',
       className: {
-        root: 'bg-utility-danger-50 border-utility-danger-200 text-utility-danger-600',
+        root: 'bg-utility-danger-50 border-utility-danger-200 text-utility-danger-700',
         leftDot: 'bg-utility-danger-500',
       },
     },
@@ -109,7 +107,7 @@ const badge = tv({
       variant: 'outline',
       color: 'gray',
       className: {
-        root: 'bg-utility-gray-50 border-utility-gray-200 text-utility-gray-600',
+        root: 'bg-utility-gray-50 border-utility-gray-200 text-utility-gray-700',
         leftDot: 'bg-utility-gray-500',
       },
     },
@@ -117,7 +115,7 @@ const badge = tv({
       variant: 'outline',
       color: 'blue',
       className: {
-        root: 'bg-utility-blue-50 border-utility-blue-200 text-utility-blue-600',
+        root: 'bg-utility-blue-50 border-utility-blue-200 text-utility-blue-700',
         leftDot: 'bg-utility-blue-500',
       },
     },
@@ -125,7 +123,7 @@ const badge = tv({
       variant: 'outline',
       color: 'pink',
       className: {
-        root: 'bg-utility-pink-50 border-utility-pink-200 text-utility-pink-600',
+        root: 'bg-utility-pink-50 border-utility-pink-200 text-utility-pink-700',
         leftDot: 'bg-utility-pink-500',
       },
     },
@@ -133,7 +131,7 @@ const badge = tv({
       variant: 'outline',
       color: 'orange',
       className: {
-        root: 'bg-utility-orange-50 border-utility-orange-200 text-utility-orange-600',
+        root: 'bg-utility-orange-50 border-utility-orange-200 text-utility-orange-700',
         leftDot: 'bg-utility-orange-500',
       },
     },
