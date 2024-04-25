@@ -2,7 +2,7 @@ import { button } from './button'
 import { ChevronLeftIcon, ChevronRightIcon, DotsHorizontalIcon } from '@radix-ui/react-icons'
 import * as React from 'react'
 import { twMerge } from 'tailwind-merge'
-import { VariantProps } from 'tailwind-variants'
+import type { VariantProps } from 'tailwind-variants'
 
 export const Pagination = ({ className, ...props }: React.ComponentProps<'nav'>) => (
   <nav

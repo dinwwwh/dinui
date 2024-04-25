@@ -2,7 +2,7 @@ import { Slot } from '@radix-ui/react-slot'
 import { IconCircle } from '@tabler/icons-react'
 import { createContext, forwardRef, useContext } from 'react'
 import { tv, type VariantProps } from 'tailwind-variants'
-import { Merge } from 'type-fest'
+import type { Merge } from 'type-fest'
 
 export const button = tv({
   slots: {

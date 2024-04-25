@@ -2,7 +2,7 @@ import { Slot } from '@radix-ui/react-slot'
 import { IconX } from '@tabler/icons-react'
 import { forwardRef } from 'react'
 import { tv, type VariantProps } from 'tailwind-variants'
-import { Merge } from 'type-fest'
+import type { Merge } from 'type-fest'
 
 const closeButton = tv({
   slots: {

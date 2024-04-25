@@ -3,7 +3,8 @@
 import Button from './button'
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog'
 import type * as _A from '@radix-ui/react-dismissable-layer'
-import React, { forwardRef } from 'react'
+import type React from 'react'
+import { forwardRef } from 'react'
 import { tv } from 'tailwind-variants'
 import type { Merge } from 'type-fest'
 
@@ -118,12 +119,9 @@ const AlertDialogAction = forwardRef<
 >(({ cancelProps, children, asChild, ...props }, ref) => {
   return (
     <Button {...props} asChild>
-      <AlertDialogPrimitive.Action
-        {...cancelProps}
-        ref={ref}
-        children={children}
-        asChild={asChild}
-      />
+      <AlertDialogPrimitive.Action {...cancelProps} ref={ref} asChild={asChild}>
+        {children}
+      </AlertDialogPrimitive.Action>
     </Button>
   )
 })
@@ -140,12 +138,9 @@ const AlertDialogCancel = forwardRef<
 >(({ cancelProps, children, asChild, ...props }, ref) => {
   return (
     <Button variant="outline" {...props} asChild>
-      <AlertDialogPrimitive.Cancel
-        {...cancelProps}
-        ref={ref}
-        children={children}
-        asChild={asChild}
-      />
+      <AlertDialogPrimitive.Cancel {...cancelProps} ref={ref} asChild={asChild}>
+        {children}
+      </AlertDialogPrimitive.Cancel>
     </Button>
   )
 })

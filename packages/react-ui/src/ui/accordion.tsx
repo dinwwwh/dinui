@@ -4,7 +4,7 @@ import * as AccordionPrimitive from '@radix-ui/react-accordion'
 import { IconChevronDown } from '@tabler/icons-react'
 import { forwardRef } from 'react'
 import { tv } from 'tailwind-variants'
-import { Merge } from 'type-fest'
+import type { Merge } from 'type-fest'
 
 const accordion = tv({
   slots: {

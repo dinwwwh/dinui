@@ -2,8 +2,9 @@
 
 import * as AvatarPrimitive from '@radix-ui/react-avatar'
 import { createContext, forwardRef, useContext } from 'react'
-import { tv, VariantProps } from 'tailwind-variants'
-import { Merge } from 'type-fest'
+import type { VariantProps } from 'tailwind-variants';
+import { tv } from 'tailwind-variants'
+import type { Merge } from 'type-fest'
 
 const avatar = tv({
   slots: {
