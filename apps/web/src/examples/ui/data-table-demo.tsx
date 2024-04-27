@@ -1,7 +1,7 @@
 'use client'
 
 import Button from '@dinui/react/button'
-import { Checkbox } from '@dinui/react/checkbox'
+import Checkbox from '@dinui/react/checkbox'
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,

@@ -1,7 +1,7 @@
 'use client'
 
 import Button from '@dinui/react/button'
-import { Checkbox } from '@dinui/react/checkbox'
+import Checkbox from '@dinui/react/checkbox'
 import {
   Form,
   FormControl,
@@ -11,7 +11,6 @@ import {
   FormLabel,
   FormMessage,
 } from '@dinui/react/form'
-import { toast } from '@dinui/react/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -49,7 +48,7 @@ const FormSchema = z.object({
   }),
 })
 
-export default function CheckboxReactHookFormMultiple() {
+export default function CheckboxReactHookFormMultipleDemo() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -58,14 +57,7 @@ export default function CheckboxReactHookFormMultiple() {
   })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    })
+    alert(`You submitted the following values: ${JSON.stringify(data, null, 2)}`)
   }
 
   return (

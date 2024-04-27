@@ -1,13 +1,11 @@
-'use client'
+import Checkbox from '@dinui/react/checkbox'
 
-import { Checkbox } from '@dinui/react/checkbox'
-
-export default function CheckboxDemo() {
+export default function CheckboxDisabledDemo() {
   return (
     <div className="flex items-center space-x-2">
-      <Checkbox id="terms" />
+      <Checkbox id="terms2" disabled />
       <label
-        htmlFor="terms"
+        htmlFor="terms2"
         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
       >
         Accept terms and conditions

@@ -1,4 +1,4 @@
-import { Checkbox } from '@dinui/react/checkbox'
+import Checkbox from '@dinui/react/checkbox'
 import { Label } from '@dinui/react/label'
 
 export default function LabelDemo() {

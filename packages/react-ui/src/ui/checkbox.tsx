@@ -1,25 +1,69 @@
 'use client'
 
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
-import { CheckIcon } from '@radix-ui/react-icons'
+import { IconCheck } from '@tabler/icons-react'
 import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import { VariantProps, tv } from 'tailwind-variants'
+import { Merge } from 'type-fest'
 
-export const Checkbox = React.forwardRef<
+const checkbox = tv({
+  slots: {
+    root: [
+      'shrink-0 rounded-sm border border-fg-weaker',
+      'data-[state=checked]:bg-brand data-[state=checked]:border-bg',
+      'disabled:cursor-not-allowed disabled:opacity-50',
+    ],
+    root_indicator: 'flex items-center justify-center text-current',
+    root_icon: null,
+  },
+  variants: {
+    size: {
+      sm: {
+        root: 'size-3',
+        root_icon: 'size-2.5',
+      },
+      md: {
+        root: 'size-4',
+        root_icon: 'size-[0.875rem]',
+      },
+      lg: {
+        root: 'size-5',
+        root_icon: 'size-[1.125rem]',
+      },
+    },
+  },
+  defaultVariants: {
+    size: 'md',
+  },
+})
+
+const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
->(({ className, ...props }, ref) => (
-  <CheckboxPrimitive.Root
-    ref={ref}
-    className={twMerge(
-      'peer h-4 w-4 shrink-0 rounded-sm border border-wgray-900 shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-wgray-950 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-wgray-900 data-[state=checked]:text-wgray-50 dark:border-wgray-50 dark:focus-visible:ring-wgray-300 dark:data-[state=checked]:bg-wgray-50 dark:data-[state=checked]:text-wgray-900',
-      className,
-    )}
-    {...props}
+  Merge<
+    Merge<
+      React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>,
+      VariantProps<typeof checkbox>
+    >,
+    {
+      indicatorProps?: React.ComponentProps<typeof CheckboxPrimitive.Indicator>
+      iconProps?: React.ComponentProps<typeof IconCheck>
+    }
   >
-    <CheckboxPrimitive.Indicator className={'flex items-center justify-center text-current'}>
-      <CheckIcon className="h-4 w-4" />
-    </CheckboxPrimitive.Indicator>
-  </CheckboxPrimitive.Root>
-))
+>(({ indicatorProps, iconProps, size, ...props }, ref) => {
+  const { root, root_indicator, root_icon } = checkbox({ size })
+
+  return (
+    <CheckboxPrimitive.Root {...props} ref={ref} className={root({ className: props.className })}>
+      <CheckboxPrimitive.Indicator
+        {...indicatorProps}
+        className={root_indicator({ className: indicatorProps?.className })}
+      >
+        <IconCheck {...iconProps} className={root_icon({ className: iconProps?.className })} />
+      </CheckboxPrimitive.Indicator>
+    </CheckboxPrimitive.Root>
+  )
+})
 Checkbox.displayName = CheckboxPrimitive.Root.displayName
+
+export default Checkbox
+export { checkbox, CheckboxPrimitive }
