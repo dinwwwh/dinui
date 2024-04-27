@@ -2,8 +2,10 @@
 
 import * as CollapsiblePrimitive from '@radix-ui/react-collapsible'
 
-export const Collapsible = CollapsiblePrimitive.Root
+const Collapsible = Object.assign(CollapsiblePrimitive.Root, {
+  Trigger: CollapsiblePrimitive.CollapsibleTrigger,
+  Content: CollapsiblePrimitive.CollapsibleContent,
+})
 
-export const CollapsibleTrigger = CollapsiblePrimitive.CollapsibleTrigger
-
-export const CollapsibleContent = CollapsiblePrimitive.CollapsibleContent
+export default Collapsible
+export { CollapsiblePrimitive }
