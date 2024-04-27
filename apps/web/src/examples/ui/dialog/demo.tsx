@@ -1,30 +1,21 @@
 import Button from '@dinui/react/button'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@dinui/react/dialog'
+import Dialog from '@dinui/react/dialog'
 import { Input } from '@dinui/react/input'
 import { Label } from '@dinui/react/label'
 
 export default function DialogDemo() {
   return (
     <Dialog>
-      <DialogTrigger asChild>
+      <Dialog.Trigger asChild>
         <Button variant="outline">Edit Profile</Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="grid gap-4 py-4">
+      </Dialog.Trigger>
+      <Dialog.Content className="sm:w-[32rem]">
+        <Dialog.Content.Title>Edit profile</Dialog.Content.Title>
+        <Dialog.Content.Description>
+          Make changes to your profile here. Click save when you're done.
+        </Dialog.Content.Description>
+
+        <div className="grid gap-4 py-4 mt-4">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="name" className="text-right">
               Name
@@ -38,10 +29,13 @@ export default function DialogDemo() {
             <Input id="username" value="@peduarte" className="col-span-3" />
           </div>
         </div>
-        <DialogFooter>
-          <Button type="submit">Save changes</Button>
-        </DialogFooter>
-      </DialogContent>
+
+        <Dialog.Content.Actions>
+          <Dialog.Content.Close asChild>
+            <Button type="submit">Save changes</Button>
+          </Dialog.Content.Close>
+        </Dialog.Content.Actions>
+      </Dialog.Content>
     </Dialog>
   )
 }
