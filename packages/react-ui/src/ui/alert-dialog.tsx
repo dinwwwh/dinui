@@ -13,9 +13,7 @@ const alertDialog = tv({
     content: [
       '@container',
       'fixed left-[50%] top-[50%] -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-lg',
-    ],
-    content_wrapper: [
-      '@lg:rounded-lg',
+      'sm:rounded-lg',
       'border bg-bg--contrast p-6 shadow-lg',
       'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
       'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]',
@@ -25,9 +23,9 @@ const alertDialog = tv({
       'fixed inset-0 z-50 bg-[#000]/80',
       'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
     ],
-    title: 'text-lg font-semibold text-center @lg:text-left',
-    description: 'mt-2 text-sm text-fg-weaker text-center @lg:text-left',
-    actions: 'mt-4 flex flex-col-reverse gap-2 @lg:flex-row @lg:justify-end',
+    title: 'text-lg font-semibold text-center @md:text-left',
+    description: 'mt-2 text-sm text-fg-weaker text-center @md:text-left',
+    actions: 'mt-4 flex flex-col-reverse gap-2 @md:flex-row @md:justify-end',
   },
 })
 
@@ -38,11 +36,10 @@ const AlertDialogContent = forwardRef<
     {
       portalProps?: React.ComponentProps<typeof AlertDialogPrimitive.Portal>
       overlayProps?: React.ComponentProps<typeof AlertDialogPrimitive.Overlay>
-      contentWrapperProps?: React.ComponentProps<'div'>
     }
   >
->(({ portalProps, overlayProps, contentWrapperProps, ...props }, ref) => {
-  const { content, content_wrapper, content_overlay } = alertDialog()
+>(({ portalProps, overlayProps, ...props }, ref) => {
+  const { content, content_overlay } = alertDialog()
 
   return (
     <AlertDialogPrimitive.Portal {...portalProps}>
@@ -55,12 +52,7 @@ const AlertDialogContent = forwardRef<
         ref={ref}
         className={content({ className: props.className })}
       >
-        <div
-          {...contentWrapperProps}
-          className={content_wrapper({ className: contentWrapperProps?.className })}
-        >
-          {props.children}
-        </div>
+        {props.children}
       </AlertDialogPrimitive.Content>
     </AlertDialogPrimitive.Portal>
   )
