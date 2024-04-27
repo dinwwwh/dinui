@@ -9,7 +9,7 @@ import {
   CommandItem,
   CommandList,
 } from '@dinui/react/command'
-import { Popover, PopoverContent, PopoverTrigger } from '@dinui/react/popover'
+import Popover from '@dinui/react/popover'
 import * as React from 'react'
 
 type Status = {
@@ -48,12 +48,12 @@ export default function ComboboxPopover() {
     <div className="flex items-center space-x-4">
       <p className="text-sm text-wgray-500">Status</p>
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
+        <Popover.Trigger asChild>
           <Button variant="outline" className="w-[150px] justify-start">
             {selectedStatus ? <>{selectedStatus.label}</> : <>+ Set status</>}
           </Button>
-        </PopoverTrigger>
-        <PopoverContent className="p-0" side="right" align="start">
+        </Popover.Trigger>
+        <Popover.Content className="p-0" side="right" align="start">
           <Command>
             <CommandInput placeholder="Change status..." />
             <CommandList>
@@ -76,7 +76,7 @@ export default function ComboboxPopover() {
               </CommandGroup>
             </CommandList>
           </Command>
-        </PopoverContent>
+        </Popover.Content>
       </Popover>
     </div>
   )

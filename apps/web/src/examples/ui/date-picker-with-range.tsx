@@ -2,7 +2,7 @@
 
 import Button from '@dinui/react/button'
 import DayPicker from '@dinui/react/day-picker'
-import { Popover, PopoverContent, PopoverTrigger } from '@dinui/react/popover'
+import Popover from '@dinui/react/popover'
 import { cn } from '@dinui/react/utils'
 import { CalendarIcon } from '@radix-ui/react-icons'
 import { addDays, format } from 'date-fns'
@@ -18,7 +18,7 @@ export default function DatePickerWithRange({ className }: React.HTMLAttributes<
   return (
     <div className={cn('grid gap-2', className)}>
       <Popover>
-        <PopoverTrigger asChild>
+        <Popover.Trigger asChild>
           <Button
             id="date"
             variant={'outline'}
@@ -40,8 +40,8 @@ export default function DatePickerWithRange({ className }: React.HTMLAttributes<
               <span>Pick a date</span>
             )}
           </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-auto p-0" align="start">
+        </Popover.Trigger>
+        <Popover.Content className="w-auto p-0" align="start">
           <DayPicker
             initialFocus
             mode="range"
@@ -50,7 +50,7 @@ export default function DatePickerWithRange({ className }: React.HTMLAttributes<
             onSelect={setDate}
             numberOfMonths={2}
           />
-        </PopoverContent>
+        </Popover.Content>
       </Popover>
     </div>
   )

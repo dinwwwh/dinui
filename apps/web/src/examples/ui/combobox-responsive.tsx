@@ -10,7 +10,7 @@ import {
   CommandList,
 } from '@dinui/react/command'
 import { Drawer, DrawerContent, DrawerTrigger } from '@dinui/react/drawer'
-import { Popover, PopoverContent, PopoverTrigger } from '@dinui/react/popover'
+import Popover from '@dinui/react/popover'
 import { useMediaQuery } from '@web/hooks/use-media-query'
 import * as React from 'react'
 
@@ -50,14 +50,14 @@ export default function ComboBoxResponsive() {
   if (isDesktop) {
     return (
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
+        <Popover.Trigger asChild>
           <Button variant="outline" className="w-[150px] justify-start">
             {selectedStatus ? <>{selectedStatus.label}</> : <>+ Set status</>}
           </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-[200px] p-0" align="start">
+        </Popover.Trigger>
+        <Popover.Content className="w-[200px] p-0" align="start">
           <StatusList setOpen={setOpen} setSelectedStatus={setSelectedStatus} />
-        </PopoverContent>
+        </Popover.Content>
       </Popover>
     )
   }

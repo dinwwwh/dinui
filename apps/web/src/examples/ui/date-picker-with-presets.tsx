@@ -2,7 +2,7 @@
 
 import Button from '@dinui/react/button'
 import DayPicker from '@dinui/react/day-picker'
-import { Popover, PopoverContent, PopoverTrigger } from '@dinui/react/popover'
+import Popover from '@dinui/react/popover'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@dinui/react/select'
 import { cn } from '@dinui/react/utils'
 import { CalendarIcon } from '@radix-ui/react-icons'
@@ -14,7 +14,7 @@ export default function DatePickerWithPresets() {
 
   return (
     <Popover>
-      <PopoverTrigger asChild>
+      <Popover.Trigger asChild>
         <Button
           variant={'outline'}
           className={cn('w-[240px] justify-start text-left font-normal', !date && 'text-wgray-500')}
@@ -22,8 +22,8 @@ export default function DatePickerWithPresets() {
           <CalendarIcon className="mr-2 h-4 w-4" />
           {date ? format(date, 'PPP') : <span>Pick a date</span>}
         </Button>
-      </PopoverTrigger>
-      <PopoverContent align="start" className="flex w-auto flex-col space-y-2 p-2">
+      </Popover.Trigger>
+      <Popover.Content align="start" className="flex w-auto flex-col space-y-2 p-2">
         <Select onValueChange={(value) => setDate(addDays(new Date(), parseInt(value)))}>
           <SelectTrigger>
             <SelectValue placeholder="Select" />
@@ -38,7 +38,7 @@ export default function DatePickerWithPresets() {
         <div className="rounded-md border">
           <DayPicker mode="single" selected={date} onSelect={setDate} />
         </div>
-      </PopoverContent>
+      </Popover.Content>
     </Popover>
   )
 }

@@ -11,7 +11,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@dinui/react/form'
-import { Popover, PopoverContent, PopoverTrigger } from '@dinui/react/popover'
+import Popover from '@dinui/react/popover'
 import { toast } from '@dinui/react/use-toast'
 import { cn } from '@dinui/react/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -52,7 +52,7 @@ export default function DatePickerForm() {
             <FormItem className="flex flex-col">
               <FormLabel>Date of birth</FormLabel>
               <Popover>
-                <PopoverTrigger asChild>
+                <Popover.Trigger asChild>
                   <FormControl>
                     <Button
                       variant={'outline'}
@@ -65,8 +65,8 @@ export default function DatePickerForm() {
                       <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                     </Button>
                   </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
+                </Popover.Trigger>
+                <Popover.Content className="w-auto p-0" align="start">
                   <DayPicker
                     mode="single"
                     selected={field.value}
@@ -74,7 +74,7 @@ export default function DatePickerForm() {
                     disabled={(date) => date > new Date() || date < new Date('1900-01-01')}
                     initialFocus
                   />
-                </PopoverContent>
+                </Popover.Content>
               </Popover>
               <FormDescription>Your date of birth is used to calculate your age.</FormDescription>
               <FormMessage />

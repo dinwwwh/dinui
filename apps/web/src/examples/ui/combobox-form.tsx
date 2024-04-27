@@ -18,7 +18,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@dinui/react/form'
-import { Popover, PopoverContent, PopoverTrigger } from '@dinui/react/popover'
+import Popover from '@dinui/react/popover'
 import { toast } from '@dinui/react/use-toast'
 import { cn } from '@dinui/react/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -70,7 +70,7 @@ export default function ComboboxForm() {
             <FormItem className="flex flex-col">
               <FormLabel>Language</FormLabel>
               <Popover>
-                <PopoverTrigger asChild>
+                <Popover.Trigger asChild>
                   <FormControl>
                     <Button
                       variant="outline"
@@ -83,8 +83,8 @@ export default function ComboboxForm() {
                       <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                     </Button>
                   </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-[200px] p-0">
+                </Popover.Trigger>
+                <Popover.Content className="w-[200px] p-0">
                   <Command>
                     <CommandInput placeholder="Search framework..." className="h-9" />
                     <CommandList>
@@ -110,7 +110,7 @@ export default function ComboboxForm() {
                       </CommandGroup>
                     </CommandList>
                   </Command>
-                </PopoverContent>
+                </Popover.Content>
               </Popover>
               <FormDescription>
                 This is the language that will be used in the dashboard.
