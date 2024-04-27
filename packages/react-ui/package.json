@@ -50,9 +50,9 @@
       "types": "./build/src/ui/button.d.ts",
       "default": "./build/src/ui/button.js"
     },
-    "./calendar": {
-      "types": "./build/src/ui/calendar.d.ts",
-      "default": "./build/src/ui/calendar.js"
+    "./day-picker": {
+      "types": "./build/src/ui/day-picker.d.ts",
+      "default": "./build/src/ui/day-picker.js"
     },
     "./card": {
       "types": "./build/src/ui/card.d.ts",

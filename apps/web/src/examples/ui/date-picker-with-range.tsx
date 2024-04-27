@@ -1,7 +1,7 @@
 'use client'
 
 import Button from '@dinui/react/button'
-import { Calendar } from '@dinui/react/calendar'
+import DayPicker from '@dinui/react/day-picker'
 import { Popover, PopoverContent, PopoverTrigger } from '@dinui/react/popover'
 import { cn } from '@dinui/react/utils'
 import { CalendarIcon } from '@radix-ui/react-icons'
@@ -42,7 +42,7 @@ export default function DatePickerWithRange({ className }: React.HTMLAttributes<
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0" align="start">
-          <Calendar
+          <DayPicker
             initialFocus
             mode="range"
             defaultMonth={date?.from}

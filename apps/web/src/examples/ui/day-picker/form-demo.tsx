@@ -1,7 +1,7 @@
 'use client'
 
 import Button from '@dinui/react/button'
-import { Calendar } from '@dinui/react/calendar'
+import DayPicker from '@dinui/react/day-picker'
 import {
   Form,
   FormControl,
@@ -12,7 +12,6 @@ import {
   FormMessage,
 } from '@dinui/react/form'
 import { Popover, PopoverContent, PopoverTrigger } from '@dinui/react/popover'
-import { toast } from '@dinui/react/use-toast'
 import { cn } from '@dinui/react/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CalendarIcon } from '@radix-ui/react-icons'
@@ -26,20 +25,13 @@ const FormSchema = z.object({
   }),
 })
 
-export default function CalendarForm() {
+export default function DayPickerFormDemo() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    })
+    alert(`You submitted the following values: ${JSON.stringify(data, null, 2)}`)
   }
 
   return (
@@ -57,17 +49,17 @@ export default function CalendarForm() {
                     <Button
                       variant={'outline'}
                       className={cn(
-                        'w-[240px] pl-3 text-left font-normal',
-                        !field.value && 'text-wgray-500',
+                        'w-[240px] pl-3 text-left font-normal text-fg',
+                        !field.value && 'text-fg-weaker',
                       )}
                     >
                       {field.value ? format(field.value, 'PPP') : <span>Pick a date</span>}
-                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                      <CalendarIcon className="ml-auto size-4 text-fg-weaker" />
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
+                  <DayPicker
                     mode="single"
                     selected={field.value}
                     onSelect={field.onChange}

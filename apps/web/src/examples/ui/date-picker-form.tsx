@@ -1,7 +1,7 @@
 'use client'
 
 import Button from '@dinui/react/button'
-import { Calendar } from '@dinui/react/calendar'
+import DayPicker from '@dinui/react/day-picker'
 import {
   Form,
   FormControl,
@@ -67,7 +67,7 @@ export default function DatePickerForm() {
                   </FormControl>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
+                  <DayPicker
                     mode="single"
                     selected={field.value}
                     onSelect={field.onChange}

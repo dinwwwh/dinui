@@ -1,7 +1,7 @@
 'use client'
 
 import Button from '@dinui/react/button'
-import { Calendar } from '@dinui/react/calendar'
+import DayPicker from '@dinui/react/day-picker'
 import { Popover, PopoverContent, PopoverTrigger } from '@dinui/react/popover'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@dinui/react/select'
 import { cn } from '@dinui/react/utils'
@@ -36,7 +36,7 @@ export default function DatePickerWithPresets() {
           </SelectContent>
         </Select>
         <div className="rounded-md border">
-          <Calendar mode="single" selected={date} onSelect={setDate} />
+          <DayPicker mode="single" selected={date} onSelect={setDate} />
         </div>
       </PopoverContent>
     </Popover>
