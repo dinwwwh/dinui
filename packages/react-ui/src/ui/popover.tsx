@@ -4,7 +4,7 @@ import * as PopoverPrimitive from '@radix-ui/react-popover'
 import type * as _A from '@radix-ui/react-popper'
 import { forwardRef } from 'react'
 import { tv } from 'tailwind-variants'
-import { Merge } from 'type-fest'
+import type { Merge } from 'type-fest'
 
 const popover = tv({
   slots: {

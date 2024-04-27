@@ -4,7 +4,7 @@ import { button } from './button'
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react'
 import * as DayPickerPrimitive from 'react-day-picker'
 import { tv } from 'tailwind-variants'
-import { Merge } from 'type-fest'
+import type { Merge } from 'type-fest'
 
 const dayPicker = tv({
   slots: {

@@ -3,8 +3,9 @@
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import { IconCheck } from '@tabler/icons-react'
 import * as React from 'react'
-import { VariantProps, tv } from 'tailwind-variants'
-import { Merge } from 'type-fest'
+import type { VariantProps} from 'tailwind-variants';
+import { tv } from 'tailwind-variants'
+import type { Merge } from 'type-fest'
 
 const checkbox = tv({
   slots: {

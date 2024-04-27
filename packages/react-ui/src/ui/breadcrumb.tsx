@@ -1,6 +1,6 @@
 import { Slot } from '@radix-ui/react-slot'
 import { IconChevronRight, IconDots } from '@tabler/icons-react'
-import React, { forwardRef } from 'react'
+import { forwardRef } from 'react'
 import { tv } from 'tailwind-variants'
 import type { Merge } from 'type-fest'
 
