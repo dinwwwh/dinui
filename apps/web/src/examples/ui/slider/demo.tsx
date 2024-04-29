@@ -1,4 +1,4 @@
-import { Slider } from '@dinui/react/slider'
+import Slider from '@dinui/react/slider'
 import { cn } from '@dinui/react/utils'
 
 type SliderProps = React.ComponentProps<typeof Slider>
