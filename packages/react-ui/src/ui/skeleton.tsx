@@ -1,10 +1,16 @@
-import { twMerge } from 'tailwind-merge'
+import { forwardRef } from 'react'
+import { tv } from 'tailwind-variants'
 
-export function Skeleton({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div
-      className={twMerge('animate-pulse rounded-md bg-wgray-900/10 dark:bg-wgray-50/10', className)}
-      {...props}
-    />
-  )
-}
+const skeleton = tv({
+  slots: {
+    root: 'animate-pulse rounded-md bg-bg--muted',
+  },
+})
+
+const Skeleton = forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<'div'>>((props, ref) => {
+  const { root } = skeleton()
+
+  return <div {...props} ref={ref} className={root({ className: props.className })} />
+})
+
+export default Skeleton

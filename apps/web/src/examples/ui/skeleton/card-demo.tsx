@@ -1,4 +1,4 @@
-import { Skeleton } from '@dinui/react/skeleton'
+import Skeleton from '@dinui/react/skeleton'
 
 export default function SkeletonCard() {
   return (
