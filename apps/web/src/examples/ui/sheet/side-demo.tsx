@@ -3,37 +3,26 @@
 import Button from '@dinui/react/button'
 import { Input } from '@dinui/react/input'
 import { Label } from '@dinui/react/label'
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@dinui/react/sheet'
+import Sheet from '@dinui/react/sheet'
 
 const SHEET_SIDES = ['top', 'right', 'bottom', 'left'] as const
 
-type SheetSide = (typeof SHEET_SIDES)[number]
-
-export default function SheetSide() {
+export default function SheetSideDemo() {
   return (
     <div className="grid grid-cols-2 gap-2">
       {SHEET_SIDES.map((side) => (
         <Sheet key={side}>
-          <SheetTrigger asChild>
+          <Sheet.Trigger asChild>
             <Button variant="outline">{side}</Button>
-          </SheetTrigger>
-          <SheetContent side={side}>
-            <SheetHeader>
-              <SheetTitle>Edit profile</SheetTitle>
-              <SheetDescription>
-                Make changes to your profile here. Click save when you're done.
-              </SheetDescription>
-            </SheetHeader>
-            <div className="grid gap-4 py-4">
+          </Sheet.Trigger>
+          <Sheet.Content side={side}>
+            <Sheet.Content.Title>Edit profile</Sheet.Content.Title>
+
+            <Sheet.Content.Description>
+              Make changes to your profile here. Click save when you're done.
+            </Sheet.Content.Description>
+
+            <div className="grid gap-4 py-4 mt-4">
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="name" className="text-right">
                   Name
@@ -47,12 +36,13 @@ export default function SheetSide() {
                 <Input id="username" value="@peduarte" className="col-span-3" />
               </div>
             </div>
-            <SheetFooter>
-              <SheetClose asChild>
+
+            <Sheet.Content.Actions>
+              <Sheet.Content.Close asChild>
                 <Button type="submit">Save changes</Button>
-              </SheetClose>
-            </SheetFooter>
-          </SheetContent>
+              </Sheet.Content.Close>
+            </Sheet.Content.Actions>
+          </Sheet.Content>
         </Sheet>
       ))}
     </div>

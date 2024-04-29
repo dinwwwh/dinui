@@ -1,44 +1,53 @@
 'use client'
 
+import CloseButton from './close-button'
 import * as SheetPrimitive from '@radix-ui/react-dialog'
-import { Cross2Icon } from '@radix-ui/react-icons'
-import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import { createContext, forwardRef, useContext } from 'react'
 import { tv, type VariantProps } from 'tailwind-variants'
+import { Merge } from 'type-fest'
 
-export const Sheet = SheetPrimitive.Root
-
-export const SheetTrigger = SheetPrimitive.Trigger
-
-export const SheetClose = SheetPrimitive.Close
-
-export const SheetPortal = SheetPrimitive.Portal
-
-export const SheetOverlay = React.forwardRef<
-  React.ElementRef<typeof SheetPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay>
->(({ className, ...props }, ref) => (
-  <SheetPrimitive.Overlay
-    className={twMerge(
-      'fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
-      className,
-    )}
-    {...props}
-    ref={ref}
-  />
-))
-SheetOverlay.displayName = SheetPrimitive.Overlay.displayName
-
-export const sheet = tv({
-  base: 'fixed z-50 gap-4 bg-white p-6 shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-500 dark:bg-wgray-950',
+const sheet = tv({
+  slots: {
+    content: [
+      '@container fixed z-50 gap-4 bg-bg--contrast p-6 shadow-lg',
+      'transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500',
+      'data-[state=open]:animate-in data-[state=closed]:animate-out',
+    ],
+    content_overlay: [
+      'fixed inset-0 z-50 bg-[#000]/80',
+      'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+    ],
+    content_closeButton: 'absolute right-4 top-4',
+    title: 'text-lg font-semibold',
+    description: 'mt-2 text-sm text-fg-weaker',
+    actions: 'mt-4 flex flex-col-reverse gap-2 @xs:flex-row @xs:justify-end',
+  },
   variants: {
     side: {
-      top: 'inset-x-0 top-0 border-wgray-200 dark:border-wgray-800 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top',
-      bottom:
-        'inset-x-0 bottom-0 border-wgray-200 dark:border-wgray-800 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom',
-      left: 'inset-y-0 left-0 h-full w-3/4 border-wgray-200 dark:border-wgray-800 border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm',
-      right:
-        'inset-y-0 right-0 h-full w-3/4 border-wgray-200 dark:border-wgray-800 border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm',
+      top: {
+        content: [
+          'inset-x-0 top-0 border-b',
+          'data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top',
+        ],
+      },
+      bottom: {
+        content: [
+          'inset-x-0 bottom-0 border-t',
+          'data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom',
+        ],
+      },
+      left: {
+        content: [
+          'inset-y-0 left-0 h-full max-w-sm w-4/5 border-r',
+          'data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left',
+        ],
+      },
+      right: {
+        content: [
+          'inset-y-0 right-0 h-full max-w-sm w-4/5 border-l',
+          'data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right',
+        ],
+      },
     },
   },
   defaultVariants: {
@@ -46,63 +55,103 @@ export const sheet = tv({
   },
 })
 
-interface SheetContentProps
-  extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
-    VariantProps<typeof sheet> {}
+type SheetVariantProps = VariantProps<typeof sheet>
 
-export const SheetContent = React.forwardRef<
+const SheetContext = createContext<SheetVariantProps>(sheet.defaultVariants)
+
+const SheetContent = forwardRef<
   React.ElementRef<typeof SheetPrimitive.Content>,
-  SheetContentProps
->(({ side = 'right', className, children, ...props }, ref) => (
-  <SheetPortal>
-    <SheetOverlay />
-    <SheetPrimitive.Content ref={ref} className={sheet({ side, className })} {...props}>
-      {children}
-      <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-wgray-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-wgray-100 dark:ring-offset-wgray-950 dark:focus:ring-wgray-300 dark:data-[state=open]:bg-wgray-800">
-        <Cross2Icon className="h-4 w-4" />
-        <span className="sr-only">Close</span>
-      </SheetPrimitive.Close>
-    </SheetPrimitive.Content>
-  </SheetPortal>
-))
+  Merge<
+    Merge<React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>, SheetVariantProps>,
+    {
+      portalProps?: React.ComponentProps<typeof SheetPrimitive.Portal>
+      overlayProps?: React.ComponentProps<typeof SheetPrimitive.Overlay>
+      closeProps?: React.ComponentProps<typeof SheetPrimitive.Close>
+      closeButtonProps?: React.ComponentProps<typeof CloseButton>
+    }
+  >
+>(({ portalProps, overlayProps, closeProps, closeButtonProps, side, children, ...props }, ref) => {
+  const variantPros = { side }
+  const { content, content_overlay, content_closeButton } = sheet(variantPros)
+
+  return (
+    <SheetContext.Provider value={variantPros}>
+      <SheetPrimitive.Portal {...portalProps}>
+        <SheetPrimitive.Overlay
+          {...overlayProps}
+          className={content_overlay({ className: overlayProps?.className })}
+        />
+
+        <SheetPrimitive.Content
+          {...props}
+          ref={ref}
+          className={content({ className: props.className })}
+        >
+          {children}
+
+          <SheetPrimitive.Close {...closeProps} asChild>
+            <CloseButton
+              wsize="sm"
+              {...closeButtonProps}
+              className={content_closeButton({ className: closeButtonProps?.className })}
+            />
+          </SheetPrimitive.Close>
+        </SheetPrimitive.Content>
+      </SheetPrimitive.Portal>
+    </SheetContext.Provider>
+  )
+})
 SheetContent.displayName = SheetPrimitive.Content.displayName
 
-export const SheetHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={twMerge('flex flex-col space-y-2 text-center sm:text-left', className)}
-    {...props}
-  />
-)
-SheetHeader.displayName = 'SheetHeader'
-
-export const SheetFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={twMerge('flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2', className)}
-    {...props}
-  />
-)
-SheetFooter.displayName = 'SheetFooter'
-
-export const SheetTitle = React.forwardRef<
+const SheetTitle = forwardRef<
   React.ElementRef<typeof SheetPrimitive.Title>,
   React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>
->(({ className, ...props }, ref) => (
-  <SheetPrimitive.Title
-    ref={ref}
-    className={twMerge('text-lg font-semibold text-wgray-950 dark:text-wgray-50', className)}
-    {...props}
-  />
-))
+>((props, ref) => {
+  const variantPros = useContext(SheetContext)
+  const { title } = sheet(variantPros)
+
+  return (
+    <SheetPrimitive.Title {...props} ref={ref} className={title({ className: props.className })} />
+  )
+})
 SheetTitle.displayName = SheetPrimitive.Title.displayName
 
-export const SheetDescription = React.forwardRef<
+const SheetDescription = forwardRef<
   React.ElementRef<typeof SheetPrimitive.Description>,
   React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description>
->(({ className, ...props }, ref) => (
-  <SheetPrimitive.Description
-    ref={ref}
-    className={twMerge('text-sm text-wgray-500 dark:text-wgray-400', className)}
-    {...props}
-  />
-))
+>((props, ref) => {
+  const variantPros = useContext(SheetContext)
+  const { description } = sheet(variantPros)
+
+  return (
+    <SheetPrimitive.Description
+      {...props}
+      ref={ref}
+      className={description({ className: props.className })}
+    />
+  )
+})
 SheetDescription.displayName = SheetPrimitive.Description.displayName
+
+const SheetActions = forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<'div'>>(
+  (props, ref) => {
+    const variantPros = useContext(SheetContext)
+    const { actions } = sheet(variantPros)
+
+    return <div {...props} ref={ref} className={actions({ className: props.className })} />
+  },
+)
+SheetActions.displayName = 'SheetActions'
+
+export const Sheet = Object.assign(SheetPrimitive.Root, {
+  Trigger: SheetPrimitive.Trigger,
+  Content: Object.assign(SheetContent, {
+    Title: SheetTitle,
+    Description: SheetDescription,
+    Actions: SheetActions,
+    Close: SheetPrimitive.Close,
+  }),
+})
+
+export default Sheet
+export { sheet, SheetPrimitive }
