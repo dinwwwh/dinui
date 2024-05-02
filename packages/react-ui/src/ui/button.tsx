@@ -42,6 +42,12 @@ export const button = tv({
       },
     },
     size: {
+      xs: {
+        root: ['h-7 px-2 rounded-md', 'text-xs font-medium'],
+        leftIcon: 'size-3.5 -ml-0.5 mr-1',
+        rightIcon: 'size-3.5 ml-1 -mr-0.5',
+        icon: 'size-3.5',
+      },
       sm: {
         root: ['h-8 px-3 rounded-md', 'text-xs font-medium'],
         leftIcon: 'size-4 -ml-0.5 mr-1',
@@ -66,6 +72,13 @@ export const button = tv({
     },
   },
   compoundVariants: [
+    {
+      size: 'xs',
+      icon: true,
+      className: {
+        root: 'w-7 px-0',
+      },
+    },
     {
       size: 'sm',
       icon: true,

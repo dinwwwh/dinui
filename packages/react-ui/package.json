@@ -166,10 +166,6 @@
       "types": "./build/src/ui/slider.d.ts",
       "default": "./build/src/ui/slider.js"
     },
-    "./sonner": {
-      "types": "./build/src/ui/sonner.d.ts",
-      "default": "./build/src/ui/sonner.js"
-    },
     "./switch": {
       "types": "./build/src/ui/switch.d.ts",
       "default": "./build/src/ui/switch.js"
@@ -190,10 +186,6 @@
       "types": "./build/src/ui/toast.d.ts",
       "default": "./build/src/ui/toast.js"
     },
-    "./toaster": {
-      "types": "./build/src/ui/toaster.d.ts",
-      "default": "./build/src/ui/toaster.js"
-    },
     "./toggle-group": {
       "types": "./build/src/ui/toggle-group.d.ts",
       "default": "./build/src/ui/toggle-group.js"
@@ -205,10 +197,6 @@
     "./tooltip": {
       "types": "./build/src/ui/tooltip.d.ts",
       "default": "./build/src/ui/tooltip.js"
-    },
-    "./use-toast": {
-      "types": "./build/src/ui/use-toast.d.ts",
-      "default": "./build/src/ui/use-toast.js"
     },
     "./utils": {
       "types": "./build/src/utils.d.ts",
