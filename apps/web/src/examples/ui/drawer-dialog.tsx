@@ -10,7 +10,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@dinui/react/drawer'
-import { Input } from '@dinui/react/input'
+import Input from '@dinui/react/input'
 import Label from '@dinui/react/label'
 import { cn } from '@dinui/react/utils'
 import { useMediaQuery } from '@web/hooks/use-media-query'

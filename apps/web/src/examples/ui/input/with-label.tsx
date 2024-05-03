@@ -1,4 +1,4 @@
-import { Input } from '@dinui/react/input'
+import Input from '@dinui/react/input'
 import Label from '@dinui/react/label'
 
 export default function InputWithLabel() {

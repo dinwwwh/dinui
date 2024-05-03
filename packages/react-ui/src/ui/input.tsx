@@ -1,21 +1,29 @@
-import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import { forwardRef } from 'react'
+import { tv } from 'tailwind-variants'
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+const input = tv({
+  slots: {
+    root: [
+      'h-9 w-full rounded-md border px-3 py-1',
+      'text-sm shadow-sm transition-colors',
+      'placeholder:text-fg-weaker',
+      'disabled:cursor-not-allowed disabled:opacity-50',
+      'file:rounded-md file:border-border file:border file:bg-transparent file:text-sm file:font-medium',
+      '[&[type=file]]:px-2 [&[type=file]]:py-[0.3125rem]',
+    ],
+  },
+})
 
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, ...props }, ref) => {
+const Input = forwardRef<HTMLInputElement, React.ComponentPropsWithoutRef<'input'>>(
+  (props, ref) => {
+    const { root } = input()
+
     return (
-      <input
-        type={type}
-        className={twMerge(
-          'flex h-9 w-full rounded-md border border-wgray-200 dark:border-wgray-800 bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-wgray-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-wgray-950 disabled:cursor-not-allowed disabled:opacity-50  dark:placeholder:text-wgray-400 dark:focus-visible:ring-wgray-400',
-          className,
-        )}
-        ref={ref}
-        {...props}
-      />
+      <input type="string" {...props} ref={ref} className={root({ className: props.className })} />
     )
   },
 )
 Input.displayName = 'Input'
+
+export default Input
+export { input }

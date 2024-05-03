@@ -1,6 +1,6 @@
 import Button from '@dinui/react/button'
 import Dialog from '@dinui/react/dialog'
-import { Input } from '@dinui/react/input'
+import Input from '@dinui/react/input'
 import Label from '@dinui/react/label'
 import { CopyIcon } from '@radix-ui/react-icons'
 

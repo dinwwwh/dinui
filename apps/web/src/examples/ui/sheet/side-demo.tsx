@@ -1,7 +1,7 @@
 'use client'
 
 import Button from '@dinui/react/button'
-import { Input } from '@dinui/react/input'
+import Input from '@dinui/react/input'
 import Label from '@dinui/react/label'
 import Sheet from '@dinui/react/sheet'
 

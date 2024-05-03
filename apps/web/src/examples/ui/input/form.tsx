@@ -10,7 +10,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@dinui/react/form'
-import { Input } from '@dinui/react/input'
+import Input from '@dinui/react/input'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'

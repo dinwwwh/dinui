@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@dinui/react/card'
-import { Input } from '@dinui/react/input'
+import Input from '@dinui/react/input'
 import Label from '@dinui/react/label'
 import Tabs from '@dinui/react/tabs'
 
