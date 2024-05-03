@@ -1,32 +1,36 @@
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@dinui/react/resizable'
+import Resizable from '@dinui/react/resizable'
 
 export default function ResizableDemo() {
   return (
-    <ResizablePanelGroup
+    <Resizable
       direction="horizontal"
       className="max-w-md rounded-lg border-wgray-200 dark:border-wgray-800 border"
     >
-      <ResizablePanel defaultSize={50}>
+      <Resizable.Panel defaultSize={50}>
         <div className="flex h-[200px] items-center justify-center p-6">
           <span className="font-semibold">One</span>
         </div>
-      </ResizablePanel>
-      <ResizableHandle />
-      <ResizablePanel defaultSize={50}>
-        <ResizablePanelGroup direction="vertical">
-          <ResizablePanel defaultSize={25}>
+      </Resizable.Panel>
+
+      <Resizable.Handle />
+
+      <Resizable.Panel defaultSize={50}>
+        <Resizable direction="vertical">
+          <Resizable.Panel defaultSize={25}>
             <div className="flex h-full items-center justify-center p-6">
               <span className="font-semibold">Two</span>
             </div>
-          </ResizablePanel>
-          <ResizableHandle />
-          <ResizablePanel defaultSize={75}>
+          </Resizable.Panel>
+
+          <Resizable.Handle />
+
+          <Resizable.Panel defaultSize={75}>
             <div className="flex h-full items-center justify-center p-6">
               <span className="font-semibold">Three</span>
             </div>
-          </ResizablePanel>
-        </ResizablePanelGroup>
-      </ResizablePanel>
-    </ResizablePanelGroup>
+          </Resizable.Panel>
+        </Resizable>
+      </Resizable.Panel>
+    </Resizable>
   )
 }
