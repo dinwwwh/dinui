@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@dinui/react/card'
-import { Switch } from '@dinui/react/switch'
+import Switch from '@dinui/react/switch'
 import { cn } from '@dinui/react/utils'
 import { BellIcon, CheckIcon } from '@radix-ui/react-icons'
 
