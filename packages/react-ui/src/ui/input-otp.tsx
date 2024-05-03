@@ -1,9 +1,10 @@
 'use client'
 
 import { OTPInput, OTPInputContext } from 'input-otp'
-import React, { forwardRef, useContext } from 'react'
+import type React from 'react'
+import { forwardRef, useContext } from 'react'
 import { tv } from 'tailwind-variants'
-import { Merge } from 'type-fest'
+import type { Merge } from 'type-fest'
 
 const inputOTP = tv({
   slots: {

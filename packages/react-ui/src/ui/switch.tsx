@@ -1,9 +1,10 @@
 'use client'
 
 import * as SwitchPrimitives from '@radix-ui/react-switch'
-import React, { forwardRef } from 'react'
+import type React from 'react'
+import { forwardRef } from 'react'
 import { tv } from 'tailwind-variants'
-import { Merge } from 'type-fest'
+import type { Merge } from 'type-fest'
 
 const switchVariant = tv({
   slots: {

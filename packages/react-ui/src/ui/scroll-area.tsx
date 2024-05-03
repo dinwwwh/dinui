@@ -3,7 +3,7 @@
 import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area'
 import * as React from 'react'
 import { tv } from 'tailwind-variants'
-import { Merge } from 'type-fest'
+import type { Merge } from 'type-fest'
 
 const scrollArea = tv({
   slots: {
@@ -70,7 +70,7 @@ const ScrollArea = React.forwardRef<
         ) : null}
 
         {!orientation || orientation === 'vertical' ? (
-          <ScrollBar orientation="vertical" {...horizontalScrollbarProps} />
+          <ScrollBar orientation="vertical" {...verticalScrollbarProps} />
         ) : null}
 
         <ScrollAreaPrimitive.Corner {...cornerProps} />

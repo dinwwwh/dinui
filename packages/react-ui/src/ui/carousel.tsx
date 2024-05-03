@@ -5,7 +5,7 @@ import { IconArrowLeft, IconArrowRight } from '@tabler/icons-react'
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react'
 import * as React from 'react'
 import { tv } from 'tailwind-variants'
-import { Merge } from 'type-fest'
+import type { Merge } from 'type-fest'
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>

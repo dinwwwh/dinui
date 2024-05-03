@@ -3,7 +3,7 @@
 import { IconGripVertical } from '@tabler/icons-react'
 import { PanelGroup, Panel, PanelResizeHandle } from 'react-resizable-panels'
 import { tv } from 'tailwind-variants'
-import { Merge } from 'type-fest'
+import type { Merge } from 'type-fest'
 
 const resizable = tv({
   slots: {
