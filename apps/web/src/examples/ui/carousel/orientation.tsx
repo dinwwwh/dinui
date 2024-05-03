@@ -1,11 +1,5 @@
 import { Card, CardContent } from '@dinui/react/card'
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@dinui/react/carousel'
+import Carousel from '@dinui/react/carousel'
 
 export default function CarouselOrientation() {
   return (
@@ -16,9 +10,9 @@ export default function CarouselOrientation() {
       orientation="vertical"
       className="w-full max-w-xs"
     >
-      <CarouselContent className="-mt-1 h-[200px]">
+      <Carousel.Content className="-mt-1 h-[200px]">
         {Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem key={index} className="pt-1 md:basis-1/2">
+          <Carousel.Content.Item key={index} className="pt-1 md:basis-1/2">
             <div className="p-1">
               <Card>
                 <CardContent className="flex items-center justify-center p-6">
@@ -26,11 +20,11 @@ export default function CarouselOrientation() {
                 </CardContent>
               </Card>
             </div>
-          </CarouselItem>
+          </Carousel.Content.Item>
         ))}
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      </Carousel.Content>
+      <Carousel.Previous />
+      <Carousel.Next />
     </Carousel>
   )
 }

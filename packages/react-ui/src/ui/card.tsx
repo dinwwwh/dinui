@@ -6,7 +6,7 @@ export const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDi
     <div
       ref={ref}
       className={twMerge(
-        'rounded-xl border border-wgray-200 dark:border-wgray-800 bg-white text-wgray-950 shadow dark:bg-wgray-950 dark:text-wgray-50',
+        'rounded-xl border border-wgray-200 dark:border-wgray-800 bg-bg--contrast text-wgray-950 shadow dark:bg-wgray-950 dark:text-wgray-50',
         className,
       )}
       {...props}

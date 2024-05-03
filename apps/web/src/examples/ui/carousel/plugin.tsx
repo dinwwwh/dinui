@@ -1,11 +1,5 @@
 import { Card, CardContent } from '@dinui/react/card'
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@dinui/react/carousel'
+import Carousel from '@dinui/react/carousel'
 import Autoplay from 'embla-carousel-autoplay'
 import * as React from 'react'
 
@@ -19,9 +13,9 @@ export default function CarouselPlugin() {
       onMouseEnter={plugin.current.stop}
       onMouseLeave={plugin.current.reset}
     >
-      <CarouselContent>
+      <Carousel.Content>
         {Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem key={index}>
+          <Carousel.Content.Item key={index}>
             <div className="p-1">
               <Card>
                 <CardContent className="flex aspect-square items-center justify-center p-6">
@@ -29,11 +23,11 @@ export default function CarouselPlugin() {
                 </CardContent>
               </Card>
             </div>
-          </CarouselItem>
+          </Carousel.Content.Item>
         ))}
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      </Carousel.Content>
+      <Carousel.Previous />
+      <Carousel.Next />
     </Carousel>
   )
 }

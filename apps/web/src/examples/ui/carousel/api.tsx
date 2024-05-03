@@ -1,12 +1,5 @@
 import { Card, CardContent } from '@dinui/react/card'
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  type CarouselApi,
-} from '@dinui/react/carousel'
+import Carousel, { type CarouselApi } from '@dinui/react/carousel'
 import * as React from 'react'
 
 export default function CarouselDApiDemo() {
@@ -30,19 +23,19 @@ export default function CarouselDApiDemo() {
   return (
     <div>
       <Carousel setApi={setApi} className="w-full max-w-xs">
-        <CarouselContent>
+        <Carousel.Content>
           {Array.from({ length: 5 }).map((_, index) => (
-            <CarouselItem key={index}>
+            <Carousel.Content.Item key={index}>
               <Card>
                 <CardContent className="flex aspect-square items-center justify-center p-6">
                   <span className="text-4xl font-semibold">{index + 1}</span>
                 </CardContent>
               </Card>
-            </CarouselItem>
+            </Carousel.Content.Item>
           ))}
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        </Carousel.Content>
+        <Carousel.Previous />
+        <Carousel.Next />
       </Carousel>
       <div className="py-2 text-center text-sm text-wgray-500">
         Slide {current} of {count}

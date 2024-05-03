@@ -1,11 +1,5 @@
 import { Card, CardContent } from '@dinui/react/card'
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@dinui/react/carousel'
+import Carousel from '@dinui/react/carousel'
 
 export default function CarouselSize() {
   return (
@@ -15,9 +9,9 @@ export default function CarouselSize() {
       }}
       className="w-full max-w-sm"
     >
-      <CarouselContent>
+      <Carousel.Content>
         {Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+          <Carousel.Content.Item key={index} className="md:basis-1/2 lg:basis-1/3">
             <div className="p-1">
               <Card>
                 <CardContent className="flex aspect-square items-center justify-center p-6">
@@ -25,11 +19,11 @@ export default function CarouselSize() {
                 </CardContent>
               </Card>
             </div>
-          </CarouselItem>
+          </Carousel.Content.Item>
         ))}
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      </Carousel.Content>
+      <Carousel.Previous />
+      <Carousel.Next />
     </Carousel>
   )
 }
