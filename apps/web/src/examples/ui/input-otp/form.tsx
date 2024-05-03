@@ -10,7 +10,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@dinui/react/form'
-import { InputOTP, InputOTPGroup, InputOTPSlot } from '@dinui/react/input-otp'
+import InputOTP from '@dinui/react/input-otp'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -44,14 +44,14 @@ export default function InputOTPForm() {
               <FormLabel>One-Time Password</FormLabel>
               <FormControl>
                 <InputOTP maxLength={6} {...field}>
-                  <InputOTPGroup>
-                    <InputOTPSlot index={0} />
-                    <InputOTPSlot index={1} />
-                    <InputOTPSlot index={2} />
-                    <InputOTPSlot index={3} />
-                    <InputOTPSlot index={4} />
-                    <InputOTPSlot index={5} />
-                  </InputOTPGroup>
+                  <InputOTP.Group>
+                    <InputOTP.Slot index={0} />
+                    <InputOTP.Slot index={1} />
+                    <InputOTP.Slot index={2} />
+                    <InputOTP.Slot index={3} />
+                    <InputOTP.Slot index={4} />
+                    <InputOTP.Slot index={5} />
+                  </InputOTP.Group>
                 </InputOTP>
               </FormControl>
               <FormDescription>

@@ -1,6 +1,6 @@
 'use client'
 
-import { InputOTP, InputOTPGroup, InputOTPSlot } from '@dinui/react/input-otp'
+import InputOTP from '@dinui/react/input-otp'
 import * as React from 'react'
 
 export default function InputOTPControlled() {
@@ -9,14 +9,14 @@ export default function InputOTPControlled() {
   return (
     <div className="space-y-2">
       <InputOTP maxLength={6} value={value} onChange={(value) => setValue(value)}>
-        <InputOTPGroup>
-          <InputOTPSlot index={0} />
-          <InputOTPSlot index={1} />
-          <InputOTPSlot index={2} />
-          <InputOTPSlot index={3} />
-          <InputOTPSlot index={4} />
-          <InputOTPSlot index={5} />
-        </InputOTPGroup>
+        <InputOTP.Group>
+          <InputOTP.Slot index={0} />
+          <InputOTP.Slot index={1} />
+          <InputOTP.Slot index={2} />
+          <InputOTP.Slot index={3} />
+          <InputOTP.Slot index={4} />
+          <InputOTP.Slot index={5} />
+        </InputOTP.Group>
       </InputOTP>
       <div className="text-center text-sm">
         {value === '' ? <>Enter your one-time password.</> : <>You entered: {value}</>}
