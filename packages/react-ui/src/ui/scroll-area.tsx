@@ -2,42 +2,109 @@
 
 import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area'
 import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import { tv } from 'tailwind-variants'
+import { Merge } from 'type-fest'
 
-export const ScrollArea = React.forwardRef<
+const scrollArea = tv({
+  slots: {
+    root: 'relative overflow-hidden',
+    viewport: 'h-full w-full rounded-[inherit]',
+    scrollbar: 'flex touch-none select-none transition-colors',
+    thumb: 'relative flex-1 rounded-full bg-border',
+  },
+  variants: {
+    orientation: {
+      vertical: {
+        scrollbar: 'h-full w-2.5 border-l border-l-transparent p-[0.0625rem]',
+      },
+      horizontal: {
+        scrollbar: 'h-2.5 flex-col border-t border-t-transparent p-[0.0625rem]',
+      },
+    },
+  },
+})
+
+const ScrollArea = React.forwardRef<
   React.ElementRef<typeof ScrollAreaPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root>
->(({ className, children, ...props }, ref) => (
-  <ScrollAreaPrimitive.Root
-    ref={ref}
-    className={twMerge('relative overflow-hidden', className)}
-    {...props}
+  Merge<
+    React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root>,
+    {
+      viewportProps?: React.ComponentProps<typeof ScrollAreaPrimitive.Viewport>
+      cornerProps?: React.ComponentProps<typeof ScrollAreaPrimitive.Corner>
+
+      orientation?: 'vertical' | 'horizontal'
+      verticalScrollbarProps?: React.ComponentProps<typeof ScrollBar>
+      horizontalScrollbarProps?: React.ComponentProps<typeof ScrollBar>
+    }
   >
-    <ScrollAreaPrimitive.Viewport className="h-full w-full rounded-[inherit]">
-      {children}
-    </ScrollAreaPrimitive.Viewport>
-    <ScrollBar />
-    <ScrollAreaPrimitive.Corner />
-  </ScrollAreaPrimitive.Root>
-))
+>(
+  (
+    {
+      viewportProps,
+      cornerProps,
+      orientation,
+      verticalScrollbarProps,
+      horizontalScrollbarProps,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
+    const { root, viewport } = scrollArea()
+
+    return (
+      <ScrollAreaPrimitive.Root
+        {...props}
+        ref={ref}
+        className={root({ className: props.className })}
+      >
+        <ScrollAreaPrimitive.Viewport
+          {...viewportProps}
+          className={viewport({ className: viewportProps?.className })}
+        >
+          {children}
+        </ScrollAreaPrimitive.Viewport>
+
+        {!orientation || orientation === 'horizontal' ? (
+          <ScrollBar orientation="horizontal" {...horizontalScrollbarProps} />
+        ) : null}
+
+        {!orientation || orientation === 'vertical' ? (
+          <ScrollBar orientation="vertical" {...horizontalScrollbarProps} />
+        ) : null}
+
+        <ScrollAreaPrimitive.Corner {...cornerProps} />
+      </ScrollAreaPrimitive.Root>
+    )
+  },
+)
 ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName
 
-export const ScrollBar = React.forwardRef<
+const ScrollBar = React.forwardRef<
   React.ElementRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>,
-  React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>
->(({ className, orientation = 'vertical', ...props }, ref) => (
-  <ScrollAreaPrimitive.ScrollAreaScrollbar
-    ref={ref}
-    orientation={orientation}
-    className={twMerge(
-      'flex touch-none select-none transition-colors',
-      orientation === 'vertical' && 'h-full w-2.5 border-l border-l-transparent p-[1px]',
-      orientation === 'horizontal' && 'h-2.5 flex-col border-t border-t-transparent p-[1px]',
-      className,
-    )}
-    {...props}
+  Merge<
+    React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>,
+    {
+      thumbProps?: React.ComponentProps<typeof ScrollAreaPrimitive.ScrollAreaThumb>
+    }
   >
-    <ScrollAreaPrimitive.ScrollAreaThumb className="relative flex-1 rounded-full bg-wgray-200 dark:bg-wgray-800" />
-  </ScrollAreaPrimitive.ScrollAreaScrollbar>
-))
+>(({ thumbProps, ...props }, ref) => {
+  const { scrollbar, thumb } = scrollArea({ orientation: props.orientation })
+
+  return (
+    <ScrollAreaPrimitive.ScrollAreaScrollbar
+      {...props}
+      ref={ref}
+      className={scrollbar({ className: props.className })}
+    >
+      <ScrollAreaPrimitive.ScrollAreaThumb
+        {...thumbProps}
+        className={thumb({ className: thumbProps?.className })}
+      />
+    </ScrollAreaPrimitive.ScrollAreaScrollbar>
+  )
+})
 ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName
+
+export default ScrollArea
+export { scrollArea, ScrollAreaPrimitive }

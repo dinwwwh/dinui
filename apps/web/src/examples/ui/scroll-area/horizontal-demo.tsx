@@ -1,4 +1,4 @@
-import { ScrollArea, ScrollBar } from '@dinui/react/scroll-area'
+import ScrollArea from '@dinui/react/scroll-area'
 
 export interface Artwork {
   artist: string
@@ -41,7 +41,6 @@ export default function ScrollAreaHorizontalDemo() {
           </figure>
         ))}
       </div>
-      <ScrollBar orientation="horizontal" />
     </ScrollArea>
   )
 }
