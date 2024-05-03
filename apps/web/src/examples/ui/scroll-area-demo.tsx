@@ -1,5 +1,5 @@
 import { ScrollArea } from '@dinui/react/scroll-area'
-import { Separator } from '@dinui/react/separator'
+import Separator from '@dinui/react/separator'
 import { Fragment } from 'react/jsx-runtime'
 
 const tags = Array.from({ length: 50 }).map((_, i, a) => `v1.2.0-beta.${a.length - i}`)
