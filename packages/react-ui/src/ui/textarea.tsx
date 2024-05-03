@@ -1,20 +1,24 @@
 import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import { tv } from 'tailwind-variants'
 
-export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
+const textarea = tv({
+  slots: {
+    root: [
+      'flex min-h-[60px] w-full rounded-md border bg-transparent px-3 py-2',
+      'text-sm shadow-sm placeholder:text-fg-weaker',
+      'disabled:cursor-not-allowed disabled:opacity-50',
+    ],
+  },
+})
 
-export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, ...props }, ref) => {
-    return (
-      <textarea
-        className={twMerge(
-          'flex min-h-[60px] w-full rounded-md border border-wgray-200 dark:border-wgray-800 bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-wgray-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-wgray-950 disabled:cursor-not-allowed disabled:opacity-50 dark:placeholder:text-wgray-400 dark:focus-visible:ring-wgray-300',
-          className,
-        )}
-        ref={ref}
-        {...props}
-      />
-    )
+const Textarea = React.forwardRef<HTMLTextAreaElement, React.ComponentPropsWithoutRef<'textarea'>>(
+  (props, ref) => {
+    const { root } = textarea()
+
+    return <textarea {...props} ref={ref} className={root({ className: props.className })} />
   },
 )
 Textarea.displayName = 'Textarea'
+
+export default Textarea
+export { textarea }
