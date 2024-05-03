@@ -11,7 +11,6 @@ import {
   FormMessage,
 } from '@dinui/react/form'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@dinui/react/select'
-import { toast } from '@dinui/react/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -30,14 +29,7 @@ export default function SelectForm() {
   })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    })
+    alert(`You submitted the following values: ${JSON.stringify(data, null, 2)}`)
   }
 
   return (

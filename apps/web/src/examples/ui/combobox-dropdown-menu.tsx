@@ -1,14 +1,7 @@
 'use client'
 
 import Button from '@dinui/react/button'
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from '@dinui/react/command'
+import Command from '@dinui/react/command'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -63,12 +56,12 @@ export default function ComboboxDropdownMenu() {
               <DropdownMenuSubTrigger>Apply label</DropdownMenuSubTrigger>
               <DropdownMenuSubContent className="p-0">
                 <Command>
-                  <CommandInput placeholder="Filter label..." autoFocus={true} className="h-9" />
-                  <CommandList>
-                    <CommandEmpty>No label found.</CommandEmpty>
-                    <CommandGroup>
+                  <Command.Input placeholder="Filter label..." autoFocus={true} className="h-9" />
+                  <Command.List>
+                    <Command.List.Empty>No label found.</Command.List.Empty>
+                    <Command.List.Group>
                       {labels.map((label) => (
-                        <CommandItem
+                        <Command.List.Item
                           key={label}
                           value={label}
                           onSelect={(value) => {
@@ -77,10 +70,10 @@ export default function ComboboxDropdownMenu() {
                           }}
                         >
                           {label}
-                        </CommandItem>
+                        </Command.List.Item>
                       ))}
-                    </CommandGroup>
-                  </CommandList>
+                    </Command.List.Group>
+                  </Command.List>
                 </Command>
               </DropdownMenuSubContent>
             </DropdownMenuSub>

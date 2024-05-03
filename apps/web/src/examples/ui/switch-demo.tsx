@@ -1,4 +1,4 @@
-import { Label } from '@dinui/react/label'
+import Label from '@dinui/react/label'
 import { Switch } from '@dinui/react/switch'
 
 export default function SwitchDemo() {

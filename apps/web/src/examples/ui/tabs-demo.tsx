@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from '@dinui/react/card'
 import { Input } from '@dinui/react/input'
-import { Label } from '@dinui/react/label'
+import Label from '@dinui/react/label'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@dinui/react/tabs'
 
 export default function TabsDemo() {

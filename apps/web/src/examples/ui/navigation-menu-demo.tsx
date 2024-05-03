@@ -9,7 +9,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@dinui/react/navigation-menu'
-import { Skeleton } from '@dinui/react/skeleton'
+import Skeleton from '@dinui/react/skeleton'
 import { cn } from '@dinui/react/utils'
 import * as React from 'react'
 

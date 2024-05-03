@@ -2,7 +2,7 @@
 
 import Button from '@dinui/react/button'
 import { Input } from '@dinui/react/input'
-import { Label } from '@dinui/react/label'
+import Label from '@dinui/react/label'
 import Sheet from '@dinui/react/sheet'
 
 const SHEET_SIDES = ['top', 'right', 'bottom', 'left'] as const

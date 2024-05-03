@@ -1,14 +1,7 @@
 'use client'
 
 import Button from '@dinui/react/button'
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from '@dinui/react/command'
+import Command from '@dinui/react/command'
 import Popover from '@dinui/react/popover'
 import { cn } from '@dinui/react/utils'
 import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons'
@@ -58,12 +51,12 @@ export default function ComboboxDemo() {
       </Popover.Trigger>
       <Popover.Content className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder="Search framework..." className="h-9" />
-          <CommandList>
-            <CommandEmpty>No framework found.</CommandEmpty>
-            <CommandGroup>
+          <Command.Input placeholder="Search framework..." className="h-9" />
+          <Command.List>
+            <Command.List.Empty>No framework found.</Command.List.Empty>
+            <Command.List.Group>
               {frameworks.map((framework) => (
-                <CommandItem
+                <Command.List.Item
                   key={framework.value}
                   value={framework.value}
                   onSelect={(currentValue) => {
@@ -78,10 +71,10 @@ export default function ComboboxDemo() {
                       value === framework.value ? 'opacity-100' : 'opacity-0',
                     )}
                   />
-                </CommandItem>
+                </Command.List.Item>
               ))}
-            </CommandGroup>
-          </CommandList>
+            </Command.List.Group>
+          </Command.List>
         </Command>
       </Popover.Content>
     </Popover>

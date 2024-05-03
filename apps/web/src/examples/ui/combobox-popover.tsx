@@ -1,14 +1,7 @@
 'use client'
 
 import Button from '@dinui/react/button'
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from '@dinui/react/command'
+import Command from '@dinui/react/command'
 import Popover from '@dinui/react/popover'
 import * as React from 'react'
 
@@ -55,12 +48,12 @@ export default function ComboboxPopover() {
         </Popover.Trigger>
         <Popover.Content className="p-0" side="right" align="start">
           <Command>
-            <CommandInput placeholder="Change status..." />
-            <CommandList>
-              <CommandEmpty>No results found.</CommandEmpty>
-              <CommandGroup>
+            <Command.Input placeholder="Change status..." />
+            <Command.List>
+              <Command.List.Empty>No results found.</Command.List.Empty>
+              <Command.List.Group>
                 {statuses.map((status) => (
-                  <CommandItem
+                  <Command.List.Item
                     key={status.value}
                     value={status.value}
                     onSelect={(value) => {
@@ -71,10 +64,10 @@ export default function ComboboxPopover() {
                     }}
                   >
                     {status.label}
-                  </CommandItem>
+                  </Command.List.Item>
                 ))}
-              </CommandGroup>
-            </CommandList>
+              </Command.List.Group>
+            </Command.List>
           </Command>
         </Popover.Content>
       </Popover>

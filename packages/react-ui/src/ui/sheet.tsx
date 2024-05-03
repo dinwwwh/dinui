@@ -4,7 +4,7 @@ import CloseButton from './close-button'
 import * as SheetPrimitive from '@radix-ui/react-dialog'
 import { createContext, forwardRef, useContext } from 'react'
 import { tv, type VariantProps } from 'tailwind-variants'
-import { Merge } from 'type-fest'
+import type { Merge } from 'type-fest'
 
 const sheet = tv({
   slots: {

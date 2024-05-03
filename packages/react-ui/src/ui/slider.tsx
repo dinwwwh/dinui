@@ -3,7 +3,7 @@
 import * as SliderPrimitive from '@radix-ui/react-slider'
 import * as React from 'react'
 import { tv } from 'tailwind-variants'
-import { Merge } from 'type-fest'
+import type { Merge } from 'type-fest'
 
 const slider = tv({
   slots: {

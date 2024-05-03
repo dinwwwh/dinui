@@ -4,7 +4,7 @@ import { IconSearch } from '@tabler/icons-react'
 import * as CommandPrimitive from 'cmdk'
 import * as React from 'react'
 import { tv } from 'tailwind-variants'
-import { Merge } from 'type-fest'
+import type { Merge } from 'type-fest'
 
 const command = tv({
   slots: {

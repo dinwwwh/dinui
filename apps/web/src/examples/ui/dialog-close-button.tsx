@@ -1,29 +1,21 @@
 import Button from '@dinui/react/button'
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@dinui/react/dialog'
+import Dialog from '@dinui/react/dialog'
 import { Input } from '@dinui/react/input'
-import { Label } from '@dinui/react/label'
+import Label from '@dinui/react/label'
 import { CopyIcon } from '@radix-ui/react-icons'
 
 export default function DialogCloseButton() {
   return (
     <Dialog>
-      <DialogTrigger asChild>
+      <Dialog.Trigger asChild>
         <Button variant="outline">Share</Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Share link</DialogTitle>
-          <DialogDescription>Anyone who has this link will be able to view this.</DialogDescription>
-        </DialogHeader>
+      </Dialog.Trigger>
+      <Dialog.Content className="sm:max-w-md">
+        <Dialog.Content.Title>Share link</Dialog.Content.Title>
+        <Dialog.Content.Description>
+          Anyone who has this link will be able to view this.
+        </Dialog.Content.Description>
+
         <div className="flex items-center space-x-2">
           <div className="grid flex-1 gap-2">
             <Label htmlFor="link" className="sr-only">
@@ -36,14 +28,14 @@ export default function DialogCloseButton() {
             <CopyIcon className="h-4 w-4" />
           </Button>
         </div>
-        <DialogFooter className="sm:justify-start">
-          <DialogClose asChild>
+        <Dialog.Content.Actions className="sm:justify-start">
+          <Dialog.Content.Close asChild>
             <Button type="button" variant="outline">
               Close
             </Button>
-          </DialogClose>
-        </DialogFooter>
-      </DialogContent>
+          </Dialog.Content.Close>
+        </Dialog.Content.Actions>
+      </Dialog.Content>
     </Dialog>
   )
 }

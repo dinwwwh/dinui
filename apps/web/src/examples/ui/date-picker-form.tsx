@@ -12,7 +12,6 @@ import {
   FormMessage,
 } from '@dinui/react/form'
 import Popover from '@dinui/react/popover'
-import { toast } from '@dinui/react/use-toast'
 import { cn } from '@dinui/react/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CalendarIcon } from '@radix-ui/react-icons'
@@ -32,14 +31,7 @@ export default function DatePickerForm() {
   })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    })
+    alert(`You submitted the following values: ${JSON.stringify(data, null, 2)}`)
   }
 
   return (

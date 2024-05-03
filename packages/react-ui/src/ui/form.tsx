@@ -1,4 +1,4 @@
-import { Label } from './label'
+import Label from './label'
 import type * as LabelPrimitive from '@radix-ui/react-label'
 import { Slot } from '@radix-ui/react-slot'
 import * as React from 'react'

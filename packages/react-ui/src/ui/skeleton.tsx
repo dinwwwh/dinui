@@ -12,5 +12,6 @@ const Skeleton = forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<'div'
 
   return <div {...props} ref={ref} className={root({ className: props.className })} />
 })
+Skeleton.displayName = 'Skeleton'
 
 export default Skeleton

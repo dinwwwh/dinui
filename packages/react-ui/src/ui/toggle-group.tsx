@@ -2,9 +2,10 @@
 
 import Toggle, { toggle } from './toggle'
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group'
-import React, { createContext, forwardRef, useContext } from 'react'
+import type React from 'react'
+import { createContext, forwardRef, useContext } from 'react'
 import { tv, type VariantProps } from 'tailwind-variants'
-import { Merge } from 'type-fest'
+import type { Merge } from 'type-fest'
 
 const toggleGroup = tv({
   slots: {
@@ -46,7 +47,7 @@ const ToggleGroupItem = forwardRef<
 
   return (
     <ToggleGroupPrimitive.Item {...variantProps} {...props} ref={ref} asChild>
-      <Toggle asChild={asChild} children={children} />
+      <Toggle asChild={asChild}>{children}</Toggle>
     </ToggleGroupPrimitive.Item>
   )
 })

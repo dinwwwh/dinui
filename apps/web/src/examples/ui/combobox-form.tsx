@@ -1,14 +1,7 @@
 'use client'
 
 import Button from '@dinui/react/button'
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from '@dinui/react/command'
+import Command from '@dinui/react/command'
 import {
   Form,
   FormControl,
@@ -19,7 +12,6 @@ import {
   FormMessage,
 } from '@dinui/react/form'
 import Popover from '@dinui/react/popover'
-import { toast } from '@dinui/react/use-toast'
 import { cn } from '@dinui/react/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons'
@@ -50,14 +42,7 @@ export default function ComboboxForm() {
   })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    })
+    alert(`You submitted the following values: ${JSON.stringify(data, null, 2)}`)
   }
 
   return (
@@ -86,12 +71,12 @@ export default function ComboboxForm() {
                 </Popover.Trigger>
                 <Popover.Content className="w-[200px] p-0">
                   <Command>
-                    <CommandInput placeholder="Search framework..." className="h-9" />
-                    <CommandList>
-                      <CommandEmpty>No framework found.</CommandEmpty>
-                      <CommandGroup>
+                    <Command.Input placeholder="Search framework..." className="h-9" />
+                    <Command.List>
+                      <Command.List.Empty>No framework found.</Command.List.Empty>
+                      <Command.List.Group>
                         {languages.map((language) => (
-                          <CommandItem
+                          <Command.List.Item
                             value={language.label}
                             key={language.value}
                             onSelect={() => {
@@ -105,10 +90,10 @@ export default function ComboboxForm() {
                                 language.value === field.value ? 'opacity-100' : 'opacity-0',
                               )}
                             />
-                          </CommandItem>
+                          </Command.List.Item>
                         ))}
-                      </CommandGroup>
-                    </CommandList>
+                      </Command.List.Group>
+                    </Command.List>
                   </Command>
                 </Popover.Content>
               </Popover>

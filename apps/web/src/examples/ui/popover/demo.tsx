@@ -1,6 +1,6 @@
 import Button from '@dinui/react/button'
 import { Input } from '@dinui/react/input'
-import { Label } from '@dinui/react/label'
+import Label from '@dinui/react/label'
 import Popover from '@dinui/react/popover'
 
 export default function PopoverDemo() {

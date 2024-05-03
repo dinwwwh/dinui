@@ -3,7 +3,7 @@
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import { IconCheck } from '@tabler/icons-react'
 import * as React from 'react'
-import type { VariantProps} from 'tailwind-variants';
+import type { VariantProps } from 'tailwind-variants'
 import { tv } from 'tailwind-variants'
 import type { Merge } from 'type-fest'
 

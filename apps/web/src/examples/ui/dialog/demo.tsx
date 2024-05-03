@@ -1,7 +1,7 @@
 import Button from '@dinui/react/button'
 import Dialog from '@dinui/react/dialog'
 import { Input } from '@dinui/react/input'
-import { Label } from '@dinui/react/label'
+import Label from '@dinui/react/label'
 
 export default function DialogDemo() {
   return (

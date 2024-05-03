@@ -1,12 +1,5 @@
 import Button from '@dinui/react/button'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@dinui/react/dialog'
+import Dialog from '@dinui/react/dialog'
 import {
   Drawer,
   DrawerClose,
@@ -18,7 +11,7 @@ import {
   DrawerTrigger,
 } from '@dinui/react/drawer'
 import { Input } from '@dinui/react/input'
-import { Label } from '@dinui/react/label'
+import Label from '@dinui/react/label'
 import { cn } from '@dinui/react/utils'
 import { useMediaQuery } from '@web/hooks/use-media-query'
 import * as React from 'react'
@@ -30,18 +23,16 @@ export default function DrawerDialogDemo() {
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
+        <Dialog.Trigger asChild>
           <Button variant="outline">Edit Profile</Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Edit profile</DialogTitle>
-            <DialogDescription>
-              Make changes to your profile here. Click save when you're done.
-            </DialogDescription>
-          </DialogHeader>
+        </Dialog.Trigger>
+        <Dialog.Content className="sm:max-w-[425px]">
+          <Dialog.Content.Title>Edit profile</Dialog.Content.Title>
+          <Dialog.Content.Description>
+            Make changes to your profile here. Click save when you're done.
+          </Dialog.Content.Description>
           <ProfileForm />
-        </DialogContent>
+        </Dialog.Content>
       </Dialog>
     )
   }
