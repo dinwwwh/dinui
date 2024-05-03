@@ -9,16 +9,17 @@ import {
 } from '@dinui/react/card'
 import { Input } from '@dinui/react/input'
 import Label from '@dinui/react/label'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@dinui/react/tabs'
+import Tabs from '@dinui/react/tabs'
 
 export default function TabsDemo() {
   return (
     <Tabs defaultValue="account" className="w-[400px]">
-      <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="account">Account</TabsTrigger>
-        <TabsTrigger value="password">Password</TabsTrigger>
-      </TabsList>
-      <TabsContent value="account">
+      <Tabs.List className="grid w-full grid-cols-2">
+        <Tabs.List.Trigger value="account">Account</Tabs.List.Trigger>
+        <Tabs.List.Trigger value="password">Password</Tabs.List.Trigger>
+      </Tabs.List>
+
+      <Tabs.Content value="account">
         <Card>
           <CardHeader>
             <CardTitle>Account</CardTitle>
@@ -40,8 +41,9 @@ export default function TabsDemo() {
             <Button>Save changes</Button>
           </CardFooter>
         </Card>
-      </TabsContent>
-      <TabsContent value="password">
+      </Tabs.Content>
+
+      <Tabs.Content value="password">
         <Card>
           <CardHeader>
             <CardTitle>Password</CardTitle>
@@ -63,7 +65,7 @@ export default function TabsDemo() {
             <Button>Save password</Button>
           </CardFooter>
         </Card>
-      </TabsContent>
+      </Tabs.Content>
     </Tabs>
   )
 }
