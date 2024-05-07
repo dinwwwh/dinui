@@ -4,7 +4,7 @@ import Button from '@dinui/react/button'
 import Checkbox from '@dinui/react/checkbox'
 import DropdownMenu from '@dinui/react/dropdown-menu'
 import Input from '@dinui/react/input'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@dinui/react/table'
+import Table from '@dinui/react/table'
 import { CaretSortIcon, ChevronDownIcon, DotsHorizontalIcon } from '@radix-ui/react-icons'
 import type {
   ColumnDef,
@@ -209,40 +209,40 @@ export default function DataTableDemo() {
       </div>
       <div className="rounded-md border-wgray-200 dark:border-wgray-800 border">
         <Table>
-          <TableHeader>
+          <Table.Header>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <Table.Row key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <Table.Head key={header.id}>
                       {header.isPlaceholder
                         ? null
                         : flexRender(header.column.columnDef.header, header.getContext())}
-                    </TableHead>
+                    </Table.Head>
                   )
                 })}
-              </TableRow>
+              </Table.Row>
             ))}
-          </TableHeader>
-          <TableBody>
+          </Table.Header>
+          <Table.Body>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
+                <Table.Row key={row.id} data-state={row.getIsSelected() && 'selected'}>
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <Table.Cell key={cell.id}>
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </TableCell>
+                    </Table.Cell>
                   ))}
-                </TableRow>
+                </Table.Row>
               ))
             ) : (
-              <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+              <Table.Row>
+                <Table.Cell colSpan={columns.length} className="h-24 text-center">
                   No results.
-                </TableCell>
-              </TableRow>
+                </Table.Cell>
+              </Table.Row>
             )}
-          </TableBody>
+          </Table.Body>
         </Table>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
