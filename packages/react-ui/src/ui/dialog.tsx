@@ -2,8 +2,7 @@
 
 import CloseButton from './close-button'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
-import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import { forwardRef } from 'react'
 import { tv } from 'tailwind-variants'
 import type { Merge } from 'type-fest'
 
@@ -27,15 +26,7 @@ const dialog = tv({
   },
 })
 
-const DialogOverlay = React.forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
->(({ className, ...props }, ref) => (
-  <DialogPrimitive.Overlay ref={ref} className={twMerge(className)} {...props} />
-))
-DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
-
-const DialogContent = React.forwardRef<
+const DialogContent = forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   Merge<
     React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>,
@@ -76,15 +67,16 @@ const DialogContent = React.forwardRef<
 })
 DialogContent.displayName = DialogPrimitive.Content.displayName
 
-const DialogActions = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<'div'>>(
+const DialogActions = forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<'div'>>(
   (props, ref) => {
     const { actions } = dialog()
+
     return <div {...props} ref={ref} className={actions({ className: props.className })} />
   },
 )
 DialogActions.displayName = 'DialogActions'
 
-const DialogTitle = React.forwardRef<
+const DialogTitle = forwardRef<
   React.ElementRef<typeof DialogPrimitive.Title>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
 >((props, ref) => {
@@ -96,7 +88,7 @@ const DialogTitle = React.forwardRef<
 })
 DialogTitle.displayName = DialogPrimitive.Title.displayName
 
-const DialogDescription = React.forwardRef<
+const DialogDescription = forwardRef<
   React.ElementRef<typeof DialogPrimitive.Description>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
 >((props, ref) => {
