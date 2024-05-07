@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
 import { tv } from 'tailwind-variants'
-import { Merge } from 'type-fest'
+import type { Merge } from 'type-fest'
 
 const table = tv({
   slots: {

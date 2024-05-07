@@ -1,6 +1,7 @@
 'use client'
 
-import React, { forwardRef } from 'react'
+import type React from 'react';
+import { forwardRef } from 'react'
 import { tv } from 'tailwind-variants'
 import type { Merge } from 'type-fest'
 import { Drawer as DrawerPrimitive } from 'vaul'
