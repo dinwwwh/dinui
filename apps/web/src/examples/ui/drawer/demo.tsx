@@ -1,14 +1,5 @@
 import Button from '@dinui/react/button'
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from '@dinui/react/drawer'
+import Drawer from '@dinui/react/drawer'
 import { MinusIcon, PlusIcon } from '@radix-ui/react-icons'
 import * as React from 'react'
 import { Bar, BarChart, ResponsiveContainer } from 'recharts'
@@ -64,15 +55,13 @@ export default function DrawerDemo() {
 
   return (
     <Drawer>
-      <DrawerTrigger asChild>
+      <Drawer.Trigger asChild>
         <Button variant="outline">Open Drawer</Button>
-      </DrawerTrigger>
-      <DrawerContent>
+      </Drawer.Trigger>
+      <Drawer.Content>
         <div className="mx-auto w-full max-w-sm">
-          <DrawerHeader>
-            <DrawerTitle>Move Goal</DrawerTitle>
-            <DrawerDescription>Set your daily activity goal.</DrawerDescription>
-          </DrawerHeader>
+          <Drawer.Content.Title>Move Goal</Drawer.Content.Title>
+          <Drawer.Content.Description>Set your daily activity goal.</Drawer.Content.Description>
           <div className="p-4 pb-0">
             <div className="flex items-center justify-center space-x-2">
               <Button
@@ -108,14 +97,14 @@ export default function DrawerDemo() {
               </ResponsiveContainer>
             </div>
           </div>
-          <DrawerFooter>
+          <Drawer.Content.Actions>
             <Button>Submit</Button>
-            <DrawerClose asChild>
+            <Drawer.Close asChild>
               <Button variant="outline">Cancel</Button>
-            </DrawerClose>
-          </DrawerFooter>
+            </Drawer.Close>
+          </Drawer.Content.Actions>
         </div>
-      </DrawerContent>
+      </Drawer.Content>
     </Drawer>
   )
 }

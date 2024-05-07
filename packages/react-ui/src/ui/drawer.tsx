@@ -1,86 +1,108 @@
 'use client'
 
-import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import React, { forwardRef } from 'react'
+import { tv } from 'tailwind-variants'
+import type { Merge } from 'type-fest'
 import { Drawer as DrawerPrimitive } from 'vaul'
 
-export const Drawer = ({
-  shouldScaleBackground = true,
-  ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Root>) => (
-  <DrawerPrimitive.Root shouldScaleBackground={shouldScaleBackground} {...props} />
-)
-Drawer.displayName = 'Drawer'
+const drawer = tv({
+  slots: {
+    overlay: 'fixed inset-0 z-50 bg-[#000]/80',
+    content: [
+      '@container',
+      'fixed inset-x-0 bottom-0 z-50',
+      'p-4 mt-24 flex h-auto flex-col rounded-t-xl border bg-bg--contrast',
+    ],
+    slidingHandle: 'mx-auto h-2 w-24 rounded-full bg-border/50',
+    title: 'text-lg font-semibold leading-none tracking-tight text-center @xl:text-left',
+    description: 'mt-1.5 text-sm text-fg-weaker text-center @xl:text-left',
+    actions: 'mt-4 flex flex-col gap-2',
+  },
+})
 
-export const DrawerTrigger = DrawerPrimitive.Trigger
+function DrawerRoot(props: React.ComponentProps<typeof DrawerPrimitive.Root>) {
+  return <DrawerPrimitive.Root shouldScaleBackground {...props} />
+}
 
-export const DrawerPortal = DrawerPrimitive.Portal
-
-export const DrawerClose = DrawerPrimitive.Close
-
-export const DrawerOverlay = React.forwardRef<
-  React.ElementRef<typeof DrawerPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay>
->(({ className, ...props }, ref) => (
-  <DrawerPrimitive.Overlay
-    ref={ref}
-    className={twMerge('fixed inset-0 z-50 bg-black/80', className)}
-    {...props}
-  />
-))
-DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName
-
-export const DrawerContent = React.forwardRef<
+const DrawerContent = forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>
->(({ className, children, ...props }, ref) => (
-  <DrawerPortal>
-    <DrawerOverlay />
-    <DrawerPrimitive.Content
-      ref={ref}
-      className={twMerge(
-        'fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border border-wgray-200 dark:border-wgray-800 bg-white  dark:bg-wgray-950',
-        className,
-      )}
-      {...props}
-    >
-      <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-wgray-100 dark:bg-wgray-800" />
-      {children}
-    </DrawerPrimitive.Content>
-  </DrawerPortal>
-))
+  Merge<
+    React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>,
+    {
+      portalProps?: React.ComponentProps<typeof DrawerPrimitive.Portal>
+      overlayProps?: React.ComponentProps<typeof DrawerPrimitive.Overlay>
+      slidingHandleProps?: React.ComponentProps<'div'>
+    }
+  >
+>(({ portalProps, overlayProps, slidingHandleProps, children, ...props }, ref) => {
+  const { overlay, content, slidingHandle } = drawer()
+
+  return (
+    <DrawerPrimitive.Portal {...portalProps}>
+      <DrawerPrimitive.Overlay
+        {...overlayProps}
+        className={overlay({ className: overlayProps?.className })}
+      />
+      <DrawerPrimitive.Content
+        {...props}
+        ref={ref}
+        className={content({ className: props.className })}
+      >
+        <div
+          {...slidingHandleProps}
+          className={slidingHandle({ className: slidingHandleProps?.className })}
+        />
+
+        {children}
+      </DrawerPrimitive.Content>
+    </DrawerPrimitive.Portal>
+  )
+})
 DrawerContent.displayName = 'DrawerContent'
 
-export const DrawerHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={twMerge('grid gap-1.5 p-4 text-center sm:text-left', className)} {...props} />
-)
-DrawerHeader.displayName = 'DrawerHeader'
-
-export const DrawerFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={twMerge('mt-auto flex flex-col gap-2 p-4', className)} {...props} />
-)
-DrawerFooter.displayName = 'DrawerFooter'
-
-export const DrawerTitle = React.forwardRef<
+const DrawerTitle = forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Title>,
   React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Title>
->(({ className, ...props }, ref) => (
-  <DrawerPrimitive.Title
-    ref={ref}
-    className={twMerge('text-lg font-semibold leading-none tracking-tight', className)}
-    {...props}
-  />
-))
+>((props, ref) => {
+  const { title } = drawer()
+
+  return (
+    <DrawerPrimitive.Title {...props} ref={ref} className={title({ className: props.className })} />
+  )
+})
 DrawerTitle.displayName = DrawerPrimitive.Title.displayName
 
-export const DrawerDescription = React.forwardRef<
+const DrawerDescription = forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Description>,
   React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Description>
->(({ className, ...props }, ref) => (
-  <DrawerPrimitive.Description
-    ref={ref}
-    className={twMerge('text-sm text-wgray-500 dark:text-wgray-400', className)}
-    {...props}
-  />
-))
+>((props, ref) => {
+  const { description } = drawer()
+
+  return (
+    <DrawerPrimitive.Description
+      {...props}
+      ref={ref}
+      className={description({ className: props.className })}
+    />
+  )
+})
 DrawerDescription.displayName = DrawerPrimitive.Description.displayName
+
+function DrawerActions(props: React.ComponentProps<'div'>) {
+  const { actions } = drawer()
+
+  return <div {...props} className={actions({ className: props.className })} />
+}
+
+const Drawer = Object.assign(DrawerRoot, {
+  Trigger: DrawerPrimitive.Trigger,
+  Close: DrawerPrimitive.Close,
+  Content: Object.assign(DrawerContent, {
+    Title: DrawerTitle,
+    Description: DrawerDescription,
+    Actions: DrawerActions,
+  }),
+})
+
+export default Drawer
+export { drawer, DrawerPrimitive }

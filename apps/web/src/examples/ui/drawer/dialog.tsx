@@ -1,15 +1,6 @@
 import Button from '@dinui/react/button'
 import Dialog from '@dinui/react/dialog'
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from '@dinui/react/drawer'
+import Drawer from '@dinui/react/drawer'
 import Input from '@dinui/react/input'
 import Label from '@dinui/react/label'
 import { cn } from '@dinui/react/utils'
@@ -39,23 +30,21 @@ export default function DrawerDialogDemo() {
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
-      <DrawerTrigger asChild>
+      <Drawer.Trigger asChild>
         <Button variant="outline">Edit Profile</Button>
-      </DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader className="text-left">
-          <DrawerTitle>Edit profile</DrawerTitle>
-          <DrawerDescription>
-            Make changes to your profile here. Click save when you're done.
-          </DrawerDescription>
-        </DrawerHeader>
-        <ProfileForm className="px-4" />
-        <DrawerFooter className="pt-2">
-          <DrawerClose asChild>
+      </Drawer.Trigger>
+      <Drawer.Content>
+        <Drawer.Content.Title>Edit profile</Drawer.Content.Title>
+        <Drawer.Content.Description>
+          Make changes to your profile here. Click save when you're done.
+        </Drawer.Content.Description>
+        <ProfileForm />
+        <Drawer.Content.Actions className="pt-2">
+          <Drawer.Close asChild>
             <Button variant="outline">Cancel</Button>
-          </DrawerClose>
-        </DrawerFooter>
-      </DrawerContent>
+          </Drawer.Close>
+        </Drawer.Content.Actions>
+      </Drawer.Content>
     </Drawer>
   )
 }
