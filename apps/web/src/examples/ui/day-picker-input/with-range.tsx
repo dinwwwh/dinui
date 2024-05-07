@@ -4,13 +4,15 @@ import Button from '@dinui/react/button'
 import DayPicker from '@dinui/react/day-picker'
 import Popover from '@dinui/react/popover'
 import { cn } from '@dinui/react/utils'
-import { CalendarIcon } from '@radix-ui/react-icons'
+import { IconCalendarWeek } from '@tabler/icons-react'
 import { addDays, format } from 'date-fns'
-import * as React from 'react'
+import { useState } from 'react'
 import type { DateRange } from 'react-day-picker'
 
-export default function DatePickerWithRange({ className }: React.HTMLAttributes<HTMLDivElement>) {
-  const [date, setDate] = React.useState<DateRange | undefined>({
+export default function DayPickerInputWithRange({
+  className,
+}: React.HTMLAttributes<HTMLDivElement>) {
+  const [date, setDate] = useState<DateRange | undefined>({
     from: new Date(2022, 0, 20),
     to: addDays(new Date(2022, 0, 20), 20),
   })
@@ -24,10 +26,13 @@ export default function DatePickerWithRange({ className }: React.HTMLAttributes<
             variant={'outline'}
             className={cn(
               'w-[300px] justify-start text-left font-normal',
-              !date && 'text-wgray-500',
+              !date && 'text-fg-weaker',
             )}
           >
-            <CalendarIcon className="mr-2 h-4 w-4" />
+            <Button.LeftIcon>
+              <IconCalendarWeek />
+            </Button.LeftIcon>
+
             {date?.from ? (
               date.to ? (
                 <>

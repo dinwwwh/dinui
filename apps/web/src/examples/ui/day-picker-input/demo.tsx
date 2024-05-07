@@ -4,21 +4,23 @@ import Button from '@dinui/react/button'
 import DayPicker from '@dinui/react/day-picker'
 import Popover from '@dinui/react/popover'
 import { cn } from '@dinui/react/utils'
-import { CalendarIcon } from '@radix-ui/react-icons'
+import { IconCalendar } from '@tabler/icons-react'
 import { format } from 'date-fns'
-import * as React from 'react'
+import { useState } from 'react'
 
-export default function DatePickerDemo() {
-  const [date, setDate] = React.useState<Date>()
+export default function DayPickerInputDemo() {
+  const [date, setDate] = useState<Date>()
 
   return (
     <Popover>
       <Popover.Trigger asChild>
         <Button
           variant={'outline'}
-          className={cn('w-[240px] justify-start text-left font-normal', !date && 'text-wgray-500')}
+          className={cn('w-[240px] justify-start font-normal', !date && 'text-fg-weaker')}
         >
-          <CalendarIcon className="mr-2 h-4 w-4" />
+          <Button.LeftIcon>
+            <IconCalendar />
+          </Button.LeftIcon>
           {date ? format(date, 'PPP') : <span>Pick a date</span>}
         </Button>
       </Popover.Trigger>
