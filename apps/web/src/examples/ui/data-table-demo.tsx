@@ -2,15 +2,7 @@
 
 import Button from '@dinui/react/button'
 import Checkbox from '@dinui/react/checkbox'
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@dinui/react/dropdown-menu'
+import DropdownMenu from '@dinui/react/dropdown-menu'
 import Input from '@dinui/react/input'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@dinui/react/table'
 import { CaretSortIcon, ChevronDownIcon, DotsHorizontalIcon } from '@radix-ui/react-icons'
@@ -135,21 +127,21 @@ export const columns: ColumnDef<Payment>[] = [
 
       return (
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
+          <DropdownMenu.Trigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0">
               <span className="sr-only">Open menu</span>
               <DotsHorizontalIcon className="h-4 w-4" />
             </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => navigator.clipboard.writeText(payment.id)}>
+          </DropdownMenu.Trigger>
+          <DropdownMenu.Content align="end">
+            <DropdownMenu.Content.Label>Actions</DropdownMenu.Content.Label>
+            <DropdownMenu.Content.Item onClick={() => navigator.clipboard.writeText(payment.id)}>
               Copy payment ID
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
-          </DropdownMenuContent>
+            </DropdownMenu.Content.Item>
+            <DropdownMenu.Content.Separator />
+            <DropdownMenu.Content.Item>View customer</DropdownMenu.Content.Item>
+            <DropdownMenu.Content.Item>View payment details</DropdownMenu.Content.Item>
+          </DropdownMenu.Content>
         </DropdownMenu>
       )
     },
@@ -191,28 +183,28 @@ export default function DataTableDemo() {
           className="max-w-sm"
         />
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
+          <DropdownMenu.Trigger asChild>
             <Button variant="outline" className="ml-auto">
               Columns <ChevronDownIcon className="ml-2 h-4 w-4" />
             </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          </DropdownMenu.Trigger>
+          <DropdownMenu.Content align="end">
             {table
               .getAllColumns()
               .filter((column) => column.getCanHide())
               .map((column) => {
                 return (
-                  <DropdownMenuCheckboxItem
+                  <DropdownMenu.Content.CheckboxItem
                     key={column.id}
                     className="capitalize"
                     checked={column.getIsVisible()}
                     onCheckedChange={(value) => column.toggleVisibility(!!value)}
                   >
                     {column.id}
-                  </DropdownMenuCheckboxItem>
+                  </DropdownMenu.Content.CheckboxItem>
                 )
               })}
-          </DropdownMenuContent>
+          </DropdownMenu.Content>
         </DropdownMenu>
       </div>
       <div className="rounded-md border-wgray-200 dark:border-wgray-800 border">

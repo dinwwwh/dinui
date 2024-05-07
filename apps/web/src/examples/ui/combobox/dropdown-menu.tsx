@@ -2,19 +2,7 @@
 
 import Button from '@dinui/react/button'
 import Command from '@dinui/react/command'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from '@dinui/react/dropdown-menu'
+import DropdownMenu from '@dinui/react/dropdown-menu'
 import { DotsHorizontalIcon } from '@radix-ui/react-icons'
 import * as React from 'react'
 
@@ -41,20 +29,20 @@ export default function ComboboxDropdownMenu() {
         <span className="text-wgray-500">Create a new project</span>
       </p>
       <DropdownMenu open={open} onOpenChange={setOpen}>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenu.Trigger asChild>
           <Button variant="ghost" size="sm">
             <DotsHorizontalIcon />
           </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-[200px]">
-          <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuGroup>
-            <DropdownMenuItem>Assign to...</DropdownMenuItem>
-            <DropdownMenuItem>Set due date...</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuSub>
-              <DropdownMenuSubTrigger>Apply label</DropdownMenuSubTrigger>
-              <DropdownMenuSubContent className="p-0">
+        </DropdownMenu.Trigger>
+        <DropdownMenu.Content align="end" className="w-[200px]">
+          <DropdownMenu.Content.Label>Actions</DropdownMenu.Content.Label>
+          <DropdownMenu.Content.Group>
+            <DropdownMenu.Content.Item>Assign to...</DropdownMenu.Content.Item>
+            <DropdownMenu.Content.Item>Set due date...</DropdownMenu.Content.Item>
+            <DropdownMenu.Content.Separator />
+            <DropdownMenu.Content.Sub>
+              <DropdownMenu.Content.Sub.Trigger>Apply label</DropdownMenu.Content.Sub.Trigger>
+              <DropdownMenu.Content.Sub.Content className="p-0">
                 <Command>
                   <Command.Input placeholder="Filter label..." autoFocus={true} className="h-9" />
                   <Command.List>
@@ -75,15 +63,15 @@ export default function ComboboxDropdownMenu() {
                     </Command.List.Group>
                   </Command.List>
                 </Command>
-              </DropdownMenuSubContent>
-            </DropdownMenuSub>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-red-600">
+              </DropdownMenu.Content.Sub.Content>
+            </DropdownMenu.Content.Sub>
+            <DropdownMenu.Content.Separator />
+            <DropdownMenu.Content.Item className="text-red-600">
               Delete
-              <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
-            </DropdownMenuItem>
-          </DropdownMenuGroup>
-        </DropdownMenuContent>
+              <DropdownMenu.Content.Item.Shortcut>⌘⌫</DropdownMenu.Content.Item.Shortcut>
+            </DropdownMenu.Content.Item>
+          </DropdownMenu.Content.Group>
+        </DropdownMenu.Content>
       </DropdownMenu>
     </div>
   )

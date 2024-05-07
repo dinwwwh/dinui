@@ -1,6 +1,7 @@
 'use client'
 
 import { button } from './button'
+import { separator } from './separator'
 import * as SelectPrimitive from '@radix-ui/react-select'
 import { IconSelector, IconCheck, IconChevronDown, IconChevronUp } from '@tabler/icons-react'
 import * as React from 'react'
@@ -33,7 +34,7 @@ const select = tv({
       ],
     }),
     itemIndicator: button({ variant: 'ghost', size: 'sm' }).rightIcon(),
-    separator: '-mx-1 my-1 h-px bg-border/50',
+    separator: separator().root({ className: 'opacity-50 -mx-1 my-1' }),
   },
   variants: {
     position: {
