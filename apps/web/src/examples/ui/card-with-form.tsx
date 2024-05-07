@@ -9,7 +9,7 @@ import {
 } from '@dinui/react/card'
 import Input from '@dinui/react/input'
 import Label from '@dinui/react/label'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@dinui/react/select'
+import Select from '@dinui/react/select'
 
 export default function CardWithForm() {
   return (
@@ -28,15 +28,15 @@ export default function CardWithForm() {
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="framework">Framework</Label>
               <Select>
-                <SelectTrigger id="framework">
-                  <SelectValue placeholder="Select" />
-                </SelectTrigger>
-                <SelectContent position="popper">
-                  <SelectItem value="next">Next.js</SelectItem>
-                  <SelectItem value="sveltekit">SvelteKit</SelectItem>
-                  <SelectItem value="astro">Astro</SelectItem>
-                  <SelectItem value="nuxt">Nuxt.js</SelectItem>
-                </SelectContent>
+                <Select.Trigger id="framework">
+                  <Select.Value placeholder="Select" />
+                </Select.Trigger>
+                <Select.Content position="popper">
+                  <Select.Content.Item value="next">Next.js</Select.Content.Item>
+                  <Select.Content.Item value="sveltekit">SvelteKit</Select.Content.Item>
+                  <Select.Content.Item value="astro">Astro</Select.Content.Item>
+                  <Select.Content.Item value="nuxt">Nuxt.js</Select.Content.Item>
+                </Select.Content>
               </Select>
             </div>
           </div>

@@ -1,138 +1,250 @@
 'use client'
 
-import { CaretSortIcon, CheckIcon, ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons'
+import { button } from './button'
 import * as SelectPrimitive from '@radix-ui/react-select'
+import { IconSelector, IconCheck, IconChevronDown, IconChevronUp } from '@tabler/icons-react'
 import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import { tv } from 'tailwind-variants'
+import type { Merge } from 'type-fest'
 
-export const Select = SelectPrimitive.Root
+const select = tv({
+  slots: {
+    trigger: button({ variant: 'outline' }).root({ className: 'justify-between' }),
+    triggerIcon: button({ variant: 'outline' }).rightIcon({ className: 'text-fg-weaker' }),
+    scrollUpButton: button({ variant: 'ghost', size: 'sm' }).root(),
+    scrollUpButtonIcon: button({ variant: 'ghost', size: 'sm' }).icon(),
+    scrollDownButton: button({ variant: 'ghost', size: 'sm' }).root(),
+    scrollDownButtonIcon: button({ variant: 'ghost', size: 'sm' }).icon(),
+    content: [
+      'relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md',
+      'border bg-bg--contrast shadow-md',
+      'data-[state=open]:animate-in data-[state=closed]:animate-out',
+      'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+      'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
+      'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2',
+      'data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+    ],
+    viewport: 'p-1',
+    label: 'px-2 py-1.5 text-sm font-semibold',
+    item: button({ variant: 'ghost', size: 'sm' }).root({
+      className: [
+        'flex justify-between w-full px-2 text-sm outline-none',
+        'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+      ],
+    }),
+    itemIndicator: button({ variant: 'ghost', size: 'sm' }).rightIcon(),
+    separator: '-mx-1 my-1 h-px bg-border/50',
+  },
+  variants: {
+    position: {
+      'popper': {
+        content:
+          'data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1',
+        viewport:
+          'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]',
+      },
+      'item-aligned': null,
+    },
+  },
+  defaultVariants: {
+    position: 'item-aligned',
+  },
+})
 
-export const SelectGroup = SelectPrimitive.Group
-
-export const SelectValue = SelectPrimitive.Value
-
-export const SelectTrigger = React.forwardRef<
+const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
-  <SelectPrimitive.Trigger
-    ref={ref}
-    className={twMerge(
-      'flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-wgray-200 dark:border-wgray-800 bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-white placeholder:text-wgray-500 focus:outline-none focus:ring-1 focus:ring-wgray-950 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1  dark:ring-offset-wgray-950 dark:placeholder:text-wgray-400 dark:focus:ring-wgray-300',
-      className,
-    )}
-    {...props}
+  Merge<
+    React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>,
+    {
+      iconProps?: React.ComponentProps<typeof IconSelector>
+    }
   >
-    {children}
-    <SelectPrimitive.Icon asChild>
-      <CaretSortIcon className="h-4 w-4 opacity-50" />
-    </SelectPrimitive.Icon>
-  </SelectPrimitive.Trigger>
-))
+>(({ iconProps, children, ...props }, ref) => {
+  const { trigger, triggerIcon } = select()
+
+  return (
+    <SelectPrimitive.Trigger
+      {...props}
+      ref={ref}
+      className={trigger({ className: props.className })}
+    >
+      {children}
+      <SelectPrimitive.Icon asChild>
+        <IconSelector {...iconProps} className={triggerIcon({ className: iconProps?.className })} />
+      </SelectPrimitive.Icon>
+    </SelectPrimitive.Trigger>
+  )
+})
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName
 
-export const SelectScrollUpButton = React.forwardRef<
+const SelectScrollUpButton = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.ScrollUpButton>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollUpButton>
->(({ className, ...props }, ref) => (
-  <SelectPrimitive.ScrollUpButton
-    ref={ref}
-    className={twMerge('flex cursor-default items-center justify-center py-1', className)}
-    {...props}
+  Merge<
+    React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollUpButton>,
+    {
+      iconProps?: React.ComponentProps<typeof IconChevronUp>
+    }
   >
-    <ChevronUpIcon />
-  </SelectPrimitive.ScrollUpButton>
-))
+>(({ iconProps, ...props }, ref) => {
+  const { scrollUpButton, scrollUpButtonIcon } = select()
+
+  return (
+    <SelectPrimitive.ScrollUpButton
+      {...props}
+      ref={ref}
+      className={scrollUpButton({ className: props.className })}
+    >
+      <IconChevronUp
+        {...iconProps}
+        className={scrollUpButtonIcon({ className: iconProps?.className })}
+      />
+    </SelectPrimitive.ScrollUpButton>
+  )
+})
 SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName
 
-export const SelectScrollDownButton = React.forwardRef<
+const SelectScrollDownButton = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.ScrollDownButton>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollDownButton>
->(({ className, ...props }, ref) => (
-  <SelectPrimitive.ScrollDownButton
-    ref={ref}
-    className={twMerge('flex cursor-default items-center justify-center py-1', className)}
-    {...props}
+  Merge<
+    React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollDownButton>,
+    {
+      iconProps?: React.ComponentProps<typeof IconChevronDown>
+    }
   >
-    <ChevronDownIcon />
-  </SelectPrimitive.ScrollDownButton>
-))
+>(({ iconProps, ...props }, ref) => {
+  const { scrollDownButton, scrollDownButtonIcon } = select()
+
+  return (
+    <SelectPrimitive.ScrollDownButton
+      {...props}
+      ref={ref}
+      className={scrollDownButton({ className: props.className })}
+    >
+      <IconChevronDown
+        {...iconProps}
+        className={scrollDownButtonIcon({ className: iconProps?.className })}
+      />
+    </SelectPrimitive.ScrollDownButton>
+  )
+})
 SelectScrollDownButton.displayName = SelectPrimitive.ScrollDownButton.displayName
 
-export const SelectContent = React.forwardRef<
+const SelectContent = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>
->(({ className, children, position = 'popper', ...props }, ref) => (
-  <SelectPrimitive.Portal>
-    <SelectPrimitive.Content
-      ref={ref}
-      className={twMerge(
-        'relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border border-wgray-200 dark:border-wgray-800 bg-white text-wgray-950 shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2  dark:bg-wgray-950 dark:text-wgray-50',
-        position === 'popper' &&
-          'data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1',
-        className,
-      )}
-      position={position}
-      {...props}
-    >
-      <SelectScrollUpButton />
-      <SelectPrimitive.Viewport
-        className={twMerge(
-          'p-1',
-          position === 'popper' &&
-            'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]',
-        )}
-      >
-        {children}
-      </SelectPrimitive.Viewport>
-      <SelectScrollDownButton />
-    </SelectPrimitive.Content>
-  </SelectPrimitive.Portal>
-))
+  Merge<
+    React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>,
+    {
+      portalProps?: React.ComponentProps<typeof SelectPrimitive.Portal>
+      viewportProps?: React.ComponentProps<typeof SelectPrimitive.Viewport>
+      scrollUpButtonProps?: React.ComponentProps<typeof SelectScrollUpButton>
+      scrollDownButtonProps?: React.ComponentProps<typeof SelectScrollDownButton>
+    }
+  >
+>(
+  (
+    {
+      portalProps,
+      viewportProps,
+      scrollUpButtonProps,
+      scrollDownButtonProps,
+      children,
+      position = 'popper',
+      ...props
+    },
+    ref,
+  ) => {
+    const { content, viewport } = select({ position })
+
+    return (
+      <SelectPrimitive.Portal {...portalProps}>
+        <SelectPrimitive.Content
+          {...props}
+          ref={ref}
+          position={position}
+          className={content({ className: props.className })}
+        >
+          <SelectScrollUpButton {...scrollUpButtonProps} />
+
+          <SelectPrimitive.Viewport
+            {...viewportProps}
+            className={viewport({ className: viewportProps?.className })}
+          >
+            {children}
+          </SelectPrimitive.Viewport>
+
+          <SelectScrollDownButton {...scrollDownButtonProps} />
+        </SelectPrimitive.Content>
+      </SelectPrimitive.Portal>
+    )
+  },
+)
 SelectContent.displayName = SelectPrimitive.Content.displayName
 
-export const SelectLabel = React.forwardRef<
+const SelectLabel = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Label>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
->(({ className, ...props }, ref) => (
-  <SelectPrimitive.Label
-    ref={ref}
-    className={twMerge('px-2 py-1.5 text-sm font-semibold', className)}
-    {...props}
-  />
-))
+>((props, ref) => {
+  const { label } = select()
+
+  return (
+    <SelectPrimitive.Label {...props} ref={ref} className={label({ className: props.className })} />
+  )
+})
 SelectLabel.displayName = SelectPrimitive.Label.displayName
 
-export const SelectItem = React.forwardRef<
+const SelectItem = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>
->(({ className, children, ...props }, ref) => (
-  <SelectPrimitive.Item
-    ref={ref}
-    className={twMerge(
-      'relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-2 pr-8 text-sm outline-none focus:bg-wgray-100 focus:text-wgray-900 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-wgray-800 dark:focus:text-wgray-50',
-      className,
-    )}
-    {...props}
+  Merge<
+    React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>,
+    {
+      indicatorProps?: React.ComponentProps<typeof IconCheck>
+    }
   >
-    <span className="absolute right-2 flex h-3.5 w-3.5 items-center justify-center">
-      <SelectPrimitive.ItemIndicator>
-        <CheckIcon className="h-4 w-4" />
+>(({ indicatorProps, children, ...props }, ref) => {
+  const { item, itemIndicator } = select()
+
+  return (
+    <SelectPrimitive.Item {...props} ref={ref} className={item({ className: props.className })}>
+      <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
+
+      <SelectPrimitive.ItemIndicator asChild>
+        <IconCheck
+          {...indicatorProps}
+          className={itemIndicator({ className: indicatorProps?.className })}
+        />
       </SelectPrimitive.ItemIndicator>
-    </span>
-    <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
-  </SelectPrimitive.Item>
-))
+    </SelectPrimitive.Item>
+  )
+})
 SelectItem.displayName = SelectPrimitive.Item.displayName
 
-export const SelectSeparator = React.forwardRef<
+const SelectSeparator = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Separator>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Separator>
->(({ className, ...props }, ref) => (
-  <SelectPrimitive.Separator
-    ref={ref}
-    className={twMerge('-mx-1 my-1 h-px bg-wgray-100 dark:bg-wgray-800', className)}
-    {...props}
-  />
-))
+>((props, ref) => {
+  const { separator } = select()
+
+  return (
+    <SelectPrimitive.Separator
+      {...props}
+      ref={ref}
+      className={separator({ className: props.className })}
+    />
+  )
+})
 SelectSeparator.displayName = SelectPrimitive.Separator.displayName
+
+const Select = Object.assign(SelectPrimitive.Root, {
+  Trigger: SelectTrigger,
+  Value: SelectPrimitive.Value,
+  Content: Object.assign(SelectContent, {
+    Group: Object.assign(SelectPrimitive.Group, {
+      Label: SelectLabel,
+    }),
+    Item: SelectItem,
+    Separator: SelectSeparator,
+  }),
+})
+
+export default Select
+export { select, SelectPrimitive }

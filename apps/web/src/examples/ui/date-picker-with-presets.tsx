@@ -3,7 +3,7 @@
 import Button from '@dinui/react/button'
 import DayPicker from '@dinui/react/day-picker'
 import Popover from '@dinui/react/popover'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@dinui/react/select'
+import Select from '@dinui/react/select'
 import { cn } from '@dinui/react/utils'
 import { CalendarIcon } from '@radix-ui/react-icons'
 import { addDays, format } from 'date-fns'
@@ -25,15 +25,15 @@ export default function DatePickerWithPresets() {
       </Popover.Trigger>
       <Popover.Content align="start" className="flex w-auto flex-col space-y-2 p-2">
         <Select onValueChange={(value) => setDate(addDays(new Date(), parseInt(value)))}>
-          <SelectTrigger>
-            <SelectValue placeholder="Select" />
-          </SelectTrigger>
-          <SelectContent position="popper">
-            <SelectItem value="0">Today</SelectItem>
-            <SelectItem value="1">Tomorrow</SelectItem>
-            <SelectItem value="3">In 3 days</SelectItem>
-            <SelectItem value="7">In a week</SelectItem>
-          </SelectContent>
+          <Select.Trigger>
+            <Select.Value placeholder="Select" />
+          </Select.Trigger>
+          <Select.Content position="popper">
+            <Select.Content.Item value="0">Today</Select.Content.Item>
+            <Select.Content.Item value="1">Tomorrow</Select.Content.Item>
+            <Select.Content.Item value="3">In 3 days</Select.Content.Item>
+            <Select.Content.Item value="7">In a week</Select.Content.Item>
+          </Select.Content>
         </Select>
         <div className="rounded-md border">
           <DayPicker mode="single" selected={date} onSelect={setDate} />

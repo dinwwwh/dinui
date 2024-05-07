@@ -8,7 +8,7 @@ export const button = tv({
   slots: {
     root: [
       'inline-flex items-center justify-center transition',
-      'whitespace-nowrap',
+      'whitespace-nowrap cursor-pointer',
       'disabled:pointer-events-none disabled:opacity-50',
     ],
     leftIcon: null,

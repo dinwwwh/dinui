@@ -10,7 +10,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@dinui/react/form'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@dinui/react/select'
+import Select from '@dinui/react/select'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -43,15 +43,15 @@ export default function SelectForm() {
               <FormLabel>Email</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select a verified email to display" />
-                  </SelectTrigger>
+                  <Select.Trigger>
+                    <Select.Value placeholder="Select a verified email to display" />
+                  </Select.Trigger>
                 </FormControl>
-                <SelectContent>
-                  <SelectItem value="m@example.com">m@example.com</SelectItem>
-                  <SelectItem value="m@google.com">m@google.com</SelectItem>
-                  <SelectItem value="m@support.com">m@support.com</SelectItem>
-                </SelectContent>
+                <Select.Content>
+                  <Select.Content.Item value="m@example.com">m@example.com</Select.Content.Item>
+                  <Select.Content.Item value="m@google.com">m@google.com</Select.Content.Item>
+                  <Select.Content.Item value="m@support.com">m@support.com</Select.Content.Item>
+                </Select.Content>
               </Select>
               <FormDescription>
                 You can manage email addresses in your <a href="#">email settings</a>.
