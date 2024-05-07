@@ -6,7 +6,7 @@ import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
 import type * as _A from '@radix-ui/react-menu'
 import { IconCheck, IconChevronRight, IconPoint } from '@tabler/icons-react'
 import { forwardRef } from 'react'
-import type { VariantProps} from 'tailwind-variants';
+import type { VariantProps } from 'tailwind-variants'
 import { tv } from 'tailwind-variants'
 import type { Merge } from 'type-fest'
 
