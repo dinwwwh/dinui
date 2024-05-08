@@ -18,7 +18,8 @@ const switchVariant = tv({
     thumb: [
       'transition-transform',
       'block size-4 rounded-full bg-bg--contrast shadow-lg',
-      'data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0',
+      'data-[state=checked]:translate-x-4 data-[state=checked]:bg-fg',
+      'data-[state=unchecked]:translate-x-0',
     ],
   },
 })
