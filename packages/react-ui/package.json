@@ -122,10 +122,6 @@
       "types": "./build/src/ui/navigation-menu.d.ts",
       "default": "./build/src/ui/navigation-menu.js"
     },
-    "./pagination": {
-      "types": "./build/src/ui/pagination.d.ts",
-      "default": "./build/src/ui/pagination.js"
-    },
     "./popover": {
       "types": "./build/src/ui/popover.d.ts",
       "default": "./build/src/ui/popover.js"
