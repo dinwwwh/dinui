@@ -4,8 +4,8 @@ import { dropdownMenu } from './dropdown-menu'
 import * as ContextMenuPrimitive from '@radix-ui/react-context-menu'
 import { IconCheck, IconChevronRight, IconPoint } from '@tabler/icons-react'
 import { forwardRef } from 'react'
-import { VariantProps } from 'tailwind-variants'
-import { Merge } from 'type-fest'
+import type { VariantProps } from 'tailwind-variants'
+import type { Merge } from 'type-fest'
 
 const ContextMenuSubTrigger = forwardRef<
   React.ElementRef<typeof ContextMenuPrimitive.SubTrigger>,

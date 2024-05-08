@@ -3,7 +3,7 @@
 import * as ProgressPrimitive from '@radix-ui/react-progress'
 import { forwardRef } from 'react'
 import { tv } from 'tailwind-variants'
-import { Merge } from 'type-fest'
+import type { Merge } from 'type-fest'
 
 const progress = tv({
   slots: {

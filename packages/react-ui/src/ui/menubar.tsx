@@ -5,8 +5,9 @@ import { dropdownMenu } from './dropdown-menu'
 import * as MenubarPrimitive from '@radix-ui/react-menubar'
 import { IconCheck, IconChevronRight, IconPoint } from '@tabler/icons-react'
 import { forwardRef } from 'react'
-import { VariantProps, tv } from 'tailwind-variants'
-import { Merge } from 'type-fest'
+import type { VariantProps } from 'tailwind-variants'
+import { tv } from 'tailwind-variants'
+import type { Merge } from 'type-fest'
 
 const menubar = tv({
   slots: {
