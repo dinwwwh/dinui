@@ -12,7 +12,7 @@ import type { Merge } from 'type-fest'
 
 const baseItem = button({ size: 'sm', variant: 'ghost' }).root({
   className: [
-    'justify-start',
+    'flex justify-start',
     'w-full px-2 text-sm font-medium',
     'outline-none focus:bg-bg--active data-[state=open]:bg-bg--active',
     'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
@@ -33,7 +33,7 @@ const dropdownMenu = tv({
     subTrigger: baseItem,
     subTriggerIcon: button({ size: 'sm', variant: 'ghost' }).rightIcon({ className: 'ml-auto' }),
     subContent: [baseContent, 'shadow-lg'],
-    content: baseContent,
+    content: [baseContent, 'min-w-[12rem]'],
     item: baseItem,
     itemShortcut: 'ml-auto text-xs tracking-widest text-fg-weaker',
     checkboxItem: [baseItem, 'relative pl-8'],
