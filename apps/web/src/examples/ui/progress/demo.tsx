@@ -1,6 +1,6 @@
 'use client'
 
-import { Progress } from '@dinui/react/progress'
+import Progress from '@dinui/react/progress'
 import * as React from 'react'
 
 export default function ProgressDemo() {
