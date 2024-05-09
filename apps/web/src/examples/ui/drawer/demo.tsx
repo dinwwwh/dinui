@@ -76,7 +76,7 @@ export default function DrawerDemo() {
               </Button>
               <div className="flex-1 text-center">
                 <div className="text-7xl font-bold tracking-tighter">{goal}</div>
-                <div className="text-[0.70rem] uppercase text-wgray-500">Calories/day</div>
+                <div className="text-[0.70rem] uppercase text-fg-weaker">Calories/day</div>
               </div>
               <Button
                 variant="outline"
@@ -92,7 +92,7 @@ export default function DrawerDemo() {
             <div className="mt-3 h-[120px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={data}>
-                  <Bar dataKey="goal" className="fill-wgray-900/90" />
+                  <Bar dataKey="goal" className="fill-fg-weak" />
                 </BarChart>
               </ResponsiveContainer>
             </div>

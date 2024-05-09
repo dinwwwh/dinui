@@ -28,11 +28,11 @@ export default function CardDemo({ className, ...props }: CardProps) {
       <Card.Description>You have 3 unread messages.</Card.Description>
 
       <div className="mt-6 grid gap-4">
-        <div className=" flex items-center space-x-4 rounded-md border border-wgray-200 dark:border-wgray-800 p-4">
+        <div className=" flex items-center space-x-4 rounded-md border p-4">
           <IconBell />
           <div className="flex-1 space-y-1">
             <p className="text-sm font-medium leading-none">Push Notifications</p>
-            <p className="text-sm text-wgray-500">Send notifications to device.</p>
+            <p className="text-sm text-fg-weaker">Send notifications to device.</p>
           </div>
           <Switch />
         </div>
@@ -45,7 +45,7 @@ export default function CardDemo({ className, ...props }: CardProps) {
               <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
               <div className="space-y-1">
                 <p className="text-sm font-medium leading-none">{notification.title}</p>
-                <p className="text-sm text-wgray-500">{notification.description}</p>
+                <p className="text-sm text-fg-weaker">{notification.description}</p>
               </div>
             </div>
           ))}

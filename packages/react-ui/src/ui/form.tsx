@@ -117,7 +117,7 @@ export const FormDescription = React.forwardRef<
     <p
       ref={ref}
       id={formDescriptionId}
-      className={twMerge('text-[0.8rem] text-wgray-500 dark:text-wgray-400', className)}
+      className={twMerge('text-[0.8rem] text-fg-weaker', className)}
       {...props}
     />
   )

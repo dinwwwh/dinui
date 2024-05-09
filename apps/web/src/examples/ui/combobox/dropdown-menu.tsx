@@ -1,5 +1,6 @@
 'use client'
 
+import Badge from '@dinui/react/badge'
 import Button from '@dinui/react/button'
 import Command from '@dinui/react/command'
 import DropdownMenu from '@dinui/react/dropdown-menu'
@@ -21,12 +22,10 @@ export default function ComboboxDropdownMenu() {
   const [open, setOpen] = React.useState(false)
 
   return (
-    <div className="flex w-full flex-col items-start justify-between rounded-md border border-wgray-200 dark:border-wgray-800 px-4 py-3 sm:flex-row sm:items-center">
+    <div className="flex w-full flex-col items-start justify-between rounded-md border px-4 py-3 sm:flex-row sm:items-center">
       <p className="text-sm font-medium leading-none">
-        <span className="mr-2 rounded-lg bg-wgray-900 px-2 py-1 text-xs text-wgray-50">
-          {label}
-        </span>
-        <span className="text-wgray-500">Create a new project</span>
+        <Badge className="mr-2">{label}</Badge>
+        <span className="text-fg-weaker">Create a new project</span>
       </p>
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenu.Trigger asChild>

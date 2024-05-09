@@ -10,8 +10,7 @@ const avatar = tv({
   slots: {
     root: 'relative flex shrink-0 overflow-hidden rounded-full',
     image: 'object-cover object-center h-full w-full',
-    fallback:
-      'flex h-full w-full items-center justify-center rounded-full bg-wgray-100 dark:bg-wgray-800',
+    fallback: 'flex h-full w-full items-center justify-center rounded-full bg-bg--active',
   },
   variants: {
     size: {

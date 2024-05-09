@@ -10,7 +10,7 @@ const command = tv({
   slots: {
     root: 'flex h-full w-full flex-col overflow-hidden rounded-md',
     input: [
-      'h-10 w-full text-sm outline-none',
+      'h-10 w-full text-sm outline-none bg-transparent',
       'placeholder:text-fg-weaker',
       'disabled:cursor-not-allowed disabled:opacity-50',
     ],

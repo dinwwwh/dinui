@@ -35,7 +35,7 @@ export default function CarouselDApiDemo() {
         <Carousel.Previous />
         <Carousel.Next />
       </Carousel>
-      <div className="py-2 text-center text-sm text-wgray-500">
+      <div className="py-2 text-center text-sm text-fg-weaker">
         Slide {current} of {count}
       </div>
     </div>

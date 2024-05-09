@@ -15,7 +15,7 @@ export default function DialogDemo() {
           Make changes to your profile here. Click save when you're done.
         </Dialog.Content.Description>
 
-        <div className="grid gap-4 py-4 mt-4">
+        <div className="grid gap-4 mt-4">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="name" className="text-right">
               Name

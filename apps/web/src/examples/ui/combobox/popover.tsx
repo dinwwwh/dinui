@@ -39,7 +39,7 @@ export default function ComboboxPopover() {
 
   return (
     <div className="flex items-center space-x-4">
-      <p className="text-sm text-wgray-500">Status</p>
+      <p className="text-sm text-fg-weaker">Status</p>
       <Popover open={open} onOpenChange={setOpen}>
         <Popover.Trigger asChild>
           <Button variant="outline" className="w-[150px] justify-start">

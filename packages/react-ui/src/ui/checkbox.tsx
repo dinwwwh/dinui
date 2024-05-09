@@ -10,7 +10,8 @@ import type { Merge } from 'type-fest'
 const checkbox = tv({
   slots: {
     root: [
-      'shrink-0 rounded-sm border border-fg-weaker',
+      'transition duration-100',
+      'shrink-0 rounded border border-fg-weaker',
       'data-[state=checked]:bg-brand data-[state=checked]:border-bg',
       'disabled:cursor-not-allowed disabled:opacity-50',
     ],

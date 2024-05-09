@@ -2,10 +2,7 @@ import Resizable from '@dinui/react/resizable'
 
 export default function ResizableDemo() {
   return (
-    <Resizable
-      direction="horizontal"
-      className="min-h-[200px] max-w-md rounded-lg border-wgray-200 dark:border-wgray-800 border"
-    >
+    <Resizable direction="horizontal" className="min-h-[200px] max-w-md rounded-lg border">
       <Resizable.Panel defaultSize={25}>
         <div className="flex h-full items-center justify-center p-6">
           <span className="font-semibold">Sidebar</span>

@@ -9,9 +9,9 @@ const slider = tv({
   slots: {
     root: 'relative flex w-full touch-none select-none items-center',
     track: 'relative h-1.5 w-full grow overflow-hidden rounded-full bg-bg--muted',
-    range: 'absolute h-full bg-brand',
+    range: 'absolute h-full bg-fg-brand',
     thumb:
-      'block h-4 w-4 rounded-full border border-fg/50 bg-bg--contrast shadow transition-colors disabled:pointer-events-none disabled:opacity-50',
+      'block h-4 w-4 rounded-full border border-fg/70 bg-bg--contrast shadow transition-colors disabled:pointer-events-none disabled:opacity-50',
   },
 })
 
