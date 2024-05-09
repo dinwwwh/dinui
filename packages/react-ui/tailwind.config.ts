@@ -47,6 +47,11 @@ const themes = createThemes([
         'fg': colors.white,
       },
 
+      'reverse': {
+        bg: colors.neutral[950],
+        fg: colors.neutral[50],
+      },
+
       ...mapKeys(
         pick(colors.indigo, ['50', '100', '200', '300', '400', '500', '600', '700']),
         (key) => 'utility-brand-' + key,
@@ -114,6 +119,11 @@ const themes = createThemes([
         'bg--hover': colors.rose[400],
 
         'fg': colors.white,
+      },
+
+      'reverse': {
+        bg: colors.neutral[50],
+        fg: colors.neutral[900],
       },
 
       ...mapKeys(
