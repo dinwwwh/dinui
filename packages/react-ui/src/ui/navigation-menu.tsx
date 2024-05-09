@@ -1,114 +1,189 @@
-import { ChevronDownIcon } from '@radix-ui/react-icons'
-import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu'
-import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import { button } from './button'
+import * as HeadlessNavigationMenu from '@radix-ui/react-navigation-menu'
+import { IconChevronDown } from '@tabler/icons-react'
+import { forwardRef } from 'react'
 import { tv } from 'tailwind-variants'
+import { Merge } from 'type-fest'
 
-export const NavigationMenu = React.forwardRef<
-  React.ElementRef<typeof NavigationMenuPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Root>
->(({ className, children, ...props }, ref) => (
-  <NavigationMenuPrimitive.Root
-    ref={ref}
-    className={twMerge(
-      'relative z-10 flex max-w-max flex-1 items-center justify-center',
-      className,
-    )}
-    {...props}
-  >
-    {children}
-    <NavigationMenuViewport />
-  </NavigationMenuPrimitive.Root>
-))
-NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName
-
-export const NavigationMenuList = React.forwardRef<
-  React.ElementRef<typeof NavigationMenuPrimitive.List>,
-  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.List>
->(({ className, ...props }, ref) => (
-  <NavigationMenuPrimitive.List
-    ref={ref}
-    className={twMerge(
-      'group flex flex-1 list-none items-center justify-center space-x-1',
-      className,
-    )}
-    {...props}
-  />
-))
-NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName
-
-export const NavigationMenuItem = NavigationMenuPrimitive.Item
-
-export const navigationMenuTriggerStyle = tv({
-  base: 'group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-wgray-100 hover:text-wgray-900 focus:bg-wgray-100 focus:text-wgray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-wgray-100/50 data-[state=open]:bg-wgray-100/50 dark:bg-wgray-950 dark:hover:bg-wgray-800 dark:hover:text-wgray-50 dark:focus:bg-wgray-800 dark:focus:text-wgray-50 dark:data-[active]:bg-wgray-800/50 dark:data-[state=open]:bg-wgray-800/50',
+const navigationMenu = tv({
+  slots: {
+    root: 'relative',
+    list: 'flex items-center gap-1',
+    viewport: [
+      'transition-all absolute right-1/2 translate-x-1/2 top-full mt-1.5 z-10',
+      'origin-top-center overflow-hidden h-[var(--radix-navigation-menu-viewport-height)] w-full md:w-[var(--radix-navigation-menu-viewport-width)]',
+      'rounded-md border bg-bg--contrast shadow',
+      'data-[state=open]:animate-in data-[state=open]:slide-in-from-right-1/2',
+      'data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right-1/2',
+      'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90',
+    ],
+    trigger: button({ variant: 'ghost' }).root({
+      className: ['group data-[state=open]:bg-bg--active'],
+    }),
+    triggerIcon: button({ variant: 'ghost' }).rightIcon({
+      className: ['transition duration-300 group-data-[state=open]:rotate-180'],
+    }),
+    content: [
+      'absolute left-0 top-0 w-full md:w-auto',
+      'data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out',
+      'data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out',
+      'data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52',
+      'data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52',
+    ],
+    indicator: [
+      'transition duration-300 data-[state=visible]:animate-in data-[state=hidden]:animate-out',
+      'top-full z-[11] flex h-1.5 items-end justify-center data-[state=hidden]:fade-out data-[state=visible]:fade-in',
+      'after:content-[""] after:relative after:top-2/3 after:size-2 after:rotate-45',
+      'after:rounded-tl-sm after:bg-bg--contrast after:border-t after:border-l',
+    ],
+    link: 'text-sm font-medium leading-none block select-none rounded-md p-3 leading-none transition-colors hover:bg-bg--hover data-[active]:bg-bg--active',
+    linkDescription: 'mt-1 line-clamp-2 text-sm leading-snug text-fg-weaker',
+  },
 })
 
-export const NavigationMenuTrigger = React.forwardRef<
-  React.ElementRef<typeof NavigationMenuPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
-  <NavigationMenuPrimitive.Trigger
-    ref={ref}
-    className={navigationMenuTriggerStyle({ className: ['group', className] })}
-    {...props}
+const NavigationMenuRoot = forwardRef<
+  React.ElementRef<typeof HeadlessNavigationMenu.List>,
+  Merge<
+    React.ComponentPropsWithoutRef<typeof HeadlessNavigationMenu.Root>,
+    {
+      listProps?: React.ComponentProps<typeof HeadlessNavigationMenu.List>
+      viewportProps?: React.ComponentProps<typeof HeadlessNavigationMenu.Viewport>
+      indicatorProps?: React.ComponentProps<typeof HeadlessNavigationMenu.Indicator>
+    }
   >
-    {children}
-    {''}
-    <ChevronDownIcon
-      className="relative top-[1px] ml-1 h-3 w-3 transition duration-300 group-data-[state=open]:rotate-180"
-      aria-hidden="true"
-    />
-  </NavigationMenuPrimitive.Trigger>
-))
-NavigationMenuTrigger.displayName = NavigationMenuPrimitive.Trigger.displayName
+>(({ listProps, viewportProps, indicatorProps, children, ...props }, ref) => {
+  const { root, list, viewport, indicator } = navigationMenu()
 
-export const NavigationMenuContent = React.forwardRef<
-  React.ElementRef<typeof NavigationMenuPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Content>
->(({ className, ...props }, ref) => (
-  <NavigationMenuPrimitive.Content
-    ref={ref}
-    className={twMerge(
-      'left-0 top-0 w-full data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 md:absolute md:w-auto',
-      className,
-    )}
-    {...props}
-  />
-))
-NavigationMenuContent.displayName = NavigationMenuPrimitive.Content.displayName
-
-export const NavigationMenuLink = NavigationMenuPrimitive.Link
-
-export const NavigationMenuViewport = React.forwardRef<
-  React.ElementRef<typeof NavigationMenuPrimitive.Viewport>,
-  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Viewport>
->(({ className, ...props }, ref) => (
-  <div className={twMerge('absolute left-0 top-full flex justify-center')}>
-    <NavigationMenuPrimitive.Viewport
-      className={twMerge(
-        'origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border border-wgray-200 dark:border-wgray-800 bg-white text-wgray-950 shadow data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]  dark:bg-wgray-950 dark:text-wgray-50',
-        className,
-      )}
-      ref={ref}
+  return (
+    <HeadlessNavigationMenu.Root
       {...props}
-    />
-  </div>
-))
-NavigationMenuViewport.displayName = NavigationMenuPrimitive.Viewport.displayName
+      ref={ref}
+      className={root({ className: props.className })}
+    >
+      <HeadlessNavigationMenu.List
+        {...listProps}
+        className={list({ className: listProps?.className })}
+      >
+        {children}
 
-export const NavigationMenuIndicator = React.forwardRef<
-  React.ElementRef<typeof NavigationMenuPrimitive.Indicator>,
-  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Indicator>
->(({ className, ...props }, ref) => (
-  <NavigationMenuPrimitive.Indicator
-    ref={ref}
-    className={twMerge(
-      'top-full z-[1] flex h-1.5 items-end justify-center overflow-hidden data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:fade-in',
-      className,
-    )}
-    {...props}
+        <HeadlessNavigationMenu.Indicator
+          {...indicatorProps}
+          className={indicator({ className: indicatorProps?.className })}
+        />
+      </HeadlessNavigationMenu.List>
+
+      <HeadlessNavigationMenu.Viewport
+        {...viewportProps}
+        className={viewport({ className: viewportProps?.className })}
+      />
+    </HeadlessNavigationMenu.Root>
+  )
+})
+NavigationMenuRoot.displayName = HeadlessNavigationMenu.Root.displayName
+
+const NavigationMenuTrigger = forwardRef<
+  React.ElementRef<typeof HeadlessNavigationMenu.Trigger>,
+  Merge<
+    React.ComponentPropsWithoutRef<typeof HeadlessNavigationMenu.Trigger>,
+    {
+      iconProps?: React.ComponentProps<typeof IconChevronDown>
+    }
   >
-    <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-wgray-200 shadow-md dark:bg-wgray-800" />
-  </NavigationMenuPrimitive.Indicator>
-))
-NavigationMenuIndicator.displayName = NavigationMenuPrimitive.Indicator.displayName
+>(({ iconProps, children, ...props }, ref) => {
+  const { trigger, triggerIcon } = navigationMenu()
+
+  return (
+    <HeadlessNavigationMenu.Trigger
+      {...props}
+      ref={ref}
+      className={trigger({ className: props.className })}
+    >
+      {children}
+
+      <IconChevronDown
+        aria-hidden="true"
+        {...iconProps}
+        className={triggerIcon({ className: iconProps?.className })}
+      />
+    </HeadlessNavigationMenu.Trigger>
+  )
+})
+NavigationMenuTrigger.displayName = HeadlessNavigationMenu.Trigger.displayName
+
+const NavigationMenuLinkItem = forwardRef<
+  React.ElementRef<typeof HeadlessNavigationMenu.Link>,
+  Merge<
+    React.ComponentPropsWithoutRef<typeof HeadlessNavigationMenu.Link>,
+    {
+      itemProps?: React.ComponentProps<typeof HeadlessNavigationMenu.Item>
+    }
+  >
+>(({ itemProps, ...props }, ref) => {
+  const { trigger } = navigationMenu()
+
+  return (
+    <HeadlessNavigationMenu.Item {...itemProps}>
+      <HeadlessNavigationMenu.Link
+        {...props}
+        ref={ref}
+        className={trigger({ className: props.className })}
+      />
+    </HeadlessNavigationMenu.Item>
+  )
+})
+NavigationMenuLinkItem.displayName = 'NavigationMenuLinkItem'
+
+const NavigationMenuLink = forwardRef<
+  React.ElementRef<typeof HeadlessNavigationMenu.Link>,
+  React.ComponentPropsWithoutRef<typeof HeadlessNavigationMenu.Link>
+>((props, ref) => {
+  const { link } = navigationMenu()
+
+  return (
+    <HeadlessNavigationMenu.Link
+      {...props}
+      ref={ref}
+      className={link({ className: props.className })}
+    />
+  )
+})
+NavigationMenuLink.displayName = 'NavigationMenuLink'
+
+const NavigationMenuLinkDescription = forwardRef<
+  React.ElementRef<'p'>,
+  React.ComponentPropsWithoutRef<'p'>
+>((props, ref) => {
+  const { linkDescription } = navigationMenu()
+
+  return <p {...props} ref={ref} className={linkDescription({ className: props.className })} />
+})
+NavigationMenuLinkDescription.displayName = 'NavigationMenuLinkDescription'
+
+const NavigationMenuContent = forwardRef<
+  React.ElementRef<typeof HeadlessNavigationMenu.Content>,
+  React.ComponentPropsWithoutRef<typeof HeadlessNavigationMenu.Content>
+>((props, ref) => {
+  const { content } = navigationMenu()
+
+  return (
+    <HeadlessNavigationMenu.Content
+      {...props}
+      ref={ref}
+      className={content({ className: props.className })}
+    />
+  )
+})
+NavigationMenuContent.displayName = HeadlessNavigationMenu.Content.displayName
+
+const NavigationMenu = Object.assign(NavigationMenuRoot, {
+  Item: HeadlessNavigationMenu.Item,
+  LinkItem: NavigationMenuLinkItem,
+  Trigger: NavigationMenuTrigger,
+  Content: NavigationMenuContent,
+  Link: Object.assign(NavigationMenuLink, {
+    Description: NavigationMenuLinkDescription,
+  }),
+})
+
+export default NavigationMenu
+export { navigationMenu, HeadlessNavigationMenu }
