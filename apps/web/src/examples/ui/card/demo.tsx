@@ -1,15 +1,8 @@
 import Button from '@dinui/react/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@dinui/react/card'
+import Card from '@dinui/react/card'
 import Switch from '@dinui/react/switch'
 import { cn } from '@dinui/react/utils'
-import { BellIcon, CheckIcon } from '@radix-ui/react-icons'
+import { IconBell, IconCheck } from '@tabler/icons-react'
 
 const notifications = [
   {
@@ -31,13 +24,12 @@ type CardProps = React.ComponentProps<typeof Card>
 export default function CardDemo({ className, ...props }: CardProps) {
   return (
     <Card className={cn('w-[380px]', className)} {...props}>
-      <CardHeader>
-        <CardTitle>Notifications</CardTitle>
-        <CardDescription>You have 3 unread messages.</CardDescription>
-      </CardHeader>
-      <CardContent className="grid gap-4">
+      <Card.Title>Notifications</Card.Title>
+      <Card.Description>You have 3 unread messages.</Card.Description>
+
+      <div className="mt-6 grid gap-4">
         <div className=" flex items-center space-x-4 rounded-md border border-wgray-200 dark:border-wgray-800 p-4">
-          <BellIcon />
+          <IconBell />
           <div className="flex-1 space-y-1">
             <p className="text-sm font-medium leading-none">Push Notifications</p>
             <p className="text-sm text-wgray-500">Send notifications to device.</p>
@@ -58,12 +50,16 @@ export default function CardDemo({ className, ...props }: CardProps) {
             </div>
           ))}
         </div>
-      </CardContent>
-      <CardFooter>
+      </div>
+
+      <Card.Actions>
         <Button className="w-full">
-          <CheckIcon className="mr-2 h-4 w-4" /> Mark all as read
+          <Button.LeftIcon>
+            <IconCheck />
+          </Button.LeftIcon>
+          Mark all as read
         </Button>
-      </CardFooter>
+      </Card.Actions>
     </Card>
   )
 }

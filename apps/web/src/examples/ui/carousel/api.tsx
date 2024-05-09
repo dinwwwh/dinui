@@ -1,4 +1,4 @@
-import { Card, CardContent } from '@dinui/react/card'
+import Card from '@dinui/react/card'
 import Carousel, { type CarouselApi } from '@dinui/react/carousel'
 import * as React from 'react'
 
@@ -26,10 +26,8 @@ export default function CarouselDApiDemo() {
         <Carousel.Content>
           {Array.from({ length: 5 }).map((_, index) => (
             <Carousel.Content.Item key={index}>
-              <Card>
-                <CardContent className="flex aspect-square items-center justify-center p-6">
-                  <span className="text-4xl font-semibold">{index + 1}</span>
-                </CardContent>
+              <Card className="flex items-center justify-center aspect-square">
+                <span className="text-4xl font-semibold">{index + 1}</span>
               </Card>
             </Carousel.Content.Item>
           ))}
