@@ -1,23 +1,41 @@
 import Label from './label'
-import type * as LabelPrimitive from '@radix-ui/react-label'
 import { Slot } from '@radix-ui/react-slot'
-import * as React from 'react'
-import type { ControllerProps, FieldPath, FieldValues } from 'react-hook-form'
+import { createContext, forwardRef, useContext, useId } from 'react'
+import type { ControllerProps, FieldPath, FieldValues, UseFormReturn } from 'react-hook-form'
 import { Controller, FormProvider, useFormContext } from 'react-hook-form'
-import { twMerge } from 'tailwind-merge'
+import { tv } from 'tailwind-variants'
+import { Merge } from 'type-fest'
 
-export const Form = FormProvider
+const form = tv({
+  slots: {
+    item: 'space-y-2',
+    description: 'text-sm text-fg-weaker',
+    errorMessage: 'text-sm font-medium text-fg-danger',
+  },
+})
 
-type FormFieldContextValue<
-  TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-> = {
-  name: TName
+function FormRoot({
+  form,
+  asChild,
+  ...props
+}: Merge<
+  React.ComponentProps<'form'>,
+  {
+    form: UseFormReturn<any>
+    asChild?: boolean
+  }
+>) {
+  const Comp = asChild ? Slot : 'form'
+  return (
+    <FormProvider {...form}>
+      <Comp {...props} />
+    </FormProvider>
+  )
 }
 
-const FormFieldContext = React.createContext<FormFieldContextValue>({} as FormFieldContextValue)
+const FormFieldContext = createContext<{ name: FieldPath<FieldValues> } | undefined>(undefined)
 
-export const FormField = <
+const FormField = <
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >({
@@ -30,66 +48,67 @@ export const FormField = <
   )
 }
 
-export const useFormField = () => {
-  const fieldContext = React.useContext(FormFieldContext)
-  const itemContext = React.useContext(FormItemContext)
+const FormItemContext = createContext<{ id: string } | undefined>(undefined)
+
+const FormItem = forwardRef<
+  HTMLDivElement,
+  Merge<
+    React.HTMLAttributes<HTMLDivElement>,
+    {
+      asChild?: boolean
+    }
+  >
+>(({ asChild, ...props }, ref) => {
+  const id = useId()
+  const { item } = form()
+
+  const Comp = asChild ? Slot : 'div'
+  return (
+    <FormItemContext.Provider value={{ id }}>
+      <Comp {...props} ref={ref} className={item({ className: props.className })} />
+    </FormItemContext.Provider>
+  )
+})
+FormItem.displayName = 'FormItem'
+
+const useFormField = () => {
+  const fieldContext = useContext(FormFieldContext)
+  const itemContext = useContext(FormItemContext)
   const { getFieldState, formState } = useFormContext()
 
-  const fieldState = getFieldState(fieldContext.name, formState)
-
   if (!fieldContext) {
-    throw new Error('useFormField should be used within <FormField>')
+    throw new Error('useFormField should be used within <Form.Field>')
   }
+
+  if (!itemContext) {
+    throw new Error('useFormField should be used within <Form.Item>')
+  }
+
+  const fieldState = getFieldState(fieldContext.name, formState)
 
   const { id } = itemContext
 
   return {
+    ...fieldState,
     id,
     name: fieldContext.name,
     formItemId: `${id}-form-item`,
     formDescriptionId: `${id}-form-item-description`,
     formMessageId: `${id}-form-item-message`,
-    ...fieldState,
   }
 }
 
-type FormItemContextValue = {
-  id: string
-}
-
-const FormItemContext = React.createContext<FormItemContextValue>({} as FormItemContextValue)
-
-export const FormItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => {
-    const id = React.useId()
-
-    return (
-      <FormItemContext.Provider value={{ id }}>
-        <div ref={ref} className={twMerge('space-y-2', className)} {...props} />
-      </FormItemContext.Provider>
-    )
-  },
-)
-FormItem.displayName = 'FormItem'
-
-export const FormLabel = React.forwardRef<
-  React.ElementRef<typeof LabelPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
->(({ className, ...props }, ref) => {
+const FormLabel = forwardRef<
+  React.ElementRef<typeof Label>,
+  React.ComponentPropsWithoutRef<typeof Label>
+>((props, ref) => {
   const { error, formItemId } = useFormField()
 
-  return (
-    <Label
-      ref={ref}
-      className={twMerge(error && 'text-red-500 dark:text-red-900', className)}
-      htmlFor={formItemId}
-      {...props}
-    />
-  )
+  return <Label {...props} ref={ref} variant={error ? 'danger' : 'default'} htmlFor={formItemId} />
 })
 FormLabel.displayName = 'FormLabel'
 
-export const FormControl = React.forwardRef<
+const FormControl = forwardRef<
   React.ElementRef<typeof Slot>,
   React.ComponentPropsWithoutRef<typeof Slot>
 >(({ ...props }, ref) => {
@@ -107,43 +126,70 @@ export const FormControl = React.forwardRef<
 })
 FormControl.displayName = 'FormControl'
 
-export const FormDescription = React.forwardRef<
+const FormDescription = forwardRef<
   HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement>
->(({ className, ...props }, ref) => {
+  Merge<
+    React.HTMLAttributes<HTMLParagraphElement>,
+    {
+      asChild?: boolean
+    }
+  >
+>(({ asChild, ...props }, ref) => {
   const { formDescriptionId } = useFormField()
+  const { description } = form()
 
+  const Comp = asChild ? Slot : 'p'
   return (
-    <p
+    <Comp
+      {...props}
       ref={ref}
       id={formDescriptionId}
-      className={twMerge('text-[0.8rem] text-fg-weaker', className)}
-      {...props}
+      className={description({ className: props.className })}
     />
   )
 })
 FormDescription.displayName = 'FormDescription'
 
-export const FormMessage = React.forwardRef<
+const FormErrorMessage = forwardRef<
   HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement>
->(({ className, children, ...props }, ref) => {
+  Merge<
+    React.HTMLAttributes<HTMLParagraphElement>,
+    {
+      asChild?: boolean
+    }
+  >
+>(({ asChild, children, ...props }, ref) => {
   const { error, formMessageId } = useFormField()
   const body = error ? String(error?.message) : children
+  const { errorMessage } = form()
 
   if (!body) {
     return null
   }
 
+  const Comp = asChild ? Slot : 'p'
   return (
-    <p
+    <Comp
+      {...props}
       ref={ref}
       id={formMessageId}
-      className={twMerge('text-[0.8rem] font-medium text-red-500 dark:text-red-900', className)}
-      {...props}
+      className={errorMessage({ className: props.className })}
     >
       {body}
-    </p>
+    </Comp>
   )
 })
-FormMessage.displayName = 'FormMessage'
+FormErrorMessage.displayName = 'FormErrorMessage'
+
+const Form = Object.assign(FormRoot, {
+  Field: FormField,
+  Item: FormItem,
+  Label: FormLabel,
+  Control: FormControl,
+  Description: FormDescription,
+  ErrorMessage: FormErrorMessage,
+})
+
+export * from 'react-hook-form'
+export default Form
+export { form }

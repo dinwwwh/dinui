@@ -1,13 +1,13 @@
 ---
-title: React Hook Form
+title: Form
 description: Building forms with React Hook Form and Zod.
-links:
-  doc: https://react-hook-form.com
 ---
 
 Building forms with React Hook Form and Zod.
 
 import Example from '@web/components/example.astro'
+
+<Example path="ui/form/demo" />
 
 Forms are tricky. They are one of the most common things you'll build in a web application, but also one of the most complex.
 
@@ -19,73 +19,33 @@ Well-designed HTML forms are:
 - Has support for client and server side validation.
 - Well-styled and consistent with the rest of the application.
 
-In this guide, we will take a look at building forms with [`react-hook-form`](https://react-hook-form.com/) and [`zod`](https://zod.dev). We're going to use a `<FormField>` component to compose accessible forms using Radix UI components.
+In this guide, we will take a look at building forms with [`react-hook-form`](https://react-hook-form.com/) and [`zod`](https://zod.dev).
+We're going to use a `<Form>` component to compose accessible forms using Radix UI components.
 
 ## Features
 
 The `<Form />` component is a wrapper around the `react-hook-form` library. It provides a few things:
 
 - Composable components for building forms.
-- A `<FormField />` component for building controlled form fields.
+- A `<Form.Field />` component for building controlled form fields.
 - Form validation using `zod`.
 - Handles accessibility and error messages.
-- Uses `React.useId()` for generating unique IDs.
+- Uses `useId()` for generating unique IDs.
 - Applies the correct `aria` attributes to form fields based on states.
 - Built to work with all Radix UI components.
 - Bring your own schema library. We use `zod` but you can use anything you want.
 - **You have full control over the markup and styling.**
 
-## Anatomy
+# Checkbox
 
-```tsx
-<Form>
-  <FormField
-    control={...}
-    name="..."
-    render={() => (
-      <FormItem>
-        <FormLabel />
-        <FormControl>
-          { /* Your form field */}
-        </FormControl>
-        <FormDescription />
-        <FormMessage />
-      </FormItem>
-    )}
-  />
-</Form>
-```
+<Example path="ui/form/checkbox" />
 
-## Example
+# Day picker
 
-```tsx
-const form = useForm()
+<Example path="ui/form/day-picker" />
 
-<FormField
-  control={form.control}
-  name="username"
-  render={({ field }) => (
-    <FormItem>
-      <FormLabel>Username</FormLabel>
-      <FormControl>
-        <Input placeholder="dinwwwh" {...field} />
-      </FormControl>
-      <FormDescription>This is your public display name.</FormDescription>
-      <FormMessage />
-    </FormItem>
-  )}
-/>
-```
+## Installation
 
-## Examples
+import InstallationGuide from '@web/components/installation-guide.astro'
 
-See the following links for more examples on how to use the `<Form />` component with other components:
-
-- [Checkbox](/ui/checkbox#form)
-- [Date Picker](/ui/date-picker#form)
-- [Input](/ui/input#form)
-- [Radio Group](/ui/radio-group#form)
-- [Select](/ui/select#form)
-- [Switch](/ui/switch#form)
-- [Textarea](/ui/textarea#form)
-- [Combobox](/ui/combobox#form)
+<InstallationGuide path="ui/form" />
