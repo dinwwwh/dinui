@@ -273,13 +273,12 @@ const CarouselNext = forwardRef<
 CarouselNext.displayName = 'CarouselNext'
 
 const Carousel = Object.assign(CarouselRoot, {
-  Content: Object.assign(CarouselContent, {
-    Item: CarouselItem,
-  }),
+  Content: CarouselContent,
+  Item: CarouselItem,
   Previous: CarouselPrevious,
   Next: CarouselNext,
 })
 
-export * as CarouselPrimitive from 'embla-carousel-react'
 export default Carousel
 export { carousel, type CarouselApi }
+export * as CarouselPrimitive from 'embla-carousel-react'

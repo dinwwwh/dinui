@@ -34,21 +34,21 @@ export default function ComboboxDropdownMenu() {
           </Button>
         </DropdownMenu.Trigger>
         <DropdownMenu.Content align="end" className="w-[200px]">
-          <DropdownMenu.Content.Label>Actions</DropdownMenu.Content.Label>
-          <DropdownMenu.Content.Group>
-            <DropdownMenu.Content.Item>Assign to...</DropdownMenu.Content.Item>
-            <DropdownMenu.Content.Item>Set due date...</DropdownMenu.Content.Item>
-            <DropdownMenu.Content.Separator />
-            <DropdownMenu.Content.Sub>
-              <DropdownMenu.Content.Sub.Trigger>Apply label</DropdownMenu.Content.Sub.Trigger>
-              <DropdownMenu.Content.Sub.Content className="p-0">
+          <DropdownMenu.Label>Actions</DropdownMenu.Label>
+          <DropdownMenu.Group>
+            <DropdownMenu.Item>Assign to...</DropdownMenu.Item>
+            <DropdownMenu.Item>Set due date...</DropdownMenu.Item>
+            <DropdownMenu.Separator />
+            <DropdownMenu.Sub>
+              <DropdownMenu.Sub.Trigger>Apply label</DropdownMenu.Sub.Trigger>
+              <DropdownMenu.Sub.Content className="p-0">
                 <Command>
                   <Command.Input placeholder="Filter label..." autoFocus={true} className="h-9" />
                   <Command.List>
-                    <Command.List.Empty>No label found.</Command.List.Empty>
-                    <Command.List.Group>
+                    <Command.Empty>No label found.</Command.Empty>
+                    <Command.Group>
                       {labels.map((label) => (
-                        <Command.List.Item
+                        <Command.Item
                           key={label}
                           value={label}
                           onSelect={(value) => {
@@ -57,19 +57,19 @@ export default function ComboboxDropdownMenu() {
                           }}
                         >
                           {label}
-                        </Command.List.Item>
+                        </Command.Item>
                       ))}
-                    </Command.List.Group>
+                    </Command.Group>
                   </Command.List>
                 </Command>
-              </DropdownMenu.Content.Sub.Content>
-            </DropdownMenu.Content.Sub>
-            <DropdownMenu.Content.Separator />
-            <DropdownMenu.Content.Item className="text-red-600">
+              </DropdownMenu.Sub.Content>
+            </DropdownMenu.Sub>
+            <DropdownMenu.Separator />
+            <DropdownMenu.Item className="text-red-600">
               Delete
-              <DropdownMenu.Content.Item.Shortcut>⌘⌫</DropdownMenu.Content.Item.Shortcut>
-            </DropdownMenu.Content.Item>
-          </DropdownMenu.Content.Group>
+              <DropdownMenu.Item.Shortcut>⌘⌫</DropdownMenu.Item.Shortcut>
+            </DropdownMenu.Item>
+          </DropdownMenu.Group>
         </DropdownMenu.Content>
       </DropdownMenu>
     </div>

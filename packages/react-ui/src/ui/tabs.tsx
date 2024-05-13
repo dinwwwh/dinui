@@ -63,9 +63,8 @@ const TabsContent = forwardRef<
 TabsContent.displayName = TabsPrimitive.Content.displayName
 
 const Tabs = Object.assign(TabsPrimitive.Root, {
-  List: Object.assign(TabsList, {
-    Trigger: TabsTrigger,
-  }),
+  List: TabsList,
+  Trigger: TabsTrigger,
   Content: TabsContent,
 })
 

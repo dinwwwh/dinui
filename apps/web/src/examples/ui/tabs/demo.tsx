@@ -8,8 +8,8 @@ export default function TabsDemo() {
   return (
     <Tabs defaultValue="account" className="w-[400px]">
       <Tabs.List className="grid w-full grid-cols-2">
-        <Tabs.List.Trigger value="account">Account</Tabs.List.Trigger>
-        <Tabs.List.Trigger value="password">Password</Tabs.List.Trigger>
+        <Tabs.Trigger value="account">Account</Tabs.Trigger>
+        <Tabs.Trigger value="password">Password</Tabs.Trigger>
       </Tabs.List>
 
       <Tabs.Content value="account">

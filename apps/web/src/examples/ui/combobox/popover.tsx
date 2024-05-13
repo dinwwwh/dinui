@@ -50,10 +50,10 @@ export default function ComboboxPopover() {
           <Command>
             <Command.Input placeholder="Change status..." />
             <Command.List>
-              <Command.List.Empty>No results found.</Command.List.Empty>
-              <Command.List.Group>
+              <Command.Empty>No results found.</Command.Empty>
+              <Command.Group>
                 {statuses.map((status) => (
-                  <Command.List.Item
+                  <Command.Item
                     key={status.value}
                     value={status.value}
                     onSelect={(value) => {
@@ -64,9 +64,9 @@ export default function ComboboxPopover() {
                     }}
                   >
                     {status.label}
-                  </Command.List.Item>
+                  </Command.Item>
                 ))}
-              </Command.List.Group>
+              </Command.Group>
             </Command.List>
           </Command>
         </Popover.Content>

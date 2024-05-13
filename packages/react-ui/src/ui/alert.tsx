@@ -123,10 +123,9 @@ AlertCloseButton.displayName = 'AlertCloseButton'
 
 const Alert = Object.assign(AlertRoot, {
   Icon: AlertIcon,
-  Content: Object.assign(AlertContent, {
-    Title: AlertTitle,
-    Description: AlertDescription,
-  }),
+  Content: AlertContent,
+  Title: AlertTitle,
+  Description: AlertDescription,
   CloseButton: AlertCloseButton,
 })
 

@@ -6,13 +6,13 @@ export default function CarouselDemo() {
     <Carousel className="w-full max-w-xs">
       <Carousel.Content>
         {Array.from({ length: 5 }).map((_, index) => (
-          <Carousel.Content.Item key={index}>
+          <Carousel.Item key={index}>
             <div className="p-1">
               <Card className="flex items-center justify-center aspect-square">
                 <span className="text-4xl font-semibold">{index + 1}</span>
               </Card>
             </div>
-          </Carousel.Content.Item>
+          </Carousel.Item>
         ))}
       </Carousel.Content>
       <Carousel.Previous />

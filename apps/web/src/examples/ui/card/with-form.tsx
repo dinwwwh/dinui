@@ -23,10 +23,10 @@ export default function CardWithForm() {
                 <Select.Value placeholder="Select" />
               </Select.Trigger>
               <Select.Content position="popper">
-                <Select.Content.Item value="next">Next.js</Select.Content.Item>
-                <Select.Content.Item value="sveltekit">SvelteKit</Select.Content.Item>
-                <Select.Content.Item value="astro">Astro</Select.Content.Item>
-                <Select.Content.Item value="nuxt">Nuxt.js</Select.Content.Item>
+                <Select.Item value="next">Next.js</Select.Item>
+                <Select.Item value="sveltekit">SvelteKit</Select.Item>
+                <Select.Item value="astro">Astro</Select.Item>
+                <Select.Item value="nuxt">Nuxt.js</Select.Item>
               </Select.Content>
             </Select>
           </div>

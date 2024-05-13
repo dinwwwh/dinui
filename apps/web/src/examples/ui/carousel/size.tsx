@@ -11,13 +11,13 @@ export default function CarouselSize() {
     >
       <Carousel.Content>
         {Array.from({ length: 5 }).map((_, index) => (
-          <Carousel.Content.Item key={index} className="md:basis-1/2 lg:basis-1/3">
+          <Carousel.Item key={index} className="md:basis-1/2 lg:basis-1/3">
             <div className="p-1">
               <Card className="flex items-center justify-center aspect-square">
                 <span className="text-3xl font-semibold">{index + 1}</span>
               </Card>
             </div>
-          </Carousel.Content.Item>
+          </Carousel.Item>
         ))}
       </Carousel.Content>
       <Carousel.Previous />

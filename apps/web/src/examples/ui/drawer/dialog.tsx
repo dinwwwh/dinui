@@ -18,10 +18,10 @@ export default function DrawerDialogDemo() {
           <Button variant="outline">Edit Profile</Button>
         </Dialog.Trigger>
         <Dialog.Content className="sm:max-w-[425px]">
-          <Dialog.Content.Title>Edit profile</Dialog.Content.Title>
-          <Dialog.Content.Description>
+          <Dialog.Title>Edit profile</Dialog.Title>
+          <Dialog.Description>
             Make changes to your profile here. Click save when you're done.
-          </Dialog.Content.Description>
+          </Dialog.Description>
           <ProfileForm />
         </Dialog.Content>
       </Dialog>
@@ -34,16 +34,16 @@ export default function DrawerDialogDemo() {
         <Button variant="outline">Edit Profile</Button>
       </Drawer.Trigger>
       <Drawer.Content>
-        <Drawer.Content.Title>Edit profile</Drawer.Content.Title>
-        <Drawer.Content.Description>
+        <Drawer.Title>Edit profile</Drawer.Title>
+        <Drawer.Description>
           Make changes to your profile here. Click save when you're done.
-        </Drawer.Content.Description>
+        </Drawer.Description>
         <ProfileForm />
-        <Drawer.Content.Actions className="pt-2">
+        <Drawer.Actions className="pt-2">
           <Drawer.Close asChild>
             <Button variant="outline">Cancel</Button>
           </Drawer.Close>
-        </Drawer.Content.Actions>
+        </Drawer.Actions>
       </Drawer.Content>
     </Drawer>
   )

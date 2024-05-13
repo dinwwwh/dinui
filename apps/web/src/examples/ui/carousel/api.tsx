@@ -25,11 +25,11 @@ export default function CarouselDApiDemo() {
       <Carousel setApi={setApi} className="w-full max-w-xs">
         <Carousel.Content>
           {Array.from({ length: 5 }).map((_, index) => (
-            <Carousel.Content.Item key={index}>
+            <Carousel.Item key={index}>
               <Card className="flex items-center justify-center aspect-square">
                 <span className="text-4xl font-semibold">{index + 1}</span>
               </Card>
-            </Carousel.Content.Item>
+            </Carousel.Item>
           ))}
         </Carousel.Content>
         <Carousel.Previous />

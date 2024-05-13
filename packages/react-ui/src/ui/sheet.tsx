@@ -145,12 +145,11 @@ SheetActions.displayName = 'SheetActions'
 
 export const Sheet = Object.assign(SheetPrimitive.Root, {
   Trigger: SheetPrimitive.Trigger,
-  Content: Object.assign(SheetContent, {
-    Title: SheetTitle,
-    Description: SheetDescription,
-    Actions: SheetActions,
-    Close: SheetPrimitive.Close,
-  }),
+  Content: SheetContent,
+  Title: SheetTitle,
+  Description: SheetDescription,
+  Actions: SheetActions,
+  Close: SheetPrimitive.Close,
 })
 
 export default Sheet

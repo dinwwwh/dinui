@@ -89,7 +89,7 @@ const CommandList = React.forwardRef<
     />
   )
 })
-CommandList.displayName = CommandPrimitive.Command.List.displayName
+CommandList.displayName = CommandPrimitive.Command.displayName
 
 const CommandEmpty = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Command.Empty>,
@@ -166,13 +166,12 @@ CommandShortcut.displayName = 'CommandShortcut'
 
 const Command = Object.assign(CommandRoot, {
   Input: CommandInput,
-  List: Object.assign(CommandList, {
-    Empty: CommandEmpty,
-    Separator: CommandSeparator,
-    Group: CommandGroup,
-    Item: Object.assign(CommandItem, {
-      Shortcut: CommandShortcut,
-    }),
+  List: CommandList,
+  Empty: CommandEmpty,
+  Separator: CommandSeparator,
+  Group: CommandGroup,
+  Item: Object.assign(CommandItem, {
+    Shortcut: CommandShortcut,
   }),
 })
 

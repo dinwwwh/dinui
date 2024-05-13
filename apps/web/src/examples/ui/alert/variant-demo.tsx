@@ -8,11 +8,9 @@ export default function AlertVariantDemo() {
         <Alert.Icon />
 
         <Alert.Content>
-          <Alert.Content.Title>Heads up!</Alert.Content.Title>
+          <Alert.Title>Heads up!</Alert.Title>
 
-          <Alert.Content.Description>
-            You can add components to your app using the cli.
-          </Alert.Content.Description>
+          <Alert.Description>You can add components to your app using the cli.</Alert.Description>
         </Alert.Content>
 
         <Alert.CloseButton />
@@ -24,11 +22,11 @@ export default function AlertVariantDemo() {
         </Alert.Icon>
 
         <Alert.Content>
-          <Alert.Content.Title>Get Discount</Alert.Content.Title>
+          <Alert.Title>Get Discount</Alert.Title>
 
-          <Alert.Content.Description>
+          <Alert.Description>
             Upgrade your plain before your trial ends to get 5% discount
-          </Alert.Content.Description>
+          </Alert.Description>
         </Alert.Content>
 
         <Alert.CloseButton />
@@ -38,11 +36,9 @@ export default function AlertVariantDemo() {
         <Alert.Icon />
 
         <Alert.Content>
-          <Alert.Content.Title>Heads up!</Alert.Content.Title>
+          <Alert.Title>Heads up!</Alert.Title>
 
-          <Alert.Content.Description>
-            You can add components to your app using the cli.
-          </Alert.Content.Description>
+          <Alert.Description>You can add components to your app using the cli.</Alert.Description>
         </Alert.Content>
 
         <Alert.CloseButton />

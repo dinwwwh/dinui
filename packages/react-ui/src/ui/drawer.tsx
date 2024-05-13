@@ -98,11 +98,10 @@ function DrawerActions(props: React.ComponentProps<'div'>) {
 const Drawer = Object.assign(DrawerRoot, {
   Trigger: DrawerPrimitive.Trigger,
   Close: DrawerPrimitive.Close,
-  Content: Object.assign(DrawerContent, {
-    Title: DrawerTitle,
-    Description: DrawerDescription,
-    Actions: DrawerActions,
-  }),
+  Content: DrawerContent,
+  Title: DrawerTitle,
+  Description: DrawerDescription,
+  Actions: DrawerActions,
 })
 
 export default Drawer

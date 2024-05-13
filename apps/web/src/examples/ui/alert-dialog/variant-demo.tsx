@@ -10,23 +10,23 @@ export default function AlertDialogVariantDemo() {
       </AlertDialog.Trigger>
 
       <AlertDialog.Content>
-        <AlertDialog.Content.Title>Are you absolutely sure?</AlertDialog.Content.Title>
+        <AlertDialog.Title>Are you absolutely sure?</AlertDialog.Title>
 
-        <AlertDialog.Content.Description>
+        <AlertDialog.Description>
           This action cannot be undone. This will permanently delete your account and remove your
           data from our servers.
-        </AlertDialog.Content.Description>
+        </AlertDialog.Description>
 
-        <AlertDialog.Content.Actions>
-          <AlertDialog.Content.Cancel>Cancel</AlertDialog.Content.Cancel>
+        <AlertDialog.Actions>
+          <AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
 
-          <AlertDialog.Content.Action variant="danger-filled">
+          <AlertDialog.Action variant="danger-filled">
             Continue
-            <AlertDialog.Content.Action.RightIcon>
+            <AlertDialog.Action.RightIcon>
               <IconSignRight />
-            </AlertDialog.Content.Action.RightIcon>
-          </AlertDialog.Content.Action>
-        </AlertDialog.Content.Actions>
+            </AlertDialog.Action.RightIcon>
+          </AlertDialog.Action>
+        </AlertDialog.Actions>
       </AlertDialog.Content>
     </AlertDialog>
   )

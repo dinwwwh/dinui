@@ -53,10 +53,10 @@ export default function ComboboxDemo() {
         <Command>
           <Command.Input placeholder="Search framework..." className="h-9" />
           <Command.List>
-            <Command.List.Empty>No framework found.</Command.List.Empty>
-            <Command.List.Group>
+            <Command.Empty>No framework found.</Command.Empty>
+            <Command.Group>
               {frameworks.map((framework) => (
-                <Command.List.Item
+                <Command.Item
                   key={framework.value}
                   value={framework.value}
                   onSelect={(currentValue) => {
@@ -71,9 +71,9 @@ export default function ComboboxDemo() {
                       value === framework.value ? 'opacity-100' : 'opacity-0',
                     )}
                   />
-                </Command.List.Item>
+                </Command.Item>
               ))}
-            </Command.List.Group>
+            </Command.Group>
           </Command.List>
         </Command>
       </Popover.Content>

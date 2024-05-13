@@ -17,24 +17,21 @@ export default function DropdownMenuCheckboxes() {
         <Button variant="outline">Open</Button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content className="w-56">
-        <DropdownMenu.Content.Label>Appearance</DropdownMenu.Content.Label>
-        <DropdownMenu.Content.Separator />
-        <DropdownMenu.Content.CheckboxItem
-          checked={showStatusBar}
-          onCheckedChange={setShowStatusBar}
-        >
+        <DropdownMenu.Label>Appearance</DropdownMenu.Label>
+        <DropdownMenu.Separator />
+        <DropdownMenu.CheckboxItem checked={showStatusBar} onCheckedChange={setShowStatusBar}>
           Status Bar
-        </DropdownMenu.Content.CheckboxItem>
-        <DropdownMenu.Content.CheckboxItem
+        </DropdownMenu.CheckboxItem>
+        <DropdownMenu.CheckboxItem
           checked={showActivityBar}
           onCheckedChange={setShowActivityBar}
           disabled
         >
           Activity Bar
-        </DropdownMenu.Content.CheckboxItem>
-        <DropdownMenu.Content.CheckboxItem checked={showPanel} onCheckedChange={setShowPanel}>
+        </DropdownMenu.CheckboxItem>
+        <DropdownMenu.CheckboxItem checked={showPanel} onCheckedChange={setShowPanel}>
           Panel
-        </DropdownMenu.Content.CheckboxItem>
+        </DropdownMenu.CheckboxItem>
       </DropdownMenu.Content>
     </DropdownMenu>
   )

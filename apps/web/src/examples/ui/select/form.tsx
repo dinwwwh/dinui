@@ -38,9 +38,9 @@ export default function SelectForm() {
                 </Select.Trigger>
               </Form.Control>
               <Select.Content>
-                <Select.Content.Item value="m@example.com">m@example.com</Select.Content.Item>
-                <Select.Content.Item value="m@google.com">m@google.com</Select.Content.Item>
-                <Select.Content.Item value="m@support.com">m@support.com</Select.Content.Item>
+                <Select.Item value="m@example.com">m@example.com</Select.Item>
+                <Select.Item value="m@google.com">m@google.com</Select.Item>
+                <Select.Item value="m@support.com">m@support.com</Select.Item>
               </Select.Content>
             </Select>
             <Form.Description>

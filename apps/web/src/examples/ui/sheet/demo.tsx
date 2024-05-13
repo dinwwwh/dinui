@@ -10,10 +10,10 @@ export default function SheetDemo() {
         <Button variant="outline">Open</Button>
       </Sheet.Trigger>
       <Sheet.Content>
-        <Sheet.Content.Title>Edit profile</Sheet.Content.Title>
-        <Sheet.Content.Description>
+        <Sheet.Title>Edit profile</Sheet.Title>
+        <Sheet.Description>
           Make changes to your profile here. Click save when you're done.
-        </Sheet.Content.Description>
+        </Sheet.Description>
 
         <div className="grid gap-4 mt-4">
           <div className="grid grid-cols-4 items-center gap-4">
@@ -30,11 +30,11 @@ export default function SheetDemo() {
           </div>
         </div>
 
-        <Sheet.Content.Actions>
-          <Sheet.Content.Close asChild>
+        <Sheet.Actions>
+          <Sheet.Close asChild>
             <Button type="submit">Save changes</Button>
-          </Sheet.Content.Close>
-        </Sheet.Content.Actions>
+          </Sheet.Close>
+        </Sheet.Actions>
       </Sheet.Content>
     </Sheet>
   )

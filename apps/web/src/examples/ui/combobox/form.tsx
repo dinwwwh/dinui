@@ -66,11 +66,11 @@ export default function ComboboxForm() {
                 <Command>
                   <Command.Input placeholder="Search framework..." className="h-9" />
                   <Command.List>
-                    <Command.List.Empty>No framework found.</Command.List.Empty>
+                    <Command.Empty>No framework found.</Command.Empty>
 
-                    <Command.List.Group>
+                    <Command.Group>
                       {languages.map((language) => (
-                        <Command.List.Item
+                        <Command.Item
                           value={language.label}
                           key={language.value}
                           onSelect={() => {
@@ -84,9 +84,9 @@ export default function ComboboxForm() {
                               language.value === field.value ? 'opacity-100' : 'opacity-0',
                             )}
                           />
-                        </Command.List.Item>
+                        </Command.Item>
                       ))}
-                    </Command.List.Group>
+                    </Command.Group>
                   </Command.List>
                 </Command>
               </Popover.Content>

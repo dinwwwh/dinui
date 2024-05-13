@@ -14,15 +14,15 @@ export default function DropdownDemo() {
       </DropdownMenu.Trigger>
 
       <DropdownMenu.Content className="w-56">
-        <DropdownMenu.Content.Label>Panel Position</DropdownMenu.Content.Label>
+        <DropdownMenu.Label>Panel Position</DropdownMenu.Label>
 
-        <DropdownMenu.Content.Separator />
+        <DropdownMenu.Separator />
 
-        <DropdownMenu.Content.Radio value={position} onValueChange={setPosition}>
-          <DropdownMenu.Content.Radio.Item value="top">Top</DropdownMenu.Content.Radio.Item>
-          <DropdownMenu.Content.Radio.Item value="bottom">Bottom</DropdownMenu.Content.Radio.Item>
-          <DropdownMenu.Content.Radio.Item value="right">Right</DropdownMenu.Content.Radio.Item>
-        </DropdownMenu.Content.Radio>
+        <DropdownMenu.Radio value={position} onValueChange={setPosition}>
+          <DropdownMenu.Radio.Item value="top">Top</DropdownMenu.Radio.Item>
+          <DropdownMenu.Radio.Item value="bottom">Bottom</DropdownMenu.Radio.Item>
+          <DropdownMenu.Radio.Item value="right">Right</DropdownMenu.Radio.Item>
+        </DropdownMenu.Radio>
       </DropdownMenu.Content>
     </DropdownMenu>
   )

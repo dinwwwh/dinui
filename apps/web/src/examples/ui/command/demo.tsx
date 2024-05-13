@@ -14,46 +14,46 @@ export default function CommandDemo() {
       <Command.Input placeholder="Type a command or search..." />
 
       <Command.List>
-        <Command.List.Empty>No results found.</Command.List.Empty>
+        <Command.Empty>No results found.</Command.Empty>
 
-        <Command.List.Group heading="Suggestions">
-          <Command.List.Item>
+        <Command.Group heading="Suggestions">
+          <Command.Item>
             <CalendarIcon className="mr-2 h-4 w-4" />
             <span>Calendar</span>
-          </Command.List.Item>
+          </Command.Item>
 
-          <Command.List.Item>
+          <Command.Item>
             <FaceIcon className="mr-2 h-4 w-4" />
             <span>Search Emoji</span>
-          </Command.List.Item>
+          </Command.Item>
 
-          <Command.List.Item>
+          <Command.Item>
             <RocketIcon className="mr-2 h-4 w-4" />
             <span>Launch</span>
-          </Command.List.Item>
-        </Command.List.Group>
+          </Command.Item>
+        </Command.Group>
 
-        <Command.List.Separator />
+        <Command.Separator />
 
-        <Command.List.Group heading="Settings">
-          <Command.List.Item>
+        <Command.Group heading="Settings">
+          <Command.Item>
             <PersonIcon className="mr-2 h-4 w-4" />
             <span>Profile</span>
-            <Command.List.Item.Shortcut>⌘P</Command.List.Item.Shortcut>
-          </Command.List.Item>
+            <Command.Item.Shortcut>⌘P</Command.Item.Shortcut>
+          </Command.Item>
 
-          <Command.List.Item>
+          <Command.Item>
             <EnvelopeClosedIcon className="mr-2 h-4 w-4" />
             <span>Mail</span>
-            <Command.List.Item.Shortcut>⌘B</Command.List.Item.Shortcut>
-          </Command.List.Item>
+            <Command.Item.Shortcut>⌘B</Command.Item.Shortcut>
+          </Command.Item>
 
-          <Command.List.Item>
+          <Command.Item>
             <GearIcon className="mr-2 h-4 w-4" />
             <span>Settings</span>
-            <Command.List.Item.Shortcut>⌘S</Command.List.Item.Shortcut>
-          </Command.List.Item>
-        </Command.List.Group>
+            <Command.Item.Shortcut>⌘S</Command.Item.Shortcut>
+          </Command.Item>
+        </Command.Group>
       </Command.List>
     </Command>
   )

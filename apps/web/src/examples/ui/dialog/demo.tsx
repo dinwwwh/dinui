@@ -10,10 +10,10 @@ export default function DialogDemo() {
         <Button variant="outline">Edit Profile</Button>
       </Dialog.Trigger>
       <Dialog.Content className="sm:w-[32rem]">
-        <Dialog.Content.Title>Edit profile</Dialog.Content.Title>
-        <Dialog.Content.Description>
+        <Dialog.Title>Edit profile</Dialog.Title>
+        <Dialog.Description>
           Make changes to your profile here. Click save when you're done.
-        </Dialog.Content.Description>
+        </Dialog.Description>
 
         <div className="grid gap-4 mt-4">
           <div className="grid grid-cols-4 items-center gap-4">
@@ -30,11 +30,11 @@ export default function DialogDemo() {
           </div>
         </div>
 
-        <Dialog.Content.Actions>
-          <Dialog.Content.Close asChild>
+        <Dialog.Actions>
+          <Dialog.Close asChild>
             <Button type="submit">Save changes</Button>
-          </Dialog.Content.Close>
-        </Dialog.Content.Actions>
+          </Dialog.Close>
+        </Dialog.Actions>
       </Dialog.Content>
     </Dialog>
   )

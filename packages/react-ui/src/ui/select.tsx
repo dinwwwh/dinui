@@ -238,13 +238,11 @@ SelectSeparator.displayName = SelectPrimitive.Separator.displayName
 const Select = Object.assign(SelectPrimitive.Root, {
   Trigger: SelectTrigger,
   Value: SelectPrimitive.Value,
-  Content: Object.assign(SelectContent, {
-    Group: Object.assign(SelectPrimitive.Group, {
-      Label: SelectLabel,
-    }),
-    Item: SelectItem,
-    Separator: SelectSeparator,
-  }),
+  Content: SelectContent,
+  Group: SelectPrimitive.Group,
+  Label: SelectLabel,
+  Item: SelectItem,
+  Separator: SelectSeparator,
 })
 
 export default Select

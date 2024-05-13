@@ -16,11 +16,11 @@ export default function SheetSideDemo() {
             <Button variant="outline">{side}</Button>
           </Sheet.Trigger>
           <Sheet.Content side={side}>
-            <Sheet.Content.Title>Edit profile</Sheet.Content.Title>
+            <Sheet.Title>Edit profile</Sheet.Title>
 
-            <Sheet.Content.Description>
+            <Sheet.Description>
               Make changes to your profile here. Click save when you're done.
-            </Sheet.Content.Description>
+            </Sheet.Description>
 
             <div className="grid gap-4 mt-4">
               <div className="grid grid-cols-4 items-center gap-4">
@@ -37,11 +37,11 @@ export default function SheetSideDemo() {
               </div>
             </div>
 
-            <Sheet.Content.Actions>
-              <Sheet.Content.Close asChild>
+            <Sheet.Actions>
+              <Sheet.Close asChild>
                 <Button type="submit">Save changes</Button>
-              </Sheet.Content.Close>
-            </Sheet.Content.Actions>
+              </Sheet.Close>
+            </Sheet.Actions>
           </Sheet.Content>
         </Sheet>
       ))}

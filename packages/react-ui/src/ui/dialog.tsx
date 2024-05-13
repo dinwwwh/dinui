@@ -106,12 +106,11 @@ DialogDescription.displayName = DialogPrimitive.Description.displayName
 
 const Dialog = Object.assign(DialogPrimitive.Root, {
   Trigger: DialogPrimitive.Trigger,
-  Content: Object.assign(DialogContent, {
-    Title: DialogTitle,
-    Description: DialogDescription,
-    Actions: DialogActions,
-    Close: DialogPrimitive.Close,
-  }),
+  Content: DialogContent,
+  Title: DialogTitle,
+  Description: DialogDescription,
+  Actions: DialogActions,
+  Close: DialogPrimitive.Close,
 })
 
 export default Dialog

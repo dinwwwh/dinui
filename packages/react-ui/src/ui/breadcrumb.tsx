@@ -52,7 +52,7 @@ const BreadcrumbItem = forwardRef<HTMLLIElement, React.ComponentPropsWithoutRef<
 )
 BreadcrumbItem.displayName = 'BreadcrumbItem'
 
-const BreadcrumbItemLink = forwardRef<
+const BreadcrumbLinkItem = forwardRef<
   HTMLAnchorElement,
   Merge<
     React.ComponentPropsWithoutRef<'a'>,
@@ -71,9 +71,9 @@ const BreadcrumbItemLink = forwardRef<
     </BreadcrumbItem>
   )
 })
-BreadcrumbItemLink.displayName = 'BreadcrumbItemLink'
+BreadcrumbLinkItem.displayName = 'BreadcrumbLinkItem'
 
-const BreadcrumbItemPage = forwardRef<
+const BreadcrumbPageItem = forwardRef<
   HTMLSpanElement,
   Merge<
     React.ComponentPropsWithoutRef<'span'>,
@@ -99,9 +99,9 @@ const BreadcrumbItemPage = forwardRef<
     </BreadcrumbItem>
   )
 })
-BreadcrumbItemPage.displayName = 'BreadcrumbItemPage'
+BreadcrumbPageItem.displayName = 'BreadcrumbPageItem'
 
-const BreadcrumbItemSeparator = forwardRef<
+const BreadcrumbSeparatorItem = forwardRef<
   React.ComponentRef<typeof IconChevronRight>,
   Merge<
     React.ComponentPropsWithoutRef<typeof IconChevronRight>,
@@ -124,7 +124,7 @@ const BreadcrumbItemSeparator = forwardRef<
     </BreadcrumbItem>
   )
 })
-BreadcrumbItemSeparator.displayName = 'BreadcrumbItemSeparator'
+BreadcrumbSeparatorItem.displayName = 'BreadcrumbSeparatorItem'
 
 const BreadcrumbEllipsis = forwardRef<
   HTMLSpanElement,
@@ -156,9 +156,9 @@ const Breadcrumb = Object.assign(BreadcrumbRoot, {
   Item: Object.assign(BreadcrumbItem, {
     Ellipsis: BreadcrumbEllipsis,
   }),
-  ItemLink: BreadcrumbItemLink,
-  ItemPage: BreadcrumbItemPage,
-  ItemSeparator: BreadcrumbItemSeparator,
+  LinkItem: BreadcrumbLinkItem,
+  PageItem: BreadcrumbPageItem,
+  SeparatorItem: BreadcrumbSeparatorItem,
 })
 
 export default Breadcrumb

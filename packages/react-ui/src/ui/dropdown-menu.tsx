@@ -254,25 +254,25 @@ function DropdownMenuItemShortcut(props: React.ComponentProps<'span'>) {
 
 const DropdownMenu = Object.assign(DropdownMenuPrimitive.Root, {
   Trigger: DropdownMenuPrimitive.Trigger,
-  Content: Object.assign(DropdownMenuContent, {
-    Group: DropdownMenuPrimitive.Group,
-    Label: DropdownMenuLabel,
-    Separator: DropdownMenuSeparator,
+  Content: DropdownMenuContent,
 
-    Item: Object.assign(DropdownMenuItem, {
-      Shortcut: DropdownMenuItemShortcut,
-    }),
+  Group: DropdownMenuPrimitive.Group,
+  Label: DropdownMenuLabel,
+  Separator: DropdownMenuSeparator,
 
-    Radio: Object.assign(DropdownMenuPrimitive.RadioGroup, {
-      Item: DropdownMenuRadioItem,
-    }),
+  Item: Object.assign(DropdownMenuItem, {
+    Shortcut: DropdownMenuItemShortcut,
+  }),
 
-    CheckboxItem: DropdownMenuCheckboxItem,
+  Radio: Object.assign(DropdownMenuPrimitive.RadioGroup, {
+    Item: DropdownMenuRadioItem,
+  }),
 
-    Sub: Object.assign(DropdownMenuPrimitive.Sub, {
-      Trigger: DropdownMenuSubTrigger,
-      Content: DropdownMenuSubContent,
-    }),
+  CheckboxItem: DropdownMenuCheckboxItem,
+
+  Sub: Object.assign(DropdownMenuPrimitive.Sub, {
+    Trigger: DropdownMenuSubTrigger,
+    Content: DropdownMenuSubContent,
   }),
 })
 

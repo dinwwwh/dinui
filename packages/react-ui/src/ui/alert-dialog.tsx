@@ -139,13 +139,12 @@ AlertDialogCancel.displayName = AlertDialogPrimitive.Cancel.displayName
 
 const AlertDialog = Object.assign(AlertDialogPrimitive.Root, {
   Trigger: AlertDialogPrimitive.Trigger,
-  Content: Object.assign(AlertDialogContent, {
-    Title: AlertDialogTitle,
-    Description: AlertDialogDescription,
-    Actions: AlertDialogActions,
-    Action: Object.assign({ ...Button }, AlertDialogAction),
-    Cancel: Object.assign({ ...Button }, AlertDialogCancel),
-  }),
+  Content: AlertDialogContent,
+  Title: AlertDialogTitle,
+  Description: AlertDialogDescription,
+  Actions: AlertDialogActions,
+  Action: Object.assign({ ...Button }, AlertDialogAction),
+  Cancel: Object.assign({ ...Button }, AlertDialogCancel),
 })
 
 export default AlertDialog

@@ -4,28 +4,28 @@ import { IconSlash } from '@tabler/icons-react'
 export default function BreadcrumbVariantDemo() {
   return (
     <Breadcrumb>
-      <Breadcrumb.ItemLink href="#">Home</Breadcrumb.ItemLink>
-      <Breadcrumb.ItemSeparator />
+      <Breadcrumb.LinkItem href="#">Home</Breadcrumb.LinkItem>
+      <Breadcrumb.SeparatorItem />
 
       <Breadcrumb.Item>
         {/* Add trigger action here */}
         <Breadcrumb.Item.Ellipsis />
       </Breadcrumb.Item>
 
-      <Breadcrumb.ItemSeparator>
+      <Breadcrumb.SeparatorItem>
         <IconSlash />
-      </Breadcrumb.ItemSeparator>
+      </Breadcrumb.SeparatorItem>
 
-      <Breadcrumb.ItemLink asChild>
+      <Breadcrumb.LinkItem asChild>
         {/* Your custom link here */}
         <a href="#">Components</a>
-      </Breadcrumb.ItemLink>
+      </Breadcrumb.LinkItem>
 
-      <Breadcrumb.ItemSeparator>
+      <Breadcrumb.SeparatorItem>
         <IconSlash />
-      </Breadcrumb.ItemSeparator>
+      </Breadcrumb.SeparatorItem>
 
-      <Breadcrumb.ItemPage>Breadcrumb</Breadcrumb.ItemPage>
+      <Breadcrumb.PageItem>Breadcrumb</Breadcrumb.PageItem>
     </Breadcrumb>
   )
 }

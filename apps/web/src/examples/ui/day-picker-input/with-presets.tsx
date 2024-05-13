@@ -33,10 +33,10 @@ export default function DayPickerInputWithPresets() {
               <Select.Value placeholder="Select" />
             </Select.Trigger>
             <Select.Content position="popper">
-              <Select.Content.Item value="0">Today</Select.Content.Item>
-              <Select.Content.Item value="1">Tomorrow</Select.Content.Item>
-              <Select.Content.Item value="3">In 3 days</Select.Content.Item>
-              <Select.Content.Item value="7">In a week</Select.Content.Item>
+              <Select.Item value="0">Today</Select.Item>
+              <Select.Item value="1">Tomorrow</Select.Item>
+              <Select.Item value="3">In 3 days</Select.Item>
+              <Select.Item value="7">In a week</Select.Item>
             </Select.Content>
           </Select>
         </div>
