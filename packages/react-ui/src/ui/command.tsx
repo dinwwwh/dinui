@@ -14,8 +14,8 @@ const command = tv({
       'placeholder:text-fg-weaker',
       'disabled:cursor-not-allowed disabled:opacity-50',
     ],
-    input_wrapper: 'flex items-center border-b px-3',
-    input_icon: 'mr-2 size-4 shrink-0 text-fg-weaker',
+    inputWrapper: 'flex items-center border-b px-3',
+    inputIcon: 'mr-2 size-4 shrink-0 text-fg-weaker',
     list: 'overflow-y-auto overflow-x-hidden',
     empty: 'py-6 text-center text-sm text-fg-weaker',
     group: [
@@ -58,11 +58,11 @@ const CommandInput = React.forwardRef<
     }
   >
 >(({ wrapperProps, iconProps, ...props }, ref) => {
-  const { input, input_wrapper, input_icon } = command()
+  const { input, inputWrapper, inputIcon } = command()
 
   return (
-    <div {...wrapperProps} className={input_wrapper({ className: wrapperProps?.className })}>
-      <IconSearch {...iconProps} className={input_icon({ className: iconProps?.className })} />
+    <div {...wrapperProps} className={inputWrapper({ className: wrapperProps?.className })}>
+      <IconSearch {...iconProps} className={inputIcon({ className: iconProps?.className })} />
       <CommandPrimitive.Command.Input
         {...props}
         ref={ref}

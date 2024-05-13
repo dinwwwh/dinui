@@ -1,7 +1,7 @@
 'use client'
 
 import * as SliderPrimitive from '@radix-ui/react-slider'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { tv } from 'tailwind-variants'
 import type { Merge } from 'type-fest'
 
@@ -15,7 +15,7 @@ const slider = tv({
   },
 })
 
-const Slider = React.forwardRef<
+const Slider = forwardRef<
   React.ElementRef<typeof SliderPrimitive.Root>,
   Merge<
     React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>,

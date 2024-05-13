@@ -4,13 +4,13 @@ import { IconCircleX } from '@tabler/icons-react'
 export default function CloseButtonVariantDemo() {
   return (
     <div className="flex flex-wrap items-center gap-4">
-      <CloseButton wsize="xs" />
+      <CloseButton size="xs" />
 
-      <CloseButton wsize="sm" />
+      <CloseButton size="sm" />
 
-      <CloseButton wsize="md" />
+      <CloseButton size="md" />
 
-      <CloseButton wsize="lg" />
+      <CloseButton size="lg" />
 
       <CloseButton>
         <IconCircleX />

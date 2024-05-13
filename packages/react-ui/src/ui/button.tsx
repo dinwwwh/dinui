@@ -4,7 +4,7 @@ import { createContext, forwardRef, useContext } from 'react'
 import { tv, type VariantProps } from 'tailwind-variants'
 import type { Merge } from 'type-fest'
 
-export const button = tv({
+const button = tv({
   slots: {
     root: [
       'inline-flex items-center justify-center transition',
@@ -195,3 +195,4 @@ const Button = Object.assign(ButtonRoot, {
 })
 
 export default Button
+export { button }

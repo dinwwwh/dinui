@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { tv } from 'tailwind-variants'
 
 const textarea = tv({
@@ -11,7 +11,7 @@ const textarea = tv({
   },
 })
 
-const Textarea = React.forwardRef<HTMLTextAreaElement, React.ComponentPropsWithoutRef<'textarea'>>(
+const Textarea = forwardRef<HTMLTextAreaElement, React.ComponentPropsWithoutRef<'textarea'>>(
   (props, ref) => {
     const { root } = textarea()
 

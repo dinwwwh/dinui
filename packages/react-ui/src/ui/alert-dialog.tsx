@@ -3,7 +3,6 @@
 import Button from './button'
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog'
 import type * as _A from '@radix-ui/react-dismissable-layer'
-import type React from 'react'
 import { forwardRef } from 'react'
 import { tv } from 'tailwind-variants'
 import type { Merge } from 'type-fest'
@@ -18,8 +17,7 @@ const alertDialog = tv({
       'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
       'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]',
     ],
-    content_portal: null,
-    content_overlay: [
+    overlay: [
       'fixed inset-0 z-50 bg-[#000]/80',
       'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
     ],
@@ -39,14 +37,15 @@ const AlertDialogContent = forwardRef<
     }
   >
 >(({ portalProps, overlayProps, ...props }, ref) => {
-  const { content, content_overlay } = alertDialog()
+  const { content, overlay } = alertDialog()
 
   return (
     <AlertDialogPrimitive.Portal {...portalProps}>
       <AlertDialogPrimitive.Overlay
         {...overlayProps}
-        className={content_overlay({ className: overlayProps?.className })}
+        className={overlay({ className: overlayProps?.className })}
       />
+
       <AlertDialogPrimitive.Content
         {...props}
         ref={ref}

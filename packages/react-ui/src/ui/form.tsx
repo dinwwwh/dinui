@@ -8,7 +8,7 @@ import { Merge } from 'type-fest'
 
 const form = tv({
   slots: {
-    item: 'space-y-2',
+    item: 'flex flex-col gap-2',
     description: 'text-sm text-fg-weaker',
     errorMessage: 'text-sm font-medium text-fg-danger',
   },
@@ -190,6 +190,7 @@ const Form = Object.assign(FormRoot, {
   ErrorMessage: FormErrorMessage,
 })
 
-export * from 'react-hook-form'
 export default Form
 export { form }
+export { useForm } from 'react-hook-form'
+export * as FormPrimitive from 'react-hook-form'

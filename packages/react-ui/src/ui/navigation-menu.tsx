@@ -1,5 +1,5 @@
 import { button } from './button'
-import * as HeadlessNavigationMenu from '@radix-ui/react-navigation-menu'
+import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu'
 import { IconChevronDown } from '@tabler/icons-react'
 import { forwardRef } from 'react'
 import { tv } from 'tailwind-variants'
@@ -42,49 +42,49 @@ const navigationMenu = tv({
 })
 
 const NavigationMenuRoot = forwardRef<
-  React.ElementRef<typeof HeadlessNavigationMenu.List>,
+  React.ElementRef<typeof NavigationMenuPrimitive.List>,
   Merge<
-    React.ComponentPropsWithoutRef<typeof HeadlessNavigationMenu.Root>,
+    React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Root>,
     {
-      listProps?: React.ComponentProps<typeof HeadlessNavigationMenu.List>
-      viewportProps?: React.ComponentProps<typeof HeadlessNavigationMenu.Viewport>
-      indicatorProps?: React.ComponentProps<typeof HeadlessNavigationMenu.Indicator>
+      listProps?: React.ComponentProps<typeof NavigationMenuPrimitive.List>
+      viewportProps?: React.ComponentProps<typeof NavigationMenuPrimitive.Viewport>
+      indicatorProps?: React.ComponentProps<typeof NavigationMenuPrimitive.Indicator>
     }
   >
 >(({ listProps, viewportProps, indicatorProps, children, ...props }, ref) => {
   const { root, list, viewport, indicator } = navigationMenu()
 
   return (
-    <HeadlessNavigationMenu.Root
+    <NavigationMenuPrimitive.Root
       {...props}
       ref={ref}
       className={root({ className: props.className })}
     >
-      <HeadlessNavigationMenu.List
+      <NavigationMenuPrimitive.List
         {...listProps}
         className={list({ className: listProps?.className })}
       >
         {children}
 
-        <HeadlessNavigationMenu.Indicator
+        <NavigationMenuPrimitive.Indicator
           {...indicatorProps}
           className={indicator({ className: indicatorProps?.className })}
         />
-      </HeadlessNavigationMenu.List>
+      </NavigationMenuPrimitive.List>
 
-      <HeadlessNavigationMenu.Viewport
+      <NavigationMenuPrimitive.Viewport
         {...viewportProps}
         className={viewport({ className: viewportProps?.className })}
       />
-    </HeadlessNavigationMenu.Root>
+    </NavigationMenuPrimitive.Root>
   )
 })
-NavigationMenuRoot.displayName = HeadlessNavigationMenu.Root.displayName
+NavigationMenuRoot.displayName = NavigationMenuPrimitive.Root.displayName
 
 const NavigationMenuTrigger = forwardRef<
-  React.ElementRef<typeof HeadlessNavigationMenu.Trigger>,
+  React.ElementRef<typeof NavigationMenuPrimitive.Trigger>,
   Merge<
-    React.ComponentPropsWithoutRef<typeof HeadlessNavigationMenu.Trigger>,
+    React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Trigger>,
     {
       iconProps?: React.ComponentProps<typeof IconChevronDown>
     }
@@ -93,7 +93,7 @@ const NavigationMenuTrigger = forwardRef<
   const { trigger, triggerIcon } = navigationMenu()
 
   return (
-    <HeadlessNavigationMenu.Trigger
+    <NavigationMenuPrimitive.Trigger
       {...props}
       ref={ref}
       className={trigger({ className: props.className })}
@@ -105,42 +105,42 @@ const NavigationMenuTrigger = forwardRef<
         {...iconProps}
         className={triggerIcon({ className: iconProps?.className })}
       />
-    </HeadlessNavigationMenu.Trigger>
+    </NavigationMenuPrimitive.Trigger>
   )
 })
-NavigationMenuTrigger.displayName = HeadlessNavigationMenu.Trigger.displayName
+NavigationMenuTrigger.displayName = NavigationMenuPrimitive.Trigger.displayName
 
 const NavigationMenuLinkItem = forwardRef<
-  React.ElementRef<typeof HeadlessNavigationMenu.Link>,
+  React.ElementRef<typeof NavigationMenuPrimitive.Link>,
   Merge<
-    React.ComponentPropsWithoutRef<typeof HeadlessNavigationMenu.Link>,
+    React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Link>,
     {
-      itemProps?: React.ComponentProps<typeof HeadlessNavigationMenu.Item>
+      itemProps?: React.ComponentProps<typeof NavigationMenuPrimitive.Item>
     }
   >
 >(({ itemProps, ...props }, ref) => {
   const { trigger } = navigationMenu()
 
   return (
-    <HeadlessNavigationMenu.Item {...itemProps}>
-      <HeadlessNavigationMenu.Link
+    <NavigationMenuPrimitive.Item {...itemProps}>
+      <NavigationMenuPrimitive.Link
         {...props}
         ref={ref}
         className={trigger({ className: props.className })}
       />
-    </HeadlessNavigationMenu.Item>
+    </NavigationMenuPrimitive.Item>
   )
 })
 NavigationMenuLinkItem.displayName = 'NavigationMenuLinkItem'
 
 const NavigationMenuLink = forwardRef<
-  React.ElementRef<typeof HeadlessNavigationMenu.Link>,
-  React.ComponentPropsWithoutRef<typeof HeadlessNavigationMenu.Link>
+  React.ElementRef<typeof NavigationMenuPrimitive.Link>,
+  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Link>
 >((props, ref) => {
   const { link } = navigationMenu()
 
   return (
-    <HeadlessNavigationMenu.Link
+    <NavigationMenuPrimitive.Link
       {...props}
       ref={ref}
       className={link({ className: props.className })}
@@ -160,23 +160,23 @@ const NavigationMenuLinkDescription = forwardRef<
 NavigationMenuLinkDescription.displayName = 'NavigationMenuLinkDescription'
 
 const NavigationMenuContent = forwardRef<
-  React.ElementRef<typeof HeadlessNavigationMenu.Content>,
-  React.ComponentPropsWithoutRef<typeof HeadlessNavigationMenu.Content>
+  React.ElementRef<typeof NavigationMenuPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Content>
 >((props, ref) => {
   const { content } = navigationMenu()
 
   return (
-    <HeadlessNavigationMenu.Content
+    <NavigationMenuPrimitive.Content
       {...props}
       ref={ref}
       className={content({ className: props.className })}
     />
   )
 })
-NavigationMenuContent.displayName = HeadlessNavigationMenu.Content.displayName
+NavigationMenuContent.displayName = NavigationMenuPrimitive.Content.displayName
 
 const NavigationMenu = Object.assign(NavigationMenuRoot, {
-  Item: HeadlessNavigationMenu.Item,
+  Item: NavigationMenuPrimitive.Item,
   LinkItem: NavigationMenuLinkItem,
   Trigger: NavigationMenuTrigger,
   Content: NavigationMenuContent,
@@ -186,4 +186,4 @@ const NavigationMenu = Object.assign(NavigationMenuRoot, {
 })
 
 export default NavigationMenu
-export { navigationMenu, HeadlessNavigationMenu }
+export { navigationMenu, NavigationMenuPrimitive }

@@ -6,11 +6,11 @@ import type { Merge } from 'type-fest'
 
 const breadcrumb = tv({
   slots: {
-    root: '',
-    root_list: 'flex flex-wrap items-center gap-1.5 sm:gap-2.5',
+    root: null,
+    list: 'flex flex-wrap items-center gap-1.5 sm:gap-2.5',
     item: 'inline-flex items-center gap-1.5',
     ellipsis: 'flex items-center justify-center',
-    ellipsis_icon: 'size-4',
+    ellipsisIcon: 'size-4',
     itemLink: 'break-words text-sm text-fg-weaker transition hover:text-fg-weaker--hover',
     itemPage: 'break-words text-sm text-fg',
     itemSeparator: 'size-3.5',
@@ -26,7 +26,7 @@ const BreadcrumbRoot = forwardRef<
     }
   >
 >(({ listProps, children, ...props }, ref) => {
-  const { root, root_list } = breadcrumb()
+  const { root, list } = breadcrumb()
 
   return (
     <nav
@@ -35,7 +35,7 @@ const BreadcrumbRoot = forwardRef<
       ref={ref}
       className={root({ className: props.className })}
     >
-      <ol {...listProps} className={root_list({ className: listProps?.className })}>
+      <ol {...listProps} className={list({ className: listProps?.className })}>
         {children}
       </ol>
     </nav>
@@ -135,7 +135,7 @@ const BreadcrumbEllipsis = forwardRef<
     }
   >
 >(({ iconProps, ...props }, ref) => {
-  const { ellipsis, ellipsis_icon } = breadcrumb()
+  const { ellipsis, ellipsisIcon } = breadcrumb()
 
   return (
     <span
@@ -145,7 +145,7 @@ const BreadcrumbEllipsis = forwardRef<
       ref={ref}
       className={ellipsis({ className: props.className })}
     >
-      <IconDots {...iconProps} className={ellipsis_icon({ className: iconProps?.className })} />
+      <IconDots {...iconProps} className={ellipsisIcon({ className: iconProps?.className })} />
       <span className="sr-only">More</span>
     </span>
   )

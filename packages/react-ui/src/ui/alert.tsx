@@ -9,7 +9,7 @@ import type { Merge } from 'type-fest'
 const alert = tv({
   slots: {
     root: 'flex rounded-md py-4 pl-2 pr-4 bg-bg--contrast border',
-    icon_wrapper: 'place-self-start p-1 rounded-full ml-1',
+    iconWrapper: 'place-self-start p-1 rounded-full ml-1',
     icon: 'flex-shrink-0 size-4',
     content: 'ml-3 flex-1',
     title: 'text-sm font-medium',
@@ -57,10 +57,10 @@ const AlertIcon = forwardRef<
   >
 >(({ wrapperProps, ...props }, ref) => {
   const variantOpts = useContext(AlertContext)
-  const { icon, icon_wrapper } = alert(variantOpts)
+  const { icon, iconWrapper } = alert(variantOpts)
 
   return (
-    <div {...wrapperProps} className={icon_wrapper({ className: wrapperProps?.className })}>
+    <div {...wrapperProps} className={iconWrapper({ className: wrapperProps?.className })}>
       <Slot {...props} ref={ref} className={icon({ className: props.className })}>
         {props.children ||
           match(variantOpts.variant)
@@ -112,7 +112,7 @@ const AlertCloseButton = forwardRef<
 
   return (
     <CloseButton
-      wsize="xs"
+      size="xs"
       {...props}
       ref={ref}
       className={closeButton({ className: props.className })}

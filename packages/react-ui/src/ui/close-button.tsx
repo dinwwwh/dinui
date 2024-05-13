@@ -12,30 +12,30 @@ const closeButton = tv({
       'text-fg-weaker hover:text-fg-weaker--hover',
       'hover:bg-bg--hover',
     ],
-    root_icon: null,
+    icon: null,
   },
   variants: {
-    wsize: {
+    size: {
       xs: {
         root: 'size-7',
-        root_icon: 'size-3.5',
+        icon: 'size-3.5',
       },
       sm: {
         root: 'size-8',
-        root_icon: 'size-4',
+        icon: 'size-4',
       },
       md: {
         root: 'size-9',
-        root_icon: 'size-[18px]',
+        icon: 'size-[18px]',
       },
       lg: {
         root: 'size-10',
-        root_icon: 'size-5',
+        icon: 'size-5',
       },
     },
   },
   defaultVariants: {
-    wsize: 'sm',
+    size: 'sm',
   },
 })
 
@@ -47,14 +47,14 @@ const CloseButton = forwardRef<
       iconProps?: React.ComponentProps<typeof IconX>
     }
   >
->(({ iconProps, wsize, ...props }, ref) => {
-  const { root, root_icon } = closeButton({ wsize, className: props.className })
+>(({ iconProps, size, ...props }, ref) => {
+  const { root, icon } = closeButton({ size, className: props.className })
 
   return (
     <button {...props} ref={ref} className={root({ className: props.className })}>
       <Slot
         {...(iconProps as React.HTMLAttributes<HTMLElement>)}
-        className={root_icon({ className: iconProps?.className })}
+        className={icon({ className: iconProps?.className })}
       >
         {props?.children || <IconX />}
       </Slot>

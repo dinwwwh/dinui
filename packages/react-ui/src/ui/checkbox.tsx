@@ -2,7 +2,7 @@
 
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import { IconCheck } from '@tabler/icons-react'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import type { VariantProps } from 'tailwind-variants'
 import { tv } from 'tailwind-variants'
 import type { Merge } from 'type-fest'
@@ -15,22 +15,21 @@ const checkbox = tv({
       'data-[state=checked]:bg-brand data-[state=checked]:border-bg',
       'disabled:cursor-not-allowed disabled:opacity-50',
     ],
-    root_indicator: 'flex items-center justify-center text-current',
-    root_icon: null,
+    indicatorIcon: null,
   },
   variants: {
     size: {
       sm: {
         root: 'size-3',
-        root_icon: 'size-2.5',
+        indicatorIcon: 'size-2.5',
       },
       md: {
         root: 'size-4',
-        root_icon: 'size-[0.875rem]',
+        indicatorIcon: 'size-[0.875rem]',
       },
       lg: {
         root: 'size-5',
-        root_icon: 'size-[1.125rem]',
+        indicatorIcon: 'size-[1.125rem]',
       },
     },
   },
@@ -39,7 +38,7 @@ const checkbox = tv({
   },
 })
 
-const Checkbox = React.forwardRef<
+const Checkbox = forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,
   Merge<
     Merge<
@@ -47,20 +46,19 @@ const Checkbox = React.forwardRef<
       VariantProps<typeof checkbox>
     >,
     {
-      indicatorProps?: React.ComponentProps<typeof CheckboxPrimitive.Indicator>
-      iconProps?: React.ComponentProps<typeof IconCheck>
+      indicatorIconProps?: React.ComponentProps<typeof IconCheck>
     }
   >
->(({ indicatorProps, iconProps, size, ...props }, ref) => {
-  const { root, root_indicator, root_icon } = checkbox({ size })
+>(({ indicatorIconProps, size, ...props }, ref) => {
+  const { root, indicatorIcon } = checkbox({ size })
 
   return (
     <CheckboxPrimitive.Root {...props} ref={ref} className={root({ className: props.className })}>
-      <CheckboxPrimitive.Indicator
-        {...indicatorProps}
-        className={root_indicator({ className: indicatorProps?.className })}
-      >
-        <IconCheck {...iconProps} className={root_icon({ className: iconProps?.className })} />
+      <CheckboxPrimitive.Indicator asChild>
+        <IconCheck
+          {...indicatorIconProps}
+          className={indicatorIcon({ className: indicatorIconProps?.className })}
+        />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   )

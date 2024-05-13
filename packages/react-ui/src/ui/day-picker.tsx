@@ -54,8 +54,8 @@ const dayPicker = tv({
     dayDisabled: 'dd',
     dayRangeMiddle: 'drm',
     dayHidden: 'dh',
-    component_iconLeft: 'size-4',
-    component_iconRight: 'size-4',
+    componentIconLeft: 'size-4',
+    componentIconRight: 'size-4',
   },
 })
 
@@ -108,13 +108,13 @@ function DayPicker({
         IconLeft: () => (
           <IconChevronLeft
             {...componentIconLeftProps}
-            className={classes.component_iconLeft({ className: componentIconLeftProps?.className })}
+            className={classes.componentIconLeft({ className: componentIconLeftProps?.className })}
           />
         ),
         IconRight: () => (
           <IconChevronRight
             {...componentIconRightProps}
-            className={classes.component_iconRight({
+            className={classes.componentIconRight({
               className: componentIconRightProps?.className,
             })}
           />

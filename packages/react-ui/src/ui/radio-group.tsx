@@ -13,8 +13,7 @@ const radioGroup = tv({
       'aspect-square size-4 rounded-full border border-fg',
       'disabled:cursor-not-allowed disabled:opacity-50',
     ],
-    item_indicator: 'flex items-center justify-center',
-    item_icon: 'size-3 fill-current',
+    indicatorIcon: 'size-3 fill-current m-auto',
   },
 })
 
@@ -39,20 +38,19 @@ const RadioGroupItem = React.forwardRef<
   Merge<
     React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>,
     {
-      indicatorProps?: React.ComponentProps<typeof RadioGroupPrimitive.Indicator>
-      iconProps?: React.ComponentProps<typeof IconCircle>
+      indicatorIconProps?: React.ComponentProps<typeof IconCircle>
     }
   >
->(({ indicatorProps, iconProps, ...props }, ref) => {
-  const { item, item_indicator, item_icon } = radioGroup()
+>(({ indicatorIconProps, ...props }, ref) => {
+  const { item, indicatorIcon } = radioGroup()
 
   return (
     <RadioGroupPrimitive.Item {...props} ref={ref} className={item({ className: props.className })}>
-      <RadioGroupPrimitive.Indicator
-        {...indicatorProps}
-        className={item_indicator({ className: indicatorProps?.className })}
-      >
-        <IconCircle {...iconProps} className={item_icon({ className: iconProps?.className })} />
+      <RadioGroupPrimitive.Indicator asChild>
+        <IconCircle
+          {...indicatorIconProps}
+          className={indicatorIcon({ className: indicatorIconProps?.className })}
+        />
       </RadioGroupPrimitive.Indicator>
     </RadioGroupPrimitive.Item>
   )

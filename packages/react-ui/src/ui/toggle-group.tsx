@@ -2,7 +2,6 @@
 
 import Toggle, { toggle } from './toggle'
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group'
-import type React from 'react'
 import { createContext, forwardRef, useContext } from 'react'
 import { tv, type VariantProps } from 'tailwind-variants'
 import type { Merge } from 'type-fest'

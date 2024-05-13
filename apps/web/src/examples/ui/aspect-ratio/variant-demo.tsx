@@ -1,4 +1,4 @@
-import { AspectRatio } from '@dinui/react/aspect-ratio'
+import AspectRatio from '@dinui/react/aspect-ratio'
 
 export default function AspectRatioVariantDemo() {
   return (

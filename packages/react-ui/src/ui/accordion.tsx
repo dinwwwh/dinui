@@ -14,13 +14,12 @@ const accordion = tv({
       'text-sm font-medium',
       '[&[data-state=open]>[data-el=icon]]:rotate-180',
     ],
-    trigger_icon:
-      'size-4 shrink-0 text-fg-weaker duration-200 transition group-hover:text-fg-weaker--hover',
+    triggerIcon: 'transition size-4 shrink-0 text-fg-weaker group-hover:text-fg-weaker--hover',
     content: [
-      'overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
-      'text-sm text-fg-weak',
+      'overflow-hidden text-sm text-fg-weak',
+      'data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
     ],
-    content_wrapper: 'pb-4',
+    contentWrapper: 'pb-4',
   },
 })
 
@@ -52,7 +51,7 @@ const AccordionTrigger = forwardRef<
     }
   >
 >(({ headerProps, iconProps, children, ...props }, ref) => {
-  const { trigger, trigger_icon } = accordion()
+  const { trigger, triggerIcon } = accordion()
 
   return (
     <AccordionPrimitive.Header {...headerProps}>
@@ -66,7 +65,7 @@ const AccordionTrigger = forwardRef<
         <IconChevronDown
           {...iconProps}
           data-el="icon"
-          className={trigger_icon({ className: iconProps?.className })}
+          className={triggerIcon({ className: iconProps?.className })}
         />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
@@ -83,7 +82,7 @@ const AccordionContent = forwardRef<
     }
   >
 >(({ wrapperProps, children, ...props }, ref) => {
-  const { content, content_wrapper } = accordion()
+  const { content, contentWrapper } = accordion()
 
   return (
     <AccordionPrimitive.Content
@@ -91,7 +90,7 @@ const AccordionContent = forwardRef<
       ref={ref}
       className={content({ className: props.className })}
     >
-      <div {...wrapperProps} className={content_wrapper({ className: wrapperProps?.className })}>
+      <div {...wrapperProps} className={contentWrapper({ className: wrapperProps?.className })}>
         {children}
       </div>
     </AccordionPrimitive.Content>

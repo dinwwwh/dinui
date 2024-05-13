@@ -1,6 +1,6 @@
 'use client'
 
-import NavigationMenu, { HeadlessNavigationMenu } from '@dinui/react/navigation-menu'
+import NavigationMenu, { NavigationMenuPrimitive } from '@dinui/react/navigation-menu'
 import Skeleton from '@dinui/react/skeleton'
 
 const components: { title: string; href: string; description: string }[] = [
@@ -48,7 +48,7 @@ export default function NavigationMenuDemo() {
         <NavigationMenu.Content>
           <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
             <li className="row-span-3">
-              <HeadlessNavigationMenu.Link asChild>
+              <NavigationMenuPrimitive.Link asChild>
                 <a
                   className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-bg--active/30 to-bg--active/70 p-6"
                   href="#"
@@ -59,7 +59,7 @@ export default function NavigationMenuDemo() {
                     Beautifully designed components built with Radix UI and Tailwind CSS.
                   </p>
                 </a>
-              </HeadlessNavigationMenu.Link>
+              </NavigationMenuPrimitive.Link>
             </li>
             <NavigationMenu.Link href="#" title="Introduction">
               Introduction

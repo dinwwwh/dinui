@@ -1,18 +1,9 @@
 'use client'
 
 import Button from '@dinui/react/button'
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@dinui/react/form'
+import Form, { useForm } from '@dinui/react/form'
 import Select from '@dinui/react/select'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 const FormSchema = z.object({
@@ -33,35 +24,33 @@ export default function SelectForm() {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <Select.Trigger>
-                    <Select.Value placeholder="Select a verified email to display" />
-                  </Select.Trigger>
-                </FormControl>
-                <Select.Content>
-                  <Select.Content.Item value="m@example.com">m@example.com</Select.Content.Item>
-                  <Select.Content.Item value="m@google.com">m@google.com</Select.Content.Item>
-                  <Select.Content.Item value="m@support.com">m@support.com</Select.Content.Item>
-                </Select.Content>
-              </Select>
-              <FormDescription>
-                You can manage email addresses in your <a href="#">email settings</a>.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit">Submit</Button>
-      </form>
+    <Form form={form} onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+      <Form.Field
+        control={form.control}
+        name="email"
+        render={({ field }) => (
+          <Form.Item>
+            <Form.Label>Email</Form.Label>
+            <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Form.Control>
+                <Select.Trigger>
+                  <Select.Value placeholder="Select a verified email to display" />
+                </Select.Trigger>
+              </Form.Control>
+              <Select.Content>
+                <Select.Content.Item value="m@example.com">m@example.com</Select.Content.Item>
+                <Select.Content.Item value="m@google.com">m@google.com</Select.Content.Item>
+                <Select.Content.Item value="m@support.com">m@support.com</Select.Content.Item>
+              </Select.Content>
+            </Select>
+            <Form.Description>
+              You can manage email addresses in your <a href="#">email settings</a>.
+            </Form.Description>
+            <Form.ErrorMessage />
+          </Form.Item>
+        )}
+      />
+      <Button type="submit">Submit</Button>
     </Form>
   )
 }

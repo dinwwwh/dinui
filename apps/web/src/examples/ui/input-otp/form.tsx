@@ -1,15 +1,7 @@
 'use client'
 
 import Button from '@dinui/react/button'
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@dinui/react/form'
+import Form from '@dinui/react/form'
 import InputOTP from '@dinui/react/input-otp'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
@@ -34,36 +26,34 @@ export default function InputOTPForm() {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
-        <FormField
-          control={form.control}
-          name="pin"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>One-Time Password</FormLabel>
-              <FormControl>
-                <InputOTP maxLength={6} {...field}>
-                  <InputOTP.Group>
-                    <InputOTP.Slot index={0} />
-                    <InputOTP.Slot index={1} />
-                    <InputOTP.Slot index={2} />
-                    <InputOTP.Slot index={3} />
-                    <InputOTP.Slot index={4} />
-                    <InputOTP.Slot index={5} />
-                  </InputOTP.Group>
-                </InputOTP>
-              </FormControl>
-              <FormDescription>
-                Please enter the one-time password sent to your phone.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+    <Form form={form} onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+      <Form.Field
+        control={form.control}
+        name="pin"
+        render={({ field }) => (
+          <Form.Item>
+            <Form.Label>One-Time Password</Form.Label>
+            <Form.Control>
+              <InputOTP maxLength={6} {...field}>
+                <InputOTP.Group>
+                  <InputOTP.Slot index={0} />
+                  <InputOTP.Slot index={1} />
+                  <InputOTP.Slot index={2} />
+                  <InputOTP.Slot index={3} />
+                  <InputOTP.Slot index={4} />
+                  <InputOTP.Slot index={5} />
+                </InputOTP.Group>
+              </InputOTP>
+            </Form.Control>
+            <Form.Description>
+              Please enter the one-time password sent to your phone.
+            </Form.Description>
+            <Form.ErrorMessage />
+          </Form.Item>
+        )}
+      />
 
-        <Button type="submit">Submit</Button>
-      </form>
+      <Button type="submit">Submit</Button>
     </Form>
   )
 }

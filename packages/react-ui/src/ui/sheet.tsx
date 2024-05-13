@@ -13,11 +13,11 @@ const sheet = tv({
       'transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500',
       'data-[state=open]:animate-in data-[state=closed]:animate-out',
     ],
-    content_overlay: [
+    overlay: [
       'fixed inset-0 z-50 bg-[#000]/80',
       'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
     ],
-    content_closeButton: 'absolute right-4 top-4',
+    closeButton: 'absolute right-4 top-4',
     title: 'text-lg font-semibold',
     description: 'mt-2 text-sm text-fg-weaker',
     actions: 'mt-4 flex flex-col-reverse gap-2 @xs:flex-row @xs:justify-end',
@@ -72,14 +72,14 @@ const SheetContent = forwardRef<
   >
 >(({ portalProps, overlayProps, closeProps, closeButtonProps, side, children, ...props }, ref) => {
   const variantPros = { side }
-  const { content, content_overlay, content_closeButton } = sheet(variantPros)
+  const { content, overlay, closeButton } = sheet(variantPros)
 
   return (
     <SheetContext.Provider value={variantPros}>
       <SheetPrimitive.Portal {...portalProps}>
         <SheetPrimitive.Overlay
           {...overlayProps}
-          className={content_overlay({ className: overlayProps?.className })}
+          className={overlay({ className: overlayProps?.className })}
         />
 
         <SheetPrimitive.Content
@@ -91,9 +91,9 @@ const SheetContent = forwardRef<
 
           <SheetPrimitive.Close {...closeProps} asChild>
             <CloseButton
-              wsize="sm"
+              size="sm"
               {...closeButtonProps}
-              className={content_closeButton({ className: closeButtonProps?.className })}
+              className={closeButton({ className: closeButtonProps?.className })}
             />
           </SheetPrimitive.Close>
         </SheetPrimitive.Content>

@@ -2,21 +2,12 @@
 
 import Button from '@dinui/react/button'
 import DayPicker from '@dinui/react/day-picker'
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@dinui/react/form'
+import Form, { useForm } from '@dinui/react/form'
 import Popover from '@dinui/react/popover'
 import { cn } from '@dinui/react/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { CalendarIcon } from '@radix-ui/react-icons'
+import { IconCalendar } from '@tabler/icons-react'
 import { format } from 'date-fns'
-import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 const FormSchema = z.object({
@@ -35,46 +26,47 @@ export default function DayPickerFormDemo() {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="dob"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <FormLabel>Date of birth</FormLabel>
-              <Popover>
-                <Popover.Trigger asChild>
-                  <FormControl>
-                    <Button
-                      variant={'outline'}
-                      className={cn(
-                        'w-[240px] pl-3 text-left font-normal text-fg',
-                        !field.value && 'text-fg-weaker',
-                      )}
-                    >
-                      {field.value ? format(field.value, 'PPP') : <span>Pick a date</span>}
-                      <CalendarIcon className="ml-auto size-4 text-fg-weaker" />
-                    </Button>
-                  </FormControl>
-                </Popover.Trigger>
-                <Popover.Content className="p-0" align="start">
-                  <DayPicker
-                    mode="single"
-                    selected={field.value}
-                    onSelect={field.onChange}
-                    disabled={(date) => date > new Date() || date < new Date('1900-01-01')}
-                    initialFocus
-                  />
-                </Popover.Content>
-              </Popover>
-              <FormDescription>Your date of birth is used to calculate your age.</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit">Submit</Button>
-      </form>
+    <Form form={form} onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <Form.Field
+        control={form.control}
+        name="dob"
+        render={({ field }) => (
+          <Form.Item>
+            <Form.Label>Date of birth</Form.Label>
+            <Popover>
+              <Popover.Trigger asChild>
+                <Form.Control>
+                  <Button
+                    variant={'outline'}
+                    className={cn(
+                      'w-[240px] pl-3 text-left font-normal text-fg',
+                      !field.value && 'text-fg-weaker',
+                    )}
+                  >
+                    {field.value ? format(field.value, 'PPP') : <span>Pick a date</span>}
+
+                    <Button.RightIcon className="ml-auto text-fg-weaker">
+                      <IconCalendar />
+                    </Button.RightIcon>
+                  </Button>
+                </Form.Control>
+              </Popover.Trigger>
+              <Popover.Content className="p-0" align="start">
+                <DayPicker
+                  mode="single"
+                  selected={field.value}
+                  onSelect={field.onChange}
+                  disabled={(date) => date > new Date() || date < new Date('1900-01-01')}
+                  initialFocus
+                />
+              </Popover.Content>
+            </Popover>
+            <Form.Description>Your date of birth is used to calculate your age.</Form.Description>
+            <Form.ErrorMessage />
+          </Form.Item>
+        )}
+      />
+      <Button type="submit">Submit</Button>
     </Form>
   )
 }
