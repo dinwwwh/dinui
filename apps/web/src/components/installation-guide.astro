@@ -1,5 +1,6 @@
 ---
 import { Tabs, TabItem, Code, Steps } from '@astrojs/starlight/components'
+import CodeParser from '@dinui/cli/code-parser'
 
 const globComponentCodeImports = import.meta.glob<string>(
   '../../../../packages/react-ui/src/**/*.tsx',
@@ -25,11 +26,9 @@ const componentCode = await (async () => {
   return await loadCode()
 })()
 
-const componentDependencies = [
-  ...componentCode.matchAll(/from '((@[a-z0-9-~][a-z0-9-._~]*\/)?([a-z0-9-~][a-z0-9-._~]*))/g),
-]
-  .map((m) => m[1] as string)
-  .filter((d) => !['react'].includes(d))
+const componentCodeParser = new CodeParser(componentCode)
+const componentDependencies = componentCodeParser.getDependencies()
+const componentUserCode = componentCodeParser.getUserCode()
 ---
 
 <div class="pt-4">
@@ -135,7 +134,7 @@ const componentDependencies = [
 
           <li>
             <p>Copy and paste the following code into your project</p>
-            <Code code={componentCode} lang="tsx" />
+            <Code code={componentUserCode} lang="tsx" />
           </li>
 
           <slot />
