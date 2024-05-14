@@ -4,7 +4,7 @@ import { createContext, forwardRef, useContext, useId } from 'react'
 import type { ControllerProps, FieldPath, FieldValues, UseFormReturn } from 'react-hook-form'
 import { Controller, FormProvider, useFormContext } from 'react-hook-form'
 import { tv } from 'tailwind-variants'
-import { Merge } from 'type-fest'
+import type { Merge } from 'type-fest'
 
 const form = tv({
   slots: {
@@ -21,6 +21,7 @@ function FormRoot({
 }: Merge<
   React.ComponentProps<'form'>,
   {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     form: UseFormReturn<any>
     asChild?: boolean
   }
