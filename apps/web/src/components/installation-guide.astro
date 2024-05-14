@@ -75,28 +75,16 @@ const componentDependencies = [
             <p>Run the following command in your project</p>
             <Tabs>
               <TabItem label="npm">
-                <Code
-                  lang="bash"
-                  code={`npx @dinui/cli@latest add -d ./components/ui ${componentName}`}
-                />
+                <Code lang="bash" code={`npx @dinui/cli@latest add ${componentName}`} />
               </TabItem>
               <TabItem label="yarn">
-                <Code
-                  lang="bash"
-                  code={`yarn dlx @dinui/cli@latest add -d ./components/ui ${componentName}`}
-                />
+                <Code lang="bash" code={`yarn dlx @dinui/cli@latest add ${componentName}`} />
               </TabItem>
               <TabItem label="pnpm">
-                <Code
-                  lang="bash"
-                  code={`pnpm dlx @dinui/cli@latest add -d ./components/ui ${componentName}`}
-                />
+                <Code lang="bash" code={`pnpm dlx @dinui/cli@latest add ${componentName}`} />
               </TabItem>
               <TabItem label="bun">
-                <Code
-                  lang="bash"
-                  code={`bunx @dinui/cli@latest add -d ./components/ui ${componentName}`}
-                />
+                <Code lang="bash" code={`bunx @dinui/cli@latest add ${componentName}`} />
               </TabItem>
             </Tabs>
           </li>
