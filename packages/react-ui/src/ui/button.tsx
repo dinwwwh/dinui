@@ -1,6 +1,5 @@
 import { Slot } from '@radix-ui/react-slot'
 import { IconCircle } from '@tabler/icons-react'
-import { colorNames } from 'chalk'
 import { createContext, forwardRef, useContext } from 'react'
 import { tv, type VariantProps } from 'tailwind-variants'
 import type { Merge } from 'type-fest'
