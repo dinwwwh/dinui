@@ -10,6 +10,10 @@ export class CodeParser {
   }
 
   getUserCode() {
-    return this.code.replaceAll(/import type \* as _.*\n/g, '')
+    return this.code
+      .replaceAll(/import type \* as _.*\n/g, '')
+      .replaceAll(/import .* from '(.)\/.*\n/g, (line) => {
+        return line.replace("'./", "'@dinui/react/")
+      })
   }
 }
