@@ -11,10 +11,10 @@ const separator = tv({
   variants: {
     orientation: {
       vertical: {
-        root: 'h-full w-[0.0625rem]',
+        root: 'min-h-full w-[0.0625rem]',
       },
       horizontal: {
-        root: 'h-[0.0625rem] w-full',
+        root: 'h-[0.0625rem] min-w-full',
       },
     },
   },
