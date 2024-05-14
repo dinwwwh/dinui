@@ -9,6 +9,12 @@ const separator = tv({
     root: 'shrink-0 bg-border',
   },
   variants: {
+    variant: {
+      default: {},
+      weak: {
+        root: 'opacity-50',
+      },
+    },
     orientation: {
       vertical: {
         root: 'min-h-full w-[0.0625rem]',
@@ -19,6 +25,7 @@ const separator = tv({
     },
   },
   defaultVariants: {
+    variant: 'default',
     orientation: 'horizontal',
   },
 })

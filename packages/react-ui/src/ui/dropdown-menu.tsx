@@ -41,7 +41,7 @@ const dropdownMenu = tv({
     radioItem: [baseItem, 'relative pl-8'],
     radioItemIndicatorIcon: 'absolute left-2 size-4 fill-current',
     label: 'px-2 py-1.5 text-sm font-semibold',
-    separator: separator().root({ className: 'opacity-50 -mx-1 my-1' }),
+    separator: separator({ variant: 'weak' }).root({ className: '-mx-1 my-1' }),
   },
   variants: {
     inset: {

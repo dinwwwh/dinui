@@ -34,7 +34,7 @@ const select = tv({
       ],
     }),
     itemIndicator: button({ variant: 'ghost', size: 'sm' }).rightIcon(),
-    separator: separator().root({ className: 'opacity-50 -mx-1 my-1' }),
+    separator: separator({ variant: 'weak' }).root({ className: '-mx-1 my-1' }),
   },
   variants: {
     position: {
