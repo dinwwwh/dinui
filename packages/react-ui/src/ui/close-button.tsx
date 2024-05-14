@@ -1,64 +1,36 @@
-import { Slot } from '@radix-ui/react-slot'
+import Button from './button'
 import { IconX } from '@tabler/icons-react'
 import { forwardRef } from 'react'
-import { tv, type VariantProps } from 'tailwind-variants'
+import { tv } from 'tailwind-variants'
 import type { Merge } from 'type-fest'
 
 const closeButton = tv({
   slots: {
-    root: [
-      'inline-flex items-center justify-center whitespace-nowrap rounded-lg',
-      'text-sm font-medium transition-colors disabled:opacity-50',
-      'text-fg-weaker hover:text-fg-weaker--hover',
-      'hover:bg-bg--hover',
-    ],
-    icon: null,
-  },
-  variants: {
-    size: {
-      xs: {
-        root: 'size-7',
-        icon: 'size-3.5',
-      },
-      sm: {
-        root: 'size-8',
-        icon: 'size-4',
-      },
-      md: {
-        root: 'size-9',
-        icon: 'size-[18px]',
-      },
-      lg: {
-        root: 'size-10',
-        icon: 'size-5',
-      },
-    },
-  },
-  defaultVariants: {
-    size: 'sm',
+    root: ['text-fg-weaker hover:text-fg-weaker--hover'],
   },
 })
 
 const CloseButton = forwardRef<
-  HTMLButtonElement,
+  React.ComponentRef<typeof Button>,
   Merge<
-    Merge<React.ComponentPropsWithoutRef<'button'>, VariantProps<typeof closeButton>>,
+    React.ComponentPropsWithoutRef<typeof Button>,
     {
-      iconProps?: React.ComponentProps<typeof IconX>
+      iconProps?: React.ComponentProps<typeof Button.Icon>
     }
   >
->(({ iconProps, size, ...props }, ref) => {
-  const { root, icon } = closeButton({ size, className: props.className })
+>(({ iconProps, ...props }, ref) => {
+  const { root } = closeButton()
 
   return (
-    <button {...props} ref={ref} className={root({ className: props.className })}>
-      <Slot
-        {...(iconProps as React.HTMLAttributes<HTMLElement>)}
-        className={icon({ className: iconProps?.className })}
-      >
-        {props?.children || <IconX />}
-      </Slot>
-    </button>
+    <Button
+      variant="ghost"
+      icon
+      {...props}
+      ref={ref}
+      className={root({ className: props.className })}
+    >
+      <Button.Icon {...iconProps}>{props.children ?? <IconX />}</Button.Icon>
+    </Button>
   )
 })
 CloseButton.displayName = 'CloseButton'
