@@ -4,7 +4,7 @@ import Badge from '@dinui/react/badge'
 import Button from '@dinui/react/button'
 import Command from '@dinui/react/command'
 import DropdownMenu from '@dinui/react/dropdown-menu'
-import { DotsHorizontalIcon } from '@radix-ui/react-icons'
+import { IconDots } from '@tabler/icons-react'
 import * as React from 'react'
 
 const labels = [
@@ -29,8 +29,10 @@ export default function ComboboxDropdownMenu() {
       </p>
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenu.Trigger asChild>
-          <Button variant="ghost" size="sm">
-            <DotsHorizontalIcon />
+          <Button variant="ghost" size="sm" icon>
+            <Button.Icon>
+              <IconDots />
+            </Button.Icon>
           </Button>
         </DropdownMenu.Trigger>
         <DropdownMenu.Content align="end" className="w-[200px]">

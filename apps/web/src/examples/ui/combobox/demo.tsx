@@ -4,7 +4,7 @@ import Button from '@dinui/react/button'
 import Command from '@dinui/react/command'
 import Popover from '@dinui/react/popover'
 import { cn } from '@dinui/react/utils'
-import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons'
+import { IconCheck, IconSelector } from '@tabler/icons-react'
 import * as React from 'react'
 
 const frameworks = [
@@ -46,7 +46,10 @@ export default function ComboboxDemo() {
           {value
             ? frameworks.find((framework) => framework.value === value)?.label
             : 'Select framework...'}
-          <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+
+          <Button.RightIcon className="text-fg-weaker">
+            <IconSelector />
+          </Button.RightIcon>
         </Button>
       </Popover.Trigger>
       <Popover.Content className="w-[200px] p-0">
@@ -65,7 +68,7 @@ export default function ComboboxDemo() {
                   }}
                 >
                   {framework.label}
-                  <CheckIcon
+                  <IconCheck
                     className={cn(
                       'ml-auto h-4 w-4',
                       value === framework.value ? 'opacity-100' : 'opacity-0',

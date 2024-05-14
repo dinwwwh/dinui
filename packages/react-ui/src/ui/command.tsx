@@ -1,6 +1,7 @@
 'use client'
 
-import { IconSearch } from '@tabler/icons-react'
+import { Slot } from '@radix-ui/react-slot'
+import { IconCircle, IconSearch } from '@tabler/icons-react'
 import * as CommandPrimitive from 'cmdk'
 import { forwardRef } from 'react'
 import { tv } from 'tailwind-variants'
@@ -28,7 +29,8 @@ const command = tv({
       'transition aria-selected:bg-bg--active',
       'data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50',
     ],
-    shortcut: 'ml-auto text-xs tracking-widest text-fg-weaker',
+    itemLeftIcon: 'size-[1.125rem] mr-2',
+    itemShortcut: 'ml-auto text-xs tracking-widest text-fg-weaker',
   },
 })
 
@@ -156,13 +158,32 @@ const CommandItem = forwardRef<
 
 CommandItem.displayName = CommandPrimitive.Command.Item.displayName
 
-const CommandShortcut = forwardRef<HTMLSpanElement, React.ComponentPropsWithoutRef<'span'>>(
+const CommandItemLeftIcon = forwardRef<
+  React.ComponentRef<typeof IconCircle>,
+  React.ComponentPropsWithoutRef<typeof IconCircle>
+>((props, ref) => {
+  const { itemLeftIcon } = command()
+
+  return (
+    <Slot
+      {...(props as React.HTMLAttributes<HTMLElement>)}
+      ref={ref as React.ForwardedRef<HTMLElement>}
+      className={itemLeftIcon({ className: props.className })}
+    >
+      {props.children ?? <IconCircle />}
+    </Slot>
+  )
+})
+CommandItemLeftIcon.displayName = 'CommandItemLeftIcon'
+
+const CommandItemShortcut = forwardRef<HTMLSpanElement, React.ComponentPropsWithoutRef<'span'>>(
   (props, ref) => {
-    const { shortcut } = command()
-    return <span {...props} ref={ref} className={shortcut({ className: props.className })} />
+    const { itemShortcut } = command()
+
+    return <span {...props} ref={ref} className={itemShortcut({ className: props.className })} />
   },
 )
-CommandShortcut.displayName = 'CommandShortcut'
+CommandItemShortcut.displayName = 'CommandItemShortcut'
 
 const Command = Object.assign(CommandRoot, {
   Input: CommandInput,
@@ -171,7 +192,8 @@ const Command = Object.assign(CommandRoot, {
   Separator: CommandSeparator,
   Group: CommandGroup,
   Item: Object.assign(CommandItem, {
-    Shortcut: CommandShortcut,
+    LeftIcon: CommandItemLeftIcon,
+    Shortcut: CommandItemShortcut,
   }),
 })
 

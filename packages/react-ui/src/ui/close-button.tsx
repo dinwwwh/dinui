@@ -30,6 +30,7 @@ const CloseButton = forwardRef<
       className={root({ className: props.className })}
     >
       <Button.Icon {...iconProps}>{props.children ?? <IconX />}</Button.Icon>
+      <span className="sr-only">Close</span>
     </Button>
   )
 })

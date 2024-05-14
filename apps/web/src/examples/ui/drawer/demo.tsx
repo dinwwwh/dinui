@@ -1,6 +1,6 @@
 import Button from '@dinui/react/button'
 import Drawer from '@dinui/react/drawer'
-import { MinusIcon, PlusIcon } from '@radix-ui/react-icons'
+import { IconMinus, IconPlus } from '@tabler/icons-react'
 import * as React from 'react'
 import { Bar, BarChart, ResponsiveContainer } from 'recharts'
 
@@ -71,7 +71,9 @@ export default function DrawerDemo() {
                 onClick={() => onClick(-10)}
                 disabled={goal <= 200}
               >
-                <MinusIcon className="h-4 w-4" />
+                <Button.Icon>
+                  <IconMinus />
+                </Button.Icon>
                 <span className="sr-only">Decrease</span>
               </Button>
               <div className="flex-1 text-center">
@@ -85,7 +87,9 @@ export default function DrawerDemo() {
                 onClick={() => onClick(10)}
                 disabled={goal >= 400}
               >
-                <PlusIcon className="h-4 w-4" />
+                <Button.Icon>
+                  <IconPlus />
+                </Button.Icon>
                 <span className="sr-only">Increase</span>
               </Button>
             </div>

@@ -2,7 +2,7 @@
 
 import Button from '@dinui/react/button'
 import Collapsible from '@dinui/react/collapsible'
-import { CaretSortIcon } from '@radix-ui/react-icons'
+import { IconSelector } from '@tabler/icons-react'
 import * as React from 'react'
 
 export default function CollapsibleDemo() {
@@ -13,8 +13,10 @@ export default function CollapsibleDemo() {
       <div className="flex items-center justify-between space-x-4 px-4">
         <h4 className="text-sm font-semibold">@peduarte starred 3 repositories</h4>
         <Collapsible.Trigger asChild>
-          <Button variant="ghost" size="sm">
-            <CaretSortIcon className="h-4 w-4" />
+          <Button variant="ghost" size="sm" icon>
+            <Button.Icon>
+              <IconSelector />
+            </Button.Icon>
             <span className="sr-only">Toggle</span>
           </Button>
         </Collapsible.Trigger>
