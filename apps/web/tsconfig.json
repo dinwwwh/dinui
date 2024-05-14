@@ -5,7 +5,8 @@
     "paths": {
       "@web/*": ["./*"],
       "@dinui/react/utils": ["../../../packages/react-ui/src/utils"],
-      "@dinui/react/*": ["../../../packages/react-ui/src/ui/*"]
+      "@dinui/react/*": ["../../../packages/react-ui/src/ui/*"],
+      "@dinui/cli/*": ["../../../packages/cli/src/*"]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react",
@@ -16,6 +17,9 @@
   "references": [
     {
       "path": "../../packages/react-ui/tsconfig.json"
+    },
+    {
+      "path": "../../packages/cli/tsconfig.json"
     }
   ]
 }

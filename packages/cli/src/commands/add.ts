@@ -1,13 +1,14 @@
 import { env } from '../env'
 import { getPersistedOption, setPersistedOption } from '../utils/options'
 import chalk from 'chalk'
+import CodeParser from 'code-parser'
 import { Command, program } from 'commander'
 import fs from 'fs-extra'
 import ora from 'ora'
 import path from 'path'
 import detachPreferredPM from 'preferred-pm'
 import prompts from 'prompts'
-import { getComponentDependencies, loadComponentCode, loadComponents } from 'utils/components'
+import { loadComponentCode, loadComponents } from 'utils/components'
 import { $ } from 'zx'
 
 export const add = new Command()
@@ -118,12 +119,16 @@ export const add = new Command()
             if (!answers.override) continue
           }
 
+          const componentCodeParser = new CodeParser(componentCode)
           spinner.start(`Adding "${component}" component...`)
           await fs.ensureDir(componentDir)
-          await fs.writeFile(path.resolve(cwd, directory, `${component}.tsx`), componentCode)
+          await fs.writeFile(
+            path.resolve(cwd, directory, `${component}.tsx`),
+            componentCodeParser.getUserCode(),
+          )
 
           spinner.text = `Installing dependencies for "${component}" component...`
-          const componentDependencies = getComponentDependencies({ code: componentCode })
+          const componentDependencies = componentCodeParser.getDependencies()
 
           if (componentDependencies.length) {
             try {

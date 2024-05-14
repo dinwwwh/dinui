@@ -21,12 +21,6 @@ export async function loadComponentCode(opts: { name: string; cwd: string }) {
   return await fs.readFile(fullPath, { encoding: 'utf8' })
 }
 
-export function getComponentDependencies(opts: { code: string }) {
-  return [...opts.code.matchAll(/from '((@[a-z0-9-~][a-z0-9-._~]*\/)?([a-z0-9-~][a-z0-9-._~]*))/g)]
-    .map((m) => m[1] as string)
-    .filter((d) => !['react'].includes(d))
-}
-
 export function getBaseComponentPath(opts: { cwd: string }) {
   return path.resolve(opts.cwd, './node_modules/@dinui/react/src') + '/'
 }
