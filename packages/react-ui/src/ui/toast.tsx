@@ -6,7 +6,7 @@ import { tv } from 'tailwind-variants'
 
 const toaster = tv({
   slots: {
-    root: 'toaster group',
+    root: 'toaster group z-50',
     toast: [
       'group toast bg-bg--contrast shadow-lg',
       'flex items-center gap-2',
