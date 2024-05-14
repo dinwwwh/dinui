@@ -1,5 +1,6 @@
 import { Slot } from '@radix-ui/react-slot'
 import { IconCircle } from '@tabler/icons-react'
+import { colorNames } from 'chalk'
 import { createContext, forwardRef, useContext } from 'react'
 import { tv, type VariantProps } from 'tailwind-variants'
 import type { Merge } from 'type-fest'
@@ -17,29 +18,14 @@ const button = tv({
   },
   variants: {
     variant: {
-      'brand-filled': {
-        root: 'bg-brand hover:bg-bg--hover',
-      },
-      'danger-filled': {
-        root: 'bg-danger hover:bg-bg--hover',
-      },
-
-      'outline': {
-        root: 'bg-bg--contrast hover:bg-bg--hover border text-fg-weak hover:text-fg-weak--hover',
-      },
-      'danger-outline': {
-        root: 'bg-bg--contrast  hover:bg-danger--hover border border-fg-danger text-fg-danger',
-      },
-
-      'ghost': {
-        root: 'hover:bg-bg--hover text-fg-weak hover:text-fg-weak--hover',
-      },
-      'brand-ghost': {
-        root: 'hover:bg-bg--hover text-fg-brand hover:text-fg-brand--hover',
-      },
-      'danger-ghost': {
-        root: 'hover:bg-bg--hover text-fg-danger hover:text-fg-danger--hover',
-      },
+      filled: {},
+      outline: {},
+      ghost: {},
+    },
+    color: {
+      default: {},
+      brand: {},
+      danger: {},
     },
     size: {
       xs: {
@@ -73,6 +59,69 @@ const button = tv({
   },
   compoundVariants: [
     {
+      variant: 'filled',
+      color: 'default',
+      className: {
+        root: 'bg-brand hover:bg-bg--hover',
+      },
+    },
+    {
+      variant: 'filled',
+      color: 'brand',
+      className: {
+        root: 'bg-brand hover:bg-bg--hover',
+      },
+    },
+    {
+      variant: 'filled',
+      color: 'danger',
+      className: {
+        root: 'bg-danger hover:bg-bg--hover',
+      },
+    },
+    {
+      variant: 'outline',
+      color: 'default',
+      className: {
+        root: 'bg-bg--contrast hover:bg-bg--hover border text-fg-weak hover:text-fg-weak--hover',
+      },
+    },
+    {
+      variant: 'outline',
+      color: 'brand',
+      className: {
+        root: 'bg-bg--contrast hover:bg-bg--hover border border-fg-brand text-fg-brand',
+      },
+    },
+    {
+      variant: 'outline',
+      color: 'danger',
+      className: {
+        root: 'bg-bg--contrast  hover:bg-danger--hover border border-fg-danger text-fg-danger',
+      },
+    },
+    {
+      variant: 'ghost',
+      color: 'default',
+      className: {
+        root: 'hover:bg-bg--hover text-fg-weak hover:text-fg-weak--hover',
+      },
+    },
+    {
+      variant: 'ghost',
+      color: 'brand',
+      className: {
+        root: 'hover:bg-bg--hover text-fg-brand hover:text-fg-brand--hover',
+      },
+    },
+    {
+      variant: 'ghost',
+      color: 'danger',
+      className: {
+        root: 'hover:bg-bg--hover text-fg-danger hover:text-fg-danger--hover',
+      },
+    },
+    {
       size: 'xs',
       icon: true,
       className: {
@@ -102,7 +151,8 @@ const button = tv({
     },
   ],
   defaultVariants: {
-    variant: 'brand-filled',
+    variant: 'filled',
+    color: 'default',
     size: 'md',
   },
 })
@@ -117,8 +167,8 @@ const ButtonRoot = forwardRef<
       asChild?: boolean
     }
   >
->(({ variant, size, icon, asChild = false, ...props }, ref) => {
-  const variantOpts = { variant, size, icon }
+>(({ variant, color, size, icon, asChild = false, ...props }, ref) => {
+  const variantOpts = { variant, size, icon, color }
   const { root } = button(variantOpts)
 
   const Comp = asChild ? Slot : 'button'
