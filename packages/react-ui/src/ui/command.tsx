@@ -2,7 +2,7 @@
 
 import { IconSearch } from '@tabler/icons-react'
 import * as CommandPrimitive from 'cmdk'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { tv } from 'tailwind-variants'
 import type { Merge } from 'type-fest'
 
@@ -32,7 +32,7 @@ const command = tv({
   },
 })
 
-const CommandRoot = React.forwardRef<
+const CommandRoot = forwardRef<
   React.ElementRef<typeof CommandPrimitive.Command>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Command>
 >((props, ref) => {
@@ -48,7 +48,7 @@ const CommandRoot = React.forwardRef<
 })
 CommandRoot.displayName = CommandPrimitive.Command.displayName
 
-const CommandInput = React.forwardRef<
+const CommandInput = forwardRef<
   React.ElementRef<typeof CommandPrimitive.Command.Input>,
   Merge<
     React.ComponentPropsWithoutRef<typeof CommandPrimitive.Command.Input>,
@@ -73,7 +73,7 @@ const CommandInput = React.forwardRef<
 })
 CommandInput.displayName = CommandPrimitive.Command.Input.displayName
 
-const CommandList = React.forwardRef<
+const CommandList = forwardRef<
   React.ElementRef<typeof CommandPrimitive.Command.List>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Command.List>
 >((props, ref) => {
@@ -91,7 +91,7 @@ const CommandList = React.forwardRef<
 })
 CommandList.displayName = CommandPrimitive.Command.displayName
 
-const CommandEmpty = React.forwardRef<
+const CommandEmpty = forwardRef<
   React.ElementRef<typeof CommandPrimitive.Command.Empty>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Command.Empty>
 >((props, ref) => {
@@ -107,7 +107,7 @@ const CommandEmpty = React.forwardRef<
 })
 CommandEmpty.displayName = CommandPrimitive.Command.Empty.displayName
 
-const CommandGroup = React.forwardRef<
+const CommandGroup = forwardRef<
   React.ElementRef<typeof CommandPrimitive.Command.Group>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Command.Group>
 >((props, ref) => {
@@ -123,7 +123,7 @@ const CommandGroup = React.forwardRef<
 })
 CommandGroup.displayName = CommandPrimitive.Command.Group.displayName
 
-const CommandSeparator = React.forwardRef<
+const CommandSeparator = forwardRef<
   React.ElementRef<typeof CommandPrimitive.Command.Separator>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Command.Separator>
 >((props, ref) => {
@@ -139,7 +139,7 @@ const CommandSeparator = React.forwardRef<
 })
 CommandSeparator.displayName = CommandPrimitive.Command.Separator.displayName
 
-const CommandItem = React.forwardRef<
+const CommandItem = forwardRef<
   React.ElementRef<typeof CommandPrimitive.Command.Item>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Command.Item>
 >((props, ref) => {
@@ -156,7 +156,7 @@ const CommandItem = React.forwardRef<
 
 CommandItem.displayName = CommandPrimitive.Command.Item.displayName
 
-const CommandShortcut = React.forwardRef<HTMLSpanElement, React.ComponentPropsWithoutRef<'span'>>(
+const CommandShortcut = forwardRef<HTMLSpanElement, React.ComponentPropsWithoutRef<'span'>>(
   (props, ref) => {
     const { shortcut } = command()
     return <span {...props} ref={ref} className={shortcut({ className: props.className })} />
