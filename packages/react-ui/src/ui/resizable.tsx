@@ -1,43 +1,69 @@
 'use client'
 
-import type * as _A from '../../node_modules/react-resizable-panels/dist/declarations/src/PanelResizeHandleRegistry'
-import { DragHandleDots2Icon } from '@radix-ui/react-icons'
-import * as ResizablePrimitive from 'react-resizable-panels'
-import { twMerge } from 'tailwind-merge'
+import { IconGripVertical } from '@tabler/icons-react'
+import { PanelGroup, Panel, PanelResizeHandle } from 'react-resizable-panels'
+import { tv } from 'tailwind-variants'
+import type { Merge } from 'type-fest'
 
-export const ResizablePanelGroup = ({
-  className,
+const resizable = tv({
+  slots: {
+    root: 'flex data-[panel-group-direction=vertical]:flex-col',
+    handle: [
+      'relative flex w-px items-center justify-center bg-border',
+      'focus-visible:outline-1',
+      'data-[panel-group-direction=vertical]:h-px data-[panel-group-direction=vertical]:w-full',
+      '[&[data-panel-group-direction=vertical]_[data-el=indicator]]:rotate-90',
+    ],
+    handleIndicator:
+      'z-10 flex h-4 w-3 items-center justify-center rounded-sm border bg-bg--contrast',
+    handleIndicatorIcon: 'size-2.5',
+  },
+})
+
+function ResizableRoot(props: React.ComponentProps<typeof PanelGroup>) {
+  const { root } = resizable()
+
+  return <PanelGroup {...props} className={root({ className: props.className })} />
+}
+
+function ResizableHandle({
+  indicatorProps,
+  indicatorIconProps,
+  withIndicator,
   ...props
-}: React.ComponentProps<typeof ResizablePrimitive.PanelGroup>) => (
-  <ResizablePrimitive.PanelGroup
-    className={twMerge(
-      'flex h-full w-full data-[panel-group-direction=vertical]:flex-col',
-      className,
-    )}
-    {...props}
-  />
-)
+}: Merge<
+  React.ComponentProps<typeof PanelResizeHandle>,
+  {
+    withIndicator?: boolean
+    indicatorProps?: React.ComponentProps<'div'>
+    indicatorIconProps?: React.ComponentProps<typeof IconGripVertical>
+  }
+>) {
+  const { handle, handleIndicator, handleIndicatorIcon } = resizable()
 
-export const ResizablePanel = ResizablePrimitive.Panel
+  return (
+    <PanelResizeHandle {...props} className={handle({ className: props.className })}>
+      {withIndicator && (
+        <div
+          {...indicatorProps}
+          data-el="indicator"
+          className={handleIndicator({ className: indicatorProps?.className })}
+        >
+          <IconGripVertical
+            {...indicatorIconProps}
+            className={handleIndicatorIcon({ className: indicatorIconProps?.className })}
+          />
+        </div>
+      )}
+    </PanelResizeHandle>
+  )
+}
 
-export const ResizableHandle = ({
-  withHandle,
-  className,
-  ...props
-}: React.ComponentProps<typeof ResizablePrimitive.PanelResizeHandle> & {
-  withHandle?: boolean
-}) => (
-  <ResizablePrimitive.PanelResizeHandle
-    className={twMerge(
-      'relative flex w-px items-center justify-center bg-gray-200 after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 focus-visible:ring-offset-1 data-[panel-group-direction=vertical]:h-px data-[panel-group-direction=vertical]:w-full data-[panel-group-direction=vertical]:after:left-0 data-[panel-group-direction=vertical]:after:h-1 data-[panel-group-direction=vertical]:after:w-full data-[panel-group-direction=vertical]:after:-translate-y-1/2 data-[panel-group-direction=vertical]:after:translate-x-0 [&[data-panel-group-direction=vertical]>div]:rotate-90 dark:bg-gray-800 dark:focus-visible:ring-gray-300',
-      className,
-    )}
-    {...props}
-  >
-    {withHandle && (
-      <div className="z-10 flex h-4 w-3 items-center justify-center rounded-sm border border-gray-200 dark:border-gray-800 bg-gray-200 dark:bg-gray-800">
-        <DragHandleDots2Icon className="h-2.5 w-2.5" />
-      </div>
-    )}
-  </ResizablePrimitive.PanelResizeHandle>
-)
+const Resizable = Object.assign(ResizableRoot, {
+  Panel,
+  Handle: ResizableHandle,
+})
+
+export default Resizable
+export { resizable }
+export * as ResizablePrimitive from 'react-resizable-panels'

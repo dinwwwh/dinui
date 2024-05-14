@@ -1,25 +1,47 @@
 'use client'
 
 import * as ProgressPrimitive from '@radix-ui/react-progress'
-import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import { forwardRef } from 'react'
+import { tv } from 'tailwind-variants'
+import type { Merge } from 'type-fest'
 
-export const Progress = React.forwardRef<
+const progress = tv({
+  slots: {
+    root: 'relative overflow-hidden h-2 rounded-full bg-bg--muted',
+    indicator: 'transition-all h-full bg-fg-brand rounded-full',
+  },
+})
+
+const Progress = forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>
->(({ className, value, ...props }, ref) => (
-  <ProgressPrimitive.Root
-    ref={ref}
-    className={twMerge(
-      'relative h-2 w-full overflow-hidden rounded-full bg-gray-900/20 dark:bg-gray-50/20',
-      className,
-    )}
-    {...props}
+  Merge<
+    React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>,
+    {
+      indicatorProps?: React.ComponentProps<typeof ProgressPrimitive.Indicator>
+    }
   >
-    <ProgressPrimitive.Indicator
-      className="h-full w-full flex-1 bg-gray-900 transition-all dark:bg-gray-50"
-      style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
-    />
-  </ProgressPrimitive.Root>
-))
+>(({ indicatorProps, value, ...props }, ref) => {
+  const { root, indicator } = progress()
+
+  return (
+    <ProgressPrimitive.Root
+      {...props}
+      ref={ref}
+      value={value}
+      className={root({ className: props.className })}
+    >
+      <ProgressPrimitive.Indicator
+        {...indicatorProps}
+        className={indicator({ className: indicatorProps?.className })}
+        style={{
+          ...indicatorProps?.style,
+          transform: `translateX(-${100 - (value || 0)}%)`,
+        }}
+      />
+    </ProgressPrimitive.Root>
+  )
+})
 Progress.displayName = ProgressPrimitive.Root.displayName
+
+export default Progress
+export { progress, ProgressPrimitive }

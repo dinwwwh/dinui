@@ -1,27 +1,45 @@
 'use client'
 
 import * as TooltipPrimitive from '@radix-ui/react-tooltip'
-import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import { forwardRef } from 'react'
+import { tv } from 'tailwind-variants'
 
-export const TooltipProvider = TooltipPrimitive.Provider
+const tooltip = tv({
+  slots: {
+    content: [
+      'z-50 overflow-hidden rounded-md',
+      'bg-reverse px-3 py-1.5 text-xs',
+      'animate-in data-[state=closed]:animate-out',
+      'fade-in-0 data-[state=closed]:fade-out-0',
+      'zoom-in-95 data-[state=closed]:zoom-out-95',
+      'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2',
+      'data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+    ],
+  },
+})
 
-export const Tooltip = TooltipPrimitive.Root
-
-export const TooltipTrigger = TooltipPrimitive.Trigger
-
-export const TooltipContent = React.forwardRef<
+const TooltipContent = forwardRef<
   React.ElementRef<typeof TooltipPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>
->(({ className, sideOffset = 4, ...props }, ref) => (
-  <TooltipPrimitive.Content
-    ref={ref}
-    sideOffset={sideOffset}
-    className={twMerge(
-      'z-50 overflow-hidden rounded-md bg-gray-900 px-3 py-1.5 text-xs text-gray-50 animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 dark:bg-gray-50 dark:text-gray-900',
-      className,
-    )}
-    {...props}
-  />
-))
+>((props, ref) => {
+  const { content } = tooltip()
+
+  return (
+    <TooltipPrimitive.Content
+      sideOffset={4}
+      {...props}
+      ref={ref}
+      className={content({ className: props.className })}
+    />
+  )
+})
 TooltipContent.displayName = TooltipPrimitive.Content.displayName
+
+const Tooltip = Object.assign(TooltipPrimitive.Root, {
+  Provider: TooltipPrimitive.Provider,
+  Trigger: TooltipPrimitive.Trigger,
+  Content: TooltipContent,
+})
+
+export default Tooltip
+export { tooltip, TooltipPrimitive }

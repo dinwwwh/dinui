@@ -1,15 +1,54 @@
-@import '@fontsource-variable/inter';
-@import '@fontsource-variable/jetbrains-mono';
-
-@tailwind base;
+@layer tailwind {
+  @tailwind base;
+}
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
+@layer components {
   *,
   ::before,
   ::after {
-    @apply border-gray-200 dark:border-gray-800;
     @apply scrollbar-thin;
+    @apply border-border;
+    @apply focus-visible:outline outline-4 outline-outline;
   }
+
+  body {
+    @apply bg-bg text-fg;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
+  }
+}
+
+:root {
+  --sl-font: theme(fontFamily.sans);
+  --sl-font-mono: theme(fontFamily.mono);
+
+  --sl-color-white: white;
+  --sl-color-gray-1: theme(colors.neutral.300);
+  --sl-color-gray-2: theme(colors.neutral.400);
+  --sl-color-gray-3: theme(colors.neutral.500);
+  --sl-color-gray-4: theme(colors.neutral.700);
+  --sl-color-gray-5: theme(colors.neutral.800);
+  --sl-color-gray-6: theme(colors.neutral.900);
+  --sl-color-black: theme(colors.neutral.950);
+  --sl-color-accent-low: theme(colors.indigo.900);
+  --sl-color-accent: theme(colors.indigo.500);
+  --sl-color-accent-high: theme(colors.indigo.300);
+}
+
+:root[data-theme='light'] {
+  --sl-color-white: theme(colors.neutral.900);
+  --sl-color-gray-1: theme(colors.neutral.800);
+  --sl-color-gray-2: theme(colors.neutral.700);
+  --sl-color-gray-3: theme(colors.neutral.500);
+  --sl-color-gray-4: theme(colors.neutral.400);
+  --sl-color-gray-5: theme(colors.neutral.300);
+  --sl-color-gray-6: theme(colors.neutral.200);
+  --sl-color-gray-7: theme(colors.neutral.100);
+  --sl-color-black: white;
+  --sl-color-accent-low: theme(colors.indigo.200);
+  --sl-color-accent: theme(colors.indigo.500);
+  --sl-color-accent-high: theme(colors.indigo.900);
 }

@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dinwwwh/ui.git",
+    "url": "https://github.com/dinwwwh/dinui.git",
     "directory": "packages/cli"
   },
   "publishConfig": {
@@ -42,6 +42,6 @@
     "@types/fs-extra": "^11.0.4",
     "@types/prompts": "^2.4.9",
     "tsup": "^8.0.2",
-    "typescript": "^5.4.4"
+    "typescript": "^5.4.5"
   }
 }

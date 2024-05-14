@@ -1,12 +1,13 @@
 'use client'
 
-import { Button } from './button'
-import { ArrowLeftIcon, ArrowRightIcon } from '@radix-ui/react-icons'
+import Button from './button'
+import { IconArrowLeft, IconArrowRight } from '@tabler/icons-react'
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react'
-import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import { createContext, forwardRef, useCallback, useContext, useEffect, useState } from 'react'
+import { tv } from 'tailwind-variants'
+import type { Merge } from 'type-fest'
 
-export type CarouselApi = UseEmblaCarouselType[1]
+type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
 type CarouselOptions = UseCarouselParameters[0]
 type CarouselPlugin = UseCarouselParameters[1]
@@ -27,10 +28,40 @@ type CarouselContextProps = {
   canScrollNext: boolean
 } & CarouselProps
 
-const CarouselContext = React.createContext<CarouselContextProps | null>(null)
+const carousel = tv({
+  slots: {
+    root: 'relative',
+    content: 'flex',
+    contentWrapper: 'overflow-hidden',
+    item: 'min-w-0 shrink-0 grow-0 basis-full',
+    previous: 'absolute rounded-full',
+    next: 'absolute rounded-full',
+  },
+  variants: {
+    orientation: {
+      horizontal: {
+        content: '-ml-4',
+        item: 'pl-4',
+        previous: '-left-12 top-1/2 -translate-y-1/2',
+        next: '-right-12 top-1/2 -translate-y-1/2',
+      },
+      vertical: {
+        content: '-mt-4 flex-col',
+        item: 'pt-4',
+        previous: '-top-12 left-1/2 -translate-x-1/2 rotate-90',
+        next: '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
+      },
+    },
+  },
+  defaultVariants: {
+    orientation: 'horizontal',
+  },
+})
+
+const CarouselContext = createContext<CarouselContextProps | null>(null)
 
 function useCarousel() {
-  const context = React.useContext(CarouselContext)
+  const context = useContext(CarouselContext)
 
   if (!context) {
     throw new Error('useCarousel must be used within a <Carousel />')
@@ -39,10 +70,12 @@ function useCarousel() {
   return context
 }
 
-export const Carousel = React.forwardRef<
+const CarouselRoot = forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & CarouselProps
->(({ orientation = 'horizontal', opts, setApi, plugins, className, children, ...props }, ref) => {
+>(({ orientation = 'horizontal', opts, setApi, plugins, ...props }, ref) => {
+  const { root } = carousel({ orientation })
+
   const [carouselRef, api] = useEmblaCarousel(
     {
       ...opts,
@@ -50,10 +83,10 @@ export const Carousel = React.forwardRef<
     },
     plugins,
   )
-  const [canScrollPrev, setCanScrollPrev] = React.useState(false)
-  const [canScrollNext, setCanScrollNext] = React.useState(false)
+  const [canScrollPrev, setCanScrollPrev] = useState(false)
+  const [canScrollNext, setCanScrollNext] = useState(false)
 
-  const onSelect = React.useCallback((api: CarouselApi) => {
+  const onSelect = useCallback((api: CarouselApi) => {
     if (!api) {
       return
     }
@@ -62,15 +95,15 @@ export const Carousel = React.forwardRef<
     setCanScrollNext(api.canScrollNext())
   }, [])
 
-  const scrollPrev = React.useCallback(() => {
+  const scrollPrev = useCallback(() => {
     api?.scrollPrev()
   }, [api])
 
-  const scrollNext = React.useCallback(() => {
+  const scrollNext = useCallback(() => {
     api?.scrollNext()
   }, [api])
 
-  const handleKeyDown = React.useCallback(
+  const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
       if (event.key === 'ArrowLeft') {
         event.preventDefault()
@@ -83,7 +116,7 @@ export const Carousel = React.forwardRef<
     [scrollPrev, scrollNext],
   )
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!api || !setApi) {
       return
     }
@@ -91,7 +124,7 @@ export const Carousel = React.forwardRef<
     setApi(api)
   }, [api, setApi])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!api) {
       return
     }
@@ -119,117 +152,133 @@ export const Carousel = React.forwardRef<
       }}
     >
       <div
-        ref={ref}
-        onKeyDownCapture={handleKeyDown}
-        className={twMerge('relative', className)}
         role="region"
         aria-roledescription="carousel"
         {...props}
-      >
-        {children}
-      </div>
+        ref={ref}
+        onKeyDownCapture={handleKeyDown}
+        className={root({ className: props.className })}
+      />
     </CarouselContext.Provider>
   )
 })
-Carousel.displayName = 'Carousel'
+CarouselRoot.displayName = 'Carousel'
 
-export const CarouselContent = React.forwardRef<
+const CarouselContent = forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => {
+  Merge<
+    React.HTMLAttributes<HTMLDivElement>,
+    {
+      wrapperProps?: React.ComponentProps<'div'>
+    }
+  >
+>(({ wrapperProps, ...props }, ref) => {
   const { carouselRef, orientation } = useCarousel()
+  const { content, contentWrapper } = carousel({ orientation })
 
   return (
-    <div ref={carouselRef} className="overflow-hidden">
-      <div
-        ref={ref}
-        className={twMerge(
-          'flex',
-          orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col',
-          className,
-        )}
-        {...props}
-      />
+    <div
+      {...wrapperProps}
+      ref={carouselRef}
+      className={contentWrapper({ className: wrapperProps?.className })}
+    >
+      <div {...props} ref={ref} className={content({ className: props.className })} />
     </div>
   )
 })
 CarouselContent.displayName = 'CarouselContent'
 
-export const CarouselItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => {
+const CarouselItem = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  (props, ref) => {
     const { orientation } = useCarousel()
+    const { item } = carousel({ orientation })
 
     return (
       <div
-        ref={ref}
         role="group"
         aria-roledescription="slide"
-        className={twMerge(
-          'min-w-0 shrink-0 grow-0 basis-full',
-          orientation === 'horizontal' ? 'pl-4' : 'pt-4',
-          className,
-        )}
         {...props}
+        ref={ref}
+        className={item({ className: props.className })}
       />
     )
   },
 )
 CarouselItem.displayName = 'CarouselItem'
 
-export const CarouselPrevious = React.forwardRef<
+const CarouselPrevious = forwardRef<
   HTMLButtonElement,
-  React.ComponentProps<typeof Button>
->(({ className, variant = 'outline', size = 'icon', ...props }, ref) => {
+  Merge<
+    React.ComponentPropsWithoutRef<typeof Button>,
+    {
+      iconProps?: React.ComponentProps<typeof Button.Icon>
+    }
+  >
+>(({ iconProps, ...props }, ref) => {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel()
+  const { previous } = carousel({ orientation })
 
   return (
     <Button
+      variant={'outline'}
+      size={'sm'}
+      icon
+      {...props}
       ref={ref}
-      variant={variant}
-      size={size}
-      className={twMerge(
-        'absolute  h-8 w-8 rounded-full',
-        orientation === 'horizontal'
-          ? '-left-12 top-1/2 -translate-y-1/2'
-          : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
-        className,
-      )}
+      className={previous({ className: props.className })}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
-      {...props}
     >
-      <ArrowLeftIcon className="h-4 w-4" />
+      <Button.Icon {...iconProps}>
+        <IconArrowLeft />
+      </Button.Icon>
+
       <span className="sr-only">Previous slide</span>
     </Button>
   )
 })
 CarouselPrevious.displayName = 'CarouselPrevious'
 
-export const CarouselNext = React.forwardRef<
+const CarouselNext = forwardRef<
   HTMLButtonElement,
-  React.ComponentProps<typeof Button>
->(({ className, variant = 'outline', size = 'icon', ...props }, ref) => {
+  Merge<
+    React.ComponentPropsWithoutRef<typeof Button>,
+    {
+      iconProps?: React.ComponentProps<typeof Button.Icon>
+    }
+  >
+>(({ iconProps, ...props }, ref) => {
   const { orientation, scrollNext, canScrollNext } = useCarousel()
+  const { next } = carousel({ orientation })
 
   return (
     <Button
+      variant={'outline'}
+      size={'sm'}
+      icon
+      {...props}
       ref={ref}
-      variant={variant}
-      size={size}
-      className={twMerge(
-        'absolute h-8 w-8 rounded-full',
-        orientation === 'horizontal'
-          ? '-right-12 top-1/2 -translate-y-1/2'
-          : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
-        className,
-      )}
+      className={next({ className: props.className })}
       disabled={!canScrollNext}
       onClick={scrollNext}
-      {...props}
     >
-      <ArrowRightIcon className="h-4 w-4" />
+      <Button.Icon {...iconProps}>
+        <IconArrowRight />
+      </Button.Icon>
+
       <span className="sr-only">Next slide</span>
     </Button>
   )
 })
 CarouselNext.displayName = 'CarouselNext'
+
+const Carousel = Object.assign(CarouselRoot, {
+  Content: CarouselContent,
+  Item: CarouselItem,
+  Previous: CarouselPrevious,
+  Next: CarouselNext,
+})
+
+export default Carousel
+export { carousel, type CarouselApi }
+export * as CarouselPrimitive from 'embla-carousel-react'

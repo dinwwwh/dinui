@@ -1,48 +1,60 @@
 'use client'
 
-import { toggle } from './toggle'
+import Toggle, { toggle } from './toggle'
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group'
-import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
-import type { VariantProps } from 'tailwind-variants'
+import { createContext, forwardRef, useContext } from 'react'
+import { tv, type VariantProps } from 'tailwind-variants'
+import type { Merge } from 'type-fest'
 
-const ToggleGroupContext = React.createContext<VariantProps<typeof toggle>>({
-  size: 'default',
-  variant: 'default',
+const toggleGroup = tv({
+  slots: {
+    group: 'flex items-center justify-center gap-1',
+  },
 })
 
-export const ToggleGroup = React.forwardRef<
-  React.ElementRef<typeof ToggleGroupPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Root> & VariantProps<typeof toggle>
->(({ className, variant, size, children, ...props }, ref) => (
-  <ToggleGroupPrimitive.Root
-    ref={ref}
-    className={twMerge('flex items-center justify-center gap-1', className)}
-    {...props}
-  >
-    <ToggleGroupContext.Provider value={{ variant, size }}>{children}</ToggleGroupContext.Provider>
-  </ToggleGroupPrimitive.Root>
-))
-ToggleGroup.displayName = ToggleGroupPrimitive.Root.displayName
+type ToggleVariantProps = VariantProps<typeof toggle>
 
-export const ToggleGroupItem = React.forwardRef<
-  React.ElementRef<typeof ToggleGroupPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Item> & VariantProps<typeof toggle>
->(({ className, children, variant, size, ...props }, ref) => {
-  const context = React.useContext(ToggleGroupContext)
+const ToggleGroupContext = createContext<ToggleVariantProps>(toggle.defaultVariants)
+
+const ToggleGroupRoot = forwardRef<
+  React.ElementRef<typeof ToggleGroupPrimitive.Root>,
+  Merge<React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Root>, ToggleVariantProps>
+>(({ variant, icon, size, ...props }, ref) => {
+  const variantProps = { variant, icon, size }
+  const { group } = toggleGroup()
 
   return (
-    <ToggleGroupPrimitive.Item
-      ref={ref}
-      className={toggle({
-        variant: context.variant || variant,
-        size: context.size || size,
-        className,
-      })}
-      {...props}
-    >
-      {children}
+    <ToggleGroupContext.Provider value={variantProps}>
+      <ToggleGroupPrimitive.Root
+        {...props}
+        ref={ref}
+        className={group({ className: props.className })}
+      />
+    </ToggleGroupContext.Provider>
+  )
+})
+ToggleGroupRoot.displayName = ToggleGroupPrimitive.Root.displayName
+
+const ToggleGroupItem = forwardRef<
+  React.ElementRef<typeof ToggleGroupPrimitive.Item>,
+  Merge<
+    React.ComponentPropsWithoutRef<typeof Toggle>,
+    React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Item>
+  >
+>(({ children, asChild, ...props }, ref) => {
+  const variantProps = useContext(ToggleGroupContext)
+
+  return (
+    <ToggleGroupPrimitive.Item {...variantProps} {...props} ref={ref} asChild>
+      <Toggle asChild={asChild}>{children}</Toggle>
     </ToggleGroupPrimitive.Item>
   )
 })
 ToggleGroupItem.displayName = ToggleGroupPrimitive.Item.displayName
+
+const ToggleGroup = Object.assign(ToggleGroupRoot, {
+  Item: Object.assign({ ...Toggle }, ToggleGroupItem),
+})
+
+export default ToggleGroup
+export { toggleGroup, toggle, ToggleGroupPrimitive }

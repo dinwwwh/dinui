@@ -1,37 +1,65 @@
 'use client'
 
-import { CheckIcon } from '@radix-ui/react-icons'
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
+import { IconCircle } from '@tabler/icons-react'
 import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import { tv } from 'tailwind-variants'
+import type { Merge } from 'type-fest'
 
-export const RadioGroup = React.forwardRef<
+const radioGroup = tv({
+  slots: {
+    root: 'grid gap-2',
+    item: [
+      'aspect-square size-4 rounded-full border border-fg',
+      'disabled:cursor-not-allowed disabled:opacity-50',
+    ],
+    indicatorIcon: 'size-3 fill-current m-auto',
+  },
+})
+
+const RadioGroupRoot = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>
->(({ className, ...props }, ref) => {
+>((props, ref) => {
+  const { root } = radioGroup()
+
   return (
-    <RadioGroupPrimitive.Root className={twMerge('grid gap-2', className)} {...props} ref={ref} />
+    <RadioGroupPrimitive.Root
+      {...props}
+      ref={ref}
+      className={root({ className: props.className })}
+    />
   )
 })
-RadioGroup.displayName = RadioGroupPrimitive.Root.displayName
+RadioGroupRoot.displayName = RadioGroupPrimitive.Root.displayName
 
-export const RadioGroupItem = React.forwardRef<
+const RadioGroupItem = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>
->(({ className, ...props }, ref) => {
+  Merge<
+    React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>,
+    {
+      indicatorIconProps?: React.ComponentProps<typeof IconCircle>
+    }
+  >
+>(({ indicatorIconProps, ...props }, ref) => {
+  const { item, indicatorIcon } = radioGroup()
+
   return (
-    <RadioGroupPrimitive.Item
-      ref={ref}
-      className={twMerge(
-        'aspect-square h-4 w-4 rounded-full border border-gray-900 text-gray-900 shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-50 dark:text-gray-50 dark:focus-visible:ring-gray-300',
-        className,
-      )}
-      {...props}
-    >
-      <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
-        <CheckIcon className="h-3.5 w-3.5 fill-gray-900" />
+    <RadioGroupPrimitive.Item {...props} ref={ref} className={item({ className: props.className })}>
+      <RadioGroupPrimitive.Indicator asChild>
+        <IconCircle
+          {...indicatorIconProps}
+          className={indicatorIcon({ className: indicatorIconProps?.className })}
+        />
       </RadioGroupPrimitive.Indicator>
     </RadioGroupPrimitive.Item>
   )
 })
 RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName
+
+const RadioGroup = Object.assign(RadioGroupRoot, {
+  Item: RadioGroupItem,
+})
+
+export default RadioGroup
+export { radioGroup, RadioGroupPrimitive }

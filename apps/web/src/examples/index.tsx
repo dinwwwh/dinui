@@ -30,7 +30,7 @@ export function ExampleComponent(opts: { path: string }) {
   return (
     <Suspense
       fallback={
-        <div className="flex items-center text-sm text-gray-700 dark:text-gray-300 justify-center">
+        <div className="flex items-center text-sm text-fg-weak justify-center">
           <IconLoader2 className="mr-2 h-4 w-4 animate-spin" />
           Loading...
         </div>

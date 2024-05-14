@@ -1,45 +1,247 @@
 import { Slot } from '@radix-ui/react-slot'
-import * as React from 'react'
+import { IconCircle } from '@tabler/icons-react'
+import { createContext, forwardRef, useContext } from 'react'
 import { tv, type VariantProps } from 'tailwind-variants'
+import type { Merge } from 'type-fest'
 
-export const button = tv({
-  base: 'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-gray-300',
+const button = tv({
+  slots: {
+    root: [
+      'inline-flex items-center justify-center transition',
+      'whitespace-nowrap cursor-pointer',
+      'disabled:pointer-events-none disabled:opacity-50',
+    ],
+    leftIcon: null,
+    rightIcon: null,
+    icon: null,
+  },
   variants: {
     variant: {
-      default:
-        'bg-gray-900 text-gray-50 shadow hover:bg-gray-900/90 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90',
-      destructive:
-        'bg-red-500 text-gray-50 shadow-sm hover:bg-red-500/90 dark:bg-red-900 dark:text-gray-50 dark:hover:bg-red-900/90',
-      outline:
-        'border border-gray-200 dark:border-gray-800 bg-white shadow-sm hover:bg-gray-100 hover:text-gray-900  dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50',
-      secondary:
-        'bg-gray-100 text-gray-900 shadow-sm hover:bg-gray-100/80 dark:bg-gray-800 dark:text-gray-50 dark:hover:bg-gray-800/80',
-      ghost: 'hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-50',
-      link: 'text-gray-900 underline-offset-4 hover:underline dark:text-gray-50',
+      filled: {},
+      outline: {},
+      ghost: {},
+    },
+    color: {
+      default: {},
+      brand: {},
+      danger: {},
     },
     size: {
-      default: 'h-9 px-4 py-2',
-      sm: 'h-8 rounded-md px-3 text-xs',
-      lg: 'h-10 rounded-md px-8',
-      icon: 'h-9 w-9',
+      xs: {
+        root: ['h-7 px-2 rounded-md', 'text-xs font-medium'],
+        leftIcon: 'size-3.5 -ml-0.5 mr-1',
+        rightIcon: 'size-3.5 ml-1 -mr-0.5',
+        icon: 'size-3.5',
+      },
+      sm: {
+        root: ['h-8 px-3 rounded-md', 'text-xs font-medium'],
+        leftIcon: 'size-4 -ml-0.5 mr-1',
+        rightIcon: 'size-4 ml-1 -mr-0.5',
+        icon: 'size-4',
+      },
+      md: {
+        root: ['h-9 px-4 rounded-md', 'text-sm font-medium'],
+        leftIcon: 'size-[1.125rem] -ml-1 mr-1.5',
+        rightIcon: 'size-[1.125rem] ml-1.5 -mr-1',
+        icon: 'size-[1.125rem]',
+      },
+      lg: {
+        root: ['h-10 px-5 rounded-md', 'text-sm font-medium'],
+        leftIcon: 'size-5 -ml-1.5 mr-2',
+        rightIcon: 'size-5 ml-2 -mr-1.5',
+        icon: 'size-5',
+      },
+    },
+    icon: {
+      true: null,
     },
   },
+  compoundVariants: [
+    {
+      variant: 'filled',
+      color: 'default',
+      className: {
+        root: 'bg-brand hover:bg-bg--hover',
+      },
+    },
+    {
+      variant: 'filled',
+      color: 'brand',
+      className: {
+        root: 'bg-brand hover:bg-bg--hover',
+      },
+    },
+    {
+      variant: 'filled',
+      color: 'danger',
+      className: {
+        root: 'bg-danger hover:bg-bg--hover',
+      },
+    },
+    {
+      variant: 'outline',
+      color: 'default',
+      className: {
+        root: 'bg-bg--contrast hover:bg-bg--hover border text-fg-weak hover:text-fg-weak--hover',
+      },
+    },
+    {
+      variant: 'outline',
+      color: 'brand',
+      className: {
+        root: 'bg-bg--contrast hover:bg-bg--hover border border-fg-brand text-fg-brand',
+      },
+    },
+    {
+      variant: 'outline',
+      color: 'danger',
+      className: {
+        root: 'bg-bg--contrast  hover:bg-danger--hover border border-fg-danger text-fg-danger',
+      },
+    },
+    {
+      variant: 'ghost',
+      color: 'default',
+      className: {
+        root: 'hover:bg-bg--hover text-fg-weak hover:text-fg-weak--hover',
+      },
+    },
+    {
+      variant: 'ghost',
+      color: 'brand',
+      className: {
+        root: 'hover:bg-bg--hover text-fg-brand hover:text-fg-brand--hover',
+      },
+    },
+    {
+      variant: 'ghost',
+      color: 'danger',
+      className: {
+        root: 'hover:bg-bg--hover text-fg-danger hover:text-fg-danger--hover',
+      },
+    },
+    {
+      size: 'xs',
+      icon: true,
+      className: {
+        root: 'w-7 px-0',
+      },
+    },
+    {
+      size: 'sm',
+      icon: true,
+      className: {
+        root: 'w-8 px-0',
+      },
+    },
+    {
+      size: 'md',
+      icon: true,
+      className: {
+        root: 'w-9 px-0',
+      },
+    },
+    {
+      size: 'lg',
+      icon: true,
+      className: {
+        root: 'w-10 px-0',
+      },
+    },
+  ],
   defaultVariants: {
-    variant: 'default',
-    size: 'default',
+    variant: 'filled',
+    color: 'default',
+    size: 'md',
   },
 })
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof button> {
-  asChild?: boolean
-}
+const ButtonContext = createContext<VariantProps<typeof button>>(button.defaultVariants)
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : 'button'
-    return <Comp className={button({ variant, size, className })} ref={ref} {...props} />
-  },
-)
-Button.displayName = 'Button'
+const ButtonRoot = forwardRef<
+  HTMLButtonElement,
+  Merge<
+    Merge<React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof button>>,
+    {
+      asChild?: boolean
+    }
+  >
+>(({ variant, color, size, icon, asChild = false, ...props }, ref) => {
+  const variantOpts = { variant, size, icon, color }
+  const { root } = button(variantOpts)
+
+  const Comp = asChild ? Slot : 'button'
+
+  return (
+    <ButtonContext.Provider value={variantOpts}>
+      <Comp {...props} ref={ref} className={root({ className: props.className })} />
+    </ButtonContext.Provider>
+  )
+})
+ButtonRoot.displayName = 'ButtonRoot'
+
+const LeftIcon = forwardRef<
+  React.ElementRef<typeof IconCircle>,
+  React.ComponentPropsWithoutRef<typeof IconCircle>
+>((props, ref) => {
+  const variantOpts = useContext(ButtonContext)
+  const { leftIcon } = button(variantOpts)
+
+  return (
+    <Slot
+      {...(props as React.HTMLAttributes<HTMLElement>)}
+      ref={ref as React.ForwardedRef<HTMLElement>}
+      className={leftIcon({ className: props.className })}
+    >
+      {props.children ?? <IconCircle />}
+    </Slot>
+  )
+})
+LeftIcon.displayName = 'LeftIcon'
+
+const RightIcon = forwardRef<
+  React.ElementRef<typeof IconCircle>,
+  React.ComponentPropsWithoutRef<typeof IconCircle>
+>((props, ref) => {
+  const variantOpts = useContext(ButtonContext)
+  const { rightIcon } = button(variantOpts)
+
+  return (
+    <Slot
+      {...(props as React.HTMLAttributes<HTMLElement>)}
+      ref={ref as React.ForwardedRef<HTMLElement>}
+      className={rightIcon({ className: props.className })}
+    >
+      {props.children ?? <IconCircle />}
+    </Slot>
+  )
+})
+RightIcon.displayName = 'RightIcon'
+
+const Icon = forwardRef<
+  React.ElementRef<typeof IconCircle>,
+  React.ComponentPropsWithoutRef<typeof IconCircle>
+>((props, ref) => {
+  const variantOpts = useContext(ButtonContext)
+  const { icon } = button(variantOpts)
+
+  return (
+    <Slot
+      {...(props as React.HTMLAttributes<HTMLElement>)}
+      ref={ref as React.ForwardedRef<HTMLElement>}
+      className={icon({ className: props.className })}
+    >
+      {props.children ?? <IconCircle />}
+    </Slot>
+  )
+})
+Icon.displayName = 'Icon'
+
+const Button = Object.assign(ButtonRoot, {
+  LeftIcon,
+  RightIcon,
+  Icon,
+})
+
+export default Button
+export { button }

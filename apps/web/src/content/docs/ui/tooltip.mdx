@@ -1,37 +1,16 @@
 ---
 title: Tooltip
 description: A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
-component: true
-links:
-  doc: https://www.radix-ui.com/docs/primitives/components/tooltip
-  api: https://www.radix-ui.com/docs/primitives/components/tooltip#api-reference
 ---
 
 A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
 
 import Example from '@web/components/example.astro'
 
-<Example path="ui/tooltip-demo" />
+<Example path="ui/tooltip/demo" />
 
 ## Installation
 
 import InstallationGuide from '@web/components/installation-guide.astro'
 
 <InstallationGuide path="ui/tooltip" />
-
-## Usage
-
-```tsx
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@dinui/react/tooltip'
-```
-
-```tsx
-<TooltipProvider>
-  <Tooltip>
-    <TooltipTrigger>Hover</TooltipTrigger>
-    <TooltipContent>
-      <p>Add to library</p>
-    </TooltipContent>
-  </Tooltip>
-</TooltipProvider>
-```

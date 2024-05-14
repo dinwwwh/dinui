@@ -1,61 +1,86 @@
-import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import { Slot } from '@radix-ui/react-slot'
+import { forwardRef } from 'react'
+import { tv } from 'tailwind-variants'
+import type { Merge } from 'type-fest'
 
-export const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={twMerge(
-        'rounded-xl border border-gray-200 dark:border-gray-800 bg-white text-gray-950 shadow dark:bg-gray-950 dark:text-gray-50',
-        className,
-      )}
-      {...props}
-    />
-  ),
-)
-Card.displayName = 'Card'
+const card = tv({
+  slots: {
+    root: 'rounded-xl border bg-surface shadow p-6',
+    title: 'font-semibold leading-none tracking-tight',
+    description: 'mt-1.5 text-sm text-fg-weaker',
+    actions: 'mt-6 flex items-center',
+  },
+})
 
-export const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div ref={ref} className={twMerge('flex flex-col space-y-1.5 p-6', className)} {...props} />
-  ),
-)
-CardHeader.displayName = 'CardHeader'
+const CardRoot = forwardRef<
+  HTMLDivElement,
+  Merge<
+    React.HTMLAttributes<HTMLDivElement>,
+    {
+      asChild?: boolean
+    }
+  >
+>(({ asChild, ...props }, ref) => {
+  const { root } = card()
 
-export const CardTitle = React.forwardRef<
+  const Comp = asChild ? Slot : 'div'
+  return <Comp {...props} ref={ref} className={root({ className: props.className })} />
+})
+CardRoot.displayName = 'Card'
+
+const CardTitle = forwardRef<
   HTMLParagraphElement,
-  React.HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => (
-  <h3
-    ref={ref}
-    className={twMerge('font-semibold leading-none tracking-tight', className)}
-    {...props}
-  />
-))
+  Merge<
+    React.HTMLAttributes<HTMLHeadElement>,
+    {
+      asChild?: boolean
+    }
+  >
+>(({ asChild, ...props }, ref) => {
+  const { title } = card()
+
+  const Comp = asChild ? Slot : 'h3'
+  return <Comp {...props} ref={ref} className={title({ className: props.className })} />
+})
 CardTitle.displayName = 'CardTitle'
 
-export const CardDescription = React.forwardRef<
+const CardDescription = forwardRef<
   HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement>
->(({ className, ...props }, ref) => (
-  <p
-    ref={ref}
-    className={twMerge('text-sm text-gray-500 dark:text-gray-400', className)}
-    {...props}
-  />
-))
+  Merge<
+    React.HTMLAttributes<HTMLParagraphElement>,
+    {
+      asChild?: boolean
+    }
+  >
+>(({ asChild, ...props }, ref) => {
+  const { description } = card()
+
+  const Comp = asChild ? Slot : 'p'
+  return <Comp {...props} ref={ref} className={description({ className: props.className })} />
+})
 CardDescription.displayName = 'CardDescription'
 
-export const CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div ref={ref} className={twMerge('p-6 pt-0', className)} {...props} />
-  ),
-)
-CardContent.displayName = 'CardContent'
+const CardActions = forwardRef<
+  HTMLDivElement,
+  Merge<
+    React.HTMLAttributes<HTMLDivElement>,
+    {
+      asChild?: boolean
+    }
+  >
+>(({ asChild, ...props }, ref) => {
+  const { actions } = card()
 
-export const CardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div ref={ref} className={twMerge('flex items-center p-6 pt-0', className)} {...props} />
-  ),
-)
-CardFooter.displayName = 'CardFooter'
+  const Comp = asChild ? Slot : 'div'
+  return <Comp {...props} ref={ref} className={actions({ className: props.className })} />
+})
+CardActions.displayName = 'CardActions'
+
+const Card = Object.assign(CardRoot, {
+  Title: CardTitle,
+  Description: CardDescription,
+  Actions: CardActions,
+})
+
+export default Card
+export { card }

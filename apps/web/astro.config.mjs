@@ -2,10 +2,19 @@ import react from '@astrojs/react'
 import starlight from '@astrojs/starlight'
 import tailwind from '@astrojs/tailwind'
 import { defineConfig } from 'astro/config'
+import { resolve } from 'path'
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://ui.dinwwwh.com',
+  vite: {
+    resolve: {
+      alias: {
+        '@dinui/react/utils': resolve(import.meta.dirname, '../../packages/react-ui/src/utils'),
+        '@dinui/react': resolve(import.meta.dirname, '../../packages/react-ui/src/ui'),
+      },
+    },
+  },
   integrations: [
     react(),
     tailwind({
@@ -34,7 +43,11 @@ export default defineConfig({
           },
         },
       ],
-      customCss: ['./src/styles/globals.css'],
+      customCss: [
+        '@fontsource-variable/inter',
+        '@fontsource-variable/jetbrains-mono',
+        './src/styles/globals.css',
+      ],
     }),
   ],
 })

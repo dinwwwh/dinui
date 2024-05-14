@@ -1,204 +1,270 @@
 'use client'
 
-import { CheckIcon, ChevronRightIcon, DotFilledIcon } from '@radix-ui/react-icons'
+import { button } from './button'
+import { dropdownMenu } from './dropdown-menu'
 import * as MenubarPrimitive from '@radix-ui/react-menubar'
-import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import { IconCheck, IconChevronRight, IconPoint } from '@tabler/icons-react'
+import { forwardRef } from 'react'
+import type { VariantProps } from 'tailwind-variants'
+import { tv } from 'tailwind-variants'
+import type { Merge } from 'type-fest'
 
-export const MenubarMenu = MenubarPrimitive.Menu
+const menubar = tv({
+  slots: {
+    root: 'flex h-9 items-center gap-1 rounded-md border bg-white p-1 shadow-sm',
+    trigger: button({ variant: 'ghost', size: 'xs' }).root({
+      className: ['text-sm font-medium px-3 rounded-sm', 'data-[state=open]:bg-bg--active'],
+    }),
+  },
+})
 
-export const MenubarGroup = MenubarPrimitive.Group
-
-export const MenubarPortal = MenubarPrimitive.Portal
-
-export const MenubarSub = MenubarPrimitive.Sub
-
-export const MenubarRadioGroup = MenubarPrimitive.RadioGroup
-
-export const Menubar = React.forwardRef<
+const MenubarRoot = forwardRef<
   React.ElementRef<typeof MenubarPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Root>
->(({ className, ...props }, ref) => (
-  <MenubarPrimitive.Root
-    ref={ref}
-    className={twMerge(
-      'flex h-9 items-center space-x-1 rounded-md border border-gray-200 dark:border-gray-800 bg-white p-1 shadow-sm  dark:bg-gray-950',
-      className,
-    )}
-    {...props}
-  />
-))
-Menubar.displayName = MenubarPrimitive.Root.displayName
+>((props, ref) => {
+  const { root } = menubar()
 
-export const MenubarTrigger = React.forwardRef<
+  return (
+    <MenubarPrimitive.Root {...props} ref={ref} className={root({ className: props.className })} />
+  )
+})
+MenubarRoot.displayName = MenubarPrimitive.Root.displayName
+
+const MenubarTrigger = forwardRef<
   React.ElementRef<typeof MenubarPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Trigger>
->(({ className, ...props }, ref) => (
-  <MenubarPrimitive.Trigger
-    ref={ref}
-    className={twMerge(
-      'flex cursor-default select-none items-center rounded-sm px-3 py-1 text-sm font-medium outline-none focus:bg-gray-100 focus:text-gray-900 data-[state=open]:bg-gray-100 data-[state=open]:text-gray-900 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[state=open]:bg-gray-800 dark:data-[state=open]:text-gray-50',
-      className,
-    )}
-    {...props}
-  />
-))
-MenubarTrigger.displayName = MenubarPrimitive.Trigger.displayName
+>((props, ref) => {
+  const { trigger } = menubar()
 
-export const MenubarSubTrigger = React.forwardRef<
-  React.ElementRef<typeof MenubarPrimitive.SubTrigger>,
-  React.ComponentPropsWithoutRef<typeof MenubarPrimitive.SubTrigger> & {
-    inset?: boolean
-  }
->(({ className, inset, children, ...props }, ref) => (
-  <MenubarPrimitive.SubTrigger
-    ref={ref}
-    className={twMerge(
-      'flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-gray-100 focus:text-gray-900 data-[state=open]:bg-gray-100 data-[state=open]:text-gray-900 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[state=open]:bg-gray-800 dark:data-[state=open]:text-gray-50',
-      inset && 'pl-8',
-      className,
-    )}
-    {...props}
-  >
-    {children}
-    <ChevronRightIcon className="ml-auto h-4 w-4" />
-  </MenubarPrimitive.SubTrigger>
-))
-MenubarSubTrigger.displayName = MenubarPrimitive.SubTrigger.displayName
-
-export const MenubarSubContent = React.forwardRef<
-  React.ElementRef<typeof MenubarPrimitive.SubContent>,
-  React.ComponentPropsWithoutRef<typeof MenubarPrimitive.SubContent>
->(({ className, ...props }, ref) => (
-  <MenubarPrimitive.SubContent
-    ref={ref}
-    className={twMerge(
-      'z-50 min-w-[8rem] overflow-hidden rounded-md border border-gray-200 dark:border-gray-800 bg-white p-1 text-gray-950 shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2  dark:bg-gray-950 dark:text-gray-50',
-      className,
-    )}
-    {...props}
-  />
-))
-MenubarSubContent.displayName = MenubarPrimitive.SubContent.displayName
-
-export const MenubarContent = React.forwardRef<
-  React.ElementRef<typeof MenubarPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Content>
->(({ className, align = 'start', alignOffset = -4, sideOffset = 8, ...props }, ref) => (
-  <MenubarPrimitive.Portal>
-    <MenubarPrimitive.Content
-      ref={ref}
-      align={align}
-      alignOffset={alignOffset}
-      sideOffset={sideOffset}
-      className={twMerge(
-        'z-50 min-w-[12rem] overflow-hidden rounded-md border border-gray-200 dark:border-gray-800 bg-white p-1 text-gray-950 shadow-md data-[state=open]:animate-in data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2  dark:bg-gray-950 dark:text-gray-50',
-        className,
-      )}
-      {...props}
-    />
-  </MenubarPrimitive.Portal>
-))
-MenubarContent.displayName = MenubarPrimitive.Content.displayName
-
-export const MenubarItem = React.forwardRef<
-  React.ElementRef<typeof MenubarPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Item> & {
-    inset?: boolean
-  }
->(({ className, inset, ...props }, ref) => (
-  <MenubarPrimitive.Item
-    ref={ref}
-    className={twMerge(
-      'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-gray-100 focus:text-gray-900 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-gray-800 dark:focus:text-gray-50',
-      inset && 'pl-8',
-      className,
-    )}
-    {...props}
-  />
-))
-MenubarItem.displayName = MenubarPrimitive.Item.displayName
-
-export const MenubarCheckboxItem = React.forwardRef<
-  React.ElementRef<typeof MenubarPrimitive.CheckboxItem>,
-  React.ComponentPropsWithoutRef<typeof MenubarPrimitive.CheckboxItem>
->(({ className, children, checked, ...props }, ref) => (
-  <MenubarPrimitive.CheckboxItem
-    ref={ref}
-    className={twMerge(
-      'relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-gray-100 focus:text-gray-900 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-gray-800 dark:focus:text-gray-50',
-      className,
-    )}
-    checked={checked}
-    {...props}
-  >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
-      <MenubarPrimitive.ItemIndicator>
-        <CheckIcon className="h-4 w-4" />
-      </MenubarPrimitive.ItemIndicator>
-    </span>
-    {children}
-  </MenubarPrimitive.CheckboxItem>
-))
-MenubarCheckboxItem.displayName = MenubarPrimitive.CheckboxItem.displayName
-
-export const MenubarRadioItem = React.forwardRef<
-  React.ElementRef<typeof MenubarPrimitive.RadioItem>,
-  React.ComponentPropsWithoutRef<typeof MenubarPrimitive.RadioItem>
->(({ className, children, ...props }, ref) => (
-  <MenubarPrimitive.RadioItem
-    ref={ref}
-    className={twMerge(
-      'relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-gray-100 focus:text-gray-900 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-gray-800 dark:focus:text-gray-50',
-      className,
-    )}
-    {...props}
-  >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
-      <MenubarPrimitive.ItemIndicator>
-        <DotFilledIcon className="h-4 w-4 fill-current" />
-      </MenubarPrimitive.ItemIndicator>
-    </span>
-    {children}
-  </MenubarPrimitive.RadioItem>
-))
-MenubarRadioItem.displayName = MenubarPrimitive.RadioItem.displayName
-
-export const MenubarLabel = React.forwardRef<
-  React.ElementRef<typeof MenubarPrimitive.Label>,
-  React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Label> & {
-    inset?: boolean
-  }
->(({ className, inset, ...props }, ref) => (
-  <MenubarPrimitive.Label
-    ref={ref}
-    className={twMerge('px-2 py-1.5 text-sm font-semibold', inset && 'pl-8', className)}
-    {...props}
-  />
-))
-MenubarLabel.displayName = MenubarPrimitive.Label.displayName
-
-export const MenubarSeparator = React.forwardRef<
-  React.ElementRef<typeof MenubarPrimitive.Separator>,
-  React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Separator>
->(({ className, ...props }, ref) => (
-  <MenubarPrimitive.Separator
-    ref={ref}
-    className={twMerge('-mx-1 my-1 h-px bg-gray-100 dark:bg-gray-800', className)}
-    {...props}
-  />
-))
-MenubarSeparator.displayName = MenubarPrimitive.Separator.displayName
-
-export const MenubarShortcut = ({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) => {
   return (
-    <span
-      className={twMerge(
-        'ml-auto text-xs tracking-widest text-gray-500 dark:text-gray-400',
-        className,
-      )}
+    <MenubarPrimitive.Trigger
       {...props}
+      ref={ref}
+      className={trigger({ className: props.className })}
     />
   )
+})
+MenubarTrigger.displayName = MenubarPrimitive.Trigger.displayName
+
+const MenubarSubTrigger = forwardRef<
+  React.ElementRef<typeof MenubarPrimitive.SubTrigger>,
+  Merge<
+    Merge<
+      React.ComponentPropsWithoutRef<typeof MenubarPrimitive.SubTrigger>,
+      VariantProps<typeof dropdownMenu>
+    >,
+    {
+      iconProps?: React.ComponentProps<typeof IconChevronRight>
+    }
+  >
+>(({ iconProps, inset, children, ...props }, ref) => {
+  const { subTrigger, subTriggerIcon } = dropdownMenu({ inset })
+
+  return (
+    <MenubarPrimitive.SubTrigger
+      {...props}
+      ref={ref}
+      className={subTrigger({ className: props.className })}
+    >
+      {children}
+
+      <IconChevronRight
+        {...iconProps}
+        className={subTriggerIcon({ className: iconProps?.className })}
+      />
+    </MenubarPrimitive.SubTrigger>
+  )
+})
+MenubarSubTrigger.displayName = MenubarPrimitive.SubTrigger.displayName
+
+const MenubarSubContent = forwardRef<
+  React.ElementRef<typeof MenubarPrimitive.SubContent>,
+  Merge<
+    React.ComponentPropsWithoutRef<typeof MenubarPrimitive.SubContent>,
+    {
+      portalProps?: React.ComponentProps<typeof MenubarPrimitive.Portal>
+    }
+  >
+>(({ portalProps, ...props }, ref) => {
+  const { subContent } = dropdownMenu()
+
+  return (
+    <MenubarPrimitive.Portal {...portalProps}>
+      <MenubarPrimitive.SubContent
+        {...props}
+        ref={ref}
+        className={subContent({ className: props.className })}
+      />
+    </MenubarPrimitive.Portal>
+  )
+})
+MenubarSubContent.displayName = MenubarPrimitive.SubContent.displayName
+
+const MenubarContent = forwardRef<
+  React.ElementRef<typeof MenubarPrimitive.Content>,
+  Merge<
+    React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Content>,
+    {
+      portalProps?: React.ComponentProps<typeof MenubarPrimitive.Portal>
+    }
+  >
+>(({ portalProps, ...props }, ref) => {
+  const { content } = dropdownMenu()
+
+  return (
+    <MenubarPrimitive.Portal {...portalProps}>
+      <MenubarPrimitive.Content
+        align="start"
+        alignOffset={-4}
+        sideOffset={8}
+        {...props}
+        ref={ref}
+        className={content({ className: props.className })}
+      />
+    </MenubarPrimitive.Portal>
+  )
+})
+MenubarContent.displayName = MenubarPrimitive.Content.displayName
+
+const MenubarItem = forwardRef<
+  React.ElementRef<typeof MenubarPrimitive.Item>,
+  Merge<
+    React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Item>,
+    VariantProps<typeof dropdownMenu>
+  >
+>(({ inset, ...props }, ref) => {
+  const { item } = dropdownMenu({ inset })
+
+  return (
+    <MenubarPrimitive.Item {...props} ref={ref} className={item({ className: props.className })} />
+  )
+})
+MenubarItem.displayName = MenubarPrimitive.Item.displayName
+
+const MenubarCheckboxItem = forwardRef<
+  React.ElementRef<typeof MenubarPrimitive.CheckboxItem>,
+  Merge<
+    React.ComponentPropsWithoutRef<typeof MenubarPrimitive.CheckboxItem>,
+    {
+      indicatorIconProps?: React.ComponentProps<typeof IconCheck>
+    }
+  >
+>(({ indicatorIconProps, children, ...props }, ref) => {
+  const { checkboxItem, checkboxItemIndicatorIcon } = dropdownMenu()
+
+  return (
+    <MenubarPrimitive.CheckboxItem
+      {...props}
+      ref={ref}
+      className={checkboxItem({ className: props.className })}
+    >
+      <MenubarPrimitive.ItemIndicator asChild>
+        <IconCheck
+          {...indicatorIconProps}
+          className={checkboxItemIndicatorIcon({ className: indicatorIconProps?.className })}
+        />
+      </MenubarPrimitive.ItemIndicator>
+
+      {children}
+    </MenubarPrimitive.CheckboxItem>
+  )
+})
+MenubarCheckboxItem.displayName = MenubarPrimitive.CheckboxItem.displayName
+
+const MenubarRadioItem = forwardRef<
+  React.ElementRef<typeof MenubarPrimitive.RadioItem>,
+  Merge<
+    React.ComponentPropsWithoutRef<typeof MenubarPrimitive.RadioItem>,
+    {
+      indicatorIconProps?: React.ComponentProps<typeof IconPoint>
+    }
+  >
+>(({ indicatorIconProps, children, ...props }, ref) => {
+  const { radioItem, radioItemIndicatorIcon } = dropdownMenu()
+
+  return (
+    <MenubarPrimitive.RadioItem
+      {...props}
+      ref={ref}
+      className={radioItem({ className: props.className })}
+    >
+      <MenubarPrimitive.ItemIndicator asChild>
+        <IconPoint
+          {...indicatorIconProps}
+          className={radioItemIndicatorIcon({ className: indicatorIconProps?.className })}
+        />
+      </MenubarPrimitive.ItemIndicator>
+
+      {children}
+    </MenubarPrimitive.RadioItem>
+  )
+})
+MenubarRadioItem.displayName = MenubarPrimitive.RadioItem.displayName
+
+const MenubarLabel = forwardRef<
+  React.ElementRef<typeof MenubarPrimitive.Label>,
+  Merge<
+    React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Label>,
+    VariantProps<typeof dropdownMenu>
+  >
+>(({ inset, ...props }, ref) => {
+  const { label } = dropdownMenu({ inset })
+
+  return (
+    <MenubarPrimitive.Label
+      {...props}
+      ref={ref}
+      className={label({ className: props.className })}
+    />
+  )
+})
+MenubarLabel.displayName = MenubarPrimitive.Label.displayName
+
+const MenubarSeparator = forwardRef<
+  React.ElementRef<typeof MenubarPrimitive.Separator>,
+  React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Separator>
+>((props, ref) => {
+  const { separator } = dropdownMenu()
+
+  return (
+    <MenubarPrimitive.Separator
+      {...props}
+      ref={ref}
+      className={separator({ className: props.className })}
+    />
+  )
+})
+MenubarSeparator.displayName = MenubarPrimitive.Separator.displayName
+
+function MenubarItemShortcut(props: React.ComponentProps<'span'>) {
+  const { itemShortcut } = dropdownMenu()
+
+  return <span {...props} className={itemShortcut({ className: props.className })} />
 }
-MenubarShortcut.displayname = 'MenubarShortcut'
+
+const Menubar = Object.assign(MenubarRoot, {
+  Menu: MenubarPrimitive.Menu,
+  Trigger: MenubarTrigger,
+  Content: MenubarContent,
+  Group: MenubarPrimitive.Group,
+  Separator: MenubarSeparator,
+  Label: MenubarLabel,
+
+  Item: Object.assign(MenubarItem, {
+    Shortcut: MenubarItemShortcut,
+  }),
+
+  Radio: Object.assign(MenubarPrimitive.RadioGroup, {
+    Item: MenubarRadioItem,
+  }),
+
+  CheckboxItem: MenubarCheckboxItem,
+
+  Sub: Object.assign(MenubarPrimitive.Sub, {
+    Trigger: MenubarSubTrigger,
+    Content: MenubarSubContent,
+  }),
+})
+
+export default Menubar
+export { menubar, MenubarPrimitive }

@@ -1,93 +1,118 @@
 'use client'
 
+import CloseButton from './close-button'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
-import { Cross2Icon } from '@radix-ui/react-icons'
-import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import { forwardRef } from 'react'
+import { tv } from 'tailwind-variants'
+import type { Merge } from 'type-fest'
 
-export const Dialog = DialogPrimitive.Root
+const dialog = tv({
+  slots: {
+    content: [
+      '@container',
+      'z-50 fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]',
+      'w-full max-w-lg border bg-bg--contrast p-6 shadow-lg sm:rounded-lg',
+      'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
+      'data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]',
+    ],
+    overlay: [
+      'fixed inset-0 z-50 bg-[#000]/80',
+      'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+    ],
+    closeButton: 'absolute right-4 top-4',
+    title: 'text-lg font-semibold leading-none tracking-tight text-center @md:text-left',
+    description: 'text-sm text-fg-weaker mt-2 text-center @md:text-left',
+    actions: 'mt-4 flex flex-col-reverse gap-2 @md:flex-row @md:justify-end',
+  },
+})
 
-export const DialogTrigger = DialogPrimitive.Trigger
-
-export const DialogPortal = DialogPrimitive.Portal
-
-export const DialogClose = DialogPrimitive.Close
-
-export const DialogOverlay = React.forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
->(({ className, ...props }, ref) => (
-  <DialogPrimitive.Overlay
-    ref={ref}
-    className={twMerge(
-      'fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
-      className,
-    )}
-    {...props}
-  />
-))
-DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
-
-export const DialogContent = React.forwardRef<
+const DialogContent = forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
->(({ className, children, ...props }, ref) => (
-  <DialogPortal>
-    <DialogOverlay />
-    <DialogPrimitive.Content
-      ref={ref}
-      className={twMerge(
-        'fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border border-gray-200 dark:border-gray-800 bg-white p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg  dark:bg-gray-950',
-        className,
-      )}
-      {...props}
-    >
-      {children}
-      <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-gray-100 data-[state=open]:text-gray-500 dark:ring-offset-gray-950 dark:focus:ring-gray-300 dark:data-[state=open]:bg-gray-800 dark:data-[state=open]:text-gray-400">
-        <Cross2Icon className="h-4 w-4" />
-        <span className="sr-only">Close</span>
-      </DialogPrimitive.Close>
-    </DialogPrimitive.Content>
-  </DialogPortal>
-))
+  Merge<
+    React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>,
+    {
+      portalProps?: React.ComponentProps<typeof DialogPrimitive.DialogPortal>
+      overlayProps?: React.ComponentProps<typeof DialogPrimitive.Overlay>
+      closeButtonProps?: React.ComponentProps<typeof CloseButton>
+      closeProps?: React.ComponentProps<typeof DialogPrimitive.Close>
+    }
+  >
+>(({ portalProps, overlayProps, closeProps, closeButtonProps, children, ...props }, ref) => {
+  const { content, overlay, closeButton } = dialog()
+
+  return (
+    <DialogPrimitive.DialogPortal {...portalProps}>
+      <DialogPrimitive.Overlay
+        {...overlayProps}
+        className={overlay({ className: overlayProps?.className })}
+      />
+
+      <DialogPrimitive.Content
+        {...props}
+        ref={ref}
+        className={content({ className: props.className })}
+      >
+        {children}
+
+        <DialogPrimitive.Close {...closeProps} asChild>
+          <CloseButton
+            size="sm"
+            {...closeButtonProps}
+            className={closeButton({ className: closeButtonProps?.className })}
+          />
+        </DialogPrimitive.Close>
+      </DialogPrimitive.Content>
+    </DialogPrimitive.DialogPortal>
+  )
+})
 DialogContent.displayName = DialogPrimitive.Content.displayName
 
-export const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={twMerge('flex flex-col space-y-1.5 text-center sm:text-left', className)}
-    {...props}
-  />
-)
-DialogHeader.displayName = 'DialogHeader'
+const DialogActions = forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<'div'>>(
+  (props, ref) => {
+    const { actions } = dialog()
 
-export const DialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={twMerge('flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2', className)}
-    {...props}
-  />
+    return <div {...props} ref={ref} className={actions({ className: props.className })} />
+  },
 )
-DialogFooter.displayName = 'DialogFooter'
+DialogActions.displayName = 'DialogActions'
 
-export const DialogTitle = React.forwardRef<
+const DialogTitle = forwardRef<
   React.ElementRef<typeof DialogPrimitive.Title>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
->(({ className, ...props }, ref) => (
-  <DialogPrimitive.Title
-    ref={ref}
-    className={twMerge('text-lg font-semibold leading-none tracking-tight', className)}
-    {...props}
-  />
-))
+>((props, ref) => {
+  const { title } = dialog()
+
+  return (
+    <DialogPrimitive.Title {...props} ref={ref} className={title({ className: props.className })} />
+  )
+})
 DialogTitle.displayName = DialogPrimitive.Title.displayName
 
-export const DialogDescription = React.forwardRef<
+const DialogDescription = forwardRef<
   React.ElementRef<typeof DialogPrimitive.Description>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
->(({ className, ...props }, ref) => (
-  <DialogPrimitive.Description
-    ref={ref}
-    className={twMerge('text-sm text-gray-500 dark:text-gray-400', className)}
-    {...props}
-  />
-))
+>((props, ref) => {
+  const { description } = dialog()
+
+  return (
+    <DialogPrimitive.Description
+      {...props}
+      ref={ref}
+      className={description({ className: props.className })}
+    />
+  )
+})
 DialogDescription.displayName = DialogPrimitive.Description.displayName
+
+const Dialog = Object.assign(DialogPrimitive.Root, {
+  Trigger: DialogPrimitive.Trigger,
+  Content: DialogContent,
+  Title: DialogTitle,
+  Description: DialogDescription,
+  Actions: DialogActions,
+  Close: DialogPrimitive.Close,
+})
+
+export default Dialog
+
+export { dialog, DialogPrimitive }

@@ -1,45 +1,133 @@
-import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import CloseButton from './close-button'
+import { Slot } from '@radix-ui/react-slot'
+import { IconCircleX, IconExclamationCircle } from '@tabler/icons-react'
+import { createContext, forwardRef, useContext } from 'react'
 import { tv, type VariantProps } from 'tailwind-variants'
+import { P, match } from 'ts-pattern'
+import type { Merge } from 'type-fest'
 
-export const alert = tv({
-  base: 'relative w-full rounded-lg border border-gray-200 dark:border-gray-800 px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-gray-950 [&>svg~*]:pl-7  dark:[&>svg]:text-gray-50',
+const alert = tv({
+  slots: {
+    root: 'flex rounded-md py-4 pl-2 pr-4 bg-bg--contrast border',
+    iconWrapper: 'place-self-start p-1 rounded-full ml-1',
+    icon: 'flex-shrink-0 size-4',
+    content: 'ml-3 flex-1',
+    title: 'text-sm font-medium',
+    description: 'mt-1 text-sm text-fg-weak',
+    closeButton: '-mt-2.5 -mr-2.5',
+  },
   variants: {
     variant: {
-      default: 'bg-white text-gray-950 dark:bg-gray-950 dark:text-gray-50',
-      destructive:
-        'border-red-500/50 text-red-500 dark:border-red-500 [&>svg]:text-red-500 dark:border-red-900/50 dark:text-red-900 dark:dark:border-red-900 dark:[&>svg]:text-red-900',
+      'brand-icon': {
+        icon: 'text-fg-brand',
+      },
+      'danger-icon': {
+        icon: 'text-fg-danger',
+      },
     },
-  },
-  defaultVariants: {
-    variant: 'default',
   },
 })
 
-export const Alert = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alert>
->(({ className, variant, ...props }, ref) => (
-  <div ref={ref} role="alert" className={alert({ variant, className })} {...props} />
-))
-Alert.displayName = 'Alert'
+type AlertVariantProps = VariantProps<typeof alert>
 
-export const AlertTitle = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => (
-  <h5
-    ref={ref}
-    className={twMerge('mb-1 font-medium leading-none tracking-tight', className)}
-    {...props}
-  />
-))
+const AlertContext = createContext<AlertVariantProps>(alert.defaultVariants)
+
+const AlertRoot = forwardRef<
+  HTMLDivElement,
+  Merge<React.HTMLAttributes<HTMLDivElement>, AlertVariantProps>
+>(({ className, variant, ...props }, ref) => {
+  const variantOpts = { variant }
+  const { root } = alert(variantOpts)
+
+  return (
+    <AlertContext.Provider value={variantOpts}>
+      <div ref={ref} role="alert" className={root({ className })} {...props} />
+    </AlertContext.Provider>
+  )
+})
+AlertRoot.displayName = 'AlertRoot'
+
+const AlertIcon = forwardRef<
+  HTMLDivElement,
+  Merge<
+    React.ComponentPropsWithoutRef<'div'>,
+    {
+      wrapperProps?: React.ComponentProps<'div'>
+    }
+  >
+>(({ wrapperProps, ...props }, ref) => {
+  const variantOpts = useContext(AlertContext)
+  const { icon, iconWrapper } = alert(variantOpts)
+
+  return (
+    <div {...wrapperProps} className={iconWrapper({ className: wrapperProps?.className })}>
+      <Slot {...props} ref={ref} className={icon({ className: props.className })}>
+        {props.children ||
+          match(variantOpts.variant)
+            .with(P.union(undefined, 'brand-icon'), () => <IconExclamationCircle />)
+            .with('danger-icon', () => <IconCircleX />)
+            .exhaustive()}
+      </Slot>
+    </div>
+  )
+})
+AlertIcon.displayName = 'AlertIcon'
+
+const AlertContent = forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<'div'>>(
+  (props, ref) => {
+    const variantOpts = useContext(AlertContext)
+    const { content } = alert(variantOpts)
+
+    return <div {...props} ref={ref} className={content({ className: props.className })} />
+  },
+)
+AlertContent.displayName = 'AlertContent'
+
+const AlertTitle = forwardRef<HTMLParagraphElement, React.ComponentPropsWithoutRef<'h5'>>(
+  (props, ref) => {
+    const variantOpts = useContext(AlertContext)
+    const { title } = alert(variantOpts)
+
+    return <h4 {...props} ref={ref} className={title({ className: props.className })} />
+  },
+)
 AlertTitle.displayName = 'AlertTitle'
 
-export const AlertDescription = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement>
->(({ className, ...props }, ref) => (
-  <div ref={ref} className={twMerge('text-sm [&_p]:leading-relaxed', className)} {...props} />
-))
+const AlertDescription = forwardRef<HTMLParagraphElement, React.ComponentPropsWithoutRef<'div'>>(
+  (props, ref) => {
+    const variantOpts = useContext(AlertContext)
+    const { description } = alert(variantOpts)
+
+    return <div {...props} ref={ref} className={description({ className: props.className })} />
+  },
+)
 AlertDescription.displayName = 'AlertDescription'
+
+const AlertCloseButton = forwardRef<
+  React.ElementRef<typeof CloseButton>,
+  React.ComponentPropsWithoutRef<typeof CloseButton>
+>((props, ref) => {
+  const variantOpts = useContext(AlertContext)
+  const { closeButton } = alert(variantOpts)
+
+  return (
+    <CloseButton
+      size="xs"
+      {...props}
+      ref={ref}
+      className={closeButton({ className: props.className })}
+    />
+  )
+})
+AlertCloseButton.displayName = 'AlertCloseButton'
+
+const Alert = Object.assign(AlertRoot, {
+  Icon: AlertIcon,
+  Content: AlertContent,
+  Title: AlertTitle,
+  Description: AlertDescription,
+  CloseButton: AlertCloseButton,
+})
+
+export default Alert
+export { alert }

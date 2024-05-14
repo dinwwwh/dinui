@@ -1,68 +1,109 @@
 'use client'
 
-import { DashIcon } from '@radix-ui/react-icons'
 import { OTPInput, OTPInputContext } from 'input-otp'
-import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import type React from 'react'
+import { forwardRef, useContext } from 'react'
+import { tv } from 'tailwind-variants'
+import type { Merge } from 'type-fest'
 
-export const InputOTP = React.forwardRef<
+const inputOTP = tv({
+  slots: {
+    root: 'disabled:cursor-not-allowed',
+    container: 'flex items-center gap-2 has-[:disabled]:opacity-50',
+    group: 'flex items-center',
+    slot: [
+      'relative flex size-9 items-center justify-center',
+      'text-sm shadow-sm transition-all',
+      'border-y border-r first:rounded-l-md first:border-l last:rounded-r-md',
+      'data-[active=true]:z-10 data-[active=true]:outline data-[active=true]:outline-2',
+    ],
+    fakeCaret: ['pointer-events-none', 'h-4 w-px animate-caret-blink bg-fg duration-1000'],
+    separator: null,
+  },
+})
+
+const InputOTPRoot = forwardRef<
   React.ElementRef<typeof OTPInput>,
   React.ComponentPropsWithoutRef<typeof OTPInput>
->(({ className, containerClassName, ...props }, ref) => (
-  <OTPInput
-    ref={ref}
-    containerClassName={twMerge(
-      'flex items-center gap-2 has-[:disabled]:opacity-50',
-      containerClassName,
-    )}
-    className={twMerge('disabled:cursor-not-allowed', className)}
-    {...props}
-  />
-))
-InputOTP.displayName = 'InputOTP'
+>((props, ref) => {
+  const { root, container } = inputOTP()
 
-export const InputOTPGroup = React.forwardRef<
-  React.ElementRef<'div'>,
-  React.ComponentPropsWithoutRef<'div'>
->(({ className, ...props }, ref) => (
-  <div ref={ref} className={twMerge('flex items-center', className)} {...props} />
-))
+  return (
+    <OTPInput
+      {...props}
+      ref={ref}
+      containerClassName={container({ className: props.containerClassName })}
+      className={root({ className: props.className })}
+    />
+  )
+})
+InputOTPRoot.displayName = 'InputOTP'
+
+const InputOTPGroup = forwardRef<React.ElementRef<'div'>, React.ComponentPropsWithoutRef<'div'>>(
+  (props, ref) => {
+    const { group } = inputOTP()
+
+    return <div {...props} ref={ref} className={group({ className: props.className })} />
+  },
+)
 InputOTPGroup.displayName = 'InputOTPGroup'
 
-export const InputOTPSlot = React.forwardRef<
+const InputOTPSlot = forwardRef<
   React.ElementRef<'div'>,
-  React.ComponentPropsWithoutRef<'div'> & { index: number }
->(({ index, className, ...props }, ref) => {
-  const inputOTPContext = React.useContext(OTPInputContext)
+  Merge<
+    React.ComponentPropsWithoutRef<'div'>,
+    {
+      index: number
+      fakeCaretProps?: React.ComponentProps<'div'>
+    }
+  >
+>(({ index, fakeCaretProps, ...props }, ref) => {
+  const inputOTPContext = useContext(OTPInputContext)
   const { char, hasFakeCaret, isActive } = inputOTPContext.slots[index] ?? {}
+  const { slot, fakeCaret } = inputOTP()
 
   return (
     <div
-      ref={ref}
-      className={twMerge(
-        'relative flex h-9 w-9 items-center justify-center border-y border-r border-gray-200 dark:border-gray-800 text-sm shadow-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md ',
-        isActive && 'z-10 ring-1 ring-gray-950 dark:ring-gray-300',
-        className,
-      )}
       {...props}
+      ref={ref}
+      data-active={isActive}
+      className={slot({ className: props.className })}
     >
       {char}
       {hasFakeCaret && (
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="h-4 w-px animate-caret-blink bg-gray-950 duration-1000 dark:bg-gray-50" />
-        </div>
+        <div {...fakeCaretProps} className={fakeCaret({ className: fakeCaretProps?.className })} />
       )}
     </div>
   )
 })
 InputOTPSlot.displayName = 'InputOTPSlot'
 
-export const InputOTPSeparator = React.forwardRef<
+const InputOTPSeparator = forwardRef<
   React.ElementRef<'div'>,
   React.ComponentPropsWithoutRef<'div'>
->(({ ...props }, ref) => (
-  <div ref={ref} role="separator" {...props}>
-    <DashIcon />
-  </div>
-))
+>((props, ref) => {
+  const { separator } = inputOTP()
+
+  return (
+    <div
+      role="separator"
+      {...props}
+      ref={ref}
+      className={separator({ className: props.className })}
+    >
+      -
+    </div>
+  )
+})
 InputOTPSeparator.displayName = 'InputOTPSeparator'
+
+const InputOTP = Object.assign(InputOTPRoot, {
+  Slot: InputOTPSlot,
+  Group: InputOTPGroup,
+  Separator: InputOTPSeparator,
+})
+
+export default InputOTP
+export { inputOTP }
+export { REGEXP_ONLY_CHARS, REGEXP_ONLY_DIGITS, REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp'
+export * as InputOTPPrimitive from 'input-otp'

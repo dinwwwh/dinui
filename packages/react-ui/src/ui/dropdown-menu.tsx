@@ -1,172 +1,280 @@
 'use client'
 
+import { button } from './button'
+import { separator } from './separator'
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
-import { CheckIcon, ChevronRightIcon, DotFilledIcon } from '@radix-ui/react-icons'
-import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import type * as _A from '@radix-ui/react-menu'
+import { IconCheck, IconChevronRight, IconPoint } from '@tabler/icons-react'
+import { forwardRef } from 'react'
+import type { VariantProps } from 'tailwind-variants'
+import { tv } from 'tailwind-variants'
+import type { Merge } from 'type-fest'
 
-export const DropdownMenu = DropdownMenuPrimitive.Root
+const baseItem = button({ size: 'sm', variant: 'ghost' }).root({
+  className: [
+    'flex justify-start',
+    'w-full px-2 text-sm font-medium',
+    'outline-none focus:bg-bg--active data-[state=open]:bg-bg--active',
+    'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+  ],
+})
 
-export const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
+const baseContent = [
+  'z-50 min-w-[8rem] overflow-hidden rounded-md border bg-bg--contrast p-1 shadow-md',
+  'data-[state=open]:animate-in data-[state=closed]:animate-out',
+  'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+  'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
+  'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2',
+  'data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+]
 
-export const DropdownMenuGroup = DropdownMenuPrimitive.Group
+const dropdownMenu = tv({
+  slots: {
+    subTrigger: baseItem,
+    subTriggerIcon: button({ size: 'sm', variant: 'ghost' }).rightIcon({ className: 'ml-auto' }),
+    subContent: [baseContent, 'shadow-lg'],
+    content: [baseContent, 'min-w-[12rem]'],
+    item: baseItem,
+    itemShortcut: 'ml-auto text-xs tracking-widest text-fg-weaker',
+    checkboxItem: [baseItem, 'relative pl-8'],
+    checkboxItemIndicatorIcon: 'absolute left-2 size-4',
+    radioItem: [baseItem, 'relative pl-8'],
+    radioItemIndicatorIcon: 'absolute left-2 size-4 fill-current',
+    label: 'px-2 py-1.5 text-sm font-semibold',
+    separator: separator({ variant: 'weak' }).root({ className: '-mx-1 my-1' }),
+  },
+  variants: {
+    inset: {
+      true: {
+        subTrigger: 'pl-8',
+        item: 'pl-8',
+        label: 'pl-8',
+      },
+    },
+  },
+})
 
-export const DropdownMenuPortal = DropdownMenuPrimitive.Portal
-
-export const DropdownMenuSub = DropdownMenuPrimitive.Sub
-
-export const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup
-
-export const DropdownMenuSubTrigger = React.forwardRef<
+const DropdownMenuSubTrigger = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.SubTrigger>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubTrigger> & {
-    inset?: boolean
-  }
->(({ className, inset, children, ...props }, ref) => (
-  <DropdownMenuPrimitive.SubTrigger
-    ref={ref}
-    className={twMerge(
-      'flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-gray-100 data-[state=open]:bg-gray-100 dark:focus:bg-gray-800 dark:data-[state=open]:bg-gray-800',
-      inset && 'pl-8',
-      className,
-    )}
-    {...props}
+  Merge<
+    Merge<
+      React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubTrigger>,
+      VariantProps<typeof dropdownMenu>
+    >,
+    {
+      iconProps?: React.ComponentProps<typeof IconChevronRight>
+    }
   >
-    {children}
-    <ChevronRightIcon className="ml-auto h-4 w-4" />
-  </DropdownMenuPrimitive.SubTrigger>
-))
+>(({ iconProps, inset, children, ...props }, ref) => {
+  const { subTrigger, subTriggerIcon } = dropdownMenu({ inset })
+
+  return (
+    <DropdownMenuPrimitive.SubTrigger
+      {...props}
+      ref={ref}
+      className={subTrigger({ className: props.className })}
+    >
+      {children}
+
+      <IconChevronRight
+        {...iconProps}
+        className={subTriggerIcon({ className: iconProps?.className })}
+      />
+    </DropdownMenuPrimitive.SubTrigger>
+  )
+})
 DropdownMenuSubTrigger.displayName = DropdownMenuPrimitive.SubTrigger.displayName
 
-export const DropdownMenuSubContent = React.forwardRef<
+const DropdownMenuSubContent = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.SubContent>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubContent>
->(({ className, ...props }, ref) => (
-  <DropdownMenuPrimitive.SubContent
-    ref={ref}
-    className={twMerge(
-      'z-50 min-w-[8rem] overflow-hidden rounded-md border border-gray-200 dark:border-gray-800 bg-white p-1 text-gray-950 shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2  dark:bg-gray-950 dark:text-gray-50',
-      className,
-    )}
-    {...props}
-  />
-))
+  Merge<
+    React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubContent>,
+    {
+      portalProps?: React.ComponentProps<typeof DropdownMenuPrimitive.Portal>
+    }
+  >
+>(({ portalProps, ...props }, ref) => {
+  const { subContent } = dropdownMenu()
+
+  return (
+    <DropdownMenuPrimitive.Portal {...portalProps}>
+      <DropdownMenuPrimitive.SubContent
+        {...props}
+        ref={ref}
+        className={subContent({ className: props.className })}
+      />
+    </DropdownMenuPrimitive.Portal>
+  )
+})
 DropdownMenuSubContent.displayName = DropdownMenuPrimitive.SubContent.displayName
 
-export const DropdownMenuContent = React.forwardRef<
+const DropdownMenuContent = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>
->(({ className, sideOffset = 4, ...props }, ref) => (
-  <DropdownMenuPrimitive.Portal>
-    <DropdownMenuPrimitive.Content
-      ref={ref}
-      sideOffset={sideOffset}
-      className={twMerge(
-        'z-50 min-w-[8rem] overflow-hidden rounded-md border border-gray-200 dark:border-gray-800 bg-white p-1 text-gray-950 shadow-md  dark:bg-gray-950 dark:text-gray-50',
-        'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
-        className,
-      )}
-      {...props}
-    />
-  </DropdownMenuPrimitive.Portal>
-))
+  Merge<
+    React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>,
+    {
+      portalProps?: React.ComponentProps<typeof DropdownMenuPrimitive.Portal>
+    }
+  >
+>(({ portalProps, ...props }, ref) => {
+  const { content } = dropdownMenu()
+
+  return (
+    <DropdownMenuPrimitive.Portal {...portalProps}>
+      <DropdownMenuPrimitive.Content
+        sideOffset={4}
+        {...props}
+        ref={ref}
+        className={content({ className: props.className })}
+      />
+    </DropdownMenuPrimitive.Portal>
+  )
+})
 DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName
 
-export const DropdownMenuItem = React.forwardRef<
+const DropdownMenuItem = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> & {
-    inset?: boolean
-  }
->(({ className, inset, ...props }, ref) => (
-  <DropdownMenuPrimitive.Item
-    ref={ref}
-    className={twMerge(
-      'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-gray-100 focus:text-gray-900 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-gray-800 dark:focus:text-gray-50',
-      inset && 'pl-8',
-      className,
-    )}
-    {...props}
-  />
-))
+  Merge<
+    React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item>,
+    VariantProps<typeof dropdownMenu>
+  >
+>(({ inset, ...props }, ref) => {
+  const { item } = dropdownMenu({ inset })
+
+  return (
+    <DropdownMenuPrimitive.Item
+      {...props}
+      ref={ref}
+      className={item({ className: props.className })}
+    />
+  )
+})
 DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName
 
-export const DropdownMenuCheckboxItem = React.forwardRef<
+const DropdownMenuCheckboxItem = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.CheckboxItem>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.CheckboxItem>
->(({ className, children, checked, ...props }, ref) => (
-  <DropdownMenuPrimitive.CheckboxItem
-    ref={ref}
-    className={twMerge(
-      'relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-gray-100 focus:text-gray-900 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-gray-800 dark:focus:text-gray-50',
-      className,
-    )}
-    checked={checked}
-    {...props}
+  Merge<
+    React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.CheckboxItem>,
+    {
+      indicatorIconProps?: React.ComponentProps<typeof IconCheck>
+    }
   >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
-      <DropdownMenuPrimitive.ItemIndicator>
-        <CheckIcon className="h-4 w-4" />
+>(({ indicatorIconProps, children, ...props }, ref) => {
+  const { checkboxItem, checkboxItemIndicatorIcon } = dropdownMenu()
+
+  return (
+    <DropdownMenuPrimitive.CheckboxItem
+      {...props}
+      ref={ref}
+      className={checkboxItem({ className: props.className })}
+    >
+      <DropdownMenuPrimitive.ItemIndicator asChild>
+        <IconCheck
+          {...indicatorIconProps}
+          className={checkboxItemIndicatorIcon({ className: indicatorIconProps?.className })}
+        />
       </DropdownMenuPrimitive.ItemIndicator>
-    </span>
-    {children}
-  </DropdownMenuPrimitive.CheckboxItem>
-))
+
+      {children}
+    </DropdownMenuPrimitive.CheckboxItem>
+  )
+})
 DropdownMenuCheckboxItem.displayName = DropdownMenuPrimitive.CheckboxItem.displayName
 
-export const DropdownMenuRadioItem = React.forwardRef<
+const DropdownMenuRadioItem = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.RadioItem>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.RadioItem>
->(({ className, children, ...props }, ref) => (
-  <DropdownMenuPrimitive.RadioItem
-    ref={ref}
-    className={twMerge(
-      'relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-gray-100 focus:text-gray-900 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-gray-800 dark:focus:text-gray-50',
-      className,
-    )}
-    {...props}
+  Merge<
+    React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.RadioItem>,
+    {
+      indicatorIconProps?: React.ComponentProps<typeof IconPoint>
+    }
   >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
-      <DropdownMenuPrimitive.ItemIndicator>
-        <DotFilledIcon className="h-4 w-4 fill-current" />
+>(({ indicatorIconProps, children, ...props }, ref) => {
+  const { radioItem, radioItemIndicatorIcon } = dropdownMenu()
+
+  return (
+    <DropdownMenuPrimitive.RadioItem
+      {...props}
+      ref={ref}
+      className={radioItem({ className: props.className })}
+    >
+      <DropdownMenuPrimitive.ItemIndicator asChild>
+        <IconPoint
+          {...indicatorIconProps}
+          className={radioItemIndicatorIcon({ className: indicatorIconProps?.className })}
+        />
       </DropdownMenuPrimitive.ItemIndicator>
-    </span>
-    {children}
-  </DropdownMenuPrimitive.RadioItem>
-))
+
+      {children}
+    </DropdownMenuPrimitive.RadioItem>
+  )
+})
 DropdownMenuRadioItem.displayName = DropdownMenuPrimitive.RadioItem.displayName
 
-export const DropdownMenuLabel = React.forwardRef<
+const DropdownMenuLabel = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Label>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Label> & {
-    inset?: boolean
-  }
->(({ className, inset, ...props }, ref) => (
-  <DropdownMenuPrimitive.Label
-    ref={ref}
-    className={twMerge('px-2 py-1.5 text-sm font-semibold', inset && 'pl-8', className)}
-    {...props}
-  />
-))
+  Merge<
+    React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Label>,
+    VariantProps<typeof dropdownMenu>
+  >
+>(({ inset, ...props }, ref) => {
+  const { label } = dropdownMenu({ inset })
+
+  return (
+    <DropdownMenuPrimitive.Label
+      {...props}
+      ref={ref}
+      className={label({ className: props.className })}
+    />
+  )
+})
 DropdownMenuLabel.displayName = DropdownMenuPrimitive.Label.displayName
 
-export const DropdownMenuSeparator = React.forwardRef<
+const DropdownMenuSeparator = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Separator>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator>
->(({ className, ...props }, ref) => (
-  <DropdownMenuPrimitive.Separator
-    ref={ref}
-    className={twMerge('-mx-1 my-1 h-px bg-gray-100 dark:bg-gray-800', className)}
-    {...props}
-  />
-))
+>((props, ref) => {
+  const { separator } = dropdownMenu()
+
+  return (
+    <DropdownMenuPrimitive.Separator
+      {...props}
+      ref={ref}
+      className={separator({ className: props.className })}
+    />
+  )
+})
 DropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName
 
-export const DropdownMenuShortcut = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLSpanElement>) => {
-  return (
-    <span className={twMerge('ml-auto text-xs tracking-widest opacity-60', className)} {...props} />
-  )
+function DropdownMenuItemShortcut(props: React.ComponentProps<'span'>) {
+  const { itemShortcut } = dropdownMenu()
+
+  return <span {...props} className={itemShortcut({ className: props.className })} />
 }
-DropdownMenuShortcut.displayName = 'DropdownMenuShortcut'
+
+const DropdownMenu = Object.assign(DropdownMenuPrimitive.Root, {
+  Trigger: DropdownMenuPrimitive.Trigger,
+  Content: DropdownMenuContent,
+
+  Group: DropdownMenuPrimitive.Group,
+  Label: DropdownMenuLabel,
+  Separator: DropdownMenuSeparator,
+
+  Item: Object.assign(DropdownMenuItem, {
+    Shortcut: DropdownMenuItemShortcut,
+  }),
+
+  Radio: Object.assign(DropdownMenuPrimitive.RadioGroup, {
+    Item: DropdownMenuRadioItem,
+  }),
+
+  CheckboxItem: DropdownMenuCheckboxItem,
+
+  Sub: Object.assign(DropdownMenuPrimitive.Sub, {
+    Trigger: DropdownMenuSubTrigger,
+    Content: DropdownMenuSubContent,
+  }),
+})
+
+export default DropdownMenu
+export { dropdownMenu, DropdownMenuPrimitive }

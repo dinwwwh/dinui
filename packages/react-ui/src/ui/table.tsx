@@ -1,106 +1,117 @@
-import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import { forwardRef } from 'react'
+import { tv } from 'tailwind-variants'
+import type { Merge } from 'type-fest'
 
-export const Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableElement>>(
-  ({ className, ...props }, ref) => (
-    <div className="relative w-full overflow-auto">
-      <table ref={ref} className={twMerge('w-full caption-bottom text-sm', className)} {...props} />
+const table = tv({
+  slots: {
+    rootWrapper: 'relative w-full overflow-auto',
+    root: 'w-full caption-bottom text-sm',
+    header: null,
+    body: 'border-t',
+    footer: 'border-t',
+    row: 'border-b transition-colors hover:bg-bg--hover data-[state=selected]:bg-bg--active last:border-0',
+    head: 'h-10 px-2 text-left align-middle font-medium text-fg-weaker',
+    cell: 'p-2 align-middle',
+    caption: 'mt-4 text-sm text-fg-weaker',
+  },
+})
+
+const TableRoot = forwardRef<
+  HTMLTableElement,
+  Merge<
+    React.HTMLAttributes<HTMLTableElement>,
+    {
+      wrapperProps?: React.ComponentProps<'div'>
+    }
+  >
+>(({ wrapperProps, ...props }, ref) => {
+  const { root, rootWrapper } = table()
+
+  return (
+    <div {...wrapperProps} className={rootWrapper({ className: wrapperProps?.className })}>
+      <table {...props} ref={ref} className={root({ className: props.className })} />
     </div>
-  ),
-)
-Table.displayName = 'Table'
+  )
+})
+TableRoot.displayName = 'Table'
 
-export const TableHeader = React.forwardRef<
+const TableHeader = forwardRef<
   HTMLTableSectionElement,
   React.HTMLAttributes<HTMLTableSectionElement>
->(({ className, ...props }, ref) => (
-  <thead
-    ref={ref}
-    className={twMerge(
-      'dark:[&_tr]:border-gray-700 [&_tr]:border-gray-200 [&_tr]:border-b',
-      className,
-    )}
-    {...props}
-  />
-))
+>((props, ref) => {
+  const { header } = table()
+
+  return <thead {...props} ref={ref} className={header({ className: props.className })} />
+})
 TableHeader.displayName = 'TableHeader'
 
-export const TableBody = React.forwardRef<
+const TableBody = forwardRef<
   HTMLTableSectionElement,
   React.HTMLAttributes<HTMLTableSectionElement>
->(({ className, ...props }, ref) => (
-  <tbody ref={ref} className={twMerge('[&_tr:last-child]:border-0', className)} {...props} />
-))
+>((props, ref) => {
+  const { body } = table()
+
+  return <tbody {...props} ref={ref} className={body({ className: props.className })} />
+})
 TableBody.displayName = 'TableBody'
 
-export const TableFooter = React.forwardRef<
+const TableFooter = forwardRef<
   HTMLTableSectionElement,
   React.HTMLAttributes<HTMLTableSectionElement>
->(({ className, ...props }, ref) => (
-  <tfoot
-    ref={ref}
-    className={twMerge(
-      'border-gray-200 dark:border-gray-800 border-t bg-gray-100/50 font-medium [&>tr]:last:border-b-0 dark:bg-gray-800/50',
-      className,
-    )}
-    {...props}
-  />
-))
+>((props, ref) => {
+  const { footer } = table()
+
+  return <tfoot {...props} ref={ref} className={footer({ className: props.className })} />
+})
 TableFooter.displayName = 'TableFooter'
 
-export const TableRow = React.forwardRef<
-  HTMLTableRowElement,
-  React.HTMLAttributes<HTMLTableRowElement>
->(({ className, ...props }, ref) => (
-  <tr
-    ref={ref}
-    className={twMerge(
-      'border-gray-200 dark:border-gray-800 border-b transition-colors hover:bg-gray-100/50 data-[state=selected]:bg-gray-100 dark:hover:bg-gray-800/50 dark:data-[state=selected]:bg-gray-800',
-      className,
-    )}
-    {...props}
-  />
-))
+const TableRow = forwardRef<HTMLTableRowElement, React.HTMLAttributes<HTMLTableRowElement>>(
+  (props, ref) => {
+    const { row } = table()
+
+    return <tr {...props} ref={ref} className={row({ className: props.className })} />
+  },
+)
 TableRow.displayName = 'TableRow'
 
-export const TableHead = React.forwardRef<
-  HTMLTableCellElement,
-  React.ThHTMLAttributes<HTMLTableCellElement>
->(({ className, ...props }, ref) => (
-  <th
-    ref={ref}
-    className={twMerge(
-      'h-10 px-2 text-left align-middle font-medium text-gray-500 [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] dark:text-gray-400',
-      className,
-    )}
-    {...props}
-  />
-))
+const TableHead = forwardRef<HTMLTableCellElement, React.ThHTMLAttributes<HTMLTableCellElement>>(
+  (props, ref) => {
+    const { head } = table()
+
+    return <th {...props} ref={ref} className={head({ className: props.className })} />
+  },
+)
 TableHead.displayName = 'TableHead'
 
-export const TableCell = React.forwardRef<
-  HTMLTableCellElement,
-  React.TdHTMLAttributes<HTMLTableCellElement>
->(({ className, ...props }, ref) => (
-  <td
-    ref={ref}
-    className={twMerge(
-      'p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]',
-      className,
-    )}
-    {...props}
-  />
-))
+const TableCell = forwardRef<HTMLTableCellElement, React.TdHTMLAttributes<HTMLTableCellElement>>(
+  (props, ref) => {
+    const { cell } = table()
+
+    return <td {...props} ref={ref} className={cell({ className: props.className })} />
+  },
+)
 TableCell.displayName = 'TableCell'
 
-export const TableCaption = React.forwardRef<
+const TableCaption = forwardRef<
   HTMLTableCaptionElement,
   React.HTMLAttributes<HTMLTableCaptionElement>
->(({ className, ...props }, ref) => (
-  <caption
-    ref={ref}
-    className={twMerge('mt-4 text-sm text-gray-500 dark:text-gray-400', className)}
-    {...props}
-  />
-))
+>((props, ref) => {
+  const { caption } = table()
+
+  return <caption {...props} ref={ref} className={caption({ className: props.className })} />
+})
 TableCaption.displayName = 'TableCaption'
+
+const Table = Object.assign(TableRoot, {
+  Header: TableHeader,
+  Body: TableBody,
+  Footer: TableFooter,
+  Caption: TableCaption,
+
+  Head: TableHead,
+  Row: TableRow,
+  Cell: TableCell,
+})
+
+export default Table
+export { table }

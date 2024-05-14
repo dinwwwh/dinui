@@ -1,99 +1,165 @@
-import { ChevronRightIcon, DotsHorizontalIcon } from '@radix-ui/react-icons'
 import { Slot } from '@radix-ui/react-slot'
-import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import { IconChevronRight, IconDots } from '@tabler/icons-react'
+import { forwardRef } from 'react'
+import { tv } from 'tailwind-variants'
+import type { Merge } from 'type-fest'
 
-export const Breadcrumb = React.forwardRef<
-  HTMLElement,
-  React.ComponentPropsWithoutRef<'nav'> & {
-    separator?: React.ReactNode
-  }
->(({ ...props }, ref) => <nav ref={ref} aria-label="breadcrumb" {...props} />)
-Breadcrumb.displayName = 'Breadcrumb'
+const breadcrumb = tv({
+  slots: {
+    root: null,
+    list: 'flex flex-wrap items-center gap-1.5 sm:gap-2.5',
+    item: 'inline-flex items-center gap-1.5',
+    ellipsis: 'flex items-center justify-center',
+    ellipsisIcon: 'size-4',
+    itemLink: 'break-words text-sm text-fg-weaker transition hover:text-fg-weaker--hover',
+    itemPage: 'break-words text-sm text-fg',
+    itemSeparator: 'size-3.5',
+  },
+})
 
-export const BreadcrumbList = React.forwardRef<
-  HTMLOListElement,
-  React.ComponentPropsWithoutRef<'ol'>
->(({ className, ...props }, ref) => (
-  <ol
-    ref={ref}
-    className={twMerge(
-      'flex flex-wrap items-center gap-1.5 break-words text-sm text-gray-500 sm:gap-2.5 dark:text-gray-400',
-      className,
-    )}
-    {...props}
-  />
-))
-BreadcrumbList.displayName = 'BreadcrumbList'
+const BreadcrumbRoot = forwardRef<
+  React.ElementRef<'nav'>,
+  Merge<
+    React.ComponentPropsWithoutRef<'nav'>,
+    {
+      listProps?: React.ComponentProps<'ol'>
+    }
+  >
+>(({ listProps, children, ...props }, ref) => {
+  const { root, list } = breadcrumb()
 
-export const BreadcrumbItem = React.forwardRef<HTMLLIElement, React.ComponentPropsWithoutRef<'li'>>(
-  ({ className, ...props }, ref) => (
-    <li ref={ref} className={twMerge('inline-flex items-center gap-1.5', className)} {...props} />
-  ),
+  return (
+    <nav
+      aria-label="breadcrumb"
+      {...props}
+      ref={ref}
+      className={root({ className: props.className })}
+    >
+      <ol {...listProps} className={list({ className: listProps?.className })}>
+        {children}
+      </ol>
+    </nav>
+  )
+})
+BreadcrumbRoot.displayName = 'BreadcrumbRoot'
+
+const BreadcrumbItem = forwardRef<HTMLLIElement, React.ComponentPropsWithoutRef<'li'>>(
+  (props, ref) => {
+    const { item } = breadcrumb()
+
+    return <li {...props} ref={ref} className={item({ className: props.className })} />
+  },
 )
 BreadcrumbItem.displayName = 'BreadcrumbItem'
 
-export const BreadcrumbLink = React.forwardRef<
+const BreadcrumbLinkItem = forwardRef<
   HTMLAnchorElement,
-  React.ComponentPropsWithoutRef<'a'> & {
-    asChild?: boolean
-  }
->(({ asChild, className, ...props }, ref) => {
-  const Comp = asChild ? Slot : 'a'
+  Merge<
+    React.ComponentPropsWithoutRef<'a'>,
+    {
+      itemProps?: React.ComponentProps<typeof BreadcrumbItem>
+      asChild?: boolean
+    }
+  >
+>(({ itemProps, asChild, ...props }, ref) => {
+  const { itemLink } = breadcrumb()
 
+  const Comp = asChild ? Slot : 'a'
   return (
-    <Comp
-      ref={ref}
-      className={twMerge(
-        'transition-colors hover:text-gray-950 dark:hover:text-gray-50',
-        className,
-      )}
-      {...props}
-    />
+    <BreadcrumbItem {...itemProps}>
+      <Comp {...props} ref={ref} className={itemLink({ className: props.className })} />
+    </BreadcrumbItem>
   )
 })
-BreadcrumbLink.displayName = 'BreadcrumbLink'
+BreadcrumbLinkItem.displayName = 'BreadcrumbLinkItem'
 
-export const BreadcrumbPage = React.forwardRef<
+const BreadcrumbPageItem = forwardRef<
   HTMLSpanElement,
-  React.ComponentPropsWithoutRef<'span'>
->(({ className, ...props }, ref) => (
-  <span
-    ref={ref}
-    role="link"
-    aria-disabled="true"
-    aria-current="page"
-    className={twMerge('font-normal text-gray-950 dark:text-gray-50', className)}
-    {...props}
-  />
-))
-BreadcrumbPage.displayName = 'BreadcrumbPage'
-
-export const BreadcrumbSeparator = ({
-  children,
-  className,
-  ...props
-}: React.ComponentProps<'li'>) => (
-  <li
-    role="presentation"
-    aria-hidden="true"
-    className={twMerge('[&>svg]:size-3.5', className)}
-    {...props}
+  Merge<
+    React.ComponentPropsWithoutRef<'span'>,
+    {
+      itemProps?: React.ComponentProps<typeof BreadcrumbItem>
+      asChild?: boolean
+    }
   >
-    {children ?? <ChevronRightIcon />}
-  </li>
-)
-BreadcrumbSeparator.displayName = 'BreadcrumbSeparator'
+>(({ itemProps, asChild, ...props }, ref) => {
+  const { itemPage } = breadcrumb()
 
-export const BreadcrumbEllipsis = ({ className, ...props }: React.ComponentProps<'span'>) => (
-  <span
-    role="presentation"
-    aria-hidden="true"
-    className={twMerge('flex h-9 w-9 items-center justify-center', className)}
-    {...props}
+  const Comp = asChild ? Slot : 'span'
+  return (
+    <BreadcrumbItem {...itemProps}>
+      <Comp
+        role="link"
+        aria-disabled="true"
+        aria-current="page"
+        {...props}
+        ref={ref}
+        className={itemPage({ className: props.className })}
+      />
+    </BreadcrumbItem>
+  )
+})
+BreadcrumbPageItem.displayName = 'BreadcrumbPageItem'
+
+const BreadcrumbSeparatorItem = forwardRef<
+  React.ComponentRef<typeof IconChevronRight>,
+  Merge<
+    React.ComponentPropsWithoutRef<typeof IconChevronRight>,
+    {
+      itemProps?: React.ComponentProps<typeof BreadcrumbItem>
+    }
   >
-    <DotsHorizontalIcon className="h-4 w-4" />
-    <span className="sr-only">More</span>
-  </span>
-)
-BreadcrumbEllipsis.displayName = 'BreadcrumbElipssis'
+>(({ itemProps, ...props }, ref) => {
+  const { itemSeparator } = breadcrumb()
+
+  return (
+    <BreadcrumbItem role="presentation" aria-hidden="true" {...itemProps}>
+      <Slot
+        {...(props as React.HTMLAttributes<HTMLElement>)}
+        ref={ref as React.ForwardedRef<HTMLElement>}
+        className={itemSeparator({ className: props.className })}
+      >
+        {props.children ?? <IconChevronRight />}
+      </Slot>
+    </BreadcrumbItem>
+  )
+})
+BreadcrumbSeparatorItem.displayName = 'BreadcrumbSeparatorItem'
+
+const BreadcrumbEllipsis = forwardRef<
+  HTMLSpanElement,
+  Merge<
+    React.ComponentPropsWithoutRef<'span'>,
+    {
+      iconProps?: React.ComponentProps<typeof IconDots>
+    }
+  >
+>(({ iconProps, ...props }, ref) => {
+  const { ellipsis, ellipsisIcon } = breadcrumb()
+
+  return (
+    <span
+      role="presentation"
+      aria-hidden="true"
+      {...props}
+      ref={ref}
+      className={ellipsis({ className: props.className })}
+    >
+      <IconDots {...iconProps} className={ellipsisIcon({ className: iconProps?.className })} />
+      <span className="sr-only">More</span>
+    </span>
+  )
+})
+BreadcrumbEllipsis.displayName = 'BreadcrumbEllipsis'
+
+const Breadcrumb = Object.assign(BreadcrumbRoot, {
+  Item: Object.assign(BreadcrumbItem, {
+    Ellipsis: BreadcrumbEllipsis,
+  }),
+  LinkItem: BreadcrumbLinkItem,
+  PageItem: BreadcrumbPageItem,
+  SeparatorItem: BreadcrumbSeparatorItem,
+})
+
+export default Breadcrumb
+export { breadcrumb }

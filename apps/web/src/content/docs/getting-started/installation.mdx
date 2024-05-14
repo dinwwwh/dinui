@@ -5,57 +5,31 @@ sidebar:
   order: 2
 ---
 
-1. Make sure your project has been install [Tailwindcss](https://tailwindcss.com/docs/installation/framework-guides)
-2. Install `npm install @dinui/react`
-3. Config your `tailwind.config.js` file
+import twGlobalsCode from '../../../../node_modules/@dinui/react/src/styles/globals.css?raw'
+import twConfigCode from '../../../../node_modules/@dinui/react/tailwind.config?raw'
+import { Code, Steps } from '@astrojs/starlight/components'
 
-```js
-const tailwindColors = require('tailwindcss/colors')
+:::note
+This installation guide may be simplified in the future as the project is still in heavy development.
+:::
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    './pages/**/*.{html,md,mdx,tsx,js,jsx}',
-    './components/**/*.{html,md,mdx,tsx,js,jsx}',
-    './layout.tsx',
-    './styles.css',
-    './node_modules/@dinui/react/ui/**/*.{tsx,ts}',
-    './node_modules/@dinui/react/utils.ts',
-  ],
-  theme: {
-    container: {
-      center: true,
-      padding: '1rem',
-      screens: {
-        '2xl': '1400px',
-      },
-    },
-    extend: {
-      colors: {
-        gray: tailwindColors.gray,
-        brand: tailwindColors.violet,
-        success: tailwindColors.green,
-        warning: tailwindColors.amber,
-        error: tailwindColors.red,
-      },
-      keyframes: {
-        'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' },
-        },
-        'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' },
-        },
-      },
-      animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
-      },
-    },
-  },
-  plugins: [require('tailwindcss-animate')],
-}
-```
-
-Ensure your tailwind has 4 primary color `gray`, `brand`, `success`, `warning`, and `error`.
+<Steps>
+  <ol>
+    <li>
+      Make sure your project has been install
+      [Tailwindcss](https://tailwindcss.com/docs/installation/framework-guides)
+    </li>
+    <li>Install `npm install @dinui/react`</li>
+    <li>
+      Config your `tailwind.config.ts` file match minimum requirements bellow
+      <Code
+        code={twConfigCode.replace("from './src/tailwind'", "from '@dinui/react/tailwind'")}
+        lang="ts"
+      />
+    </li>
+    <li>
+      Config your `globals.css` file match minimum requirements bellow
+      <Code code={twGlobalsCode} lang="postcss" />
+    </li>
+  </ol>
+</Steps>
