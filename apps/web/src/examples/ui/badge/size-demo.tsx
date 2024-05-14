@@ -1,6 +1,6 @@
 import Badge from '@dinui/react/badge'
 
-const variants = ['filled', 'outline'] as const
+const variants = ['filled'] as const
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const
 
 export default function BadgeColorDemo() {

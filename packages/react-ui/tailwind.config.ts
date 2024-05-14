@@ -1,5 +1,4 @@
 import { createThemes } from './src/tailwind'
-import { mapKeys, pick } from 'radash'
 import type { Config } from 'tailwindcss'
 import colors from 'tailwindcss/colors'
 
@@ -51,31 +50,6 @@ const themes = createThemes([
         bg: colors.neutral[950],
         fg: colors.neutral[50],
       },
-
-      ...mapKeys(
-        pick(colors.indigo, ['50', '100', '200', '300', '400', '500', '600', '700']),
-        (key) => 'utility-brand-' + key,
-      ),
-      ...mapKeys(
-        pick(colors.rose, ['50', '100', '200', '300', '400', '500', '600', '700']),
-        (key) => 'utility-danger-' + key,
-      ),
-      ...mapKeys(
-        pick(colors.neutral, ['50', '100', '200', '300', '400', '500', '600', '700']),
-        (key) => 'utility-gray-' + key,
-      ),
-      ...mapKeys(
-        pick(colors.blue, ['50', '100', '200', '300', '400', '500', '600', '700']),
-        (key) => 'utility-blue-' + key,
-      ),
-      ...mapKeys(
-        pick(colors.pink, ['50', '100', '200', '300', '400', '500', '600', '700']),
-        (key) => 'utility-pink-' + key,
-      ),
-      ...mapKeys(
-        pick(colors.orange, ['50', '100', '200', '300', '400', '500', '600', '700']),
-        (key) => 'utility-orange-' + key,
-      ),
     },
   },
   {
@@ -125,40 +99,6 @@ const themes = createThemes([
         bg: colors.neutral[50],
         fg: colors.neutral[900],
       },
-
-      ...mapKeys(
-        pick(reverseValues(colors.indigo), ['50', '100', '200', '300', '400', '500', '600', '700']),
-        (key) => 'utility-brand-' + key,
-      ),
-      ...mapKeys(
-        pick(reverseValues(colors.rose), ['50', '100', '200', '300', '400', '500', '600', '700']),
-        (key) => 'utility-danger-' + key,
-      ),
-      ...mapKeys(
-        pick(reverseValues(colors.neutral), [
-          '50',
-          '100',
-          '200',
-          '300',
-          '400',
-          '500',
-          '600',
-          '700',
-        ]),
-        (key) => 'utility-gray-' + key,
-      ),
-      ...mapKeys(
-        pick(reverseValues(colors.blue), ['50', '100', '200', '300', '400', '500', '600', '700']),
-        (key) => 'utility-blue-' + key,
-      ),
-      ...mapKeys(
-        pick(reverseValues(colors.pink), ['50', '100', '200', '300', '400', '500', '600', '700']),
-        (key) => 'utility-pink-' + key,
-      ),
-      ...mapKeys(
-        pick(reverseValues(colors.orange), ['50', '100', '200', '300', '400', '500', '600', '700']),
-        (key) => 'utility-orange-' + key,
-      ),
     },
   },
 ])
@@ -200,16 +140,3 @@ export default {
   },
   plugins: [require('@tailwindcss/container-queries'), require('tailwindcss-animate'), themes],
 } satisfies Config
-
-function reverseValues(obj: Record<string | number, unknown>) {
-  const keys = Object.keys(obj)
-  const values = Object.values(obj).reverse()
-
-  const result: Record<string | number, unknown> = {}
-
-  for (const i in keys) {
-    result[keys[i]] = values[i]
-  }
-
-  return result
-}

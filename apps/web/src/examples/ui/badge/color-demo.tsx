@@ -1,7 +1,7 @@
 import Badge from '@dinui/react/badge'
 
 const variants = ['filled', 'outline'] as const
-const colors = ['brand', 'danger', 'gray', 'blue', 'pink', 'orange'] as const
+const colors = ['default', 'brand', 'danger'] as const
 
 export default function BadgeColorDemo() {
   return (

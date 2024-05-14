@@ -14,12 +14,9 @@ const badge = tv({
       outline: {},
     },
     color: {
+      default: {},
       brand: {},
       danger: {},
-      gray: {},
-      blue: {},
-      pink: {},
-      orange: {},
     },
     size: {
       xs: {
@@ -47,98 +44,43 @@ const badge = tv({
   compoundVariants: [
     {
       variant: 'filled',
+      color: 'default',
+      className: {
+        root: 'bg-brand',
+      },
+    },
+    {
+      variant: 'filled',
       color: 'brand',
       className: {
-        root: 'text-[#fff] bg-utility-brand-500',
+        root: 'bg-brand',
       },
     },
     {
       variant: 'filled',
       color: 'danger',
       className: {
-        root: 'text-[#fff] bg-utility-danger-500',
-      },
-    },
-    {
-      variant: 'filled',
-      color: 'gray',
-      className: {
-        root: 'text-[#fff] bg-utility-gray-500',
-      },
-    },
-    {
-      variant: 'filled',
-      color: 'blue',
-      className: {
-        root: 'text-[#fff] bg-utility-blue-500',
-      },
-    },
-    {
-      variant: 'filled',
-      color: 'pink',
-      className: {
-        root: 'text-[#fff] bg-utility-pink-500',
-      },
-    },
-    {
-      variant: 'filled',
-      color: 'orange',
-      className: {
-        root: 'text-[#fff] bg-utility-orange-500',
+        root: 'bg-danger',
       },
     },
     {
       variant: 'outline',
       color: 'brand',
       className: {
-        root: 'bg-utility-brand-50 border-utility-brand-200 text-utility-brand-700',
-        leftDot: 'bg-utility-brand-500',
+        root: 'border-fg-brand text-fg-brand',
       },
     },
     {
       variant: 'outline',
       color: 'danger',
       className: {
-        root: 'bg-utility-danger-50 border-utility-danger-200 text-utility-danger-700',
-        leftDot: 'bg-utility-danger-500',
-      },
-    },
-    {
-      variant: 'outline',
-      color: 'gray',
-      className: {
-        root: 'bg-utility-gray-50 border-utility-gray-200 text-utility-gray-700',
-        leftDot: 'bg-utility-gray-500',
-      },
-    },
-    {
-      variant: 'outline',
-      color: 'blue',
-      className: {
-        root: 'bg-utility-blue-50 border-utility-blue-200 text-utility-blue-700',
-        leftDot: 'bg-utility-blue-500',
-      },
-    },
-    {
-      variant: 'outline',
-      color: 'pink',
-      className: {
-        root: 'bg-utility-pink-50 border-utility-pink-200 text-utility-pink-700',
-        leftDot: 'bg-utility-pink-500',
-      },
-    },
-    {
-      variant: 'outline',
-      color: 'orange',
-      className: {
-        root: 'bg-utility-orange-50 border-utility-orange-200 text-utility-orange-700',
-        leftDot: 'bg-utility-orange-500',
+        root: 'border-fg-danger text-fg-danger',
       },
     },
   ],
   defaultVariants: {
     variant: 'filled',
-    color: 'brand',
+    color: 'default',
     size: 'md',
   },
 })
