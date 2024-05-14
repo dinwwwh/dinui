@@ -10,6 +10,6 @@ export class CodeParser {
   }
 
   getUserCode() {
-    return this.code
+    return this.code.replaceAll(/import type \* as _.*\n/g, '')
   }
 }
