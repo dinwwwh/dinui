@@ -1,5 +1,11 @@
 # @dinui/react
 
+## 0.1.0
+
+### Minor Changes
+
+- [#24](https://github.com/dinwwwh/dinui/pull/24) [`97904a4`](https://github.com/dinwwwh/dinui/commit/97904a4d7bcb81109b629ad044eb205327f7e104) Thanks [@dinwwwh](https://github.com/dinwwwh)! - feat: redesign components
+
 ## 0.0.12
 
 ### Patch Changes

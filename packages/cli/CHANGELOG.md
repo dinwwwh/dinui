@@ -1,5 +1,15 @@
 # @dinui/cli
 
+## 0.1.3
+
+### Patch Changes
+
+- [#26](https://github.com/dinwwwh/dinui/pull/26) [`3b61aec`](https://github.com/dinwwwh/dinui/commit/3b61aec4555bc3ccdf49d92c6cfb43ae717e3f88) Thanks [@dinwwwh](https://github.com/dinwwwh)! - chore: improve user code in cli and manual install methods
+
+- [#24](https://github.com/dinwwwh/dinui/pull/24) [`97904a4`](https://github.com/dinwwwh/dinui/commit/97904a4d7bcb81109b629ad044eb205327f7e104) Thanks [@dinwwwh](https://github.com/dinwwwh)! - feat: redesign components
+
+- [#26](https://github.com/dinwwwh/dinui/pull/26) [`3b61aec`](https://github.com/dinwwwh/dinui/commit/3b61aec4555bc3ccdf49d92c6cfb43ae717e3f88) Thanks [@dinwwwh](https://github.com/dinwwwh)! - fix: relative import when install by cli and manual
+
 ## 0.1.2
 
 ### Patch Changes
